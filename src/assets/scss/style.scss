@@ -1,0 +1,191 @@
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+@import "vue-select/src/scss/vue-select.scss";
+
+/* Layout */
+.c-header.c-header-fixed {
+  border: 0;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14),
+    0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14),
+    0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
+  -webkit-clip-path: inset(0 0 -1000px 0);
+  clip-path: inset(0 0 -1000px 0);
+}
+.c-header .c-header-toggler-icon:focus {
+  outline: none;
+}
+.header-link {
+  padding-left: 0.2rem;
+}
+.c-app:not(.c-legacy-theme):not(.c-dark-theme) .card {
+  border: 0;
+  box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
+}
+
+.c-app:not(.c-dark-theme) .btn:not([class*=ghost]):not([class*=link]):not([class*=outline]):not([class*=transparent]) {
+  border: 0;
+  box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
+}
+
+.card-header:not(.content-center) > .c-icon:first-child {
+  margin-right: 0.1rem;
+  margin-top: 0.1rem;
+  vertical-align: top;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+}
+
+button:focus {
+  outline: none;
+}
+
+.c-icon:not(.c-icon-c-s):not(.c-icon-custom-size){
+  height: 1.1rem!important;
+}
+
+.icon-link{
+  color: #321fdb;
+}
+
+.table thead th {
+  border-top: none;
+  border-bottom: none;
+  padding-bottom: 0.2rem;
+}
+
+.section-link {
+  margin-top: 15px;
+}
+
+.section-link a {
+  padding-right: 0.3rem;
+}
+
+.section-link-disabled {
+  color: #ced2d8;
+}
+
+.section-link-disabled > .theme--light.v-icon {
+  color: #ced2d8;
+}
+
+/* Cards */
+.card-no-border {
+  padding-top: 0rem;
+  scroll-padding-bottom: 0rem;
+  box-shadow: none !important;
+}
+
+.card-no-border > .card-body{
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+.card-header-actions {
+  margin-right: 0;
+}
+.card-header-actions .material-design-icon > .material-design-icon__svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  bottom: auto;
+}
+
+/* Forms */
+
+.form-group {
+  margin-bottom: 0.2rem;
+}
+
+.form-mandatory {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #321fdb;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #ebedef;
+  opacity: 1;
+  margin-bottom: 1rem;
+}
+
+/* Validation styles */
+
+.help-block {
+  visibility: hidden;
+  font-size: 80%;
+  color: #e55353;
+  font-style: italic;
+  margin-bottom: 0.4rem;
+}
+
+.is-invalid > input, .is-invalid > textarea {
+  padding-right: calc(1.5em + 0.75rem);
+  background-position: right calc(0.375em + 0.1875rem) center;
+}
+.is-invalid > input, .is-invalid > textarea {
+  border-color: #e55353;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgZmlsbD0nbm9uZScgc3Ryb2tlPScjZTU1MzUzJyB2aWV3Qm94PScwIDAgMTIgMTInPjxjaXJjbGUgY3g9JzYnIGN5PSc2JyByPSc0LjUnLz48cGF0aCBzdHJva2UtbGluZWpvaW49J3JvdW5kJyBkPSdNNS44IDMuNmguNEw2IDYuNXonLz48Y2lyY2xlIGN4PSc2JyBjeT0nOC4yJyByPScuNicgZmlsbD0nI2U1NTM1Mycgc3Ryb2tlPSdub25lJy8+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.show {
+  visibility: visible;
+}
+
+/* V-Select*/
+.vs__search::placeholder{
+  color: #768192;
+}
+.vs__dropdown-toggle{
+  border: 1px solid #ced2d8;
+}
+.vs__selected, .vs__dropdown-option{
+  color: #768192;
+}
+.vs__dropdown-option--highlight{
+  color: white;
+  background-color:	#3399ff;
+}
+.vs__selected-options {
+  padding: 2px 3px 2px 6px;
+}
+.vs_actions{
+  padding: 3px 6px 0 3px;
+}
+.vs__clear{
+  padding-bottom: 5px;
+}
+.is-invalid > .vs__dropdown-toggle {
+  border-color: #e55353;
+}
+
+/* Spinner */
+.spinner > div {
+  background-color: #321fdb !important;
+}
+
+/* Global styles*/
+.icon-link {
+  color: #321fdb;
+}
+.icon-link:hover {
+  cursor: pointer;
+}
+
+/* nav pills*/
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  border-left-width: 4px;
+  border-left-style: solid;
+  background-color: #f8f8f8;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  border-left-color: #321fdb;
+  color: #321fdb;
+  border-radius: unset;
+  padding-left: 0.8rem;
+}
