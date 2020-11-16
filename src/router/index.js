@@ -73,13 +73,6 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/session",
-        name: "WorkSessionList",
-        component: () =>
-          import("../views/catalogue/workSession/WorkSessionList"),
-        meta: { authorize: [] }
-      },
-      {
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
