@@ -73,33 +73,6 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/process",
-        name: "BusinessProcessList",
-        component: () =>
-          import(
-            "../views/catalogue/process/businessProcess/BusinessProcessList"
-          ),
-        meta: { authorize: [] }
-      },
-      {
-        path: "catalogue/process/edit/:id",
-        name: "BusinessProcessEdit",
-        component: () =>
-          import(
-            "../views/catalogue/process/businessProcess/BusinessProcessEdit"
-          ),
-        meta: { authorize: [] }
-      },
-      {
-        path: "catalogue/process/add",
-        name: "BusinessProcessAdd",
-        component: () =>
-          import(
-            "../views/catalogue/process/businessProcess/BusinessProcessAdd"
-          ),
-        meta: { authorize: [] }
-      },
-      {
         path: "catalogue/session",
         name: "WorkSessionList",
         component: () =>
@@ -110,75 +83,6 @@ const routes = [
         path: "components",
         name: "Components",
         component: () => import("../views/catalogue/Components"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/step",
-        name: "ProcessStepList",
-        component: () =>
-          import("../views/catalogue/step/processStep/ProcessStepList"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/step/edit/:id",
-        name: "ProcessStepEdit",
-        component: () =>
-          import("../views/catalogue/step/processStep/ProcessStepEdit"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/step/add",
-        name: "ProcessStepNew",
-        component: () =>
-          import("../views/catalogue/step/processStep/ProcessStepAdd"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/stepinstance",
-        name: "StepInstanceList",
-        component: () =>
-          import("../views/catalogue/step/stepInstance/StepInstanceList"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/stepinstance/edit/:id",
-        name: "StepInstanceEdit",
-        component: () =>
-          import("../views/catalogue/step/stepInstance/StepInstanceEdit"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/stepinstance/add",
-        name: "StepInstanceNew",
-        component: () =>
-          import("../views/catalogue/step/stepInstance/StepInstanceAdd"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/parameter",
-        name: "ParameterList",
-        component: () =>
-          import("../views/catalogue/step/parameter/ParameterList"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/parameter/edit/:id",
-        name: "ParameterEdit",
-        component: () =>
-          import("../views/catalogue/step/parameter/ParameterEdit"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/parameter/add",
-        name: "ParameterNew",
-        component: () =>
-          import("../views/catalogue/step/parameter/ParameterAdd"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/workflow",
-        name: "WorkFlow",
-        component: () => import("../views/catalogue/flow/processFlow/WorkFlow"),
         meta: { authorize: [] }
       },
       {
@@ -203,27 +107,6 @@ const routes = [
         path: "settings/users/add/",
         name: "UserAdd",
         component: () => import("../views/settings/user/UserAdd"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/appRole",
-        name: "AppRoleList",
-        component: () =>
-          import("../views/catalogue/workflow/appRole/AppRoleList"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/appRole/edit/:id",
-        name: "AppRoleEdit",
-        component: () =>
-          import("../views/catalogue/workflow/appRole/AppRoleEdit"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "components/appRole/add",
-        name: "AppRoleNew",
-        component: () =>
-          import("../views/catalogue/workflow/appRole/AppRoleAdd"),
         meta: { authorize: [] }
       }
     ]
