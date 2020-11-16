@@ -35,26 +35,6 @@
           <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Service
         </router-link>
       </li>
-      <li class="c-sidebar-nav-item">
-        <router-link
-          tag="a"
-          :to="{ name: 'BusinessProcessList' }"
-          class="c-sidebar-nav-link"
-          :class="{ 'c-active': isProcess }"
-        >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Process
-        </router-link>
-      </li>
-      <li class="c-sidebar-nav-item">
-        <router-link
-          tag="a"
-          :to="{ name: 'WorkSessionList' }"
-          class="c-sidebar-nav-link"
-          :class="{ 'c-active': isWorkSession }"
-        >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Session
-        </router-link>
-      </li>
     </ul>
   </CSidebar>
 </template>

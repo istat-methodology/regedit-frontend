@@ -38,16 +38,6 @@
             <span class="pl-1"><users-icon class="pr-4" />Users</span>
           </router-link>
         </CDropdownItem>
-        <CDropdownItem>
-          <router-link
-            tag="a"
-            :to="{
-              name: 'Components'
-            }"
-          >
-            <span class="pl-1"><block-icon class="pr-4" />Components</span>
-          </router-link></CDropdownItem
-        >
       </CDropdown>
     </CHeaderNav>
     <CHeaderNav class="mr-4">

@@ -80,12 +80,6 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "components",
-        name: "Components",
-        component: () => import("../views/catalogue/Components"),
-        meta: { authorize: [] }
-      },
-      {
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
