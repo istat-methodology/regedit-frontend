@@ -47,28 +47,26 @@ const routes = [
       },
       {
         path: "catalogue/service",
-        name: "BusinessServiceList",
+        name: "AddressServiceList",
         component: () =>
           import(
-            "../views/catalogue/service/businessService/BusinessServiceList"
+            "../views/catalogue/service/addressService/AddressServiceList"
           ),
         meta: { authorize: [] }
       },
       {
         path: "catalogue/service/add",
-        name: "BusinessServiceAdd",
+        name: "AddressServiceAdd",
         component: () =>
-          import(
-            "../views/catalogue/service/businessService/BusinessServiceAdd"
-          ),
+          import("../views/catalogue/service/addressService/AddressServiceAdd"),
         meta: { authorize: [] }
       },
       {
         path: "catalogue/service/edit/:id",
-        name: "BusinessServiceEdit",
+        name: "AddressServiceEdit",
         component: () =>
           import(
-            "../views/catalogue/service/businessService/BusinessServiceEdit"
+            "../views/catalogue/service/addressService/AddressServiceEdit"
           ),
         meta: { authorize: [] }
       },
