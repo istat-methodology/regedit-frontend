@@ -1,43 +1,61 @@
 <template>
   <!-- wait until service is loaded -->
-  <div class="row" v-if="service">
+  <div class="row" v-if="address">
     <div class="col-12">
       <CCard>
-        <CCardHeader>Service</CCardHeader>
+        <CCardHeader>Address</CCardHeader>
         <CCardBody>
           <CInput
-            label="Name"
-            placeholder="Name"
-            :class="{ 'is-invalid': $v.service.name.$error }"
-            v-model="service.name"
-          />
-          <div class="help-block" :class="{ show: $v.service.name.$error }">
-            This field is required
-          </div>
-          <CTextarea
-            rows="3"
-            label="Description"
-            placeholder="Description"
-            :class="{ 'is-invalid': $v.service.description.$error }"
-            v-model="service.description"
+            label="codice_archivio_or"
+            placeholder="codice_archivio_or"
+            :class="{ 'is-invalid': $v.address.codice_archivio_or.$error }"
+            v-model="address.codice_archivio_or"
           />
           <div
             class="help-block"
-            :class="{ show: $v.service.description.$error }"
+            :class="{ show: $v.address.codice_archivio_or.$error }"
           >
             This field is required
           </div>
           <CInput
-            label="Organization"
-            placeholder="Organization"
+            label="progressivo_indirizzo_or"
+            placeholder="progressivo_indirizzo_or"
             :class="{
-              'is-invalid': $v.service.organization.$error
+              'is-invalid': $v.address.progressivo_indirizzo_or.$error
             }"
-            v-model="service.organization"
+            v-model="address.progressivo_indirizzo_or"
           />
           <div
             class="help-block"
-            :class="{ show: $v.service.organization.$error }"
+            :class="{ show: $v.address.progressivo_indirizzo_or.$error }"
+          >
+            This field is required
+          </div>
+          <CInput
+            label="comune_or"
+            placeholder="comune_or"
+            :class="{
+              'is-invalid': $v.address.comune_or.$error
+            }"
+            v-model="address.comune_or"
+          />
+          <div
+            class="help-block"
+            :class="{ show: $v.address.comune_or.$error }"
+          >
+            This field is required
+          </div>
+          <CInput
+            label="localita_or"
+            placeholder="localita_or"
+            :class="{
+              'is-invalid': $v.address.localita_or.$error
+            }"
+            v-model="address.localita_or"
+          />
+          <div
+            class="help-block"
+            :class="{ show: $v.address.localita_or.$error }"
           >
             This field is required
           </div>
@@ -68,21 +86,22 @@ import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "ServiceEdit",
+  name: "AddressEdit",
   computed: {
-    ...mapGetters("businessService", {
-      service: "businessService"
-    })
+    ...mapGetters("addressServ", ["addressService"])
   },
   validations: {
-    service: {
-      name: {
+    address: {
+      codice_archivio_or: {
         required
       },
-      description: {
+      progressivo_indirizzo_or: {
         required
       },
-      organization: {
+      comune_or: {
+        required
+      },
+      localita_or: {
         required
       }
     }
@@ -90,20 +109,21 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      if (!this.$v.service.$invalid) {
-        this.$store
-          .dispatch("businessService/update", this.service)
-          .then(() => {
-            this.backToList();
-          });
+      if (!this.$v.address.$invalid) {
+        this.$store.dispatch("addressServ/update", this.address).then(() => {
+          this.backToList();
+        });
       }
     },
     backToList() {
-      this.$router.push("/catalogue/service");
+      this.$router.push("/catalogue/address");
     }
   },
   created() {
-    this.$store.dispatch("businessService/findById", this.$route.params.id);
+    this.$store.dispatch(
+      "addressServ/findById",
+      this.$route.params.progressivo_indirizzo_or
+    );
   }
 };
 </script>

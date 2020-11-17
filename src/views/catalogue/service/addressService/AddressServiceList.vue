@@ -61,7 +61,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Context } from "@/common";
+// import { Context } from "@/common";
 
 export default {
   name: "addresslist",
@@ -71,7 +71,7 @@ export default {
       warningModal: false,
       fields: [
         { key: "codice_archivio_or", _style: "width:5%" },
-        { key: "progressivo indirizzo_or", _style: "width:15%" },
+        { key: "progressivo_indirizzo_or", _style: "width:15%" },
         { key: "comune_or", _style: "width:15%;" },
         { key: "localita_or", _style: "width:10%;" },
         {
@@ -108,7 +108,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("coreui/setContext", Context.Service);
+    // this.$store.dispatch("coreui/setContext", Context.Service);
     this.$store.dispatch("addressServ/findAll");
   }
 };

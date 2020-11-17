@@ -2,7 +2,7 @@
   "addresses": [
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "100",
+      "progressivo_indirizzo_or": "100",
       "comune_or": "Roma",
       "localita_or": "",
       "indirizzo originale": "Via di Monteverde 135",
@@ -24,7 +24,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "101",
+      "progressivo_indirizzo_or": "101",
       "comune_or": "Roma",
       "localita_or": "",
       "indirizzo originale": "Via di Monteverde 140/A",
@@ -46,7 +46,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "6869314",
+      "progressivo_indirizzo_or": "6869314",
       "comune_or": "Fondi",
       "localita_or": "",
       "indirizzo originale": "VIA SPINETE I (3' TRATTO) 9/A",
@@ -68,7 +68,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "6859048",
+      "progressivo_indirizzo_or": "6859048",
       "comune_or": "Monte San Biagio",
       "localita_or": "",
       "indirizzo originale": "VIA CARRO 1A TRAVERSA 10 A",
@@ -90,7 +90,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "2406943",
+      "progressivo_indirizzo_or": "2406943",
       "comune_or": "Merano/Meran",
       "localita_or": "",
       "indirizzo originale": "VIA XXIV MAGGIO-24.MAISTRASSE",
@@ -112,7 +112,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "36735799",
+      "progressivo_indirizzo_or": "36735799",
       "comune_or": "Catania",
       "localita_or": "",
       "indirizzo originale": "VIA BARTOLOMEO ALTAVILLA ISOL.A 14",
@@ -134,7 +134,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "5478541",
+      "progressivo_indirizzo_or": "5478541",
       "comune_or": "Rignano sull'Arno",
       "localita_or": "",
       "indirizzo originale": "VIA GEN. CARLO ALBERTO DALLA CHIESA 4",
@@ -156,7 +156,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "12923246",
+      "progressivo_indirizzo_or": "12923246",
       "comune_or": "Tortona",
       "localita_or": "",
       "indirizzo originale": "STR STR.PROV.POZZOLO F.RO 22 C",
@@ -178,7 +178,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "572246",
+      "progressivo_indirizzo_or": "572246",
       "comune_or": "MONTIGLIO MONFERRATO",
       "localita_or": "",
       "indirizzo originale": "VIA ASTI 43",
@@ -200,7 +200,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "163",
+      "progressivo_indirizzo_or": "163",
       "comune_or": "Cavallino",
       "localita_or": "",
       "indirizzo originale": "VIA  ALESSANDRO MANZONI 37 A",
@@ -222,7 +222,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "24414805",
+      "progressivo_indirizzo_or": "24414805",
       "comune_or": "Messina",
       "localita_or": "ARIELLA",
       "indirizzo originale": "VIA ARIELLA 10",
@@ -244,7 +244,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "",
+      "progressivo_indirizzo_or": "",
       "comune_or": "",
       "localita_or": "",
       "indirizzo originale": "",
@@ -266,7 +266,7 @@
     },
     {
       "codice_archivio_or": "40",
-      "progressivo indirizzo_or": "",
+      "progressivo_indirizzo_or": "",
       "comune_or": "",
       "localita_or": "",
       "indirizzo originale": "",

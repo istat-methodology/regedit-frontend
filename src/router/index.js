@@ -46,7 +46,7 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/service",
+        path: "catalogue/address",
         name: "AddressServiceList",
         component: () =>
           import(
@@ -55,14 +55,14 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/service/add",
+        path: "catalogue/address/add",
         name: "AddressServiceAdd",
         component: () =>
           import("../views/catalogue/service/addressService/AddressServiceAdd"),
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/service/edit/:id",
+        path: "catalogue/address/edit/:id",
         name: "AddressServiceEdit",
         component: () =>
           import(
