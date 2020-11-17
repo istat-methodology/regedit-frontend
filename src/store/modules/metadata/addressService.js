@@ -43,7 +43,7 @@ const actions = {
       .then(data => {
         //console.log(data);
         commit("SET_ADDRESS", data);
-        dispatch("message/success", "Business service saved!", {
+        dispatch("message/success", "Address saved!", {
           root: true
         });
       })
@@ -57,7 +57,7 @@ const actions = {
       .then(data => {
         //console.log(data);
         commit("SET_ADDRESS", data);
-        dispatch("message/success", "Business service updated!", {
+        dispatch("message/success", "Address updated!", {
           root: true
         });
       })
@@ -70,7 +70,7 @@ const actions = {
       .delete(id)
       .then(() => {
         dispatch("findAll");
-        dispatch("message/success", "Business service deleted!", {
+        dispatch("message/success", "Address deleted!", {
           root: true
         });
       })
@@ -89,7 +89,7 @@ const getters = {
   }
 };
 
-export const address = {
+export const addressServ = {
   namespaced: true,
   state,
   mutations,

@@ -5,7 +5,7 @@
         <header class="card-header">
           Services
           <div class="card-header-actions">
-            <router-link tag="a" :to="{ name: 'BusinessServiceAdd' }">
+            <router-link tag="a" :to="{ name: 'AddressServiceAdd' }">
               <add-icon />
             </router-link>
           </div>
@@ -25,7 +25,7 @@
               <td>
                 <router-link
                   tag="a"
-                  :to="{ name: 'BusinessServiceEdit', params: { id: item.id } }"
+                  :to="{ name: 'AddressServiceEdit', params: { id: item.id } }"
                 >
                   <edit-icon />
                 </router-link>
@@ -70,10 +70,10 @@ export default {
       selectedAddress: {},
       warningModal: false,
       fields: [
-        { key: "id", _style: "width:5%" },
-        { key: "name", _style: "width:15%" },
-        { key: "description", _style: "width:15%;" },
-        { key: "organization", _style: "width:10%;" },
+        { key: "codice_archivio_or", _style: "width:5%" },
+        { key: "progressivo indirizzo_or", _style: "width:15%" },
+        { key: "comune_or", _style: "width:15%;" },
+        { key: "localita_or", _style: "width:10%;" },
         {
           key: "show_update",
           label: "",
@@ -92,15 +92,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("address", ["addressServices"])
+    ...mapGetters("addressServ", ["addressServices"])
   },
   methods: {
     deleteService() {
-      this.$store.dispatch("businessService/delete", this.selectedAddress.id);
+      this.$store.dispatch("addressService/delete", this.selectedAddress.id);
       this.warningModal = false;
     },
-    modalOpen(service) {
-      this.selectedService = service;
+    modalOpen(address) {
+      this.selectedAddress = address;
       this.warningModal = true;
     },
     modalClose() {
@@ -109,7 +109,7 @@ export default {
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.Service);
-    this.$store.dispatch("businessService/findAll");
+    this.$store.dispatch("addressServ/findAll");
   }
 };
 </script>

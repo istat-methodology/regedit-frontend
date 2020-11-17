@@ -5,7 +5,7 @@ import { auth } from "./modules/auth";
 import { error } from "./modules/error";
 import { coreui } from "./modules/coreui";
 import { message } from "./modules/message";
-import { address } from "./modules/metadata/addressService";
+import { addressServ } from "./modules/metadata/addressService";
 import { user } from "./modules/user/user";
 
 Vue.use(Vuex);
@@ -16,7 +16,7 @@ export default new Vuex.Store({
     error,
     coreui,
     message,
-    address,
+    addressServ,
     user
   }
 });
