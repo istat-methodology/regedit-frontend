@@ -120,10 +120,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch(
-      "addressServ/findById",
-      this.$route.params.progressivo_indirizzo_or
-    );
+    this.$store.dispatch("addressServ/findById", this.$route.params.id);
   }
 };
 </script>
