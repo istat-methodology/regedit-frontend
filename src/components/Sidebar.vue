@@ -28,11 +28,11 @@
       <li class="c-sidebar-nav-item">
         <router-link
           tag="a"
-          :to="{ name: 'BusinessServiceList' }"
+          :to="{ name: 'AddressServiceList' }"
           class="c-sidebar-nav-link"
           :class="{ 'c-active': isService }"
         >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Service
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Addresses
         </router-link>
       </li>
     </ul>

@@ -7,11 +7,11 @@
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
-          This section contains the list of services available in the catalogue.
-          The statistical services are classified according to GSBPM standard.
+          This section contains the list of addresses available in the
+          catalogue.
           <p class="section-link">
             <router-link tag="a" :to="{ name: 'AddressServiceList' }"
-              ><span>Go to service catalogue <chevron-right-icon /></span>
+              ><span>Go to Address catalogue <chevron-right-icon /></span>
             </router-link>
           </p>
         </div>
