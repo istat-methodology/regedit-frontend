@@ -88,7 +88,7 @@ import { required } from "vuelidate/lib/validators";
 export default {
   name: "AddressEdit",
   computed: {
-    ...mapGetters("addressServ", ["addressService"])
+    ...mapGetters("addressServ", { address: "addressService" })
   },
   validations: {
     address: {

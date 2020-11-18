@@ -1,6 +1,7 @@
 {
   "addresses": [
     {
+      "id": "1",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "100",
       "comune_or": "Roma",
@@ -23,6 +24,7 @@
       "Fonte": ""
     },
     {
+      "id": "2",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "101",
       "comune_or": "Roma",
@@ -45,6 +47,7 @@
       "Fonte": ""
     },
     {
+      "id": "3",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "6869314",
       "comune_or": "Fondi",
@@ -67,6 +70,7 @@
       "Fonte": ""
     },
     {
+      "id": "4",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "6859048",
       "comune_or": "Monte San Biagio",
@@ -89,6 +93,7 @@
       "Fonte": ""
     },
     {
+      "id": "5",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "2406943",
       "comune_or": "Merano/Meran",
@@ -111,6 +116,7 @@
       "Fonte": ""
     },
     {
+      "id": "6",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "36735799",
       "comune_or": "Catania",
@@ -133,6 +139,7 @@
       "Fonte": ""
     },
     {
+      "id": "7",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "5478541",
       "comune_or": "Rignano sull'Arno",
@@ -155,6 +162,7 @@
       "Fonte": ""
     },
     {
+      "id": "8",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "12923246",
       "comune_or": "Tortona",
@@ -177,6 +185,7 @@
       "Fonte": ""
     },
     {
+      "id": "9",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "572246",
       "comune_or": "MONTIGLIO MONFERRATO",
@@ -199,6 +208,7 @@
       "Fonte": ""
     },
     {
+      "id": "10",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "163",
       "comune_or": "Cavallino",
@@ -221,6 +231,7 @@
       "Fonte": ""
     },
     {
+      "id": "11",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "24414805",
       "comune_or": "Messina",
@@ -243,6 +254,7 @@
       "Fonte": ""
     },
     {
+      "id": "12",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "",
       "comune_or": "",
@@ -265,6 +277,7 @@
       "Fonte": ""
     },
     {
+      "id": "13",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "",
       "comune_or": "",

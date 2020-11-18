@@ -25,7 +25,10 @@
               <td>
                 <router-link
                   tag="a"
-                  :to="{ name: 'AddressServiceEdit', params: { id: item.id } }"
+                  :to="{
+                    name: 'AddressServiceEdit',
+                    params: { id: item.id }
+                  }"
                 >
                   <edit-icon />
                 </router-link>
