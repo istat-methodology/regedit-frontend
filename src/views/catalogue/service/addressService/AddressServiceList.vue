@@ -52,12 +52,12 @@
           shape="square"
           size="sm"
           color="primary"
-          @click="deleteService()"
+          @click="deleteAddress()"
         >
           Delete
         </CButton>
       </template>
-      Delete service '{{ selectedAddress.name }}'?
+      Delete address '{{ selectedAddress.name }}'?
     </CModal>
   </div>
 </template>
@@ -98,8 +98,8 @@ export default {
     ...mapGetters("addressServ", ["addressServices"])
   },
   methods: {
-    deleteService() {
-      this.$store.dispatch("addressService/delete", this.selectedAddress.id);
+    deleteAddress() {
+      this.$store.dispatch("addressServ/delete", this.selectedAddress.id);
       this.warningModal = false;
     },
     modalOpen(address) {
