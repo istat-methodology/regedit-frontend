@@ -57,7 +57,7 @@
           Delete
         </CButton>
       </template>
-      Delete address '{{ selectedAddress.name }}'?
+      Delete address '{{ selectedAddress.id }}'?
     </CModal>
   </div>
 </template>
