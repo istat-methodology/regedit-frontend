@@ -130,11 +130,13 @@
                   <CInput
                     label="indirizzo originario"
                     placeholder="indirizzo originario"
+                    v-model="original"
                     disabled
                   />
                   <CInput
                     label="indirizzo normalizato"
                     placeholder="indirizzo normalizzato"
+                    v-model="normalized"
                     disabled
                   />
                 </CCardBody>
@@ -291,7 +293,9 @@ import { required } from "vuelidate/lib/validators";
 export default {
   name: "AddressEdit",
   computed: {
-    ...mapGetters("addressServ", { address: "addressService" })
+    ...mapGetters("addressServ", { address: "addressService" }),
+    ...mapGetters("addressServ", { original: "addressOriginal" }),
+    ...mapGetters("addressServ", { normalized: "addressNormalized" })
   },
   validations: {
     address: {

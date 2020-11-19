@@ -2,7 +2,9 @@ import { addressService } from "@/services";
 
 const state = {
   addresses: [],
-  address: {}
+  address: {},
+  original: {},
+  normalized: {}
 };
 
 const mutations = {
@@ -11,6 +13,26 @@ const mutations = {
   },
   SET_ADDRESS(state, address) {
     state.address = address;
+  },
+  SET_ORIGINALADDRESS(state, address) {
+    state.original =
+      address.indirizzo_originale +
+      ", " +
+      address.localita_or +
+      ", " +
+      address.comune_or;
+  },
+  SET_NORMALIZEDADDRESS(state, address) {
+    state.normalized =
+      address.dug_su +
+      " " +
+      address.duf_su +
+      " " +
+      address.civico_su +
+      " " +
+      address.esponente_su +
+      ", " +
+      address.localita_su;
   }
 };
 
@@ -32,6 +54,8 @@ const actions = {
       .then(data => {
         //console.log(data);
         commit("SET_ADDRESS", data);
+        commit("SET_ORIGINALADDRESS", data);
+        commit("SET_NORMALIZEDADDRESS", data);
       })
       .catch(err => {
         console.log(err);
@@ -86,6 +110,12 @@ const getters = {
   },
   addressService: state => {
     return state.address;
+  },
+  addressOriginal: state => {
+    return state.original;
+  },
+  addressNormalized: state => {
+    return state.normalized;
   }
 };
 
