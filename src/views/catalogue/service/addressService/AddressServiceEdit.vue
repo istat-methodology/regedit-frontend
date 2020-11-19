@@ -146,14 +146,14 @@
                     label="dug"
                     placeholder="dug"
                     :class="{
-                      'is-invalid': $v.address.dug_su.$error
+                      'is-invalid': $v.address.dug.$error
                     }"
-                    v-model="address.dug_su"
+                    v-model="address.dug"
                   />
                   <div
                     class="help-block"
                     :class="{
-                      show: $v.address.dug_su.$error
+                      show: $v.address.dug.$error
                     }"
                   >
                     This field is required
@@ -162,14 +162,14 @@
                     label="duf"
                     placeholder="duf"
                     :class="{
-                      'is-invalid': $v.address.duf_su.$error
+                      'is-invalid': $v.address.duf.$error
                     }"
-                    v-model="address.duf_su"
+                    v-model="address.duf"
                   />
                   <div
                     class="help-block"
                     :class="{
-                      show: $v.address.duf_su.$error
+                      show: $v.address.duf.$error
                     }"
                   >
                     This field is required
@@ -178,13 +178,13 @@
                     label="civico"
                     placeholder="civico"
                     :class="{
-                      'is-invalid': $v.address.civico_su.$error
+                      'is-invalid': $v.address.civico.$error
                     }"
-                    v-model="address.civico_su"
+                    v-model="address.civico"
                   />
                   <div
                     class="help-block"
-                    :class="{ show: $v.address.civico_su.$error }"
+                    :class="{ show: $v.address.civico.$error }"
                   >
                     This field is required
                   </div>
@@ -192,13 +192,13 @@
                     label="località"
                     placeholder="località"
                     :class="{
-                      'is-invalid': $v.address.localita_su.$error
+                      'is-invalid': $v.address.localita.$error
                     }"
-                    v-model="address.localita_su"
+                    v-model="address.localita"
                   />
                   <div
                     class="help-block"
-                    :class="{ show: $v.address.localita_su.$error }"
+                    :class="{ show: $v.address.localita.$error }"
                   >
                     This field is required
                   </div>
@@ -206,13 +206,13 @@
                     label="esponente"
                     placeholder="esponente"
                     :class="{
-                      'is-invalid': $v.address.esponente_su.$error
+                      'is-invalid': $v.address.esponente.$error
                     }"
-                    v-model="address.esponente_su"
+                    v-model="address.esponente"
                   />
                   <div
                     class="help-block"
-                    :class="{ show: $v.address.esponente_su.$error }"
+                    :class="{ show: $v.address.esponente.$error }"
                   >
                     This field is required
                   </div>
