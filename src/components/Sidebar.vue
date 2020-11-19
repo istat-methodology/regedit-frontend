@@ -32,7 +32,7 @@
           class="c-sidebar-nav-link"
           :class="{ 'c-active': isService }"
         >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Addresses
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Address List
         </router-link>
       </li>
     </ul>

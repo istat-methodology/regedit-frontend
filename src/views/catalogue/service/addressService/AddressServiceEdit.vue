@@ -5,60 +5,248 @@
       <CCard>
         <CCardHeader>Address</CCardHeader>
         <CCardBody>
-          <CInput
-            label="codice_archivio_or"
-            placeholder="codice_archivio_or"
-            :class="{ 'is-invalid': $v.address.codice_archivio_or.$error }"
-            v-model="address.codice_archivio_or"
-          />
-          <div
-            class="help-block"
-            :class="{ show: $v.address.codice_archivio_or.$error }"
-          >
-            This field is required
-          </div>
-          <CInput
-            label="progressivo_indirizzo_or"
-            placeholder="progressivo_indirizzo_or"
-            :class="{
-              'is-invalid': $v.address.progressivo_indirizzo_or.$error
-            }"
-            v-model="address.progressivo_indirizzo_or"
-          />
-          <div
-            class="help-block"
-            :class="{ show: $v.address.progressivo_indirizzo_or.$error }"
-          >
-            This field is required
-          </div>
-          <CInput
-            label="comune_or"
-            placeholder="comune_or"
-            :class="{
-              'is-invalid': $v.address.comune_or.$error
-            }"
-            v-model="address.comune_or"
-          />
-          <div
-            class="help-block"
-            :class="{ show: $v.address.comune_or.$error }"
-          >
-            This field is required
-          </div>
-          <CInput
-            label="localita_or"
-            placeholder="localita_or"
-            :class="{
-              'is-invalid': $v.address.localita_or.$error
-            }"
-            v-model="address.localita_or"
-          />
-          <div
-            class="help-block"
-            :class="{ show: $v.address.localita_or.$error }"
-          >
-            This field is required
-          </div>
+          <CTabs variant="Indirizzo" :active-tab="0">
+            <CTab title="Dati di input">
+              <CCard>
+                <CCardHeader>Indirizzo originale</CCardHeader>
+                <CCardBody>
+                  <CInput
+                    label="codice archivio"
+                    placeholder="codice archivio"
+                    v-model="address.codice_archivio_or"
+                    disabled
+                  />
+                  <CInput
+                    label="progressivo indirizzo"
+                    placeholder="progressivo indirizzo"
+                    v-model="address.progressivo_indirizzo_or"
+                    disabled
+                  />
+                  <CInput
+                    label="comune"
+                    placeholder="comune"
+                    v-model="address.comune_or"
+                    disabled
+                  />
+                  <CInput
+                    label="località"
+                    placeholder="località"
+                    v-model="address.localita_or"
+                    disabled
+                  />
+                  <CInput
+                    label="indirizzo"
+                    placeholder="indirizzo"
+                    v-model="address.indirizzo_originale"
+                    disabled
+                  />
+                </CCardBody>
+              </CCard>
+              <CCard>
+                <CCardHeader>Indirizzo normalizzato</CCardHeader>
+                <CCardBody>
+                  <CInput
+                    label="località"
+                    placeholder="località"
+                    :class="{
+                      'is-invalid': $v.address.localita_su.$error
+                    }"
+                    v-model="address.localita_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.localita_su.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="dug"
+                    placeholder="dug"
+                    :class="{
+                      'is-invalid': $v.address.dug_su.$error
+                    }"
+                    v-model="address.dug_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{
+                      show: $v.address.dug_su.$error
+                    }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="duf"
+                    placeholder="duf"
+                    :class="{
+                      'is-invalid': $v.address.duf_su.$error
+                    }"
+                    v-model="address.duf_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{
+                      show: $v.address.duf_su.$error
+                    }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="civico"
+                    placeholder="civico"
+                    :class="{
+                      'is-invalid': $v.address.civico_su.$error
+                    }"
+                    v-model="address.civico_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.civico_su.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="esponente"
+                    placeholder="esponente"
+                    :class="{
+                      'is-invalid': $v.address.esponente_su.$error
+                    }"
+                    v-model="address.esponente_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.esponente_su.$error }"
+                  >
+                    This field is required
+                  </div>
+                </CCardBody>
+              </CCard>
+            </CTab>
+
+            <CTab title="Dati di output">
+              <CCard>
+                <CCardHeader>Indirizzo revisionato</CCardHeader>
+                <CCardBody>
+                  <CInput
+                    label="dug"
+                    placeholder="dug"
+                    :class="{
+                      'is-invalid': $v.address.dug_su.$error
+                    }"
+                    v-model="address.dug_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{
+                      show: $v.address.dug_su.$error
+                    }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="duf"
+                    placeholder="duf"
+                    :class="{
+                      'is-invalid': $v.address.duf_su.$error
+                    }"
+                    v-model="address.duf_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{
+                      show: $v.address.duf_su.$error
+                    }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="civico"
+                    placeholder="civico"
+                    :class="{
+                      'is-invalid': $v.address.civico_su.$error
+                    }"
+                    v-model="address.civico_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.civico_su.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="località"
+                    placeholder="località"
+                    :class="{
+                      'is-invalid': $v.address.localita_su.$error
+                    }"
+                    v-model="address.localita_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.localita_su.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="esponente"
+                    placeholder="esponente"
+                    :class="{
+                      'is-invalid': $v.address.esponente_su.$error
+                    }"
+                    v-model="address.esponente_su"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.esponente_su.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="codice strada"
+                    placeholder="codice strada"
+                    :class="{
+                      'is-invalid': $v.address.chiave_strada.$error
+                    }"
+                    v-model="address.chiave_strada"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.chiave_strada.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="codice civico"
+                    placeholder="codice civico"
+                    :class="{
+                      'is-invalid': $v.address.chiave_civico.$error
+                    }"
+                    v-model="address.chiave_civico"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.chiave_civico.$error }"
+                  >
+                    This field is required
+                  </div>
+                  <CInput
+                    label="fonte"
+                    placeholder="fonte"
+                    :class="{
+                      'is-invalid': $v.address.fonte.$error
+                    }"
+                    v-model="address.fonte"
+                  />
+                  <div
+                    class="help-block"
+                    :class="{ show: $v.address.fonte.$error }"
+                  >
+                    This field is required
+                  </div>
+                </CCardBody>
+              </CCard>
+            </CTab>
+          </CTabs>
         </CCardBody>
         <CCardFooter>
           <CButton
@@ -92,16 +280,43 @@ export default {
   },
   validations: {
     address: {
-      codice_archivio_or: {
+      localita_su: {
         required
       },
-      progressivo_indirizzo_or: {
+      dug_su: {
         required
       },
-      comune_or: {
+      duf_su: {
         required
       },
-      localita_or: {
+      civico_su: {
+        required
+      },
+      esponente_su: {
+        required
+      },
+      localita: {
+        required
+      },
+      dug: {
+        required
+      },
+      duf: {
+        required
+      },
+      civico: {
+        required
+      },
+      esponente: {
+        required
+      },
+      chiave_strada: {
+        required
+      },
+      chiave_civico: {
+        required
+      },
+      fonte: {
         required
       }
     }
