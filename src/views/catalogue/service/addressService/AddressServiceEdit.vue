@@ -125,6 +125,21 @@
 
             <CTab title="Dati di output">
               <CCard>
+                <CCardHeader>dati riepilogativi di input</CCardHeader>
+                <CCardBody>
+                  <CInput
+                    label="indirizzo originario"
+                    placeholder="indirizzo originario"
+                    disabled
+                  />
+                  <CInput
+                    label="indirizzo normalizato"
+                    placeholder="indirizzo normalizzato"
+                    disabled
+                  />
+                </CCardBody>
+              </CCard>
+              <CCard>
                 <CCardHeader>Indirizzo revisionato</CCardHeader>
                 <CCardBody>
                   <CInput
