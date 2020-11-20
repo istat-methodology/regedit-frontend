@@ -105,7 +105,7 @@
                     ><input
                       type="checkbox"
                       :checked="validated"
-                      @update="toggle"
+                      @click="toggle"
                       class="c-switch-input form-check-input"/>
                     <span class="c-switch-slider"></span></label
                 ></CCardHeader>
