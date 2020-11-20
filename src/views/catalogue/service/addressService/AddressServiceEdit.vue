@@ -142,7 +142,17 @@
                 </CCardBody>
               </CCard>
               <CCard>
-                <CCardHeader>Indirizzo revisionato</CCardHeader>
+                <CCardHeader
+                  >Indirizzo revisionato
+                  <label
+                    class="c-switch form-check-label c-switch-pill c-switch-success"
+                    ><input
+                      type="checkbox"
+                      :checked="validated"
+                      @update="toggle"
+                      class="c-switch-input form-check-input"/>
+                    <span class="c-switch-slider"></span></label
+                ></CCardHeader>
                 <CCardBody>
                   <CInput
                     label="dug"
@@ -295,7 +305,8 @@ export default {
   computed: {
     ...mapGetters("addressServ", { address: "addressService" }),
     ...mapGetters("addressServ", { original: "addressOriginal" }),
-    ...mapGetters("addressServ", { normalized: "addressNormalized" })
+    ...mapGetters("addressServ", { normalized: "addressNormalized" }),
+    ...mapGetters("addressServ", { validated: "addressValidated" })
   },
   validations: {
     address: {
@@ -351,6 +362,14 @@ export default {
     },
     backToList() {
       this.$router.push("/catalogue/address");
+    },
+    toggle() {
+      if (this.checked) {
+        this.address.validazione = "SI";
+      }
+      if (!this.checked) {
+        this.address.validazione = "NO";
+      }
     }
   },
   created() {

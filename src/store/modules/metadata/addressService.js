@@ -4,7 +4,8 @@ const state = {
   addresses: [],
   address: {},
   original: {},
-  normalized: {}
+  normalized: {},
+  validated: {}
 };
 
 const mutations = {
@@ -33,6 +34,14 @@ const mutations = {
       address.esponente_su +
       ", " +
       address.localita_su;
+  },
+  SET_VALIDATEDADDRESS(state, address) {
+    if (address.validazione == "SI") {
+      state.validated = true;
+    }
+    if (address.validazione == "NO") {
+      state.validated = false;
+    }
   }
 };
 
@@ -53,9 +62,11 @@ const actions = {
       .findById(id)
       .then(data => {
         //console.log(data);
+
         commit("SET_ADDRESS", data);
         commit("SET_ORIGINALADDRESS", data);
         commit("SET_NORMALIZEDADDRESS", data);
+        commit("SET_VALIDATEDADDRESS", data);
       })
       .catch(err => {
         console.log(err);
@@ -116,6 +127,9 @@ const getters = {
   },
   addressNormalized: state => {
     return state.normalized;
+  },
+  addressValidated: state => {
+    return state.validated;
   }
 };
 

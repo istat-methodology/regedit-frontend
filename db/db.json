@@ -12,15 +12,15 @@
       "duf_su": "di Monteverde",
       "civico_su": "135",
       "esponente_su": "",
-      "Validazione": "SI",
+      "validazione": "SI",
       "dug": "",
       "duf": "",
       "civico": "",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "2",
@@ -34,7 +34,7 @@
       "duf_su": "Monteverde",
       "civico_su": "140A",
       "esponente_su": "vv",
-      "Validazione": "NO",
+      "validazione": "NO",
       "dug": "VIA",
       "duf": "di Monteverde",
       "civico": "140",
@@ -42,7 +42,6 @@
       "Localita": "",
       "chiave_strada": "040",
       "chiave_civico": "003",
-      "Fonte": "",
       "fonte": "istat",
       "localita": "boh"
     },
@@ -58,15 +57,15 @@
       "duf_su": "SPINETE I",
       "civico_su": "3",
       "esponente_su": "TRATTO 9 A",
-      "Validazione": "NO",
+      "validazione": "NO",
       "dug": "VIA",
       "duf": "SPINETE I",
       "civico": "9",
       "esponente": "A",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "1",
       "chiave_civico": "10",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "4",
@@ -80,7 +79,7 @@
       "duf_su": "CARRO",
       "civico_su": "1",
       "esponente_su": "A TRAVERSA 10 A",
-      "Validazione": "NO",
+      "validazione": "NO",
       "dug": "VIA",
       "duf": "CARRO",
       "civico": "10",
@@ -88,7 +87,7 @@
       "Localita": "",
       "chiave_strada": "3",
       "chiave_civico": "5",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "5",
@@ -102,15 +101,15 @@
       "duf_su": "IV NOVEMBRE",
       "civico_su": "4",
       "esponente_su": "N OVEMBERSTRASSE 42",
-      "Validazione": "NO",
+      "validazione": "NO",
       "dug": "VIA",
       "duf": "IV NOVEMBRE",
       "civico": "42",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "6",
@@ -124,15 +123,15 @@
       "duf_su": "BARTOLOMEO ALTAVILLA",
       "civico_su": "",
       "esponente_su": "IS OL A 14",
-      "Validazione": "NO",
+      "validazione": "NO",
       "dug": "VIA",
       "duf": "BARTOLOMEO ALTAVILLA",
       "civico": "14",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "7",
@@ -146,15 +145,15 @@
       "duf_su": "",
       "civico_su": "",
       "esponente_su": "",
-      "Validazione": "NO",
+      "validazione": "NO",
       "dug": "VIA",
       "duf": "CARLO ALBERTO DALLA CHIESA",
       "civico": "9",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "8",
@@ -168,15 +167,15 @@
       "duf_su": "Strada Vicinale del Pozzo 22",
       "civico_su": "",
       "esponente_su": "",
-      "Validazione": "",
+      "validazione": "",
       "dug": "",
       "duf": "",
       "civico": "",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "9",
@@ -185,20 +184,20 @@
       "comune_or": "MONTIGLIO MONFERRATO",
       "localita_or": "",
       "indirizzo_originale": "VIA ASTI 43",
-      "localita_su": "",
+      "localita_su": "sdfds",
       "dug_su": "VIA",
       "duf_su": "ASTI",
       "civico_su": "43",
-      "esponente_su": "",
-      "Validazione": "SI",
-      "dug": "",
-      "duf": "",
-      "civico": "",
-      "esponente": "",
-      "Localita": "",
-      "chiave_strada": "",
-      "chiave_civico": "",
-      "Fonte": ""
+      "esponente_su": "sdfdfsfds",
+      "validazione": "SI",
+      "dug": "ddsoooooooooooooooo",
+      "duf": "sdsd",
+      "civico": "sdfds",
+      "esponente": "sdfsd",
+      "localita": "sddfs",
+      "chiave_strada": "sdsdf",
+      "chiave_civico": "sdfds",
+      "fonte": "sdfsd"
     },
     {
       "id": "10",
@@ -212,15 +211,15 @@
       "duf_su": "ALESSANDRO MANZONI",
       "civico_su": "37",
       "esponente_su": "A",
-      "Validazione": "SI",
+      "validazione": "SI",
       "dug": "",
       "duf": "",
       "civico": "",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "11",
@@ -234,15 +233,15 @@
       "duf_su": "ARIELLA",
       "civico_su": "10",
       "esponente_su": "",
-      "Validazione": "SI",
+      "validazione": "SI",
       "dug": "",
       "duf": "",
       "civico": "",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "12",
@@ -256,15 +255,15 @@
       "duf_su": "",
       "civico_su": "",
       "esponente_su": "",
-      "Validazione": "",
+      "validazione": "",
       "dug": "",
       "duf": "",
       "civico": "",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     },
     {
       "id": "13",
@@ -278,15 +277,15 @@
       "duf_su": "",
       "civico_su": "",
       "esponente_su": "",
-      "Validazione": "",
+      "validazione": "",
       "dug": "",
       "duf": "",
       "civico": "",
       "esponente": "",
-      "Localita": "",
+      "localita": "",
       "chiave_strada": "",
       "chiave_civico": "",
-      "Fonte": ""
+      "fonte": ""
     }
   ]
 }
