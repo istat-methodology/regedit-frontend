@@ -5,7 +5,7 @@
       <CCard>
         <CCardHeader>Address</CCardHeader>
         <CCardBody>
-          <CTabs variant="Indirizzo" :active-tab="0">
+          <CTabs :active-tab="0">
             <CTab title="Dati di input">
               <CCard>
                 <CCardHeader>Indirizzo originale</CCardHeader>
@@ -319,11 +319,11 @@ export default {
     backToList() {
       this.$router.push("/catalogue/address");
     },
-    toggle() {
-      if (this.checked) {
+    toggle(element) {
+      if (element.currentTarget.checked) {
         this.address.validazione = "SI";
       }
-      if (!this.checked) {
+      if (!element.currentTarget.checked) {
         this.address.validazione = "NO";
       }
     }
