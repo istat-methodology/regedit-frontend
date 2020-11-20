@@ -48,77 +48,33 @@
                   <CInput
                     label="località"
                     placeholder="località"
-                    :class="{
-                      'is-invalid': $v.address.localita_su.$error
-                    }"
                     v-model="address.localita_su"
+                    disabled
                   />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.localita_su.$error }"
-                  >
-                    This field is required
-                  </div>
                   <CInput
                     label="dug"
                     placeholder="dug"
-                    :class="{
-                      'is-invalid': $v.address.dug_su.$error
-                    }"
                     v-model="address.dug_su"
+                    disabled
                   />
-                  <div
-                    class="help-block"
-                    :class="{
-                      show: $v.address.dug_su.$error
-                    }"
-                  >
-                    This field is required
-                  </div>
                   <CInput
                     label="duf"
                     placeholder="duf"
-                    :class="{
-                      'is-invalid': $v.address.duf_su.$error
-                    }"
                     v-model="address.duf_su"
+                    disabled
                   />
-                  <div
-                    class="help-block"
-                    :class="{
-                      show: $v.address.duf_su.$error
-                    }"
-                  >
-                    This field is required
-                  </div>
                   <CInput
                     label="civico"
                     placeholder="civico"
-                    :class="{
-                      'is-invalid': $v.address.civico_su.$error
-                    }"
                     v-model="address.civico_su"
+                    disabled
                   />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.civico_su.$error }"
-                  >
-                    This field is required
-                  </div>
                   <CInput
                     label="esponente"
                     placeholder="esponente"
-                    :class="{
-                      'is-invalid': $v.address.esponente_su.$error
-                    }"
                     v-model="address.esponente_su"
+                    disabled
                   />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.esponente_su.$error }"
-                  >
-                    This field is required
-                  </div>
                 </CCardBody>
               </CCard>
             </CTab>
