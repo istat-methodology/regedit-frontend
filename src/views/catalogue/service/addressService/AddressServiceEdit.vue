@@ -5,78 +5,94 @@
       <CCard>
         <CCardHeader>Address</CCardHeader>
         <CCardBody>
-          <CTabs :active-tab="0">
+          <CTabs :active-tab="0" ref="tabs">
             <CTab title="Dati di input">
-              <CCard>
-                <CCardHeader>Indirizzo originale</CCardHeader>
-                <CCardBody>
-                  <CInput
-                    label="codice archivio"
-                    placeholder="codice archivio"
-                    v-model="address.codice_archivio_or"
-                    disabled
-                  />
-                  <CInput
-                    label="progressivo indirizzo"
-                    placeholder="progressivo indirizzo"
-                    v-model="address.progressivo_indirizzo_or"
-                    disabled
-                  />
-                  <CInput
-                    label="comune"
-                    placeholder="comune"
-                    v-model="address.comune_or"
-                    disabled
-                  />
-                  <CInput
-                    label="località"
-                    placeholder="località"
-                    v-model="address.localita_or"
-                    disabled
-                  />
-                  <CInput
-                    label="indirizzo"
-                    placeholder="indirizzo"
-                    v-model="address.indirizzo_originale"
-                    disabled
-                  />
-                </CCardBody>
-              </CCard>
-              <CCard>
-                <CCardHeader>Indirizzo normalizzato</CCardHeader>
-                <CCardBody>
-                  <CInput
-                    label="località"
-                    placeholder="località"
-                    v-model="address.localita_su"
-                    disabled
-                  />
-                  <CInput
-                    label="dug"
-                    placeholder="dug"
-                    v-model="address.dug_su"
-                    disabled
-                  />
-                  <CInput
-                    label="duf"
-                    placeholder="duf"
-                    v-model="address.duf_su"
-                    disabled
-                  />
-                  <CInput
-                    label="civico"
-                    placeholder="civico"
-                    v-model="address.civico_su"
-                    disabled
-                  />
-                  <CInput
-                    label="esponente"
-                    placeholder="esponente"
-                    v-model="address.esponente_su"
-                    disabled
-                  />
-                </CCardBody>
-              </CCard>
+              <div class="row">
+                <div class="col-6">
+                  <CCard>
+                    <CCardHeader>Indirizzo originale</CCardHeader>
+                    <CCardBody>
+                      <CInput
+                        label="codice archivio"
+                        placeholder="codice archivio"
+                        v-model="address.codice_archivio_or"
+                        disabled
+                      />
+                      <CInput
+                        label="progressivo indirizzo"
+                        placeholder="progressivo indirizzo"
+                        v-model="address.progressivo_indirizzo_or"
+                        disabled
+                      />
+                      <CInput
+                        label="comune"
+                        placeholder="comune"
+                        v-model="address.comune_or"
+                        disabled
+                      />
+                      <CInput
+                        label="località"
+                        placeholder="località"
+                        v-model="address.localita_or"
+                        disabled
+                      />
+                      <CInput
+                        label="indirizzo"
+                        placeholder="indirizzo"
+                        v-model="address.indirizzo_originale"
+                        disabled
+                      />
+                    </CCardBody>
+                  </CCard>
+                </div>
+                <div class="col-6">
+                  <CCard>
+                    <CCardHeader>Indirizzo normalizzato</CCardHeader>
+                    <CCardBody>
+                      <CInput
+                        label="località"
+                        placeholder="località"
+                        v-model="address.localita_su"
+                        disabled
+                      />
+                      <CInput
+                        label="dug"
+                        placeholder="dug"
+                        v-model="address.dug_su"
+                        disabled
+                      />
+                      <CInput
+                        label="duf"
+                        placeholder="duf"
+                        v-model="address.duf_su"
+                        disabled
+                      />
+                      <CInput
+                        label="civico"
+                        placeholder="civico"
+                        v-model="address.civico_su"
+                        disabled
+                      />
+                      <CInput
+                        label="esponente"
+                        placeholder="esponente"
+                        v-model="address.esponente_su"
+                        disabled
+                      />
+                    </CCardBody>
+                  </CCard>
+                  <CCardFooter>
+                    <CButton
+                      shape="square"
+                      size="sm"
+                      color="primary"
+                      class="mr-2"
+                      @click="goNextTab"
+                      >Next -></CButton
+                    >
+                  </CCardFooter>
+                </div>
+              </div>
             </CTab>
 
             <CTab title="Dati di output">
@@ -117,6 +133,7 @@
                       'is-invalid': $v.address.dug.$error
                     }"
                     v-model="address.dug"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -133,6 +150,7 @@
                       'is-invalid': $v.address.duf.$error
                     }"
                     v-model="address.duf"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -149,6 +167,7 @@
                       'is-invalid': $v.address.civico.$error
                     }"
                     v-model="address.civico"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -163,6 +182,7 @@
                       'is-invalid': $v.address.localita.$error
                     }"
                     v-model="address.localita"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -177,6 +197,7 @@
                       'is-invalid': $v.address.esponente.$error
                     }"
                     v-model="address.esponente"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -191,6 +212,7 @@
                       'is-invalid': $v.address.chiave_strada.$error
                     }"
                     v-model="address.chiave_strada"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -205,6 +227,7 @@
                       'is-invalid': $v.address.chiave_civico.$error
                     }"
                     v-model="address.chiave_civico"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -219,6 +242,7 @@
                       'is-invalid': $v.address.fonte.$error
                     }"
                     v-model="address.fonte"
+                    v-show="revisionato"
                   />
                   <div
                     class="help-block"
@@ -238,14 +262,14 @@
             color="primary"
             class="mr-2"
             @click.prevent="handleSubmit"
-            >Next</CButton
+            >Save</CButton
           >
           <CButton
             shape="square"
             size="sm"
             color="light"
             @click.prevent="backToList"
-            >Back</CButton
+            >Close</CButton
           >
         </CCardFooter>
       </CCard>
@@ -258,6 +282,11 @@ import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "AddressEdit",
+  data() {
+    return {
+      revisionato: {}
+    };
+  },
   computed: {
     ...mapGetters("addressServ", { address: "addressService" }),
     ...mapGetters("addressServ", { original: "addressOriginal" }),
@@ -319,17 +348,23 @@ export default {
     backToList() {
       this.$router.push("/catalogue/address");
     },
+    goNextTab() {
+      this.$refs.tabs.activeTabIndex = 1;
+    },
     toggle(element) {
       if (element.currentTarget.checked) {
         this.address.validazione = "SI";
+        this.revisionato = true;
       }
       if (!element.currentTarget.checked) {
         this.address.validazione = "NO";
+        this.revisionato = false;
       }
     }
   },
   created() {
     this.$store.dispatch("addressServ/findById", this.$route.params.id);
+    this.revisionato = this.validated;
   }
 };
 </script>
