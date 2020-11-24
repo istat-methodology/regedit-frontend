@@ -268,10 +268,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("addressServ", { address: "addressService" }),
-    ...mapGetters("addressServ", { original: "addressOriginal" }),
-    ...mapGetters("addressServ", { normalized: "addressNormalized" }),
-    ...mapGetters("addressServ", { validated: "addressValidated" })
+    ...mapGetters("addressServ", {
+      address: "addressService",
+      original: "addressOriginal",
+      normalized: "addressNormalized",
+      validated: "addressValidated"
+    })
   },
   validations: {
     address: {
