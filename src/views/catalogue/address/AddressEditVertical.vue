@@ -240,8 +240,8 @@
             size="sm"
             color="primary"
             class="mr-2"
-            @click="goNextTab"
-            >Next</CButton
+            @click.prevent="handleSubmit"
+            >Save</CButton
           >
           <CButton
             shape="square"
@@ -249,6 +249,14 @@
             color="light"
             @click.prevent="backToList"
             >Close</CButton
+          >
+          <CButton
+            shape="square"
+            size="sm"
+            color="primary"
+            class="mr-2"
+            @click="goNextTab"
+            >Next</CButton
           >
         </CCardFooter>
       </CCard>
