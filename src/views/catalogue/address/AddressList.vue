@@ -3,21 +3,14 @@
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">
-          Services
-          <div class="card-header-actions">
-            <router-link tag="a" :to="{ name: 'AddressServiceAdd' }">
-              <add-icon />
-            </router-link>
-          </div>
+          Registro dei luoghi
         </header>
         <CCardBody>
           <CDataTable
             :items="addressServices"
             :fields="fields"
             column-filter
-            table-filter
-            items-per-page-select
-            :items-per-page="5"
+            :items-per-page="10"
             sorter
             pagination
           >
@@ -26,7 +19,7 @@
                 <router-link
                   tag="a"
                   :to="{
-                    name: 'AddressServiceEdit',
+                    name: 'AddressEdit',
                     params: { id: item.id }
                   }"
                 >
@@ -73,10 +66,18 @@ export default {
       selectedAddress: {},
       warningModal: false,
       fields: [
-        { key: "codice_archivio_or", _style: "width:5%" },
-        { key: "progressivo_indirizzo_or", _style: "width:15%" },
-        { key: "comune_or", _style: "width:15%;" },
-        { key: "localita_or", _style: "width:10%;" },
+        {
+          key: "codice_archivio_or",
+          label: "Codice archivio",
+          _style: "width:5%"
+        },
+        {
+          key: "progressivo_indirizzo_or",
+          label: "Progressivo",
+          _style: "width:15%"
+        },
+        { key: "comune_or", label: "Comune", _style: "width:15%;" },
+        { key: "localita_or", label: "Localita", _style: "width:10%;" },
         {
           key: "show_update",
           label: "",

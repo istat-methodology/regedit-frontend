@@ -10,7 +10,7 @@
           This section contains the list of addresses available in the
           catalogue.
           <p class="section-link">
-            <router-link tag="a" :to="{ name: 'AddressServiceList' }"
+            <router-link tag="a" :to="{ name: 'AddressList' }"
               ><span>Go to Address catalogue <chevron-right-icon /></span>
             </router-link>
           </p>

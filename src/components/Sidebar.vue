@@ -24,15 +24,15 @@
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
-      <li class="c-sidebar-nav-title">Catalogue</li>
+      <li class="c-sidebar-nav-title">Catalogo</li>
       <li class="c-sidebar-nav-item">
         <router-link
           tag="a"
-          :to="{ name: 'AddressServiceList' }"
+          :to="{ name: 'AddressList' }"
           class="c-sidebar-nav-link"
           :class="{ 'c-active': isService }"
         >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Address List
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
         </router-link>
       </li>
     </ul>

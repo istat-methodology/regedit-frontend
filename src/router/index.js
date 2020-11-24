@@ -1,12 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-
 import store from "@/store";
 
-import Login from "@/views/auth/Login";
-import Register from "@/views/auth/Register";
-import Error from "@/views/error/Error";
-import Unauthorized from "@/views/error/Unauthorized";
 import Home from "@/views/Home";
 
 Vue.use(VueRouter);
@@ -14,22 +9,22 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/login",
-    component: Login,
+    component: () => import("../views/auth/Login"),
     meta: { authorize: [] }
   },
   {
     path: "/register",
-    component: Register,
+    component: () => import("../views/auth/Register"),
     meta: { authorize: [] }
   },
   {
     path: "/error",
-    component: Error,
+    component: () => import("../views/error/Error"),
     meta: { authorize: [] }
   },
   {
     path: "/unauthorized",
-    component: Unauthorized,
+    component: () => import("../views/error/Unauthorized"),
     meta: { authorize: [] }
   },
   {
@@ -47,27 +42,20 @@ const routes = [
       },
       {
         path: "catalogue/address",
-        name: "AddressServiceList",
-        component: () =>
-          import(
-            "../views/catalogue/service/addressService/AddressServiceList"
-          ),
+        name: "AddressList",
+        component: () => import("../views/catalogue/address/AddressList"),
         meta: { authorize: [] }
       },
       {
         path: "catalogue/address/add",
-        name: "AddressServiceAdd",
-        component: () =>
-          import("../views/catalogue/service/addressService/AddressServiceAdd"),
+        name: "AddressAdd",
+        component: () => import("../views/catalogue/address/AddressAdd"),
         meta: { authorize: [] }
       },
       {
         path: "catalogue/address/edit/:id",
-        name: "AddressServiceEdit",
-        component: () =>
-          import(
-            "../views/catalogue/service/addressService/AddressServiceEdit"
-          ),
+        name: "AddressEdit",
+        component: () => import("../views/catalogue/address/AddressEditVertical"),
         meta: { authorize: [] }
       },
       {
@@ -118,6 +106,7 @@ router.beforeEach((to, from, next) => {
         message: "You cannot access this page!"
       };
       store.dispatch("error/unauthorized", err);
+      router.push("/unauthorized");
     }
   }
 
