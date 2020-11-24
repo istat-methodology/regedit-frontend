@@ -22,10 +22,14 @@ Vue.use(FlowChart);
 Vue.use(VJsoneditor);
 Vue.component("v-select", vSelect);
 
-Vue.filter("capitalize", function(value) {
+Vue.filter("capitalize", value => {
   if (!value) return "";
   value = value.toString().toLowerCase();
   return value.charAt(0).toUpperCase() + value.slice(1);
+});
+
+Vue.filter("dashEmpty", value => {
+  return value ? value : "-";
 });
 
 new Vue({

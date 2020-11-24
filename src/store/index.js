@@ -5,7 +5,7 @@ import { auth } from "./modules/auth";
 import { error } from "./modules/error";
 import { coreui } from "./modules/coreui";
 import { message } from "./modules/message";
-import { addressServ } from "./modules/metadata/addressService";
+import { addressServ } from "./modules/metadata/address";
 import { user } from "./modules/user/user";
 
 Vue.use(Vuex);

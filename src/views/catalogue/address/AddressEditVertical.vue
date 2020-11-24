@@ -1,16 +1,40 @@
 <template>
-  <!-- wait until service is loaded -->
-  <div class="row" v-if="address">
-    <div class="col-12">
-      <CCard>
-        <CCardHeader>Indirizzo</CCardHeader>
+  <div class="row">
+    <div class="col-12" v-if="isLoading">
+      <tile></tile>
+    </div>
+    <div class="col-12" v-else>
+      <CCard v-if="address">
+        <CCardHeader
+          >{{ original }}
+          <div class="card-header-actions">
+            <CButtonGroup>
+              <CButton
+                shape="square"
+                size="sm"
+                color="primary"
+                class="btn-prev mr-2"
+                @click.prevent="prevAddress"
+                ><arrow-left-icon /> Prev</CButton
+              >
+              <CButton
+                shape="square"
+                size="sm"
+                color="primary"
+                class="btn-next mr-2"
+                @click="nextAddress"
+                >Next<arrow-right-icon
+              /></CButton>
+            </CButtonGroup>
+          </div>
+        </CCardHeader>
         <CCardBody>
           <CTabs
             variant="pills"
             :vertical="{ navs: 'col-md-2', content: 'col-md-10' }"
             :active-tab="activeTab"
             :fade="false"
-            @update:activeTab="updateStep"
+            @update:activeTab="updateTab"
             ref="tabs"
           >
             <CTab title="Dati di input">
@@ -18,28 +42,20 @@
                 <div class="col-6">
                   <CCard class="bg-gradient-primary text-white">
                     <CCardHeader>Indirizzo registro</CCardHeader>
-                    <CCardBody>
-                      <div class="form-group-plain">
-                        <label for="Codice archivio">Codice archivio</label>
-                        <span>{{ address.codice_archivio_or }}</span>
+                    <CCardBody class="card-text">
+                      <div>
+                        <label>Comune</label>
+                        <span>{{ address.comune_or | dashEmpty }}</span>
                       </div>
-                      <div class="form-group-plain">
-                        <label for="Progressivo indirizzo"
-                          >Progressivo indirizzo</label
-                        >
-                        <span>{{ address.progressivo_indirizzo_or }}</span>
+                      <div>
+                        <label>Località</label>
+                        <span>{{ address.localita_or | dashEmpty }}</span>
                       </div>
-                      <div class="form-group-plain">
-                        <label for="Comune">Comune</label>
-                        <span>{{ address.comune_or }}</span>
-                      </div>
-                      <div class="form-group-plain">
-                        <label for="Località">Località</label>
-                        <span>{{ address.localita_or }}</span>
-                      </div>
-                      <div class="form-group-plain">
-                        <label for="Indirizzo">Indirizzo</label>
-                        <span>{{ address.indirizzo_originale }}</span>
+                      <div>
+                        <label>Indirizzo</label>
+                        <span>{{
+                          address.indirizzo_originale | dashEmpty
+                        }}</span>
                       </div>
                     </CCardBody>
                   </CCard>
@@ -47,217 +63,216 @@
                 <div class="col-6">
                   <CCard class="bg-gradient-success text-white">
                     <CCardHeader>Indirizzo normalizzato</CCardHeader>
-                    <CCardBody>
-                      <div class="form-group-plain">
-                        <label for="Località">Località</label>
-                        <span>{{ address.localita_su }}</span>
+                    <CCardBody class="card-text">
+                      <div>
+                        <label>Località</label>
+                        <span>{{ address.localita_su | dashEmpty }}</span>
                       </div>
-                      <div class="form-group-plain">
-                        <label for="Dug">Dug</label>
-                        <span>{{ address.dug_su }}</span>
+                      <div>
+                        <label>Dug</label>
+                        <span>{{ address.dug_su | dashEmpty }}</span>
                       </div>
-                      <div class="form-group-plain">
-                        <label for="Duf">Duf</label>
-                        <span>{{ address.duf_su }}</span>
+                      <div>
+                        <label>Duf</label>
+                        <span>{{ address.duf_su | dashEmpty }}</span>
                       </div>
-                      <div class="form-group-plain">
-                        <label for="Civico">Civico</label>
-                        <span>{{ address.civico_su }}</span>
+                      <div>
+                        <label>Civico</label>
+                        <span>{{ address.civico_su | dashEmpty }}</span>
                       </div>
-                      <div class="form-group-plain">
-                        <label for="Esponente">Esponente</label>
-                        <span>{{ address.esponente_su }}</span>
+                      <div>
+                        <label>Esponente</label>
+                        <span>{{ address.esponente_su | dashEmpty }}</span>
                       </div>
                     </CCardBody>
                   </CCard>
                 </div>
               </div>
             </CTab>
-
             <CTab title="Dati di output">
-              <CCard>
-                <CCardHeader>dati riepilogativi di input</CCardHeader>
-                <CCardBody>
-                  <CInput
-                    label="indirizzo originario"
-                    placeholder="indirizzo originario"
-                    v-model="original"
-                    disabled
-                  />
-                  <CInput
-                    label="indirizzo normalizato"
-                    placeholder="indirizzo normalizzato"
-                    v-model="normalized"
-                    disabled
-                  />
-                </CCardBody>
-              </CCard>
-              <CCard>
-                <CCardHeader
-                  >Indirizzo revisionato
-                  <label
-                    class="c-switch form-check-label c-switch-pill c-switch-success"
-                    ><input
-                      type="checkbox"
-                      :checked="validated"
-                      @click="toggle"
-                      class="c-switch-input form-check-input"/>
-                    <span class="c-switch-slider"></span></label
-                ></CCardHeader>
-                <CCardBody>
-                  <CInput
-                    label="dug"
-                    placeholder="dug"
-                    :class="{
-                      'is-invalid': $v.address.dug.$error
-                    }"
-                    v-model="address.dug"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{
-                      show: $v.address.dug.$error
-                    }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="duf"
-                    placeholder="duf"
-                    :class="{
-                      'is-invalid': $v.address.duf.$error
-                    }"
-                    v-model="address.duf"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{
-                      show: $v.address.duf.$error
-                    }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="civico"
-                    placeholder="civico"
-                    :class="{
-                      'is-invalid': $v.address.civico.$error
-                    }"
-                    v-model="address.civico"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.civico.$error }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="località"
-                    placeholder="località"
-                    :class="{
-                      'is-invalid': $v.address.localita.$error
-                    }"
-                    v-model="address.localita"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.localita.$error }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="esponente"
-                    placeholder="esponente"
-                    :class="{
-                      'is-invalid': $v.address.esponente.$error
-                    }"
-                    v-model="address.esponente"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.esponente.$error }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="codice strada"
-                    placeholder="codice strada"
-                    :class="{
-                      'is-invalid': $v.address.chiave_strada.$error
-                    }"
-                    v-model="address.chiave_strada"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.chiave_strada.$error }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="codice civico"
-                    placeholder="codice civico"
-                    :class="{
-                      'is-invalid': $v.address.chiave_civico.$error
-                    }"
-                    v-model="address.chiave_civico"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.chiave_civico.$error }"
-                  >
-                    This field is required
-                  </div>
-                  <CInput
-                    label="fonte"
-                    placeholder="fonte"
-                    :class="{
-                      'is-invalid': $v.address.fonte.$error
-                    }"
-                    v-model="address.fonte"
-                    v-show="revisionato"
-                  />
-                  <div
-                    class="help-block"
-                    :class="{ show: $v.address.fonte.$error }"
-                  >
-                    This field is required
-                  </div>
-                </CCardBody>
-              </CCard>
+              <div class="row">
+                <div class="col-6">
+                  <CCard class="bg-gradient-primary text-white">
+                    <CCardHeader
+                      >Dati riepilogativi di input
+                      <div class="card-header-actions">
+                        <CSwitch
+                          size="sm"
+                          color="success"
+                          variant="opposite"
+                          :checked="validated"
+                          @update:checked="toggle"
+                        /></div
+                    ></CCardHeader>
+                    <CCardBody class="card-text">
+                      <div>
+                        <label>Indirizzo originario</label>
+                        <span>{{ original | dashEmpty }}</span>
+                      </div>
+                      <div>
+                        <label>Indirizzo normalizzato</label>
+                        <span>{{ normalized | dashEmpty }}</span>
+                      </div>
+                    </CCardBody>
+                  </CCard>
+                </div>
+                <div class="col-6">
+                  <CCard class="card-no-border" v-show="revisionato">
+                    <CCardHeader>Indirizzo revisionato </CCardHeader>
+                    <CCardBody>
+                      <CInput
+                        label="dug"
+                        placeholder="dug"
+                        class="mt-3"
+                        :class="{
+                          'is-invalid': $v.address.dug.$error
+                        }"
+                        v-model="address.dug"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{
+                          show: $v.address.dug.$error
+                        }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="duf"
+                        placeholder="duf"
+                        :class="{
+                          'is-invalid': $v.address.duf.$error
+                        }"
+                        v-model="address.duf"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{
+                          show: $v.address.duf.$error
+                        }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="civico"
+                        placeholder="civico"
+                        :class="{
+                          'is-invalid': $v.address.civico.$error
+                        }"
+                        v-model="address.civico"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.address.civico.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="località"
+                        placeholder="località"
+                        :class="{
+                          'is-invalid': $v.address.localita.$error
+                        }"
+                        v-model="address.localita"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.address.localita.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="esponente"
+                        placeholder="esponente"
+                        :class="{
+                          'is-invalid': $v.address.esponente.$error
+                        }"
+                        v-model="address.esponente"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.address.esponente.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="codice strada"
+                        placeholder="codice strada"
+                        :class="{
+                          'is-invalid': $v.address.chiave_strada.$error
+                        }"
+                        v-model="address.chiave_strada"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.address.chiave_strada.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="codice civico"
+                        placeholder="codice civico"
+                        :class="{
+                          'is-invalid': $v.address.chiave_civico.$error
+                        }"
+                        v-model="address.chiave_civico"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.address.chiave_civico.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="fonte"
+                        placeholder="fonte"
+                        :class="{
+                          'is-invalid': $v.address.fonte.$error
+                        }"
+                        v-model="address.fonte"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.address.fonte.$error }"
+                      >
+                        This field is required
+                      </div>
+                    </CCardBody>
+                  </CCard>
+                </div>
+              </div>
             </CTab>
           </CTabs>
         </CCardBody>
         <CCardFooter>
-          <CButton
-            shape="square"
-            size="sm"
-            color="primary"
-            class="mr-2"
-            @click.prevent="handleSubmit"
-            >Save</CButton
-          >
-          <CButton
-            shape="square"
-            size="sm"
-            color="light"
-            @click.prevent="backToList"
-            >Close</CButton
-          >
-          <CButton
-            shape="square"
-            size="sm"
-            color="primary"
-            class="mr-2"
-            @click="goNextTab"
-            >Next</CButton
-          >
+          <CButtonGroup>
+            <CButton
+              v-if="activeTab == 0"
+              shape="square"
+              size="sm"
+              color="primary"
+              class="btn-next mr-2"
+              @click="nextTab"
+              >Next<arrow-right-icon
+            /></CButton>
+            <CButton
+              v-else
+              shape="square"
+              size="sm"
+              color="primary"
+              class="btn-prev-bottom mr-2"
+              @click="prevTab"
+              ><arrow-left-icon /> Prev</CButton
+            >
+            <CButton
+              shape="square"
+              size="sm"
+              color="primary"
+              class="mr-2"
+              @click.prevent="handleSubmit"
+              >Save</CButton
+            >
+          </CButtonGroup>
         </CCardFooter>
       </CCard>
     </div>
@@ -280,26 +295,14 @@ export default {
       address: "addressService",
       original: "addressOriginal",
       normalized: "addressNormalized",
-      validated: "addressValidated"
-    })
+      validated: "addressValidated",
+      addressNext: "addressNext",
+      addressPrev: "addressPrev"
+    }),
+    ...mapGetters("coreui", ["isLoading"])
   },
   validations: {
     address: {
-      localita_su: {
-        required
-      },
-      dug_su: {
-        required
-      },
-      duf_su: {
-        required
-      },
-      civico_su: {
-        required
-      },
-      esponente_su: {
-        required
-      },
       localita: {
         required
       },
@@ -328,8 +331,12 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$v.$touch(); //validate form data
-      if (!this.$v.address.$invalid) {
+      let submit = true;
+      if (this.revisionato) {
+        this.$v.$touch(); //validate form data
+        submit = !this.$v.address.$invalid;
+      }
+      if (submit) {
         this.$store.dispatch("addressServ/update", this.address).then(() => {
           this.backToList();
         });
@@ -338,27 +345,38 @@ export default {
     backToList() {
       this.$router.push("/catalogue/address");
     },
-    goNextTab() {
-      this.$refs.tabs.activeTabIndex = 1;
-    },
-    toggle(element) {
-      if (element.currentTarget.checked) {
+    toggle(status) {
+      if (status) {
         this.address.validazione = "SI";
         this.revisionato = true;
       }
-      if (!element.currentTarget.checked) {
+      if (!status) {
         this.address.validazione = "NO";
         this.revisionato = false;
       }
     },
-    next() {
+    nextTab() {
       this.activeTab++;
     },
-    back() {
+    prevTab() {
       this.activeTab--;
     },
-    updateStep(active) {
+    updateTab(active) {
       this.activeTab = active;
+    },
+    prevAddress() {
+      this.$store
+        .dispatch("addressServ/findById", this.addressPrev.id)
+        .then(() => {
+          this.revisionato = this.validated;
+        });
+    },
+    nextAddress() {
+      this.$store
+        .dispatch("addressServ/findById", this.addressNext.id)
+        .then(() => {
+          this.revisionato = this.validated;
+        });
     }
   },
   created() {
@@ -372,17 +390,21 @@ export default {
 </script>
 
 <style scoped>
+.card-text {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
 .card-header {
   font-weight: 600;
 }
-.form-group-plain {
+.card-text > div {
   margin-bottom: 0.2rem;
 }
-.form-group-plain > label {
+.card-text > div > label {
   display: inline-block;
   margin-bottom: 0.2rem;
 }
-.form-group-plain > span {
+.card-text > div > span {
   display: block;
   width: 100%;
   padding: 0rem;
@@ -394,5 +416,22 @@ export default {
   border: 0;
   border-color: #fff;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn-prev > .material-design-icon > .material-design-icon__svg {
+  width: 1.4rem;
+  height: 1.1rem;
+  bottom: auto;
+  padding-right: 5px;
+}
+.btn-prev-bottom > .material-design-icon > .material-design-icon__svg {
+  width: 1.4rem;
+  height: 1rem;
+  bottom: auto;
+  padding-right: 5px;
+}
+.btn-next > .material-design-icon > .material-design-icon__svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  bottom: auto;
 }
 </style>

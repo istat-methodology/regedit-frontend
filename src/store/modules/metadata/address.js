@@ -5,7 +5,9 @@ const state = {
   address: {},
   original: {},
   normalized: {},
-  validated: {}
+  validated: false,
+  next: -1,
+  prev: -1
 };
 
 const mutations = {
@@ -42,6 +44,20 @@ const mutations = {
     if (address.validazione == "NO") {
       state.validated = false;
     }
+  },
+  SET_NEXT_PREV(state, address) {
+    var current = -1;
+    for (const addr of state.addresses) {
+      current++;
+      if (addr.id === address.id) break;
+    }
+    if (current > -1) {
+      state.prev = current > 0 ? current - 1 : state.addresses.length - 1;
+      state.next = current < state.addresses.length - 1 ? current + 1 : 0;
+    }
+    console.log(
+      "Current: " + current + " Prev: " + state.prev + " Next " + state.next
+    );
   }
 };
 
@@ -62,11 +78,11 @@ const actions = {
       .findById(id)
       .then(data => {
         //console.log(data);
-
         commit("SET_ADDRESS", data);
         commit("SET_ORIGINALADDRESS", data);
         commit("SET_NORMALIZEDADDRESS", data);
         commit("SET_VALIDATEDADDRESS", data);
+        commit("SET_NEXT_PREV", data);
       })
       .catch(err => {
         console.log(err);
@@ -130,6 +146,12 @@ const getters = {
   },
   addressValidated: state => {
     return state.validated;
+  },
+  addressNext: state => {
+    return state.addresses[state.next];
+  },
+  addressPrev: state => {
+    return state.addresses[state.prev];
   }
 };
 

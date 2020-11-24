@@ -67,13 +67,8 @@ export default {
       warningModal: false,
       fields: [
         {
-          key: "codice_archivio_or",
-          label: "Codice archivio",
-          _style: "width:5%"
-        },
-        {
-          key: "progressivo_indirizzo_or",
-          label: "Progressivo",
+          key: "indirizzo_originale",
+          label: "Indirizzo registro",
           _style: "width:15%"
         },
         { key: "comune_or", label: "Comune", _style: "width:15%;" },

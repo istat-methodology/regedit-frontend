@@ -29,6 +29,8 @@ import RegulationIcon from "icons/Bank.vue";
 import GsimIcon from "icons/Puzzle.vue";
 import GsimOutlineIcon from "icons/PuzzleOutline.vue";
 import BlockIcon from "icons/ToyBrickOutline.vue";
+import ArrowLeftIcon from "icons/ChevronDoubleLeft.vue";
+import ArrowRightIcon from "icons/ChevronDoubleRight.vue";
 
 Vue.component("chevron-right-icon", ChevronRightBoxIcon);
 Vue.component("home-icon", HomeIcon);
@@ -49,3 +51,5 @@ Vue.component("regulation-icon", RegulationIcon);
 Vue.component("gsim-icon", GsimIcon);
 Vue.component("gsim-outline-icon", GsimOutlineIcon);
 Vue.component("block-icon", BlockIcon);
+Vue.component("arrow-left-icon", ArrowLeftIcon);
+Vue.component("arrow-right-icon", ArrowRightIcon);
