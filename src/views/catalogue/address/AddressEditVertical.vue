@@ -391,8 +391,7 @@ export default {
   font-weight: 600;
   line-height: 1.5;
   background-clip: padding-box;
-  border: 1px solid;
-  background-color: #fff;
+  border: 0;
   border-color: #fff;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
