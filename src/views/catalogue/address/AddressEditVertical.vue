@@ -287,7 +287,7 @@ export default {
   data() {
     return {
       activeTab: 0,
-      revisionato: {}
+      revisionato: false
     };
   },
   computed: {
@@ -337,9 +337,7 @@ export default {
         submit = !this.$v.address.$invalid;
       }
       if (submit) {
-        this.$store.dispatch("addressServ/update", this.address).then(() => {
-          this.backToList();
-        });
+        this.$store.dispatch("addressServ/update", this.address);
       }
     },
     backToList() {
