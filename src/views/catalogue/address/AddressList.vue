@@ -7,7 +7,7 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="addressServices"
+            :items="addresses"
             :fields="fields"
             column-filter
             :items-per-page="10"
@@ -91,7 +91,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("addressServ", ["addressServices"])
+    ...mapGetters("addressServ", ["addresses"])
   },
   methods: {
     deleteAddress() {

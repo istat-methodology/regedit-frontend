@@ -3,8 +3,8 @@ import { addressService } from "@/services";
 const state = {
   addresses: [],
   address: {},
-  original: {},
-  normalized: {},
+  original: "",
+  normalized: "",
   validated: false,
   next: -1,
   prev: -1
@@ -16,34 +16,6 @@ const mutations = {
   },
   SET_ADDRESS(state, address) {
     state.address = address;
-  },
-  SET_ORIGINALADDRESS(state, address) {
-    state.original =
-      address.indirizzo_originale +
-      ", " +
-      address.localita_or +
-      ", " +
-      address.comune_or;
-  },
-  SET_NORMALIZEDADDRESS(state, address) {
-    state.normalized =
-      address.dug_su +
-      " " +
-      address.duf_su +
-      " " +
-      address.civico_su +
-      " " +
-      address.esponente_su +
-      ", " +
-      address.localita_su;
-  },
-  SET_VALIDATEDADDRESS(state, address) {
-    if (address.validazione == "SI") {
-      state.validated = true;
-    }
-    if (address.validazione == "NO") {
-      state.validated = false;
-    }
   },
   SET_NEXT_PREV(state, address) {
     var current = -1;
@@ -79,9 +51,6 @@ const actions = {
       .then(data => {
         //console.log(data);
         commit("SET_ADDRESS", data);
-        commit("SET_ORIGINALADDRESS", data);
-        commit("SET_NORMALIZEDADDRESS", data);
-        commit("SET_VALIDATEDADDRESS", data);
         commit("SET_NEXT_PREV", data);
       })
       .catch(err => {
@@ -132,20 +101,11 @@ const actions = {
 };
 
 const getters = {
-  addressServices: state => {
+  addresses: state => {
     return state.addresses;
   },
-  addressService: state => {
+  address: state => {
     return state.address;
-  },
-  addressOriginal: state => {
-    return state.original;
-  },
-  addressNormalized: state => {
-    return state.normalized;
-  },
-  addressValidated: state => {
-    return state.validated;
   },
   addressNext: state => {
     return state.addresses[state.next];

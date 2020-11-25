@@ -91,7 +91,30 @@ button:focus {
   height: 1.2rem;
   bottom: auto;
 }
-
+.card-text {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+.card-text > div {
+  margin-bottom: 0.2rem;
+}
+.card-text > div > label {
+  display: inline-block;
+  margin-bottom: 0.1rem;
+}
+.card-text > div > span {
+  display: block;
+  width: 100%;
+  padding: 0rem;
+  padding-bottom: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  background-clip: padding-box;
+  border: 0;
+  border-color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 /* Forms */
 
 .form-group {

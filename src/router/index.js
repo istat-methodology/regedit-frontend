@@ -55,7 +55,7 @@ const routes = [
       {
         path: "catalogue/address/edit/:id",
         name: "AddressEdit",
-        component: () => import("../views/catalogue/address/AddressEditVertical"),
+        component: () => import("../views/catalogue/address/AddressEdit"),
         meta: { authorize: [] }
       },
       {

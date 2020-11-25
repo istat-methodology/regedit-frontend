@@ -41,7 +41,7 @@
               <div class="row">
                 <div class="col-6">
                   <CCard class="bg-gradient-primary text-white">
-                    <CCardHeader>Indirizzo registro</CCardHeader>
+                    <CCardHeader>Indirizzo originale</CCardHeader>
                     <CCardBody class="card-text">
                       <div>
                         <label>Comune</label>
