@@ -1,34 +1,11 @@
 <template>
-  <CCard
-    :class="{
-      'bg-gradient-success text-white': !address.validato,
-      'bg-gradient-secondary': address.validato
-    }"
-    v-if="address"
-  >
-    <CCardHeader
+  <CCard class="card-accent-success" v-if="address">
+    <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo suggerito</span>
-      <div class="card-header-actions">
-        <CButtonGroup v-if="!address.validato && !address.revisionato">
-          <CButton
-            shape="square"
-            size="sm"
-            variant="ghost"
-            color="light"
-            class="btn-header-success mr-2"
-            @click.prevent="$emit('validate')"
-            >Valida</CButton
-          >
-          <CButton
-            shape="square"
-            size="sm"
-            variant="ghost"
-            color="light"
-            class="btn-header-success"
-            @click.prevent="$emit('revise')"
-            >Revisiona</CButton
-          >
-        </CButtonGroup>
+      <div class="card-header-actions" v-if="!address.validato">
+        <CButton shape="square" size="sm" color="success" @click="handleSubmit"
+          >Valida</CButton
+        >
       </div>
     </CCardHeader>
     <CCardBody class="card-text">
@@ -55,6 +32,20 @@
         <label>Esponente</label>
         <span>{{ address.esponente_su | dashEmpty }}</span>
       </div>
+      <template v-if="address.validato">
+        <div>
+          <label>Nota</label>
+          <span>{{ address.nota_su | dashEmpty }}</span>
+        </div>
+      </template>
+      <template v-else>
+        <CTextarea
+          rows="3"
+          label="Note"
+          v-model="address.nota_su"
+          v-if="!address.validato"
+        />
+      </template>
     </CCardBody>
   </CCard>
 </template>
@@ -70,7 +61,7 @@ export default {
   computed: {
     addressString() {
       var addr = "";
-      if (this.address != null) {
+      if (this.address) {
         addr = this.address.dug_su
           .concat(this.address.duf_su ? " " + this.address.duf_su : "")
           .concat(this.address.civico_su ? " " + this.address.civico_su : "")
@@ -82,6 +73,11 @@ export default {
           );
       }
       return addr;
+    }
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit("validate", this.address);
     }
   }
 };

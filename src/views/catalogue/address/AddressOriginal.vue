@@ -1,12 +1,6 @@
 <template>
-  <CCard
-    :class="{
-      'bg-gradient-primary text-white': !address.validato,
-      'bg-gradient-secondary': address.validato
-    }"
-    v-if="address"
-  >
-    <CCardHeader>
+  <CCard class="card-accent-primary" v-if="address">
+    <CCardHeader class="card-header-light-grey">
       <span class="card-header-span">Indirizzo originale</span>
     </CCardHeader>
     <CCardBody class="card-text">
@@ -40,7 +34,7 @@ export default {
   computed: {
     addressString() {
       var addr = "";
-      if (this.address != null) {
+      if (this.address) {
         addr = this.address.indirizzo_originale
           .concat(
             this.address.localita_or ? ", " + this.address.localita_or : ""

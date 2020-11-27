@@ -73,6 +73,8 @@ export default {
         },
         { key: "comune_or", label: "Comune", _style: "width:15%;" },
         { key: "localita_or", label: "Localita", _style: "width:10%;" },
+        { key: "validato", label: "Validato", _style: "width:5%;" },
+        { key: "revisionato", label: "Revisionato", _style: "width:5%;" },
         {
           key: "show_update",
           label: "",

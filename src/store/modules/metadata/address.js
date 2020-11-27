@@ -1,13 +1,9 @@
 import { addressService } from "@/services";
+import { Util } from "@/common";
 
 const state = {
-  addresses: [],
-  address: {},
-  original: "",
-  normalized: "",
-  validated: false,
-  next: -1,
-  prev: -1
+  addresses: null,
+  address: null
 };
 
 const mutations = {
@@ -16,20 +12,6 @@ const mutations = {
   },
   SET_ADDRESS(state, address) {
     state.address = address;
-  },
-  SET_NEXT_PREV(state, address) {
-    var current = -1;
-    for (const addr of state.addresses) {
-      current++;
-      if (addr.id === address.id) break;
-    }
-    if (current > -1) {
-      state.prev = current > 0 ? current - 1 : state.addresses.length - 1;
-      state.next = current < state.addresses.length - 1 ? current + 1 : 0;
-    }
-    console.log(
-      "Current: " + current + " Prev: " + state.prev + " Next " + state.next
-    );
   }
 };
 
@@ -51,21 +33,6 @@ const actions = {
       .then(data => {
         //console.log(data);
         commit("SET_ADDRESS", data);
-        commit("SET_NEXT_PREV", data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  save({ commit, dispatch }, formData) {
-    addressService
-      .save(formData)
-      .then(data => {
-        //console.log(data);
-        commit("SET_ADDRESS", data);
-        dispatch("message/success", "Address saved!", {
-          root: true
-        });
       })
       .catch(err => {
         console.log(err);
@@ -75,24 +42,15 @@ const actions = {
     addressService
       .update(formData)
       .then(data => {
-        //console.log(data);
-        commit("SET_ADDRESS", data);
-        dispatch("message/success", "Address updated!", {
-          root: true
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  delete({ dispatch }, id) {
-    addressService
-      .delete(id)
-      .then(() => {
-        dispatch("findAll");
-        dispatch("message/success", "Address deleted!", {
-          root: true
-        });
+        let nextAddress = Util.getNext(state.addresses, data);
+        if (nextAddress) {
+          commit("SET_ADDRESS", nextAddress);
+          dispatch("message/success", "Indirizzo aggiornato con successo!", {
+            root: true
+          });
+        } else {
+          //do something
+        }
       })
       .catch(err => {
         console.log(err);
@@ -106,12 +64,6 @@ const getters = {
   },
   address: state => {
     return state.address;
-  },
-  addressNext: state => {
-    return state.addresses[state.next];
-  },
-  addressPrev: state => {
-    return state.addresses[state.prev];
   }
 };
 

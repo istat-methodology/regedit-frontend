@@ -13,24 +13,14 @@
             >Validato</span
           >
           <div class="card-header-actions">
-            <CButtonGroup>
-              <CButton
-                shape="square"
-                size="sm"
-                color="primary"
-                class="btn-prev mr-2"
-                @click.prevent="prevAddress"
-                ><arrow-left-icon /> Prev</CButton
-              >
-              <CButton
-                shape="square"
-                size="sm"
-                color="primary"
-                class="btn-next mr-2"
-                @click="nextAddress"
-                >Next<arrow-right-icon
-              /></CButton>
-            </CButtonGroup>
+            <CButton
+              shape="square"
+              size="sm"
+              color="primary"
+              class="btn-next mr-2"
+              @click="handleSkip"
+              >Salta<arrow-right-icon
+            /></CButton>
           </div>
         </CCardHeader>
         <CCardBody>
@@ -42,11 +32,10 @@
               <address-suggested
                 :address="address"
                 @validate="handleValidate"
-                @revise="handleRevise"
               />
             </div>
             <div class="col-4">
-              <address-revised :address="address" @save="handleSubmit" />
+              <address-revised :address="address" @revise="handleRevise" />
             </div>
           </div>
         </CCardBody>
@@ -76,23 +65,17 @@ export default {
     ...mapGetters("coreui", ["isLoading"])
   },
   methods: {
+    handleSkip() {
+      var addr = { ...this.address, validato: false, revisionato: false };
+      this.$store.dispatch("addressServ/update", addr);
+    },
     handleValidate() {
-      var addr = { ...this.address, validato: true };
+      var addr = { ...this.address, validato: true, revisionato: false };
       this.$store.dispatch("addressServ/update", addr);
     },
     handleRevise() {
-      var addr = { ...this.address, revisionato: true };
-      this.$store.dispatch("addressServ/update", addr);
-    },
-    handleSubmit() {
       var addr = { ...this.address, validato: true, revisionato: true };
       this.$store.dispatch("addressServ/update", addr);
-    },
-    prevAddress() {
-      this.$store.dispatch("addressServ/findById", this.addressPrev.id);
-    },
-    nextAddress() {
-      this.$store.dispatch("addressServ/findById", this.addressNext.id);
     }
   },
   created() {

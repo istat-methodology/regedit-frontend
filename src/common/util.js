@@ -1,22 +1,20 @@
-function mapKeysToLower(obj) {
-  var ret;
-  if (Array.isArray(obj)) {
-    //Array of Objects
-    ret = [];
-    for (var el of obj) {
-      ret.push(
-        Object.keys(el).reduce((c, k) => ((c[k.toLowerCase()] = el[k]), c), {})
-      );
-    }
-  } else {
-    ret = Object.keys(obj).reduce(
-      (c, k) => ((c[k.toLowerCase()] = obj[k]), c),
-      {}
-    );
+function getNext(objArray, obj) {
+  var next = null;
+  let nextIndex = -1;
+  let currentIndex = objArray.findIndex(el => {
+    return el.id === obj.id;
+  });
+  console.log("Current index: " + currentIndex);
+
+  if (currentIndex > -1) {
+    nextIndex = currentIndex < objArray.length - 1 ? currentIndex + 1 : 0;
+    next = objArray[nextIndex];
   }
-  return ret;
+  console.log("Next index: " + nextIndex);
+
+  return next;
 }
 
-export const util = {
-  mapKeysToLower
+export const Util = {
+  getNext
 };

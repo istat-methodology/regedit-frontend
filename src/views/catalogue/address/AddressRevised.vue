@@ -1,12 +1,12 @@
 <template>
-  <CCard
-    class="bg-gradient-secondary"
-    v-if="address.validato && address.revisionato"
-  >
-    <CCardHeader
+  <CCard class="card-accent-danger" v-if="address.validato">
+    <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
     >
     <CCardBody class="card-text">
+      <div>
+        <span class="mb-2">{{ addressString }}</span>
+      </div>
       <div>
         <label>Dug</label>
         <span>{{ address.dug }}</span>
@@ -41,125 +41,84 @@
       </div>
     </CCardBody>
   </CCard>
-  <CCard v-else-if="!address.validato && address.revisionato">
-    <CCardHeader
-      ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
+  <CCard v-else class="card-accent-danger">
+    <CCardHeader class="card-header-light-grey"
+      ><span class="card-header-span">Indirizzo revisionato</span>
+      <div class="card-header-actions" v-if="!address.validato">
+        <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
+          >Revisiona</CButton
+        >
+      </div></CCardHeader
     >
-    <CCardBody>
+    <CCardBody class="card-text">
       <CInput
-        label="dug"
-        placeholder="dug"
-        class="mt-3"
+        label="Dug*"
+        placeholder="Dug"
         :class="{
           'is-invalid': $v.address.dug.$error
         }"
         v-model="address.dug"
       />
-      <div
-        class="help-block"
-        :class="{
-          show: $v.address.dug.$error
-        }"
-      >
-        This field is required
-      </div>
       <CInput
-        label="duf"
-        placeholder="duf"
+        label="Duf*"
+        placeholder="Duf"
         :class="{
           'is-invalid': $v.address.duf.$error
         }"
         v-model="address.duf"
       />
-      <div
-        class="help-block"
-        :class="{
-          show: $v.address.duf.$error
-        }"
-      >
-        This field is required
-      </div>
       <CInput
-        label="civico"
-        placeholder="civico"
+        label="Civico*"
+        placeholder="Civico"
         :class="{
           'is-invalid': $v.address.civico.$error
         }"
         v-model="address.civico"
       />
-      <div class="help-block" :class="{ show: $v.address.civico.$error }">
-        This field is required
-      </div>
       <CInput
-        label="località"
-        placeholder="località"
+        label="Località"
+        placeholder="Località"
         :class="{
           'is-invalid': $v.address.localita.$error
         }"
         v-model="address.localita"
       />
-      <div class="help-block" :class="{ show: $v.address.localita.$error }">
-        This field is required
-      </div>
       <CInput
-        label="esponente"
-        placeholder="esponente"
+        label="Esponente*"
+        placeholder="Esponente"
         :class="{
           'is-invalid': $v.address.esponente.$error
         }"
         v-model="address.esponente"
       />
-      <div class="help-block" :class="{ show: $v.address.esponente.$error }">
-        This field is required
-      </div>
       <CInput
-        label="codice strada"
-        placeholder="codice strada"
+        label="Codice strada*"
+        placeholder="Codice strada"
         :class="{
           'is-invalid': $v.address.chiave_strada.$error
         }"
         v-model="address.chiave_strada"
       />
-      <div
-        class="help-block"
-        :class="{ show: $v.address.chiave_strada.$error }"
-      >
-        This field is required
-      </div>
       <CInput
-        label="codice civico"
-        placeholder="codice civico"
+        label="Codice civico*"
+        placeholder="Codice civico"
         :class="{
           'is-invalid': $v.address.chiave_civico.$error
         }"
         v-model="address.chiave_civico"
       />
-      <div
-        class="help-block"
-        :class="{ show: $v.address.chiave_civico.$error }"
-      >
-        This field is required
-      </div>
       <CInput
-        label="fonte"
-        placeholder="fonte"
+        label="Fonte*"
+        placeholder="Fonte"
         :class="{
           'is-invalid': $v.address.fonte.$error
         }"
         v-model="address.fonte"
       />
-      <div class="help-block" :class="{ show: $v.address.fonte.$error }">
-        This field is required
-      </div>
     </CCardBody>
     <CCardFooter>
-      <CButton
-        shape="square"
-        size="sm"
-        color="primary"
-        class="mr-2"
-        @click.prevent="handleSubmit"
-        >Salva</CButton
+      <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
+        >Revisiona</CButton
       >
     </CCardFooter>
   </CCard>
@@ -178,12 +137,17 @@ export default {
   computed: {
     addressString() {
       var addr = "";
-      if (this.address != null) {
-        addr = this.address.indirizzo_originale
-          .concat(
-            this.address.localita_or ? ", " + this.address.localita_or : ""
-          )
-          .concat(this.address.comune_or ? ", " + this.address.comune_or : "");
+      if (this.address) {
+        addr =
+          this.address.dug +
+          " " +
+          this.address.duf +
+          " " +
+          this.address.civico +
+          " " +
+          this.address.esponente +
+          " " +
+          this.address.localita;
       }
       return addr;
     }
@@ -220,7 +184,7 @@ export default {
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid) {
-        this.$emit("save", this.address);
+        this.$emit("revise", this.address);
       }
     }
   }
@@ -233,5 +197,9 @@ export default {
 }
 .card-header-span {
   line-height: 1.7;
+}
+.form-control {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 </style>

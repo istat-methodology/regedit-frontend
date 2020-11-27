@@ -72,6 +72,15 @@ button:focus {
 }
 
 /* Cards */
+.card-header-light-grey{
+  background-color: #f6f8fa;
+}
+.card-header-primary{
+  background-color: #f1f8ff;
+}
+.card-header-success{
+  background-color: #f0fff4;
+}
 .card-no-border {
   padding-top: 0rem;
   scroll-padding-bottom: 0rem;
@@ -92,22 +101,22 @@ button:focus {
   bottom: auto;
 }
 .card-text {
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-bottom: 0.7rem;
+  padding-top: 0.7rem;
 }
 .card-text > div {
   margin-bottom: 0.2rem;
 }
 .card-text > div > label {
   display: inline-block;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
 }
 .card-text > div > span {
   display: block;
   width: 100%;
   padding: 0rem;
-  padding-bottom: 0.4rem;
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   font-weight: 600;
   line-height: 1.5;
   background-clip: padding-box;
