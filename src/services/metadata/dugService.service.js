@@ -1,3 +1,3 @@
 import AbstractService from "@/services/abstract.service";
 
-export const addressService = new AbstractService("/dugs");
+export const dugService = new AbstractService("/dugs");
