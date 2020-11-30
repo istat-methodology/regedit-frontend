@@ -6,9 +6,7 @@ const state = {
   context: "",
   isLoading: false,
   isHome: false,
-  isService: false,
-  isProcess: false,
-  isWorkSession: false,
+  isAddress: false,
   breadcrumbs: [
     {
       path: "metadata",
@@ -35,14 +33,8 @@ const mutations = {
       case Context.Home:
         state.isHome = true;
         break;
-      case Context.Service:
-        state.isService = true;
-        break;
-      case Context.Process:
-        state.isProcess = true;
-        break;
-      case Context.WorkSession:
-        state.isWorkSession = true;
+      case Context.Address:
+        state.isAddress = true;
         break;
       default:
         break;
@@ -51,9 +43,7 @@ const mutations = {
   CLEAR_CONTEXT(state) {
     state.context = "";
     state.isHome = false;
-    state.isService = false;
-    state.isProcess = false;
-    state.isWorkSession = false;
+    state.isAddress = false;
   },
   CREATE_BREADCRUMBS(state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
@@ -123,14 +113,8 @@ const getters = {
   isHome: state => {
     return state.isHome;
   },
-  isService: state => {
-    return state.isService;
-  },
-  isProcess: state => {
-    return state.isProcess;
-  },
-  isWorkSession: state => {
-    return state.isWorkSession;
+  isAddress: state => {
+    return state.isAddress;
   },
   breadcrumbs: state => {
     return state.breadcrumbs;

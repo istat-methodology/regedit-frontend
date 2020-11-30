@@ -49,10 +49,18 @@ button:focus {
   color: #321fdb;
 }
 
+.table th, .table td {
+  padding: 0.65rem;
+}
+
 .table thead th {
   border-top: none;
   border-bottom: none;
-  padding-bottom: 0.2rem;
+  padding: 0.2rem;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f6f8fa;
 }
 
 .section-link {

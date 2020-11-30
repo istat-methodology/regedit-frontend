@@ -1,5 +1,5 @@
 <template>
-  <div class="c-subheader-nav mfe-2" v-if="isWorkSession">
+  <div class="c-subheader-nav mfe-2" v-if="isAddress">
     <router-link
       tag="a"
       to="/catalogue/processstep"
@@ -16,7 +16,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters("coreui", ["isWorkSession"])
+    ...mapGetters("coreui", ["isAddress"])
   },
   watch: {
     $route(to) {

@@ -22,11 +22,11 @@
       >
         <template #toggler>
           <CHeaderNavLink>
-            <div class="c-header-nav-first">Settings</div>
+            <div class="c-header-nav-first">Impostazioni</div>
           </CHeaderNavLink>
         </template>
         <CDropdownHeader tag="div" class="text-center" color="light">
-          <strong>IS<sup>2</sup> Workbench</strong>
+          <strong>Gestione</strong>
         </CDropdownHeader>
         <CDropdownItem>
           <router-link
@@ -35,7 +35,7 @@
               name: 'UserList'
             }"
           >
-            <span class="pl-1"><users-icon class="pr-4" />Users</span>
+            <span class="pl-1"><users-icon class="pr-4" />Utenti</span>
           </router-link>
         </CDropdownItem>
       </CDropdown>

@@ -9,7 +9,7 @@
   >
     <CSidebarBrand class="d-md-down-none" to="/">
       <CIcon name="cil-terminal" size="lg"></CIcon>
-      <span class="brand">IS2 Workbench</span>
+      <span class="brand">RegEdit</span>
     </CSidebarBrand>
 
     <ul class="c-sidebar-nav h-100 ps" style="position: relative;">
@@ -30,7 +30,7 @@
           tag="a"
           :to="{ name: 'AddressList' }"
           class="c-sidebar-nav-link"
-          :class="{ 'c-active': isService }"
+          :class="{ 'c-active': isAddress }"
         >
           <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
         </router-link>
@@ -48,9 +48,7 @@ export default {
       show: "sidebarShow",
       minimize: "sidebarMinimize",
       isHome: "isHome",
-      isService: "isService",
-      isProcess: "isProcess",
-      isWorkSession: "isWorkSession"
+      isAddress: "isAddress"
     })
   }
 };

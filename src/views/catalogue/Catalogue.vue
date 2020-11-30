@@ -3,15 +3,14 @@
     <div class="col-sm-6 col-md-4">
       <div class="card">
         <header class="card-header">
-          <span>Service catalogue</span>
+          <span>Revisione indirizzi</span>
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
-          This section contains the list of addresses available in the
-          catalogue.
+          In questa sezione puoi trovare la lista degli indirizzi da revisionare.
           <p class="section-link">
             <router-link tag="a" :to="{ name: 'AddressList' }"
-              ><span>Go to Address catalogue <chevron-right-icon /></span>
+              ><span>Vai alla sezione indirizzi <chevron-right-icon /></span>
             </router-link>
           </p>
         </div>

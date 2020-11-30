@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-12 col-md-12">
+    <div class="col-12">
       <div class="card">
         <header class="card-header">
           Registro dei luoghi
@@ -12,8 +12,16 @@
             column-filter
             :items-per-page="10"
             sorter
+            hover
             pagination
           >
+            <template #validato="{item}">
+              <td>
+                <CBadge :color="getColor(item)">
+                  <span> {{ getContent(item) }}</span>
+                </CBadge>
+              </td>
+            </template>
             <template #show_update="{item}">
               <td>
                 <router-link
@@ -27,37 +35,16 @@
                 </router-link>
               </td>
             </template>
-            <template #show_delete="{item}">
-              <td>
-                <a href="#" @click="modalOpen(item)"><delete-icon /></a>
-              </td>
-            </template>
           </CDataTable>
         </CCardBody>
       </div>
     </div>
-    <CModal title="Warning!" :show.sync="warningModal">
-      <template #footer>
-        <CButton shape="square" size="sm" color="light" @click="modalClose()">
-          Close
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="deleteAddress()"
-        >
-          Delete
-        </CButton>
-      </template>
-      Delete address '{{ selectedAddress.id }}'?
-    </CModal>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-// import { Context } from "@/common";
+import { Context } from "@/common";
 
 export default {
   name: "addresslist",
@@ -67,23 +54,25 @@ export default {
       warningModal: false,
       fields: [
         {
+          key: "progressivo_indirizzo_or",
+          label: "Progressivo",
+          _style: "width:10%"
+        },
+        {
           key: "indirizzo_originale",
           label: "Indirizzo registro",
           _style: "width:15%"
         },
         { key: "comune_or", label: "Comune", _style: "width:15%;" },
         { key: "localita_or", label: "Localita", _style: "width:10%;" },
-        { key: "validato", label: "Validato", _style: "width:5%;" },
-        { key: "revisionato", label: "Revisionato", _style: "width:5%;" },
         {
-          key: "show_update",
-          label: "",
-          _style: "width:1%",
-          sorter: false,
+          key: "validato",
+          label: "Validato",
+          _style: "width:5%;",
           filter: false
         },
         {
-          key: "show_delete",
+          key: "show_update",
           label: "",
           _style: "width:1%",
           sorter: false,
@@ -96,20 +85,29 @@ export default {
     ...mapGetters("addressServ", ["addresses"])
   },
   methods: {
-    deleteAddress() {
-      this.$store.dispatch("addressServ/delete", this.selectedAddress.id);
-      this.warningModal = false;
+    getColor(address) {
+      switch (address.validato) {
+        case true:
+          return "success";
+        case false:
+          return "danger";
+        default:
+          "primary";
+      }
     },
-    modalOpen(address) {
-      this.selectedAddress = address;
-      this.warningModal = true;
-    },
-    modalClose() {
-      this.warningModal = false;
+    getContent(address) {
+      switch (address.validato) {
+        case true:
+          return "VALIDATO";
+        case false:
+          return "REVISIONATO";
+        default:
+          "DA VALIDARE";
+      }
     }
   },
   created() {
-    // this.$store.dispatch("coreui/setContext", Context.Service);
+    this.$store.dispatch("coreui/setContext", Context.Address);
     this.$store.dispatch("addressServ/findAll");
   }
 };
