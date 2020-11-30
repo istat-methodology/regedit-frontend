@@ -1,7 +1,7 @@
 {
   "addresses": [
     {
-      "id": "1",
+      "id": "id",
       "codice_archivio_or": "40",
       "progressivo_indirizzo_or": "100",
       "comune_or": "Roma",
@@ -20,7 +20,7 @@
       "civico": "135",
       "esponente": "3",
       "localita": "Roma",
-      "chiave_strada": "1",
+      "chiave_strada": "id",
       "chiave_civico": "3",
       "fonte": "Google maps"
     },
@@ -42,7 +42,7 @@
       "dug": "VIA",
       "duf": "di Monteverde",
       "civico": "140",
-      "esponente": "1",
+      "esponente": "id",
       "Localita": "",
       "chiave_strada": "3",
       "chiave_civico": "003",
@@ -83,7 +83,7 @@
       "localita_su": "",
       "dug_su": "VIA",
       "duf_su": "CARRO",
-      "civico_su": "1",
+      "civico_su": "id",
       "esponente_su": "A TRAVERSA 10 A",
       "nota_su": "",
       "validato": false,
@@ -187,7 +187,7 @@
       "dug": "Strada Vicinale",
       "duf": "del Pozzo",
       "civico": "22",
-      "esponente": "1",
+      "esponente": "id",
       "localita": "Tortona",
       "chiave_strada": "2",
       "chiave_civico": "4",
@@ -259,11 +259,661 @@
       "dug": "via",
       "duf": "Ariella",
       "civico": "10",
-      "esponente": "1",
+      "esponente": "id",
       "localita": "Messina",
-      "chiave_strada": "1",
-      "chiave_civico": "1",
+      "chiave_strada": "id",
+      "chiave_civico": "id",
       "fonte": "Istat"
     }
-  ]
+  ],
+  "dug": [
+    {
+        "id": "1",
+        "dug": "ARCO"
+    },
+    {
+        "id": "2",
+        "dug": "ARGINE"
+    },
+    {
+        "id": "3",
+        "dug": "AUTOSTRADA"
+    },
+    {
+        "id": "4",
+        "dug": "BAGLIO"
+    },
+    {
+        "id": "5",
+        "dug": "BALUARDO"
+    },
+    {
+        "id": "6",
+        "dug": "BANCHINA"
+    },
+    {
+        "id": "7",
+        "dug": "BASTIONI"
+    },
+    {
+        "id": "8",
+        "dug": "BIVIO"
+    },
+    {
+        "id": "9",
+        "dug": "BORGATA"
+    },
+    {
+        "id": "10",
+        "dug": "BORGHETTO"
+    },
+    {
+        "id": "11",
+        "dug": "BORGO"
+    },
+    {
+        "id": "12",
+        "dug": "CA'"
+    },
+    {
+        "id": "13",
+        "dug": "CALATA"
+    },
+    {
+        "id": "14",
+        "dug": "CALLE"
+    },
+    {
+        "id": "15",
+        "dug": "CAMPAZZO"
+    },
+    {
+        "id": "16",
+        "dug": "CAMPIELLO"
+    },
+    {
+        "id": "17",
+        "dug": "CAMPO"
+    },
+    {
+        "id": "18",
+        "dug": "CANTONE"
+    },
+    {
+        "id": "19",
+        "dug": "CARRARA"
+    },
+    {
+        "id": "20",
+        "dug": "CASA"
+    },
+    {
+        "id": "21",
+        "dug": "CASALE"
+    },
+    {
+        "id": "22",
+        "dug": "CASALI"
+    },
+    {
+        "id": "23",
+        "dug": "CASCINA"
+    },
+    {
+        "id": "24",
+        "dug": "CASCINE"
+    },
+    {
+        "id": "25",
+        "dug": "CASE"
+    },
+    {
+        "id": "26",
+        "dug": "CASE SPARSE"
+    },
+    {
+        "id": "27",
+        "dug": "CENTRO"
+    },
+    {
+        "id": "28",
+        "dug": "CENTRO ABITATO"
+    },
+    {
+        "id": "29",
+        "dug": "CHIASSO"
+    },
+    {
+        "id": "30",
+        "dug": "CIRCONVALLAZIONE"
+    },
+    {
+        "id": "31",
+        "dug": "CIRCUMVALLAZIONE"
+    },
+    {
+        "id": "32",
+        "dug": "CLAUSTRO"
+    },
+    {
+        "id": "33",
+        "dug": "COL"
+    },
+    {
+        "id": "34",
+        "dug": "COLLE"
+    },
+    {
+        "id": "35",
+        "dug": "CONDOMINIO"
+    },
+    {
+        "id": "36",
+        "dug": "CONTRA'"
+    },
+    {
+        "id": "37",
+        "dug": "CONTRADA"
+    },
+    {
+        "id": "38",
+        "dug": "CORSO"
+    },
+    {
+        "id": "39",
+        "dug": "CORT"
+    },
+    {
+        "id": "40",
+        "dug": "CORTE"
+    },
+    {
+        "id": "41",
+        "dug": "CORTICELLA"
+    },
+    {
+        "id": "42",
+        "dug": "CORTILE"
+    },
+    {
+        "id": "43",
+        "dug": "CUPA"
+    },
+    {
+        "id": "44",
+        "dug": "DIRAMAZIONE"
+    },
+    {
+        "id": "45",
+        "dug": "DISCESA"
+    },
+    {
+        "id": "46",
+        "dug": "FATTORIA"
+    },
+    {
+        "id": "47",
+        "dug": "FONDACO"
+    },
+    {
+        "id": "48",
+        "dug": "FONDAMENTA"
+    },
+    {
+        "id": "49",
+        "dug": "FONDO"
+    },
+    {
+        "id": "50",
+        "dug": "FRAZIONE"
+    },
+    {
+        "id": "51",
+        "dug": "GALLERIA"
+    },
+    {
+        "id": "52",
+        "dug": "GIARDINI"
+    },
+    {
+        "id": "53",
+        "dug": "GIARDINO"
+    },
+    {
+        "id": "54",
+        "dug": "GRADINATA"
+    },
+    {
+        "id": "55",
+        "dug": "GRADINI"
+    },
+    {
+        "id": "56",
+        "dug": "GRADONI"
+    },
+    {
+        "id": "57",
+        "dug": "HAMEAU"
+    },
+    {
+        "id": "58",
+        "dug": "ISOLA"
+    },
+    {
+        "id": "59",
+        "dug": "ISOLATO"
+    },
+    {
+        "id": "60",
+        "dug": "LARGHETTO"
+    },
+    {
+        "id": "61",
+        "dug": "LARGO"
+    },
+    {
+        "id": "62",
+        "dug": "LOCALITA"
+    },
+    {
+        "id": "63",
+        "dug": "LOCALITA'"
+    },
+    {
+        "id": "64",
+        "dug": "LOCALITA PODERE"
+    },
+    {
+        "id": "65",
+        "dug": "LUNGADIGE"
+    },
+    {
+        "id": "66",
+        "dug": "LUNGARGINE"
+    },
+    {
+        "id": "67",
+        "dug": "LUNGARNO"
+    },
+    {
+        "id": "68",
+        "dug": "LUNGO"
+    },
+    {
+        "id": "69",
+        "dug": "LUNGO ADDA"
+    },
+    {
+        "id": "70",
+        "dug": "LUNGO BRENTA"
+    },
+    {
+        "id": "71",
+        "dug": "LUNGO DORA"
+    },
+    {
+        "id": "72",
+        "dug": "LUNGO ISARCO"
+    },
+    {
+        "id": "73",
+        "dug": "LUNGO LAGO"
+    },
+    {
+        "id": "74",
+        "dug": "LUNGO MALLERO"
+    },
+    {
+        "id": "75",
+        "dug": "LUNGO PO"
+    },
+    {
+        "id": "76",
+        "dug": "LUNGO STURA"
+    },
+    {
+        "id": "77",
+        "dug": "LUNGO TALVERA"
+    },
+    {
+        "id": "78",
+        "dug": "LUNGO TANARO"
+    },
+    {
+        "id": "79",
+        "dug": "LUNGOBISAGNO"
+    },
+    {
+        "id": "80",
+        "dug": "LUNGOLAGO"
+    },
+    {
+        "id": "81",
+        "dug": "LUNGOLARIO"
+    },
+    {
+        "id": "82",
+        "dug": "LUNGOMARE"
+    },
+    {
+        "id": "83",
+        "dug": "LUNGOSABATO"
+    },
+    {
+        "id": "84",
+        "dug": "LUNGOSTURA"
+    },
+    {
+        "id": "85",
+        "dug": "LUNGOTANARO"
+    },
+    {
+        "id": "86",
+        "dug": "LUNGOTEVERE"
+    },
+    {
+        "id": "87",
+        "dug": "MASO"
+    },
+    {
+        "id": "88",
+        "dug": "MASSERIA"
+    },
+    {
+        "id": "89",
+        "dug": "MOLO"
+    },
+    {
+        "id": "90",
+        "dug": "MURA"
+    },
+    {
+        "id": "91",
+        "dug": "NUCLEO"
+    },
+    {
+        "id": "92",
+        "dug": "PARCO"
+    },
+    {
+        "id": "93",
+        "dug": "PASSAGGIO"
+    },
+    {
+        "id": "94",
+        "dug": "PASSEGGIATA"
+    },
+    {
+        "id": "95",
+        "dug": "PIAZ"
+    },
+    {
+        "id": "96",
+        "dug": "PIAZZA"
+    },
+    {
+        "id": "97",
+        "dug": "PIAZZALE"
+    },
+    {
+        "id": "98",
+        "dug": "PIAZZETTA"
+    },
+    {
+        "id": "99",
+        "dug": "PODERE"
+    },
+    {
+        "id": "100",
+        "dug": "PORTICO"
+    },
+    {
+        "id": "101",
+        "dug": "PROLUNGAMENTO"
+    },
+    {
+        "id": "102",
+        "dug": "PROVINCIALE"
+    },
+    {
+        "id": "103",
+        "dug": "QUARTIERE"
+    },
+    {
+        "id": "104",
+        "dug": "RAMO"
+    },
+    {
+        "id": "105",
+        "dug": "RAMPA"
+    },
+    {
+        "id": "106",
+        "dug": "RAMPE"
+    },
+    {
+        "id": "107",
+        "dug": "RECINTO"
+    },
+    {
+        "id": "108",
+        "dug": "REGIONE"
+    },
+    {
+        "id": "109",
+        "dug": "RIONE"
+    },
+    {
+        "id": "110",
+        "dug": "RIVA"
+    },
+    {
+        "id": "111",
+        "dug": "RIVIERA"
+    },
+    {
+        "id": "112",
+        "dug": "RONCO"
+    },
+    {
+        "id": "113",
+        "dug": "ROTONDA"
+    },
+    {
+        "id": "114",
+        "dug": "RUA"
+    },
+    {
+        "id": "115",
+        "dug": "RUE"
+    },
+    {
+        "id": "116",
+        "dug": "SALITA"
+    },
+    {
+        "id": "117",
+        "dug": "SALIZADA"
+    },
+    {
+        "id": "118",
+        "dug": "SCALINATA"
+    },
+    {
+        "id": "119",
+        "dug": "SENTIERO"
+    },
+    {
+        "id": "120",
+        "dug": "SESTIERE"
+    },
+    {
+        "id": "121",
+        "dug": "SOBBORGO"
+    },
+    {
+        "id": "122",
+        "dug": "SOTTOPASSAGGIO"
+    },
+    {
+        "id": "123",
+        "dug": "SOTTOPORTICO"
+    },
+    {
+        "id": "124",
+        "dug": "SOTTOVIA"
+    },
+    {
+        "id": "125",
+        "dug": "STRADA"
+    },
+    {
+        "id": "126",
+        "dug": "STRADA COMUNALE"
+    },
+    {
+        "id": "127",
+        "dug": "STRADA PRIVATA"
+    },
+    {
+        "id": "128",
+        "dug": "STRADA PROVINCIALE"
+    },
+    {
+        "id": "129",
+        "dug": "STRADA REGIONALE"
+    },
+    {
+        "id": "130",
+        "dug": "STRADA STATALE"
+    },
+    {
+        "id": "131",
+        "dug": "STRADA VICINALE"
+    },
+    {
+        "id": "132",
+        "dug": "STRADELLA"
+    },
+    {
+        "id": "133",
+        "dug": "STRADELLO"
+    },
+    {
+        "id": "134",
+        "dug": "STRADONE"
+    },
+    {
+        "id": "135",
+        "dug": "STREDA"
+    },
+    {
+        "id": "136",
+        "dug": "SUBBORGO"
+    },
+    {
+        "id": "137",
+        "dug": "SUPERSTRADA"
+    },
+    {
+        "id": "138",
+        "dug": "SUPPORTICO"
+    },
+    {
+        "id": "139",
+        "dug": "TANGENZIALE"
+    },
+    {
+        "id": "140",
+        "dug": "TRAVERSA"
+    },
+    {
+        "id": "141",
+        "dug": "TRONCO"
+    },
+    {
+        "id": "142",
+        "dug": "VIA"
+    },
+    {
+        "id": "143",
+        "dug": "VIADOTTO"
+    },
+    {
+        "id": "144",
+        "dug": "VIAL"
+    },
+    {
+        "id": "145",
+        "dug": "VIALE"
+    },
+    {
+        "id": "146",
+        "dug": "VIALETTO"
+    },
+    {
+        "id": "147",
+        "dug": "VICO"
+    },
+    {
+        "id": "148",
+        "dug": "VICOLETTI"
+    },
+    {
+        "id": "149",
+        "dug": "VICOLETTO"
+    },
+    {
+        "id": "150",
+        "dug": "VICOLO"
+    },
+    {
+        "id": "151",
+        "dug": "VICOLO CHIUSO"
+    },
+    {
+        "id": "152",
+        "dug": "VICOLO CIECO"
+    },
+    {
+        "id": "153",
+        "dug": "VICOLO LUNGO"
+    },
+    {
+        "id": "154",
+        "dug": "VICOLO STRETTO"
+    },
+    {
+        "id": "155",
+        "dug": "VIELLA"
+    },
+    {
+        "id": "156",
+        "dug": "VILLAGGIO"
+    },
+    {
+        "id": "157",
+        "dug": "VILLETTA"
+    },
+    {
+        "id": "158",
+        "dug": "VIOTTOLO"
+    },
+    {
+        "id": "159",
+        "dug": "VIUZZA"
+    },
+    {
+        "id": "160",
+        "dug": "VIUZZO"
+    },
+    {
+        "id": "161",
+        "dug": "VOCABOLO"
+    },
+    {
+        "id": "162",
+        "dug": "ZONA"
+    }
+]
 }
