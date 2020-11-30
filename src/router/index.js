@@ -59,6 +59,24 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "catalogue/dug",
+        name: "DugList",
+        component: () => import("../views/catalogue/dug/DugList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/dug/add",
+        name: "DugAdd",
+        component: () => import("../views/catalogue/dug/DugAdd"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/dug/edit/:id",
+        name: "DugEdit",
+        component: () => import("../views/catalogue/dug/DugEdit"),
+        meta: { authorize: [] }
+      },
+      {
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),

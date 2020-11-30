@@ -7,7 +7,7 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="dugss"
+            :items="dugs"
             :fields="fields"
             column-filter
             :items-per-page="10"
@@ -41,16 +41,11 @@
         <CButton shape="square" size="sm" color="light" @click="modalClose()">
           Close
         </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="deleteDug()"
-        >
+        <CButton shape="square" size="sm" color="primary" @click="deleteDug()">
           Delete
         </CButton>
       </template>
-      Delete address '{{ selectedAddress.id }}'?
+      Delete address '{{ selectedDug.id }}'?
     </CModal>
   </div>
 </template>
