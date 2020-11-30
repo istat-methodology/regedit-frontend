@@ -1,9 +1,9 @@
 <template>
   <div>
-    <CToaster :autohide="3000" position="top-center">
+    <CToaster :autohide="4000" position="top-center">
       <template v-if="message">
         <CToast :key="message" :show="true" :class="type">
-          {{ getMessage }}
+          <template> <success-icon /> {{ getMessage }}</template>
         </CToast>
       </template>
     </CToaster>
@@ -28,7 +28,8 @@ export default {
 
 <style scoped>
 .toaster .toast {
-  width: 60%;
+  width: 90%;
+  padding: 0.2rem 0.4rem;
 }
 
 .toast-info {
@@ -46,8 +47,8 @@ export default {
 .toast-success {
   background-image: none;
   background-color: #dbf2e3;
-  border-color: #cdedd8;
-  color: #28623c;
+  border-color: #c4ebd1;
+  color: #18603a;
 }
 
 .toast-warning {

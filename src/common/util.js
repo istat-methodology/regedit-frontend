@@ -1,3 +1,5 @@
+import { Address } from "@/common";
+
 function getNext(objArray, obj) {
   var next = null;
   let nextIndex = -1;
@@ -15,6 +17,18 @@ function getNext(objArray, obj) {
   return next;
 }
 
+function printAddress(address, type) {
+  let addr = "";
+  switch (type) {
+    case Address.Original:
+      break;
+    case Address.Suggested:
+      break;
+  }
+  return addr;
+}
+
 export const Util = {
-  getNext
+  getNext,
+  printAddress
 };

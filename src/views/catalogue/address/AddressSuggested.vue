@@ -3,7 +3,11 @@
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo suggerito</span>
       <div class="card-header-actions" v-if="!address.validato">
-        <CButton shape="square" size="sm" color="success" @click="handleSubmit"
+        <CButton
+          shape="square"
+          size="sm"
+          color="success"
+          @click="$emit('validate')"
           >Valida</CButton
         >
       </div>
@@ -32,20 +36,6 @@
         <label>Esponente</label>
         <span>{{ address.esponente_su | dashEmpty }}</span>
       </div>
-      <template v-if="address.validato">
-        <div>
-          <label>Nota</label>
-          <span>{{ address.nota_su | dashEmpty }}</span>
-        </div>
-      </template>
-      <template v-else>
-        <CTextarea
-          rows="3"
-          label="Note"
-          v-model="address.nota_su"
-          v-if="!address.validato"
-        />
-      </template>
     </CCardBody>
   </CCard>
 </template>
@@ -73,11 +63,6 @@ export default {
           );
       }
       return addr;
-    }
-  },
-  methods: {
-    handleSubmit() {
-      this.$emit("validate", this.address);
     }
   }
 };
