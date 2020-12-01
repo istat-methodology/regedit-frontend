@@ -42,9 +42,7 @@ import { required } from "vuelidate/lib/validators";
 export default {
   name: "DugEdit",
   computed: {
-    ...mapGetters("dugServ", {
-      dug: "dug"
-    })
+    ...mapGetters("dug", ["dug"])
   },
   validations: {
     dug: {
@@ -57,7 +55,7 @@ export default {
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (!this.$v.dug.$invalid) {
-        this.$store.dispatch("dugServ/update", this.dug).then(() => {
+        this.$store.dispatch("dug/update", this.dug).then(() => {
           this.backToList();
         });
       }
@@ -67,7 +65,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("dugServ/findById", this.$route.params.id);
+    this.$store.dispatch("dug/findById", this.$route.params.id);
   }
 };
 </script>

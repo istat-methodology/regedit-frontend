@@ -1,6 +1,6 @@
 import { Address } from "@/common";
 
-function getNext(objArray, obj) {
+export function getNext(objArray, obj) {
   var next = null;
   let nextIndex = -1;
   let currentIndex = objArray.findIndex(el => {
@@ -17,7 +17,7 @@ function getNext(objArray, obj) {
   return next;
 }
 
-function printAddress(address, type) {
+export function printAddress(address, type) {
   let addr = "";
   switch (type) {
     case Address.Original:
@@ -28,7 +28,24 @@ function printAddress(address, type) {
   return addr;
 }
 
-export const Util = {
-  getNext,
-  printAddress
-};
+export function getValidatoColor(validato) {
+  switch (validato) {
+    case true:
+      return "success";
+    case false:
+      return "danger";
+    default:
+      return "primary";
+  }
+}
+
+export function getValidatoString(validato) {
+  switch (validato) {
+    case true:
+      return "VALIDATO";
+    case false:
+      return "REVISIONATO";
+    default:
+      return "DA LAVORARE";
+  }
+}

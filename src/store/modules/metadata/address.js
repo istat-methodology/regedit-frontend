@@ -1,5 +1,5 @@
 import { addressService } from "@/services";
-import { Util } from "@/common";
+import { getNext } from "@/common";
 
 const state = {
   addresses: null,
@@ -42,7 +42,7 @@ const actions = {
     addressService
       .update(formData)
       .then(data => {
-        let nextAddress = Util.getNext(state.addresses, data);
+        let nextAddress = getNext(state.addresses, data);
         if (nextAddress) {
           commit("SET_ADDRESS", nextAddress);
           dispatch("message/success", "Indirizzo aggiornato con successo!", {
@@ -67,7 +67,7 @@ const getters = {
   }
 };
 
-export const addressServ = {
+export const address = {
   namespaced: true,
   state,
   mutations,

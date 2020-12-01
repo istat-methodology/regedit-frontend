@@ -1,5 +1,4 @@
 import { dugService } from "@/services";
-import { Util } from "@/common";
 
 const state = {
   dugs: null,
@@ -56,15 +55,10 @@ const actions = {
     dugService
       .update(formData)
       .then(data => {
-        let nextAddress = Util.getNext(state.addresses, data);
-        if (nextAddress) {
-          commit("SET_DUG", nextAddress);
-          dispatch("message/success", "Dug aggiornato con successo!", {
-            root: true
-          });
-        } else {
-          //do something
-        }
+        commit("SET_DUG", data);
+        dispatch("message/success", "Dug saved!", {
+          root: true
+        });
       })
       .catch(err => {
         console.log(err);
@@ -94,7 +88,7 @@ const getters = {
   }
 };
 
-export const dugServ = {
+export const dug = {
   namespaced: true,
   state,
   mutations,

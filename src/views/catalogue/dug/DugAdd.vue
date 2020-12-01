@@ -71,7 +71,7 @@ export default {
       this.$v.$touch(); //validate form data
       if (!this.$v.dugitem.$invalid) {
         this.$store
-          .dispatch("dugServ/save", this.dugitem)
+          .dispatch("dug/save", this.dugitem)
           .then(this.$router.push("/catalogue/dug"));
       }
     },

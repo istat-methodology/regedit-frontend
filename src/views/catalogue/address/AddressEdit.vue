@@ -45,9 +45,9 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import AddressOriginal from "./AddressOriginal";
-import AddressSuggested from "./AddressSuggested";
-import AddressRevised from "./AddressRevised";
+import AddressOriginal from "./domain/AddressOriginal";
+import AddressSuggested from "./domain/AddressSuggested";
+import AddressRevised from "./domain/AddressRevised";
 
 export default {
   name: "AddressEdit",
@@ -57,7 +57,7 @@ export default {
     "address-revised": AddressRevised
   },
   computed: {
-    ...mapGetters("addressServ", {
+    ...mapGetters("address", {
       address: "address",
       addressNext: "addressNext",
       addressPrev: "addressPrev"
@@ -67,20 +67,20 @@ export default {
   methods: {
     handleSkip() {
       var addr = { ...this.address, validato: false, revisionato: false };
-      this.$store.dispatch("addressServ/update", addr);
+      this.$store.dispatch("address/update", addr);
     },
     handleValidate() {
       var addr = { ...this.address, validato: true, revisionato: false };
-      this.$store.dispatch("addressServ/update", addr);
+      this.$store.dispatch("address/update", addr);
     },
     handleRevise() {
       var addr = { ...this.address, validato: true, revisionato: true };
-      this.$store.dispatch("addressServ/update", addr);
+      this.$store.dispatch("address/update", addr);
     }
   },
   created() {
-    this.$store.dispatch("dugServ/findAll");
-    this.$store.dispatch("addressServ/findById", this.$route.params.id);
+    this.$store.dispatch("dug/findAll");
+    this.$store.dispatch("address/findById", this.$route.params.id);
   }
 };
 </script>

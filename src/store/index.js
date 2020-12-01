@@ -5,8 +5,8 @@ import { auth } from "./modules/auth";
 import { error } from "./modules/error";
 import { coreui } from "./modules/coreui";
 import { message } from "./modules/message";
-import { addressServ } from "./modules/metadata/address";
-import { dugServ } from "./modules/metadata/dug";
+import { address } from "./modules/metadata/address";
+import { dug } from "./modules/metadata/dug";
 import { user } from "./modules/user/user";
 
 Vue.use(Vuex);
@@ -17,8 +17,8 @@ export default new Vuex.Store({
     error,
     coreui,
     message,
-    addressServ,
-    dugServ,
+    address,
+    dug,
     user
   }
 });

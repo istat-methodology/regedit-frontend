@@ -1,13 +1,16 @@
 <template>
   <div class="row">
-    <div class="col-12">
-      <div class="card">
+    <div class="col-12" v-if="isLoading">
+      <tile></tile>
+    </div>
+    <div class="col-12" v-else>
+      <div class="card" v-if="addresses">
         <header class="card-header">
           Registro dei luoghi
         </header>
         <CCardBody>
           <CDataTable
-            :items="addresses"
+            :items="addressesView"
             :fields="fields"
             column-filter
             :items-per-page="10"
@@ -15,24 +18,16 @@
             hover
             pagination
           >
-            <template #validato="{item}">
+            <template #validatoView="{item}">
               <td>
-                <CBadge :color="getColor(item)">
-                  <span> {{ getContent(item) }}</span>
-                </CBadge>
-              </td>
-            </template>
-            <template #show_update="{item}">
-              <td>
-                <router-link
-                  tag="a"
-                  :to="{
-                    name: 'AddressEdit',
-                    params: { id: item.id }
-                  }"
+                <CButton
+                  shape="square"
+                  variant="outline"
+                  size="sm"
+                  :color="item.validatoColor"
+                  @click="handleEdit(item.id)"
+                  >{{ item.validatoView }}</CButton
                 >
-                  <edit-icon />
-                </router-link>
               </td>
             </template>
           </CDataTable>
@@ -44,69 +39,53 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { Context, getValidatoColor, getValidatoString } from "@/common";
 
 export default {
   name: "addresslist",
   data() {
     return {
-      selectedAddress: {},
-      warningModal: false,
       fields: [
         {
           key: "progressivo_indirizzo_or",
-          label: "Progressivo",
-          _style: "width:10%"
+          label: "Progressivo"
         },
         {
           key: "indirizzo_originale",
-          label: "Indirizzo registro",
-          _style: "width:15%"
+          label: "Indirizzo originale"
         },
-        { key: "comune_or", label: "Comune", _style: "width:15%;" },
-        { key: "localita_or", label: "Localita", _style: "width:10%;" },
+        { key: "comune_or", label: "Comune originale" },
+        { key: "localita_or", label: "Localita originale" },
         {
-          key: "validato",
-          label: "Validato",
-          _style: "width:5%;",
-          filter: false
-        },
-        {
-          key: "show_update",
-          label: "",
-          _style: "width:1%",
-          sorter: false,
-          filter: false
+          key: "validatoView",
+          label: "Stato di lavorazione"
         }
       ]
     };
   },
   computed: {
-    ...mapGetters("addressServ", ["addresses"])
+    ...mapGetters("coreui", ["isLoading"]),
+    ...mapGetters("address", ["addresses"]),
+    addressesView() {
+      return this.addresses.map(addr => {
+        return {
+          ...addr,
+          validatoView: getValidatoString(addr.validato),
+          validatoColor: getValidatoColor(addr.validato)
+        };
+      });
+    }
   },
   methods: {
-    getColor(address) {
-      switch (address.validato) {
-        case true:
-          return "success";
-        case false:
-          return "danger";
-        default:
-          "primary";
-      }
-    },
-    getContent(address) {
-      switch (address.validato) {
-        case true:
-          return "VALIDATO";
-        case false:
-          return "REVISIONATO";
-        default:
-          "DA VALIDARE";
-      }
+    getValidatoString,
+    getValidatoColor,
+    handleEdit(id) {
+      this.$router.push({ name: "AddressEdit", params: { id } });
     }
   },
   created() {
-    this.$store.dispatch("addressServ/findAll");
+    this.$store.dispatch("coreui/setContext", Context.Address);
+    this.$store.dispatch("address/findAll");
   }
 };
 </script>

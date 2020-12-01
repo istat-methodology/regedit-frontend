@@ -85,11 +85,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("dugServ", ["dugs"])
+    ...mapGetters("dug", ["dugs"])
   },
   methods: {
     deleteDug() {
-      this.$store.dispatch("dugServ/delete", this.selectedDug.id);
+      this.$store.dispatch("dug/delete", this.selectedDug.id);
       this.warningModal = false;
     },
     modalOpen(dug) {
@@ -101,7 +101,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("dugServ/findAll");
+    this.$store.dispatch("dug/findAll");
   }
 };
 </script>

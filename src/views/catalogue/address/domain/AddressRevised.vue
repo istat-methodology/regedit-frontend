@@ -142,7 +142,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("dugServ", ["dugs"]),
+    ...mapGetters("dug", ["dugs"]),
     addressString() {
       var addr = "";
       if (this.address) {
