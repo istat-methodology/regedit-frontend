@@ -8,10 +8,10 @@ const state = {
 
 const mutations = {
   SET_DUGS(state, dugs) {
-    state.dugss = dugs;
+    state.dugs = dugs;
   },
   SET_DUG(state, dug) {
-    state.dugs = dug;
+    state.dug = dug;
   }
 };
 
@@ -22,6 +22,20 @@ const actions = {
       .then(data => {
         commit("SET_DUGS", data);
         commit("SET_DUG", null); //clear businessService
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  save({ commit, dispatch }, formData) {
+    dugService
+      .save(formData)
+      .then(data => {
+        //console.log(data);
+        commit("SET_DUG", data);
+        dispatch("message/success", "Dug saved!", {
+          root: true
+        });
       })
       .catch(err => {
         console.log(err);
@@ -51,6 +65,19 @@ const actions = {
         } else {
           //do something
         }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  delete({ dispatch }, id) {
+    dugService
+      .delete(id)
+      .then(() => {
+        dispatch("findAll");
+        dispatch("message/success", "Dug deleted!", {
+          root: true
+        });
       })
       .catch(err => {
         console.log(err);

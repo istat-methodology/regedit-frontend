@@ -109,7 +109,6 @@ export default {
     }
   },
   created() {
-    // this.$store.dispatch("coreui/setContext", Context.Service);
     this.$store.dispatch("addressServ/findAll");
   }
 };
