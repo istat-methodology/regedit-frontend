@@ -44,7 +44,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Context } from "@/common";
 
 export default {
   name: "addresslist",
@@ -107,7 +106,6 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("coreui/setContext", Context.Address);
     this.$store.dispatch("addressServ/findAll");
   }
 };

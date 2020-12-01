@@ -79,6 +79,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch("dugServ/findAll");
     this.$store.dispatch("addressServ/findById", this.$route.params.id);
   }
 };
