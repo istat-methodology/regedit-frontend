@@ -13,12 +13,12 @@
                   <CInput
                     label="Dug"
                     placeholder="Dug"
-                    :class="{ 'is-invalid': $v.dugitem.dug.$error }"
-                    v-model="dugitem.dug"
+                    :class="{ 'is-invalid': $v.dug.value.$error }"
+                    v-model="dug.value"
                   />
                   <div
                     class="help-block"
-                    :class="{ show: $v.dugitem.dug.$error }"
+                    :class="{ show: $v.dug.value.$error }"
                   >
                     This field is required
                   </div>
@@ -54,14 +54,14 @@ export default {
   name: "DugAdd",
   data() {
     return {
-      dugitem: {
-        dug: ""
+      dug: {
+        value: ""
       }
     };
   },
   validations: {
-    dugitem: {
-      dug: {
+    dug: {
+      value: {
         required
       }
     }
@@ -69,9 +69,9 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      if (!this.$v.dugitem.$invalid) {
+      if (!this.$v.dug.$invalid) {
         this.$store
-          .dispatch("dug/save", this.dugitem)
+          .dispatch("dug/save", this.dug)
           .then(this.$router.push("/catalogue/dug"));
       }
     },

@@ -52,7 +52,7 @@
           Delete
         </CButton>
       </template>
-      Delete Dug '{{ selectedDug.dug }}'?
+      Delete Dug '{{ selectedDug.value }}'?
     </CModal>
   </div>
 </template>
@@ -66,7 +66,7 @@ export default {
       warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
-        { key: "dug", _style: "width:15%" },
+        { key: "value", _style: "width:15%" },
         {
           key: "show_update",
           label: "",

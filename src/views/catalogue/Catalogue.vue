@@ -7,7 +7,8 @@
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi da revisionare.
+          In questa sezione puoi trovare la lista degli indirizzi da
+          revisionare.
           <p class="section-link">
             <router-link tag="a" :to="{ name: 'AddressList' }"
               ><span>Vai alla sezione indirizzi <chevron-right-icon /></span>

@@ -15,7 +15,7 @@
       "nota_su": "Indirizzo corretto",
       "validato": true,
       "revisionato": false,
-      "dug": "via",
+      "dug": "10",
       "duf": "di Monteverde",
       "civico": "135",
       "esponente": "3",
@@ -39,7 +39,7 @@
       "nota_su": "",
       "validato": null,
       "revisionato": false,
-      "dug": "VIA",
+      "dug": "10",
       "duf": "di Monteverde",
       "civico": "140",
       "esponente": "id",
@@ -269,651 +269,651 @@
   "dugs": [
     {
       "id": "1",
-      "dug": "ARCO"
+      "value": "ARCO"
     },
     {
       "id": "2",
-      "dug": "ARGINE"
+      "value": "ARGINE"
     },
     {
       "id": "3",
-      "dug": "AUTOSTRADA"
+      "value": "AUTOSTRADA"
     },
     {
       "id": "4",
-      "dug": "BAGLIO"
+      "value": "BAGLIO"
     },
     {
       "id": "5",
-      "dug": "BALUARDO"
+      "value": "BALUARDO"
     },
     {
       "id": "6",
-      "dug": "BANCHINA"
+      "value": "BANCHINA"
     },
     {
       "id": "7",
-      "dug": "BASTIONI"
+      "value": "BASTIONI"
     },
     {
       "id": "8",
-      "dug": "BIVIO"
+      "value": "BIVIO"
     },
     {
       "id": "9",
-      "dug": "BORGATA"
+      "value": "BORGATA"
     },
     {
       "id": "10",
-      "dug": "BORGHETTO"
+      "value": "BORGHETTO"
     },
     {
       "id": "11",
-      "dug": "BORGO"
+      "value": "BORGO"
     },
     {
       "id": "12",
-      "dug": "CA'"
+      "value": "CA'"
     },
     {
       "id": "13",
-      "dug": "CALATA"
+      "value": "CALATA"
     },
     {
       "id": "14",
-      "dug": "CALLE"
+      "value": "CALLE"
     },
     {
       "id": "15",
-      "dug": "CAMPAZZO"
+      "value": "CAMPAZZO"
     },
     {
       "id": "16",
-      "dug": "CAMPIELLO"
+      "value": "CAMPIELLO"
     },
     {
       "id": "17",
-      "dug": "CAMPO"
+      "value": "CAMPO"
     },
     {
       "id": "18",
-      "dug": "CANTONE"
+      "value": "CANTONE"
     },
     {
       "id": "19",
-      "dug": "CARRARA"
+      "value": "CARRARA"
     },
     {
       "id": "20",
-      "dug": "CASA"
+      "value": "CASA"
     },
     {
       "id": "21",
-      "dug": "CASALE"
+      "value": "CASALE"
     },
     {
       "id": "22",
-      "dug": "CASALI"
+      "value": "CASALI"
     },
     {
       "id": "23",
-      "dug": "CASCINA"
+      "value": "CASCINA"
     },
     {
       "id": "24",
-      "dug": "CASCINE"
+      "value": "CASCINE"
     },
     {
       "id": "25",
-      "dug": "CASE"
+      "value": "CASE"
     },
     {
       "id": "26",
-      "dug": "CASE SPARSE"
+      "value": "CASE SPARSE"
     },
     {
       "id": "27",
-      "dug": "CENTRO"
+      "value": "CENTRO"
     },
     {
       "id": "28",
-      "dug": "CENTRO ABITATO"
+      "value": "CENTRO ABITATO"
     },
     {
       "id": "29",
-      "dug": "CHIASSO"
+      "value": "CHIASSO"
     },
     {
       "id": "30",
-      "dug": "CIRCONVALLAZIONE"
+      "value": "CIRCONVALLAZIONE"
     },
     {
       "id": "31",
-      "dug": "CIRCUMVALLAZIONE"
+      "value": "CIRCUMVALLAZIONE"
     },
     {
       "id": "32",
-      "dug": "CLAUSTRO"
+      "value": "CLAUSTRO"
     },
     {
       "id": "33",
-      "dug": "COL"
+      "value": "COL"
     },
     {
       "id": "34",
-      "dug": "COLLE"
+      "value": "COLLE"
     },
     {
       "id": "35",
-      "dug": "CONDOMINIO"
+      "value": "CONDOMINIO"
     },
     {
       "id": "36",
-      "dug": "CONTRA'"
+      "value": "CONTRA'"
     },
     {
       "id": "37",
-      "dug": "CONTRADA"
+      "value": "CONTRADA"
     },
     {
       "id": "38",
-      "dug": "CORSO"
+      "value": "CORSO"
     },
     {
       "id": "39",
-      "dug": "CORT"
+      "value": "CORT"
     },
     {
       "id": "40",
-      "dug": "CORTE"
+      "value": "CORTE"
     },
     {
       "id": "41",
-      "dug": "CORTICELLA"
+      "value": "CORTICELLA"
     },
     {
       "id": "42",
-      "dug": "CORTILE"
+      "value": "CORTILE"
     },
     {
       "id": "43",
-      "dug": "CUPA"
+      "value": "CUPA"
     },
     {
       "id": "44",
-      "dug": "DIRAMAZIONE"
+      "value": "DIRAMAZIONE"
     },
     {
       "id": "45",
-      "dug": "DISCESA"
+      "value": "DISCESA"
     },
     {
       "id": "46",
-      "dug": "FATTORIA"
+      "value": "FATTORIA"
     },
     {
       "id": "47",
-      "dug": "FONDACO"
+      "value": "FONDACO"
     },
     {
       "id": "48",
-      "dug": "FONDAMENTA"
+      "value": "FONDAMENTA"
     },
     {
       "id": "49",
-      "dug": "FONDO"
+      "value": "FONDO"
     },
     {
       "id": "50",
-      "dug": "FRAZIONE"
+      "value": "FRAZIONE"
     },
     {
       "id": "51",
-      "dug": "GALLERIA"
+      "value": "GALLERIA"
     },
     {
       "id": "52",
-      "dug": "GIARDINI"
+      "value": "GIARDINI"
     },
     {
       "id": "53",
-      "dug": "GIARDINO"
+      "value": "GIARDINO"
     },
     {
       "id": "54",
-      "dug": "GRADINATA"
+      "value": "GRADINATA"
     },
     {
       "id": "55",
-      "dug": "GRADINI"
+      "value": "GRADINI"
     },
     {
       "id": "56",
-      "dug": "GRADONI"
+      "value": "GRADONI"
     },
     {
       "id": "57",
-      "dug": "HAMEAU"
+      "value": "HAMEAU"
     },
     {
       "id": "58",
-      "dug": "ISOLA"
+      "value": "ISOLA"
     },
     {
       "id": "59",
-      "dug": "ISOLATO"
+      "value": "ISOLATO"
     },
     {
       "id": "60",
-      "dug": "LARGHETTO"
+      "value": "LARGHETTO"
     },
     {
       "id": "61",
-      "dug": "LARGO"
+      "value": "LARGO"
     },
     {
       "id": "62",
-      "dug": "LOCALITA"
+      "value": "LOCALITA"
     },
     {
       "id": "63",
-      "dug": "LOCALITA'"
+      "value": "LOCALITA'"
     },
     {
       "id": "64",
-      "dug": "LOCALITA PODERE"
+      "value": "LOCALITA PODERE"
     },
     {
       "id": "65",
-      "dug": "LUNGADIGE"
+      "value": "LUNGADIGE"
     },
     {
       "id": "66",
-      "dug": "LUNGARGINE"
+      "value": "LUNGARGINE"
     },
     {
       "id": "67",
-      "dug": "LUNGARNO"
+      "value": "LUNGARNO"
     },
     {
       "id": "68",
-      "dug": "LUNGO"
+      "value": "LUNGO"
     },
     {
       "id": "69",
-      "dug": "LUNGO ADDA"
+      "value": "LUNGO ADDA"
     },
     {
       "id": "70",
-      "dug": "LUNGO BRENTA"
+      "value": "LUNGO BRENTA"
     },
     {
       "id": "71",
-      "dug": "LUNGO DORA"
+      "value": "LUNGO DORA"
     },
     {
       "id": "72",
-      "dug": "LUNGO ISARCO"
+      "value": "LUNGO ISARCO"
     },
     {
       "id": "73",
-      "dug": "LUNGO LAGO"
+      "value": "LUNGO LAGO"
     },
     {
       "id": "74",
-      "dug": "LUNGO MALLERO"
+      "value": "LUNGO MALLERO"
     },
     {
       "id": "75",
-      "dug": "LUNGO PO"
+      "value": "LUNGO PO"
     },
     {
       "id": "76",
-      "dug": "LUNGO STURA"
+      "value": "LUNGO STURA"
     },
     {
       "id": "77",
-      "dug": "LUNGO TALVERA"
+      "value": "LUNGO TALVERA"
     },
     {
       "id": "78",
-      "dug": "LUNGO TANARO"
+      "value": "LUNGO TANARO"
     },
     {
       "id": "79",
-      "dug": "LUNGOBISAGNO"
+      "value": "LUNGOBISAGNO"
     },
     {
       "id": "80",
-      "dug": "LUNGOLAGO"
+      "value": "LUNGOLAGO"
     },
     {
       "id": "81",
-      "dug": "LUNGOLARIO"
+      "value": "LUNGOLARIO"
     },
     {
       "id": "82",
-      "dug": "LUNGOMARE"
+      "value": "LUNGOMARE"
     },
     {
       "id": "83",
-      "dug": "LUNGOSABATO"
+      "value": "LUNGOSABATO"
     },
     {
       "id": "84",
-      "dug": "LUNGOSTURA"
+      "value": "LUNGOSTURA"
     },
     {
       "id": "85",
-      "dug": "LUNGOTANARO"
+      "value": "LUNGOTANARO"
     },
     {
       "id": "86",
-      "dug": "LUNGOTEVERE"
+      "value": "LUNGOTEVERE"
     },
     {
       "id": "87",
-      "dug": "MASO"
+      "value": "MASO"
     },
     {
       "id": "88",
-      "dug": "MASSERIA"
+      "value": "MASSERIA"
     },
     {
       "id": "89",
-      "dug": "MOLO"
+      "value": "MOLO"
     },
     {
       "id": "90",
-      "dug": "MURA"
+      "value": "MURA"
     },
     {
       "id": "91",
-      "dug": "NUCLEO"
+      "value": "NUCLEO"
     },
     {
       "id": "92",
-      "dug": "PARCO"
+      "value": "PARCO"
     },
     {
       "id": "93",
-      "dug": "PASSAGGIO"
+      "value": "PASSAGGIO"
     },
     {
       "id": "94",
-      "dug": "PASSEGGIATA"
+      "value": "PASSEGGIATA"
     },
     {
       "id": "95",
-      "dug": "PIAZ"
+      "value": "PIAZ"
     },
     {
       "id": "96",
-      "dug": "PIAZZA"
+      "value": "PIAZZA"
     },
     {
       "id": "97",
-      "dug": "PIAZZALE"
+      "value": "PIAZZALE"
     },
     {
       "id": "98",
-      "dug": "PIAZZETTA"
+      "value": "PIAZZETTA"
     },
     {
       "id": "99",
-      "dug": "PODERE"
+      "value": "PODERE"
     },
     {
       "id": "100",
-      "dug": "PORTICO"
+      "value": "PORTICO"
     },
     {
       "id": "101",
-      "dug": "PROLUNGAMENTO"
+      "value": "PROLUNGAMENTO"
     },
     {
       "id": "102",
-      "dug": "PROVINCIALE"
+      "value": "PROVINCIALE"
     },
     {
       "id": "103",
-      "dug": "QUARTIERE"
+      "value": "QUARTIERE"
     },
     {
       "id": "104",
-      "dug": "RAMO"
+      "value": "RAMO"
     },
     {
       "id": "105",
-      "dug": "RAMPA"
+      "value": "RAMPA"
     },
     {
       "id": "106",
-      "dug": "RAMPE"
+      "value": "RAMPE"
     },
     {
       "id": "107",
-      "dug": "RECINTO"
+      "value": "RECINTO"
     },
     {
       "id": "108",
-      "dug": "REGIONE"
+      "value": "REGIONE"
     },
     {
       "id": "109",
-      "dug": "RIONE"
+      "value": "RIONE"
     },
     {
       "id": "110",
-      "dug": "RIVA"
+      "value": "RIVA"
     },
     {
       "id": "111",
-      "dug": "RIVIERA"
+      "value": "RIVIERA"
     },
     {
       "id": "112",
-      "dug": "RONCO"
+      "value": "RONCO"
     },
     {
       "id": "113",
-      "dug": "ROTONDA"
+      "value": "ROTONDA"
     },
     {
       "id": "114",
-      "dug": "RUA"
+      "value": "RUA"
     },
     {
       "id": "115",
-      "dug": "RUE"
+      "value": "RUE"
     },
     {
       "id": "116",
-      "dug": "SALITA"
+      "value": "SALITA"
     },
     {
       "id": "117",
-      "dug": "SALIZADA"
+      "value": "SALIZADA"
     },
     {
       "id": "118",
-      "dug": "SCALINATA"
+      "value": "SCALINATA"
     },
     {
       "id": "119",
-      "dug": "SENTIERO"
+      "value": "SENTIERO"
     },
     {
       "id": "120",
-      "dug": "SESTIERE"
+      "value": "SESTIERE"
     },
     {
       "id": "121",
-      "dug": "SOBBORGO"
+      "value": "SOBBORGO"
     },
     {
       "id": "122",
-      "dug": "SOTTOPASSAGGIO"
+      "value": "SOTTOPASSAGGIO"
     },
     {
       "id": "123",
-      "dug": "SOTTOPORTICO"
+      "value": "SOTTOPORTICO"
     },
     {
       "id": "124",
-      "dug": "SOTTOVIA"
+      "value": "SOTTOVIA"
     },
     {
       "id": "125",
-      "dug": "STRADA"
+      "value": "STRADA"
     },
     {
       "id": "126",
-      "dug": "STRADA COMUNALE"
+      "value": "STRADA COMUNALE"
     },
     {
       "id": "127",
-      "dug": "STRADA PRIVATA"
+      "value": "STRADA PRIVATA"
     },
     {
       "id": "128",
-      "dug": "STRADA PROVINCIALE"
+      "value": "STRADA PROVINCIALE"
     },
     {
       "id": "129",
-      "dug": "STRADA REGIONALE"
+      "value": "STRADA REGIONALE"
     },
     {
       "id": "130",
-      "dug": "STRADA STATALE"
+      "value": "STRADA STATALE"
     },
     {
       "id": "131",
-      "dug": "STRADA VICINALE"
+      "value": "STRADA VICINALE"
     },
     {
       "id": "132",
-      "dug": "STRADELLA"
+      "value": "STRADELLA"
     },
     {
       "id": "133",
-      "dug": "STRADELLO"
+      "value": "STRADELLO"
     },
     {
       "id": "134",
-      "dug": "STRADONE"
+      "value": "STRADONE"
     },
     {
       "id": "135",
-      "dug": "STREDA"
+      "value": "STREDA"
     },
     {
       "id": "136",
-      "dug": "SUBBORGO"
+      "value": "SUBBORGO"
     },
     {
       "id": "137",
-      "dug": "SUPERSTRADA"
+      "value": "SUPERSTRADA"
     },
     {
       "id": "138",
-      "dug": "SUPPORTICO"
+      "value": "SUPPORTICO"
     },
     {
       "id": "139",
-      "dug": "TANGENZIALE"
+      "value": "TANGENZIALE"
     },
     {
       "id": "140",
-      "dug": "TRAVERSA"
+      "value": "TRAVERSA"
     },
     {
       "id": "141",
-      "dug": "TRONCO"
+      "value": "TRONCO"
     },
     {
       "id": "142",
-      "dug": "VIA"
+      "value": "VIA"
     },
     {
       "id": "143",
-      "dug": "VIADOTTO"
+      "value": "VIADOTTO"
     },
     {
       "id": "144",
-      "dug": "VIAL"
+      "value": "VIAL"
     },
     {
       "id": "145",
-      "dug": "VIALE"
+      "value": "VIALE"
     },
     {
       "id": "146",
-      "dug": "VIALETTO"
+      "value": "VIALETTO"
     },
     {
       "id": "147",
-      "dug": "VICO"
+      "value": "VICO"
     },
     {
       "id": "148",
-      "dug": "VICOLETTI"
+      "value": "VICOLETTI"
     },
     {
       "id": "149",
-      "dug": "VICOLETTO"
+      "value": "VICOLETTO"
     },
     {
       "id": "150",
-      "dug": "VICOLO"
+      "value": "VICOLO"
     },
     {
       "id": "151",
-      "dug": "VICOLO CHIUSO"
+      "value": "VICOLO CHIUSO"
     },
     {
       "id": "152",
-      "dug": "VICOLO CIECO"
+      "value": "VICOLO CIECO"
     },
     {
       "id": "153",
-      "dug": "VICOLO LUNGO"
+      "value": "VICOLO LUNGO"
     },
     {
       "id": "154",
-      "dug": "VICOLO STRETTO"
+      "value": "VICOLO STRETTO"
     },
     {
       "id": "155",
-      "dug": "VIELLA"
+      "value": "VIELLA"
     },
     {
       "id": "156",
-      "dug": "VILLAGGIO"
+      "value": "VILLAGGIO"
     },
     {
       "id": "157",
-      "dug": "VILLETTA"
+      "value": "VILLETTA"
     },
     {
       "id": "158",
-      "dug": "VIOTTOLO"
+      "value": "VIOTTOLO"
     },
     {
       "id": "159",
-      "dug": "VIUZZA"
+      "value": "VIUZZA"
     },
     {
       "id": "160",
-      "dug": "VIUZZO"
+      "value": "VIUZZO"
     },
     {
       "id": "161",
-      "dug": "VOCABOLO"
+      "value": "VOCABOLO"
     },
     {
       "id": "162",
-      "dug": "ZONA"
+      "value": "ZONA"
     }
   ]
 }

@@ -8,10 +8,10 @@
           <CInput
             label="Name"
             placeholder="Name"
-            :class="{ 'is-invalid': $v.dug.dug.$error }"
-            v-model="dug.dug"
+            :class="{ 'is-invalid': $v.dug.value.$error }"
+            v-model="dug.value"
           />
-          <div class="help-block" :class="{ show: $v.dug.dug.$error }">
+          <div class="help-block" :class="{ show: $v.dug.value.$error }">
             This field is required
           </div>
         </CCardBody>
@@ -46,7 +46,7 @@ export default {
   },
   validations: {
     dug: {
-      dug: {
+      value: {
         required
       }
     }

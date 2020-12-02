@@ -59,13 +59,14 @@
         }"
         v-model="address.dug"
       /> -->
-      <CSelect
-        label="Dug*"
-        :key="id"
-        :value="dug"
+      <label>Dug*</label>
+      <v-select
+        label="value"
         :options="dugs"
         v-model="address.dug"
-      />
+        placeholder="Dug"
+      ></v-select>
+      <!-- @input="handleSelectInput" -->
       <CInput
         label="Duf*"
         placeholder="Duf"
@@ -135,6 +136,11 @@ import { required } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 export default {
   name: "AddressRevised",
+  data: function() {
+    return {
+      dugvalue: null
+    };
+  },
   props: {
     address: {
       type: Object,
