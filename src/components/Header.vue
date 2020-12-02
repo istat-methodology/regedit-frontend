@@ -38,6 +38,16 @@
             <span class="pl-1"><users-icon class="pr-4" />Utenti</span>
           </router-link>
         </CDropdownItem>
+        <CDropdownItem>
+          <router-link
+            tag="a"
+            :to="{
+              name: 'DugList'
+            }"
+          >
+            <span class="pl-1"><users-icon class="pr-4" />Lista Dug</span>
+          </router-link>
+        </CDropdownItem>
       </CDropdown>
     </CHeaderNav>
     <CHeaderNav class="mr-4">
