@@ -64,6 +64,7 @@
         label="value"
         :options="dugs"
         v-model="address.dug"
+        @input="handleSelectInput"
         placeholder="Dug"
       ></v-select>
       <!-- @input="handleSelectInput" -->
@@ -195,6 +196,9 @@ export default {
     }
   },
   methods: {
+    handleSelectInput(input) {
+      this.address.dug = input.value;
+    },
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid) {
