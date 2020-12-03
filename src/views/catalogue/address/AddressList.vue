@@ -4,6 +4,7 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
+      <app-progress />
       <div class="card" v-if="addresses">
         <header class="card-header">
           Registro dei luoghi
@@ -40,9 +41,13 @@
 <script>
 import { mapGetters } from "vuex";
 import { Context, getValidatoColor, getValidatoString } from "@/common";
+import Progress from "@/components/Progress";
 
 export default {
   name: "addresslist",
+  components: {
+    "app-progress": Progress
+  },
   data() {
     return {
       fields: [
