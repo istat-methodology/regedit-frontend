@@ -189,11 +189,14 @@ export default {
       esponente: {
         required,
         strongPassword(esponente) {
-          return /^[a-zA-Z?]?$/.test(esponente) || /^[0-9?]*$/.test(esponente);
-          /* && // checks for a-z
-            /[0-9]/.test(esponente) && // checks for 0-9
-            /\W|_/.test(esponente) && // checks for special char
-            esponente.length >= 6 */
+          return (
+            /^[a-zA-Z?]$/.test(esponente) ||
+            /^[0-9?]*$/.test(esponente) ||
+            /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)/.test(esponente) ||
+            /^[a-zA-Z?](R|ROSSO)$/.test(esponente) ||
+            /^[0-9?]*(R|ROSSO)$/.test(esponente) ||
+            /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)(R|ROSSO)/.test(esponente)
+          );
         }
       },
       chiave_strada: {
