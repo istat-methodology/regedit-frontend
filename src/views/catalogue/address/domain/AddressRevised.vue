@@ -192,10 +192,12 @@ export default {
           return (
             /^[a-zA-Z?]$/.test(esponente) ||
             /^[0-9?]*$/.test(esponente) ||
-            /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)/.test(esponente) ||
+            /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)\b/.test(esponente) ||
             /^[a-zA-Z?](R|ROSSO)$/.test(esponente) ||
             /^[0-9?]*(R|ROSSO)$/.test(esponente) ||
-            /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)(R|ROSSO)/.test(esponente)
+            /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)(R|ROSSO)\b/.test(
+              esponente
+            )
           );
         }
       },
