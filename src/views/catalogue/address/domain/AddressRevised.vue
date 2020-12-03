@@ -67,7 +67,6 @@
         @input="handleSelectInput"
         placeholder="Dug"
       ></v-select>
-      <!-- @input="handleSelectInput" -->
       <CInput
         label="Duf*"
         placeholder="Duf"
@@ -100,6 +99,12 @@
         }"
         v-model="address.esponente"
       />
+      <p class="error" v-if="!$v.address.esponente.strongPassword">
+        I valori possibili per questo campo sono: · Non valorizzato. . Numerico
+        Un solo carattere alfabetico.
+        ·'BIS','TER','QUATER','QUINQUIES','SEXIES','SEPTIES’ · Tutte le
+        casistiche precedenti seguite da ' R' o ' ROSSO'
+      </p>
       <CInput
         label="Codice strada*"
         placeholder="Codice strada"
@@ -182,7 +187,14 @@ export default {
         required
       },
       esponente: {
-        required
+        required,
+        strongPassword(esponente) {
+          return /^[a-zA-Z?]?$/.test(esponente) || /^[0-9?]*$/.test(esponente);
+          /* && // checks for a-z
+            /[0-9]/.test(esponente) && // checks for 0-9
+            /\W|_/.test(esponente) && // checks for special char
+            esponente.length >= 6 */
+        }
       },
       chiave_strada: {
         required
