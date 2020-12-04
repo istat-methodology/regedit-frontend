@@ -23,6 +23,8 @@
   </CCard>
 </template>
 <script>
+import { Address, printAddress } from "@/common";
+
 export default {
   name: "AddressOriginal",
   props: {
@@ -33,16 +35,11 @@ export default {
   },
   computed: {
     addressString() {
-      var addr = "";
-      if (this.address) {
-        addr = this.address.indirizzo_originale
-          .concat(
-            this.address.localita_or ? ", " + this.address.localita_or : ""
-          )
-          .concat(this.address.comune_or ? ", " + this.address.comune_or : "");
-      }
-      return addr;
+      return this.printAddress(this.address, Address.Original);
     }
+  },
+  methods: {
+    printAddress
   }
 };
 </script>

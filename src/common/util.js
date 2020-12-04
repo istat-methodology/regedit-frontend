@@ -18,14 +18,27 @@ export function getNext(objArray, obj) {
 }
 
 export function printAddress(address, type) {
-  let addr = "";
+  if (address === null) return "";
   switch (type) {
     case Address.Original:
-      break;
+      return address.indirizzo_originale
+        .concat(address.localita_or ? ", " + address.localita_or : "")
+        .concat(address.comune_or ? ", " + address.comune_or : "");
     case Address.Suggested:
-      break;
+      return address.dug_su
+        .concat(address.duf_su ? " " + address.duf_su : "")
+        .concat(address.civico_su ? " " + address.civico_su : "")
+        .concat(address.esponente_su ? " " + address.esponente_su : "")
+        .concat(address.localita_su ? ", " + address.localita_su : "");
+    case Address.Revised:
+      return address.dug
+        .concat(address.duf ? " " + address.duf : "")
+        .concat(address.civico ? " " + address.civico : "")
+        .concat(address.esponente ? " " + address.esponente : "")
+        .concat(address.localita ? ", " + address.localita : "");
+    default:
+      return "";
   }
-  return addr;
 }
 
 export function getValidatoColor(validato) {

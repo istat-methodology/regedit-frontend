@@ -51,14 +51,6 @@
       </div></CCardHeader
     >
     <CCardBody class="card-text">
-      <!--  <CInput
-        label="Dug*"
-        placeholder="Dug"
-        :class="{
-          'is-invalid': $v.address.dug.$error
-        }"
-        v-model="address.dug"
-      /> -->
       <label>Dug*</label>
       <v-select
         label="value"
@@ -140,6 +132,8 @@
 <script>
 import { required } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
+import { Address, printAddress } from "@/common";
+
 export default {
   name: "AddressRevised",
   data: function() {
@@ -156,20 +150,7 @@ export default {
   computed: {
     ...mapGetters("dug", ["dugs"]),
     addressString() {
-      var addr = "";
-      if (this.address) {
-        addr =
-          this.address.dug +
-          " " +
-          this.address.duf +
-          " " +
-          this.address.civico +
-          " " +
-          this.address.esponente +
-          " " +
-          this.address.localita;
-      }
-      return addr;
+      return this.printAddress(this.address, Address.Revised);
     }
   },
   validations: {
@@ -213,6 +194,7 @@ export default {
     }
   },
   methods: {
+    printAddress,
     handleSelectInput(input) {
       this.address.dug = input.value;
     },

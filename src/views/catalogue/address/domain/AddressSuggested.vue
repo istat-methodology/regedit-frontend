@@ -40,6 +40,8 @@
   </CCard>
 </template>
 <script>
+import { Address, printAddress } from "@/common";
+
 export default {
   name: "AddressSuggested",
   props: {
@@ -50,20 +52,11 @@ export default {
   },
   computed: {
     addressString() {
-      var addr = "";
-      if (this.address) {
-        addr = this.address.dug_su
-          .concat(this.address.duf_su ? " " + this.address.duf_su : "")
-          .concat(this.address.civico_su ? " " + this.address.civico_su : "")
-          .concat(
-            this.address.esponente_su ? " " + this.address.esponente_su : ""
-          )
-          .concat(
-            this.address.localita_su ? ", " + this.address.localita_su : ""
-          );
-      }
-      return addr;
+      return this.printAddress(this.address, Address.Suggested);
     }
+  },
+  methods: {
+    printAddress
   }
 };
 </script>
