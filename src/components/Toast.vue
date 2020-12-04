@@ -11,9 +11,14 @@
 </template>
 
 <script>
+import { CToaster, CToast } from "@coreui/vue";
 import { mapGetters } from "vuex";
 
 export default {
+  components: {
+    CToaster,
+    CToast
+  },
   computed: {
     ...mapGetters("message", ["message", "type"]),
     getMessage() {

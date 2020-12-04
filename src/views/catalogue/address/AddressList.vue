@@ -6,9 +6,6 @@
     <div class="col-12" v-else>
       <app-progress />
       <div class="card" v-if="addresses">
-        <header class="card-header">
-          Registro dei luoghi
-        </header>
         <CCardBody>
           <CDataTable
             :items="addressesView"

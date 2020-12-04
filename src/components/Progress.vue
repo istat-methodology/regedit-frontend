@@ -6,7 +6,7 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Da lavorare</span
-              ><span class="ml-auto font-weight-bold">130</span>
+              ><span class="ml-auto font-weight-bold">130/200</span>
             </div>
           </div>
           <CProgress :value="daLavorare" color="primary" size="sm" />
@@ -19,7 +19,7 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Validato</span
-              ><span class="ml-auto font-weight-bold">60</span>
+              ><span class="ml-auto font-weight-bold">60/200</span>
             </div>
           </div>
           <CProgress :value="validato" color="success" size="sm" />
@@ -32,7 +32,7 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Revisionato</span
-              ><span class="ml-auto font-weight-bold">10</span>
+              ><span class="ml-auto font-weight-bold">10/200</span>
             </div>
           </div>
           <CProgress :value="revisionato" color="danger" size="sm" />
@@ -75,6 +75,8 @@ export default {
   margin-bottom: 0.3rem;
 }
 .material-design-icon > .material-design-icon__svg {
-  bottom: 0em;
+  color: #3c4b64;
+  height: 1rem;
+  width: 1rem;
 }
 </style>

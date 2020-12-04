@@ -1,13 +1,14 @@
 <template>
   <div class="c-subheader-nav mfe-2" v-if="isAddress">
-    <router-link
-      tag="a"
-      to="/catalogue/processstep"
-      class="c-subheader-nav-link"
+    <a href=" https://www.google.it/maps" target="_blank" class="pr-3"
+      >Google maps</a
     >
-      <gsim-icon />
-      <span class="header-link icon-span">Gsim concepts</span>
-    </router-link>
+    <a
+      href=" http://maldive:8080/egonweb/main.action"
+      target="_blank"
+      class="pr-2"
+      >Egon</a
+    >
   </div>
 </template>
 

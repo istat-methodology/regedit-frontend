@@ -99,7 +99,7 @@
         }"
         v-model="address.esponente"
       />
-      <p class="error" v-if="!$v.address.esponente.strongPassword">
+      <p class="error" v-if="!$v.address.esponente.validationRule">
         I valori possibili per questo campo sono: · Non valorizzato. . Numerico
         Un solo carattere alfabetico.
         ·'BIS','TER','QUATER','QUINQUIES','SEXIES','SEPTIES’ · Tutte le
@@ -188,7 +188,7 @@ export default {
       },
       esponente: {
         required,
-        strongPassword(esponente) {
+        validationRule(esponente) {
           return (
             /^[a-zA-Z?]$/.test(esponente) ||
             /^[0-9?]*$/.test(esponente) ||
