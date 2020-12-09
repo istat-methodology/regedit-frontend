@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=istat-methodology_regedit-frontend&metric=alert_status)](https://sonarcloud.io/dashboard?id=istat-methodology_regedit-frontend)
+
 # regedit-frontend
 Frontend for editing statistical registers data. The application is implemented using Vue.
 
