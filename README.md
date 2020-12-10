@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/istat-methodology/regedit-frontend.svg?branch=main)](https://travis-ci.org/istat-methodology/regedit-frontend)
 
 # regedit-frontend
-Frontend for editing [![Build Status](https://travis-ci.org/istat-methodology/regedit-frontend.svg?branch=main)](https://travis-ci.org/istat-methodology/regedit-frontend)statistical registers data. The application is implemented using Vue.
+Frontend for editing statistical registers data. The application is implemented using Vue.
 
 ## Environment setup
 In order to start working on regedit frontend, you should install:
