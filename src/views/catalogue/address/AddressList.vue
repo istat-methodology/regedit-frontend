@@ -49,17 +49,18 @@ export default {
     return {
       fields: [
         {
-          key: "progressivo_indirizzo_or",
+          key: "progressivoIndirizzo",
           label: "Progressivo"
         },
         {
-          key: "indirizzo_originale",
-          label: "Indirizzo originale"
+          key: "codiceArchivio",
+          label: "codice Archivio"
         },
-        { key: "comune_or", label: "Comune originale" },
-        { key: "localita_or", label: "Localita originale" },
+        { key: "proCom", label: "PROCOM" },
+        { key: "denominazioneComune", label: "Comune" },
+        { key: "localitaOriginale", label: "Località" },
         {
-          key: "validatoView",
+          key: "stato",
           label: "Stato di lavorazione"
         }
       ]
