@@ -1,3 +1,6 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=istat-methodology_regedit-frontend&metric=alert_status)](https://sonarcloud.io/dashboard?id=istat-methodology_regedit-frontend)
+[![Build Status](https://travis-ci.org/istat-methodology/regedit-frontend.svg?branch=main)](https://travis-ci.org/istat-methodology/regedit-frontend)
+
 # regedit-frontend
 Frontend for editing statistical registers data. The application is implemented using Vue.
 
