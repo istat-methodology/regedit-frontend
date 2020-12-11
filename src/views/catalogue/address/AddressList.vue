@@ -23,7 +23,7 @@
                   variant="outline"
                   size="sm"
                   :color="item.validatoColor"
-                  @click="handleEdit(item.id)"
+                  @click="handleEdit(item.progressivoIndirizzo)"
                   >{{ item.validatoView }}</CButton
                 >
               </td>
@@ -73,8 +73,8 @@ export default {
       return this.addresses.map(addr => {
         return {
           ...addr,
-          validatoView: getValidatoString(addr.validato),
-          validatoColor: getValidatoColor(addr.validato)
+          validatoView: getValidatoString(addr.stato),
+          validatoColor: getValidatoColor(addr.stato)
         };
       });
     }
