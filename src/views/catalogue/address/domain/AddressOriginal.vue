@@ -9,15 +9,15 @@
       </div>
       <div>
         <label>Comune</label>
-        <span>{{ address.comune_or | dashEmpty }}</span>
+        <span>{{ address.denominazioneComune | dashEmpty }}</span>
       </div>
       <div>
         <label>Località</label>
-        <span>{{ address.localita_or | dashEmpty }}</span>
+        <span>{{ address.localitaOriginale | dashEmpty }}</span>
       </div>
       <div>
         <label>Indirizzo</label>
-        <span>{{ address.indirizzo_originale | dashEmpty }}</span>
+        <span>{{ address.indirizzoOriginale | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>
