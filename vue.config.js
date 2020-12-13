@@ -3,7 +3,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/is3/" : "/",
   devServer: {
     host: "localhost",
-    port: 8060
+    port: 8070
   },
   configureWebpack: {
     resolve: {

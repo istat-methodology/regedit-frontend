@@ -53,13 +53,16 @@ const actions = {
           token: data.token,
           user: user
         });
-
         commit("SET_STATUS", AuthStatus.Logged);
+
+        return { staus: AuthStatus.Logged };
       })
       .catch(error => {
         console.log(error);
         commit("SET_STATUS", AuthStatus.InvalidCredentials);
         commit("SET_ERROR_MSG", "Incorrect username or password!");
+
+        return { staus: AuthStatus.InvalidCredentials };
       });
   },
   reloadCredentials({ commit }) {

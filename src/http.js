@@ -43,7 +43,7 @@ axiosIs2.interceptors.response.use(
     } else {
       console.log("Error status", error.response.status);
       // Unauthorized access
-      if (error.response.status === 401) {
+      if (error.response.status === 401 || error.response.status === 403) {
         router.push("/unauthorized");
       } else {
         //Server error

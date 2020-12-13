@@ -22,10 +22,10 @@ function login({ username, password }) {
       return data;
     })
     .catch(error => {
-      console.log(error.res.data.code);
+      console.log(error.res.data.errorMessage);
       const err = {
         code: error.res.status,
-        message: error.res.data.code
+        message: error.res.data.errorMessage
       };
       throw err;
     });

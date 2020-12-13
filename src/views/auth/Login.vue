@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center min-vh-100">
     <CContainer fluid>
       <CRow class="justify-content-center">
-        <CCol col="7" md="7" xl="4">
+        <CCol col="7" md="7" xl="6">
           <div class="card-group">
             <div class="card text-white bg-gradient-primary d-md-down-none">
               <div class="card-body text-center">
@@ -82,9 +82,16 @@
 </template>
 
 <script>
+import { CRow, CCol, CForm } from "@coreui/vue";
 import { mapGetters } from "vuex";
+import { AuthStatus } from "@/common";
 
 export default {
+  components: {
+    CRow,
+    CCol,
+    CForm
+  },
   data() {
     return {
       username: "",
@@ -100,9 +107,9 @@ export default {
         username: this.username,
         password: this.password
       };
-      this.$store.dispatch("auth/login", formData).then(
-        this.$router.push("/") //Go to main page
-      );
+      this.$store.dispatch("auth/login", formData).then(status => {
+        if (status === AuthStatus.Logged) this.$router.push("/"); //Go to main page
+      });
     }
   }
 };
