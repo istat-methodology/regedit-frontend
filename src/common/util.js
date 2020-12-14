@@ -45,12 +45,12 @@ export function printAddress(address, type) {
 
 export function getValidatoColor(validato) {
   switch (validato) {
+    case 1:
+      return "primary";
     case 2:
       return "success";
-    case 1:
+    case 3:
       return "danger";
-    default:
-      return "primary";
   }
 }
 
