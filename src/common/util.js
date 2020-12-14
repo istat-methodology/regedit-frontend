@@ -21,21 +21,23 @@ export function printAddress(address, type) {
   if (address === null) return "";
   switch (type) {
     case Address.Original:
-      return address.indirizzo_originale
-        .concat(address.localita_or ? ", " + address.localita_or : "")
-        .concat(address.comune_or ? ", " + address.comune_or : "");
+      return address.indirizzoOriginale
+        .concat(address.localitaNorm ? ", " + address.localitaNorm : "")
+        .concat(
+          address.denominazioneComune ? ", " + address.denominazioneComune : ""
+        );
     case Address.Suggested:
-      return address.dug_su
-        .concat(address.duf_su ? " " + address.duf_su : "")
-        .concat(address.civico_su ? " " + address.civico_su : "")
-        .concat(address.esponente_su ? " " + address.esponente_su : "")
-        .concat(address.localita_su ? ", " + address.localita_su : "");
+      return address.dugNorm
+        .concat(address.dufNorm ? " " + address.dufNorm : "")
+        .concat(address.civicoNorm ? " " + address.civicoNorm : "")
+        .concat(address.esponenteNorm ? " " + address.esponenteNorm : "")
+        .concat(address.localitaNorm ? ", " + address.localitaNorm : "");
     case Address.Revised:
-      return address.dug
-        .concat(address.duf ? " " + address.duf : "")
-        .concat(address.civico ? " " + address.civico : "")
-        .concat(address.esponente ? " " + address.esponente : "")
-        .concat(address.localita ? ", " + address.localita : "");
+      return address.dugVal
+        .concat(address.dufVal ? " " + address.dufVal : "")
+        .concat(address.civicoVal ? " " + address.civicoVal : "")
+        .concat(address.esponenteVal ? " " + address.esponenteVal : "")
+        .concat(address.localitaVal ? ", " + address.localitaVal : "");
     default:
       return "";
   }
@@ -43,9 +45,9 @@ export function printAddress(address, type) {
 
 export function getValidatoColor(validato) {
   switch (validato) {
-    case true:
+    case 2:
       return "success";
-    case false:
+    case 1:
       return "danger";
     default:
       return "primary";
@@ -54,9 +56,9 @@ export function getValidatoColor(validato) {
 
 export function getValidatoString(validato) {
   switch (validato) {
-    case true:
+    case "SI":
       return "VALIDATO";
-    case false:
+    case "NO":
       return "REVISIONATO";
     default:
       return "DA LAVORARE";

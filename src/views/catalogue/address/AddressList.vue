@@ -74,7 +74,7 @@ export default {
         return {
           ...addr,
           validatoView: getValidatoString(addr.stato),
-          validatoColor: getValidatoColor(addr.stato)
+          validatoColor: getValidatoColor(addr.validazione)
         };
       });
     }
