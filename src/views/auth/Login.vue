@@ -7,23 +7,27 @@
             <div class="card text-white bg-gradient-primary d-md-down-none">
               <div class="card-body text-center">
                 <div class="mt-2">
-                  <h2>IS<sup>2</sup> Workbench</h2>
+                  <h2>RegEdit</h2>
                   <p style="margin-bottom:5rem">
-                    Welcome to an open source environment that offers a set of
-                    statistical services to process your data. Services are
-                    classified according to GSBPM standard and can be chained in
-                    processes.
+                    Benvenuti nell'applicazione RegEdit. <br />
+                    L'applicazione permette di modificare gli indirizzi presenti
+                    nel registro dei luogi.
                   </p>
                   <p class="mb-0">
-                    The project has been developed in the context of SERV2
-                    ESSNet.
+                    Il progetto è open-source, il codice sorgente è disponibile
+                    <a
+                      style="color:white"
+                      href="https://github.com/istat-methodology/regedit-frontend"
+                      target="_blank"
+                      >@github</a
+                    >
                   </p>
                 </div>
               </div>
             </div>
             <CCard class="mb-0">
               <CCardHeader align="center">
-                <h3 class="mt-3">Sign in to IS<sup>2</sup> Workbench</h3>
+                <h3 class="mt-3">Accedi a RegEdit</h3>
               </CCardHeader>
               <CCardBody class="mb-0 mt-3">
                 <CForm>
@@ -107,8 +111,8 @@ export default {
         username: this.username,
         password: this.password
       };
-      this.$store.dispatch("auth/login", formData).then(status => {
-        if (status === AuthStatus.Logged) this.$router.push("/"); //Go to main page
+      this.$store.dispatch("auth/login", formData).then(res => {
+        if (res.status === AuthStatus.Logged) this.$router.push("/"); //Go to main page
       });
     }
   }
