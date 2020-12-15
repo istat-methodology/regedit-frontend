@@ -9,7 +9,7 @@
       <template #toggler>
         <CHeaderNavLink>
           <div class="c-avatar">
-            <img src="img/avatars/user.png" class="c-avatar-img" />
+            <img src="/img/avatars/user.png" class="c-avatar-img" />
           </div>
         </CHeaderNavLink>
       </template>
@@ -32,9 +32,13 @@
 </template>
 
 <script>
+import { CDropdownDivider } from "@coreui/vue";
 import { mapGetters } from "vuex";
 
 export default {
+  components: {
+    CDropdownDivider
+  },
   computed: {
     ...mapGetters("auth", ["isAuthenticated"])
   },

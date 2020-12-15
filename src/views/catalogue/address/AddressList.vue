@@ -8,7 +8,7 @@
       <div class="card" v-if="addresses">
         <CCardBody>
           <CDataTable
-            :items="addressesView"
+            :items="addresses"
             :fields="fields"
             column-filter
             :items-per-page="10"
@@ -16,15 +16,15 @@
             hover
             pagination
           >
-            <template #validatoView="{item}">
+            <template #stato="{item}">
               <td>
                 <CButton
                   shape="square"
                   variant="outline"
                   size="sm"
-                  :color="item.validatoColor"
+                  :color="getStatoColor(item.stato)"
                   @click="handleEdit(item.progressivoIndirizzo)"
-                  >{{ item.validatoView }}</CButton
+                  >{{ getStatoString(item.stato) }}</CButton
                 >
               </td>
             </template>
@@ -37,7 +37,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Context, getValidatoColor, getValidatoString } from "@/common";
+import { Context, getStatoColor, getStatoString } from "@/common";
 import Progress from "@/components/Progress";
 
 export default {
@@ -53,12 +53,12 @@ export default {
           label: "Progressivo"
         },
         {
-          key: "codiceArchivio",
-          label: "codice Archivio"
+          key: "indirizzoOriginale",
+          label: "Indirizzo",
+          _style: "min-width:25%;"
         },
         { key: "proCom", label: "PROCOM" },
         { key: "denominazioneComune", label: "Comune" },
-        { key: "localitaOriginale", label: "Località" },
         {
           key: "stato",
           label: "Stato di lavorazione"
@@ -68,27 +68,21 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"]),
-    addressesView() {
-      return this.addresses.map(addr => {
-        return {
-          ...addr,
-          validatoView: getValidatoString(addr.stato),
-          validatoColor: getValidatoColor(addr.validazione)
-        };
-      });
-    }
+    ...mapGetters("address", ["addresses"])
   },
   methods: {
-    getValidatoString,
-    getValidatoColor,
+    getStatoString,
+    getStatoColor,
     handleEdit(id) {
       this.$router.push({ name: "AddressEdit", params: { id } });
     }
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.Address);
-    this.$store.dispatch("address/findAll");
+    this.$store.dispatch(
+      "address/findByUserAndState",
+      this.$route.params.state
+    );
   }
 };
 </script>

@@ -15,11 +15,11 @@ const mutations = {
   AUTH_USER(state, { token, user }) {
     state.token = token;
     state.user = user;
-    state.role = user.role;
+    state.role = user.auth[0]; //To be fixed
 
     //store auth data in browser storage
     localStorage.setItem("token", token);
-    localStorage.setItem("role", user.role);
+    localStorage.setItem("role", user.auth[0]);
   },
   CLEAR_AUTH_DATA(state) {
     state.token = null;
@@ -106,9 +106,6 @@ const getters = {
   },
   isAdmin: state => {
     return state.role == Role.Admin;
-  },
-  isUser: state => {
-    return state.role == Role.USer;
   }
 };
 

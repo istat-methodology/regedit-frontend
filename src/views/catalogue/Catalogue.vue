@@ -1,17 +1,55 @@
 <template>
   <div class="row">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Revisione indirizzi</span>
+          <span>Indirizzi da revisionare</span>
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi da
           revisionare.
           <p class="section-link">
-            <router-link tag="a" :to="{ name: 'AddressList' }"
-              ><span>Vai alla sezione indirizzi <chevron-right-icon /></span>
+            <router-link
+              tag="a"
+              :to="{ name: 'AddressList', params: { state: 1 } }"
+              ><span>Vai alla lista <chevron-right-icon /></span>
+            </router-link>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <header class="card-header">
+          <span>Indirizzi revisionati</span>
+          <span class="badge float-right badge-success">New</span>
+        </header>
+        <div class="card-body">
+          In questa sezione puoi trovare la lista degli indirizzi revisionati.
+          <p class="section-link">
+            <router-link
+              tag="a"
+              :to="{ name: 'AddressList', params: { state: 2 } }"
+              ><span>Vai alla lista <chevron-right-icon /></span>
+            </router-link>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <header class="card-header">
+          <span>Indirizzi skip</span>
+          <span class="badge float-right badge-success">New</span>
+        </header>
+        <div class="card-body">
+          In questa sezione puoi trovare la lista degli indirizzi saltati.
+          <p class="section-link">
+            <router-link
+              tag="a"
+              :to="{ name: 'AddressList', params: { state: 3 } }"
+              ><span>Vai alla lista <chevron-right-icon /></span>
             </router-link>
           </p>
         </div>

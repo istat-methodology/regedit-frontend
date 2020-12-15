@@ -11,7 +11,7 @@
       @click="$store.dispatch('coreui/toggleSidebarDesktop')"
     />
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
-      <img src="img/istat-logo.png" height="20" />
+      <img src="/img/istat-logo.png" height="20" />
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
       <CDropdown

@@ -27,6 +27,20 @@ const actions = {
         console.log(err);
       });
   },
+  findByUserAndState({ commit, rootGetters }, stateId) {
+    //get user from store
+    let user = rootGetters["auth/user"];
+
+    return addressService
+      .findByUserAndState(user.userId, stateId)
+      .then(data => {
+        //console.log(data);
+        commit("SET_ADDRESSES", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
   findById({ commit }, id) {
     return addressService
       .findById(id)

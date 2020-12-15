@@ -43,24 +43,28 @@ export function printAddress(address, type) {
   }
 }
 
-export function getValidatoColor(validato) {
-  switch (validato) {
+export function getStatoColor(stato) {
+  switch (stato) {
     case 1:
       return "primary";
     case 2:
       return "success";
     case 3:
       return "danger";
+    default:
+      return "primary";
   }
 }
 
-export function getValidatoString(validato) {
-  switch (validato) {
-    case "SI":
-      return "VALIDATO";
-    case "NO":
+export function getStatoString(stato) {
+  switch (stato) {
+    case 1:
+      return "DA REVISIONARE";
+    case 2:
       return "REVISIONATO";
+    case 3:
+      return "SKIP";
     default:
-      return "DA LAVORARE";
+      return "";
   }
 }
