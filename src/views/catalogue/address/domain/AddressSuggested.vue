@@ -2,7 +2,7 @@
   <CCard class="card-accent-success" v-if="address">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo suggerito</span>
-      <div class="card-header-actions" v-if="!(address.validaione == 'SI')">
+      <div class="card-header-actions" v-if="!(address.validazione == 'SI')">
         <CButton
           shape="square"
           size="sm"
