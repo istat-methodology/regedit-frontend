@@ -6,7 +6,7 @@
     <div class="col-12" v-else>
       <CCard v-if="address">
         <CCardHeader>
-          {{ address.indirizzo_originale }}
+          {{ address.AddressOriginal }}
           <span
             class="badge badge-success ml-2 align-center"
             v-if="address.validato"
@@ -74,7 +74,7 @@ export default {
       this.$store.dispatch("address/update", addr);
     },
     handleRevise() {
-      var addr = { ...this.address, stato: 2, validazione: "NO"};
+      var addr = { ...this.address, stato: 2, validazione: "NO" };
       this.$store.dispatch("address/update", addr);
     }
   },
