@@ -79,7 +79,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("dug/findAll");
+    /*  this.$store.dispatch("dug/findAll"); */
     this.$store.dispatch("address/findById", this.$route.params.id);
   }
 };

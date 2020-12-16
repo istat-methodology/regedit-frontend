@@ -131,7 +131,7 @@
 </template>
 <script>
 import { required } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+/* import { mapGetters } from "vuex"; */
 import { Address, printAddress } from "@/common";
 
 export default {
@@ -148,7 +148,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("dug", ["dugs"]),
+    /* ...mapGetters("dug", ["dugs"]), */
     addressString() {
       return this.printAddress(this.address, Address.Revised);
     }
