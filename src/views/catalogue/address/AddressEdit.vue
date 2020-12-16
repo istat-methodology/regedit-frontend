@@ -66,15 +66,15 @@ export default {
   },
   methods: {
     handleSkip() {
-      var addr = { ...this.address, validato: false, revisionato: false };
+      var addr = { ...this.address, stato: 3, validazione: "NO" };
       this.$store.dispatch("address/update", addr);
     },
     handleValidate() {
-      var addr = { ...this.address, validato: true, revisionato: false };
+      var addr = { ...this.address, stato: 2, validazione: "SI" };
       this.$store.dispatch("address/update", addr);
     },
     handleRevise() {
-      var addr = { ...this.address, validato: true, revisionato: true };
+      var addr = { ...this.address, stato: 2, validazione: "NO"};
       this.$store.dispatch("address/update", addr);
     }
   },
