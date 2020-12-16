@@ -9,7 +9,7 @@
           {{ address.AddressOriginal }}
           <span
             class="badge badge-success ml-2 align-center"
-            v-if="address.validato"
+            v-if="address.validazione == 'SI'"
             >Validato</span
           >
           <div class="card-header-actions">
