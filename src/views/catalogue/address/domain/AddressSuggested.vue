@@ -18,23 +18,23 @@
       </div>
       <div>
         <label>Località</label>
-        <span>{{ address.localita_su | dashEmpty }}</span>
+        <span>{{ address.localitaNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Dug</label>
-        <span>{{ address.dug_su | dashEmpty }}</span>
+        <span>{{ address.dugNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Duf</label>
-        <span>{{ address.duf_su | dashEmpty }}</span>
+        <span>{{ address.dufNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Civico</label>
-        <span>{{ address.civico_su | dashEmpty }}</span>
+        <span>{{ address.civicoNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Esponente</label>
-        <span>{{ address.esponente_su | dashEmpty }}</span>
+        <span>{{ address.esponenteNorm | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>

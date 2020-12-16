@@ -9,35 +9,35 @@
       </div>
       <div>
         <label>Dug</label>
-        <span>{{ address.dug }}</span>
+        <span>{{ address.dugVal }}</span>
       </div>
       <div>
         <label>Duf</label>
-        <span>{{ address.duf }}</span>
+        <span>{{ address.dufVal }}</span>
       </div>
       <div>
         <label>Civico</label>
-        <span>{{ address.civico }}</span>
+        <span>{{ address.civicoVal }}</span>
       </div>
       <div>
         <label>Localita</label>
-        <span>{{ address.localita }}</span>
+        <span>{{ address.localitaVal }}</span>
       </div>
       <div>
         <label>Esponente</label>
-        <span>{{ address.esponente }}</span>
+        <span>{{ address.esponenteVal }}</span>
       </div>
       <div>
         <label>Codice strada</label>
-        <span>{{ address.chiave_strada }}</span>
+        <span>{{ address.cdpstrEgon }}</span>
       </div>
       <div>
         <label>Codice civico</label>
-        <span>{{ address.chiave_civico }}</span>
+        <span>{{ address.cdpcivEgon }}</span>
       </div>
       <div>
         <label>Fonte</label>
-        <span>{{ address.fonte }}</span>
+        <span>{{ address.idFonte }}</span>
       </div>
     </CCardBody>
   </CCard>
@@ -51,47 +51,47 @@
       </div></CCardHeader
     >
     <CCardBody class="card-text">
-      <label>Dug*</label>
+      <!--   <label>Dug*</label>
       <v-select
         label="value"
         :options="dugs"
         v-model="address.dug"
         @input="handleSelectInput"
         placeholder="Dug"
-      ></v-select>
+      ></v-select> -->
       <CInput
         label="Duf*"
         placeholder="Duf"
         :class="{
-          'is-invalid': $v.address.duf.$error
+          'is-invalid': $v.address.dufVal.$error
         }"
-        v-model="address.duf"
+        v-model="address.dufVal"
       />
       <CInput
         label="Civico*"
         placeholder="Civico"
         :class="{
-          'is-invalid': $v.address.civico.$error
+          'is-invalid': $v.address.civicoVal.$error
         }"
-        v-model="address.civico"
+        v-model="address.civicoVal"
       />
       <CInput
         label="Località"
         placeholder="Località"
         :class="{
-          'is-invalid': $v.address.localita.$error
+          'is-invalid': $v.address.localitaVal.$error
         }"
-        v-model="address.localita"
+        v-model="address.localitaVal"
       />
       <CInput
         label="Esponente*"
         placeholder="Esponente"
         :class="{
-          'is-invalid': $v.address.esponente.$error
+          'is-invalid': $v.address.esponenteVal.$error
         }"
-        v-model="address.esponente"
+        v-model="address.esponenteVal"
       />
-      <p class="error" v-if="!$v.address.esponente.validationRule">
+      <p class="error" v-if="!$v.address.esponenteVal.validationRule">
         I valori possibili per questo campo sono: · Non valorizzato. . Numerico
         Un solo carattere alfabetico.
         ·'BIS','TER','QUATER','QUINQUIES','SEXIES','SEPTIES’ · Tutte le
@@ -101,25 +101,25 @@
         label="Codice strada*"
         placeholder="Codice strada"
         :class="{
-          'is-invalid': $v.address.chiave_strada.$error
+          'is-invalid': $v.address.cdpstrEgon.$error
         }"
-        v-model="address.chiave_strada"
+        v-model="address.cdpstrEgon"
       />
       <CInput
         label="Codice civico*"
         placeholder="Codice civico"
         :class="{
-          'is-invalid': $v.address.chiave_civico.$error
+          'is-invalid': $v.address.cdpcivEgon.$error
         }"
-        v-model="address.chiave_civico"
+        v-model="address.cdpcivEgon"
       />
       <CInput
         label="Fonte*"
         placeholder="Fonte"
         :class="{
-          'is-invalid': $v.address.fonte.$error
+          'is-invalid': $v.address.idFonte.$error
         }"
-        v-model="address.fonte"
+        v-model="address.idFonte"
       />
     </CCardBody>
     <CCardFooter>
@@ -155,19 +155,19 @@ export default {
   },
   validations: {
     address: {
-      localita: {
+      localitaVal: {
         required
       },
-      dug: {
+      dugVal: {
         required
       },
-      duf: {
+      dufVal: {
         required
       },
-      civico: {
+      civicoVal: {
         required
       },
-      esponente: {
+      esponenteVal: {
         required,
         validationRule(esponente) {
           return (
@@ -181,15 +181,6 @@ export default {
             )
           );
         }
-      },
-      chiave_strada: {
-        required
-      },
-      chiave_civico: {
-        required
-      },
-      fonte: {
-        required
       }
     }
   },
