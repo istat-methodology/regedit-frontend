@@ -1,5 +1,5 @@
 <template>
-  <CCard class="card-accent-danger" v-if="address.validato">
+  <CCard class="card-accent-danger" v-if="address.validazione == 'SI'">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
     >
@@ -44,7 +44,7 @@
   <CCard v-else class="card-accent-danger">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span>
-      <div class="card-header-actions" v-if="!address.validato">
+      <div class="card-header-actions" v-if="address.validazione == 'NO'">
         <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
           >Revisiona</CButton
         >
