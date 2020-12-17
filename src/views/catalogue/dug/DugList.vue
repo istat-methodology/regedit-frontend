@@ -66,7 +66,7 @@ export default {
       warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
-        { key: "value", _style: "width:15%" },
+        { key: "name", _style: "width:15%" },
         {
           key: "show_update",
           label: "",
