@@ -41,7 +41,7 @@
       </div>
     </CCardBody>
   </CCard>
-  <CCard v-else class="card-accent-danger">
+  <CCard class="card-accent-danger" v-else>
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span>
       <div class="card-header-actions" v-if="address.validazione == 'NO'">
@@ -100,27 +100,14 @@
       <CInput
         label="Codice strada*"
         placeholder="Codice strada"
-        :class="{
-          'is-invalid': $v.address.cdpstrEgon.$error
-        }"
         v-model="address.cdpstrEgon"
       />
       <CInput
         label="Codice civico*"
         placeholder="Codice civico"
-        :class="{
-          'is-invalid': $v.address.cdpcivEgon.$error
-        }"
         v-model="address.cdpcivEgon"
       />
-      <CInput
-        label="Fonte*"
-        placeholder="Fonte"
-        :class="{
-          'is-invalid': $v.address.idFonte.$error
-        }"
-        v-model="address.idFonte"
-      />
+      <CInput label="Fonte*" placeholder="Fonte" v-model="address.idFonte" />
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
