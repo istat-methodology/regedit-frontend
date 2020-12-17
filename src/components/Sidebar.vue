@@ -28,11 +28,34 @@
       <li class="c-sidebar-nav-item">
         <router-link
           tag="a"
-          :to="{ name: 'AddressList' }"
+          :to="{ name: 'AddressList', params: { state: 1 } }"
+          class="c-sidebar-nav-link"
+          :class="{ 'c-active': isAddress }"
+        >
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi da
+          revisionare
+        </router-link>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <router-link
+          tag="a"
+          :to="{ name: 'AddressList', params: { state: 2 } }"
           class="c-sidebar-nav-link"
           :class="{ 'c-active': isAddress }"
         >
           <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
+          revisionati
+        </router-link>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <router-link
+          tag="a"
+          :to="{ name: 'AddressList', params: { state: 3 } }"
+          class="c-sidebar-nav-link"
+          :class="{ 'c-active': isAddress }"
+        >
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
+          sospesi
         </router-link>
       </li>
     </ul>
