@@ -1,6 +1,6 @@
 import { axiosIs2 } from "@/http";
 import AbstractService from "@/services/abstract.service";
-
+import { config } from "@/common";
 class AddressService extends AbstractService {
   constructor(endpoint) {
     super(endpoint);
@@ -16,6 +16,22 @@ class AddressService extends AbstractService {
       })
       .then(res => {
         var data = res.data ? res.data : [];
+        //console.log(data);
+        return data;
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
+  update(formData) {
+    return axiosIs2
+      .put(
+        this.endpoint + "/" + formData.progressivoIndirizzo,
+        formData,
+        config
+      )
+      .then(res => {
+        var data = res.data ? res.data : {};
         //console.log(data);
         return data;
       })
