@@ -68,17 +68,29 @@ const actions = {
   reloadCredentials({ commit }) {
     const token = localStorage.getItem("token");
     if (token) {
-      //decode JWT token
-      var decoded = jwt.decode(token, { complete: true });
-      const user = decoded.payload;
-      console.log(user);
+      return authService
+        .checkToken()
+        .then(() => {
+          //decode JWT token
+          var decoded = jwt.decode(token, { complete: true });
+          const user = decoded.payload;
+          console.log(user);
 
-      commit("AUTH_USER", {
-        token,
-        user
-      });
+          commit("AUTH_USER", {
+            token,
+            user
+          });
 
-      commit("SET_STATUS", AuthStatus.Logged);
+          commit("SET_STATUS", AuthStatus.Logged);
+        })
+        .catch(error => {
+          console.log(error);
+          commit("CLEAR_AUTH_DATA");
+          commit("SET_STATUS", AuthStatus.TokenExpired);
+          commit("SET_ERROR_MSG", "Your token has expired");
+
+          return { status: AuthStatus.TokenExpired };
+        });
     }
   },
   logout({ commit }) {

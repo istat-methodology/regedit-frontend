@@ -2,7 +2,8 @@ import { axiosAuth } from "@/http";
 import { config } from "@/common";
 
 export const authService = {
-  login
+  login,
+  checkToken
 };
 
 function login({ username, password }) {
@@ -27,6 +28,19 @@ function login({ username, password }) {
         code: error.res.status,
         message: error.res.data.errorMessage
       };
+      throw err;
+    });
+}
+
+function checkToken() {
+  return axiosAuth
+    .post("/valid/token")
+    .then(res => {
+      var data = res.data ? res.data : [];
+      //console.log(data);
+      return data;
+    })
+    .catch(err => {
       throw err;
     });
 }

@@ -9,6 +9,20 @@ const axiosAuth = axios.create({
 const axiosIs2 = axios.create({
   baseURL: process.env.VUE_APP_DEV_SERVER
 });
+//request interceptor
+axiosAuth.interceptors.request.use(
+  config => {
+    store.dispatch("coreui/loading", true);
+    const token = store.getters["auth/token"];
+    if (token && !("Authorization" in config.headers)) {
+      config.headers["Authorization"] = token;
+    }
+    return config;
+  },
+  error => {
+    Promise.reject(error);
+  }
+);
 
 //request interceptor
 axiosIs2.interceptors.request.use(
@@ -42,9 +56,18 @@ axiosIs2.interceptors.response.use(
       router.push("/error");
     } else {
       console.log("Error status", error.response.status);
+      //Check if user is authenticated
+      let isAuthenticated = store.getters["auth/isAuthenticated"];
       // Unauthorized access
       if (error.response.status === 401 || error.response.status === 403) {
-        router.push("/unauthorized");
+        if (isAuthenticated) {
+          router.push("/login");
+          store.commit("auth/SET_ERROR_MSG", "Your token has expired!", {
+            root: true
+          });
+        } else {
+          router.push("/unauthorized");
+        }
       } else {
         //Server error
         store.dispatch("error/serverError", error.response);

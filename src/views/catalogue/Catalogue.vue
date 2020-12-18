@@ -9,7 +9,7 @@
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi da
           revisionare.
-          <p class="section-link">
+          <p class="section-link" v-if="isAuthenticated">
             <router-link
               tag="a"
               :to="{ name: 'AddressList', params: { state: 1 } }"
@@ -27,7 +27,7 @@
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi revisionati.
-          <p class="section-link">
+          <p class="section-link" v-if="isAuthenticated">
             <router-link
               tag="a"
               :to="{ name: 'AddressList', params: { state: 2 } }"
@@ -45,7 +45,7 @@
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi saltati.
-          <p class="section-link">
+          <p class="section-link" v-if="isAuthenticated">
             <router-link
               tag="a"
               :to="{ name: 'AddressList', params: { state: 3 } }"
@@ -60,9 +60,13 @@
 
 <script>
 import { Context } from "@/common";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Catalogue",
+  computed: {
+    ...mapGetters("auth", ["isAuthenticated"])
+  },
   created() {
     this.$store.dispatch("coreui/setContext", Context.Home);
   }

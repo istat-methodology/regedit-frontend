@@ -25,7 +25,7 @@
         </router-link>
       </li>
       <li class="c-sidebar-nav-title">Catalogo</li>
-      <li class="c-sidebar-nav-item">
+      <li class="c-sidebar-nav-item" v-if="isAuthenticated">
         <router-link
           tag="a"
           :to="{ name: 'AddressList', params: { state: 1 } }"
@@ -36,7 +36,7 @@
           revisionare
         </router-link>
       </li>
-      <li class="c-sidebar-nav-item">
+      <li class="c-sidebar-nav-item" v-if="isAuthenticated">
         <router-link
           tag="a"
           :to="{ name: 'AddressList', params: { state: 2 } }"
@@ -47,7 +47,7 @@
           revisionati
         </router-link>
       </li>
-      <li class="c-sidebar-nav-item">
+      <li class="c-sidebar-nav-item" v-if="isAuthenticated">
         <router-link
           tag="a"
           :to="{ name: 'AddressList', params: { state: 3 } }"
@@ -67,6 +67,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
+    ...mapGetters("auth", ["isAuthenticated"]),
     ...mapGetters("coreui", {
       show: "sidebarShow",
       minimize: "sidebarMinimize",
