@@ -24,44 +24,43 @@
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
-      <li class="c-sidebar-nav-title">Catalogo</li>
-      <li class="c-sidebar-nav-item" v-if="isAuthenticated">
-        <router-link
-          tag="a"
-          :to="{ name: 'AddressList', params: { state: 1 } }"
-          class="c-sidebar-nav-link"
-          :class="{ 'c-active': isAddress }"
-        >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi da
-          revisionare
-        </router-link>
-      </li>
-      <li class="c-sidebar-nav-item" v-if="isAuthenticated">
-        <router-link
-          tag="a"
-          :to="{ name: 'AddressList', params: { state: 2 } }"
-          class="c-sidebar-nav-link"
-          :class="{ 'c-active': isAddress }"
-        >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
-          revisionati
-        </router-link>
-      </li>
-      <li class="c-sidebar-nav-item" v-if="isAuthenticated">
-        <router-link
-          tag="a"
-          :to="{ name: 'AddressList', params: { state: 3 } }"
-          class="c-sidebar-nav-link"
-          :class="{ 'c-active': isAddress }"
-        >
-          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
-          sospesi
-        </router-link>
-      </li>
+      <template v-if="isAuthenticated">
+        <li class="c-sidebar-nav-title">Indirizzi</li>
+        <li class="c-sidebar-nav-item">
+          <router-link
+            tag="a"
+            :to="{ name: 'AddressList', params: { state: 1 } }"
+            class="c-sidebar-nav-link"
+            :class="{ 'c-active': isAddressToRevise }"
+          >
+            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da
+            revisionare
+          </router-link>
+        </li>
+        <li class="c-sidebar-nav-item">
+          <router-link
+            tag="a"
+            :to="{ name: 'AddressList', params: { state: 2 } }"
+            class="c-sidebar-nav-link"
+            :class="{ 'c-active': isAddressRevised }"
+          >
+            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Revisionati
+          </router-link>
+        </li>
+        <li class="c-sidebar-nav-item">
+          <router-link
+            tag="a"
+            :to="{ name: 'AddressList', params: { state: 3 } }"
+            class="c-sidebar-nav-link"
+            :class="{ 'c-active': isAddressSkip }"
+          >
+            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Sospesi
+          </router-link>
+        </li>
+      </template>
     </ul>
   </CSidebar>
 </template>
-
 <script>
 import { mapGetters } from "vuex";
 
@@ -72,7 +71,9 @@ export default {
       show: "sidebarShow",
       minimize: "sidebarMinimize",
       isHome: "isHome",
-      isAddress: "isAddress"
+      isAddressToRevise: "isAddressToRevise",
+      isAddressRevised: "isAddressRevised",
+      isAddressSkip: "isAddressSkip"
     })
   }
 };

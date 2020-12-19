@@ -1,5 +1,5 @@
 <template>
-  <div class="c-subheader-nav mfe-2" v-if="isAddress">
+  <div class="c-subheader-nav mfe-2" v-if="!isHome">
     <a href=" https://www.google.it/maps" target="_blank" class="pr-3"
       >Google maps</a
     >
@@ -17,7 +17,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters("coreui", ["isAddress"])
+    ...mapGetters("coreui", ["isHome"])
   },
   watch: {
     $route(to) {

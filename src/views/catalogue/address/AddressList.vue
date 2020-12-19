@@ -37,7 +37,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Context, getStatoColor, getStatoString } from "@/common";
+import { getContext, getStatoColor, getStatoString } from "@/common";
 import Progress from "@/components/Progress";
 
 export default {
@@ -77,8 +77,16 @@ export default {
       this.$router.push({ name: "AddressEdit", params: { id } });
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    this.$store.dispatch("coreui/setContext", getContext(to.params.state));
+    this.$store.dispatch("address/findByUserAndState", to.params.state);
+    next();
+  },
   created() {
-    this.$store.dispatch("coreui/setContext", Context.Address);
+    this.$store.dispatch(
+      "coreui/setContext",
+      getContext(this.$route.params.state)
+    );
     this.$store.dispatch(
       "address/findByUserAndState",
       this.$route.params.state

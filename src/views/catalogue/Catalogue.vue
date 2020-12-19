@@ -40,11 +40,11 @@
     <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Indirizzi skip</span>
+          <span>Indirizzi sospesi</span>
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi saltati.
+          In questa sezione puoi trovare la lista degli indirizzi sospesi.
           <p class="section-link" v-if="isAuthenticated">
             <router-link
               tag="a"

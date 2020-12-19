@@ -1,4 +1,4 @@
-import { Context } from "@/common";
+import { Context, createBreadcrumbs } from "@/common";
 
 const state = {
   sidebarShow: "responsive",
@@ -6,7 +6,9 @@ const state = {
   context: "",
   isLoading: false,
   isHome: false,
-  isAddress: false,
+  isAddressToRevise: false,
+  isAddressRevised: false,
+  isAddressSkip: false,
   breadcrumbs: [
     {
       path: "metadata",
@@ -33,8 +35,14 @@ const mutations = {
       case Context.Home:
         state.isHome = true;
         break;
-      case Context.Address:
-        state.isAddress = true;
+      case Context.AddressToRevise:
+        state.isAddressToRevise = true;
+        break;
+      case Context.AddressRevised:
+        state.isAddressRevised = true;
+        break;
+      case Context.AddressSkip:
+        state.isAddressSkip = true;
         break;
       default:
         break;
@@ -43,7 +51,9 @@ const mutations = {
   CLEAR_CONTEXT(state) {
     state.context = "";
     state.isHome = false;
-    state.isAddress = false;
+    state.isAddressToRevise = false;
+    state.isAddressRevised = false;
+    state.isAddressSkip = false;
   },
   CREATE_BREADCRUMBS(state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
@@ -71,29 +81,7 @@ const actions = {
     commit("CLEAR_CONTEXT");
   },
   createBreadcrumbs({ commit }, route) {
-    let pathArray = route.path.split("/");
-    pathArray.shift();
-    //console.log(route.params);
-    if (Object.keys(route.params).length > 0) {
-      //if route has a parameter remove it from array
-      pathArray.pop();
-    }
-    let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
-      var to = "/";
-      if (idx > 0) {
-        for (var i = 0; i < idx; i++) {
-          to += breadcrumbArray[i].path + "/";
-        }
-      }
-      to += path;
-      //console.log(to);
-      breadcrumbArray.push({
-        path: path,
-        to: to
-      });
-      return breadcrumbArray;
-    }, []);
-    commit("CREATE_BREADCRUMBS", breadcrumbs);
+    commit("CREATE_BREADCRUMBS", createBreadcrumbs(route));
   }
 };
 
@@ -113,8 +101,14 @@ const getters = {
   isHome: state => {
     return state.isHome;
   },
-  isAddress: state => {
-    return state.isAddress;
+  isAddressToRevise: state => {
+    return state.isAddressToRevise;
+  },
+  isAddressRevised: state => {
+    return state.isAddressRevised;
+  },
+  isAddressSkip: state => {
+    return state.isAddressSkip;
   },
   breadcrumbs: state => {
     return state.breadcrumbs;

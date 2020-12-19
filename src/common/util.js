@@ -63,7 +63,7 @@ export function getStatoString(stato) {
     case 2:
       return "REVISIONATO";
     case 3:
-      return "SKIPPED";
+      return "SOSPESO";
     default:
       return "";
   }
