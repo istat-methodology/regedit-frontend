@@ -16,10 +16,16 @@
       <CDropdownHeader tag="div" class="text-center" color="light">
         <strong>Settings</strong>
       </CDropdownHeader>
-      <CDropdownItem> <user-icon />Profile </CDropdownItem>
-      <CDropdownItem> <settings-icon />Settings </CDropdownItem>
+      <CDropdownItem>
+        <user-icon /><span class="pl-2"> Profile</span>
+      </CDropdownItem>
+      <CDropdownItem>
+        <settings-icon /><span class="pl-2"> Settings</span></CDropdownItem
+      >
       <CDropdownDivider />
-      <CDropdownItem @click="logout"> <logout-icon />Logout </CDropdownItem>
+      <CDropdownItem @click="logout">
+        <logout-icon /><span class="pl-2">Logout</span>
+      </CDropdownItem>
     </CDropdown>
   </div>
   <div v-else>
@@ -45,7 +51,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/logout");
-      if (this.$router.currentRoute.path != "/metadata") {
+      if (this.$router.currentRoute.path != "/catalogue") {
         this.$router.push("/");
       }
     }

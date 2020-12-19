@@ -6,9 +6,10 @@ const axiosAuth = axios.create({
   baseURL: process.env.VUE_APP_DEV_SERVER
 });
 
-const axiosIs2 = axios.create({
+const axiosRegedit = axios.create({
   baseURL: process.env.VUE_APP_DEV_SERVER
 });
+
 //request interceptor
 axiosAuth.interceptors.request.use(
   config => {
@@ -25,7 +26,7 @@ axiosAuth.interceptors.request.use(
 );
 
 //request interceptor
-axiosIs2.interceptors.request.use(
+axiosRegedit.interceptors.request.use(
   config => {
     store.dispatch("coreui/loading", true);
     const token = store.getters["auth/token"];
@@ -40,7 +41,7 @@ axiosIs2.interceptors.request.use(
 );
 
 //response interceptor
-axiosIs2.interceptors.response.use(
+axiosRegedit.interceptors.response.use(
   response => {
     store.dispatch("coreui/loading", false);
     return response;
@@ -79,4 +80,4 @@ axiosIs2.interceptors.response.use(
   }
 );
 
-export { axiosAuth, axiosIs2 };
+export { axiosAuth, axiosRegedit };

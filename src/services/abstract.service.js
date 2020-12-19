@@ -1,4 +1,4 @@
-import { axiosIs2 } from "@/http";
+import { axiosRegedit } from "@/http";
 import { config } from "@/common";
 
 export default class AbstractService {
@@ -7,7 +7,7 @@ export default class AbstractService {
   }
 
   findAll() {
-    return axiosIs2
+    return axiosRegedit
       .get(this.endpoint + "/")
       .then(res => {
         var data = res.data ? res.data : [];
@@ -20,7 +20,7 @@ export default class AbstractService {
   }
 
   findById(id) {
-    return axiosIs2
+    return axiosRegedit
       .get(this.endpoint + "/" + id)
       .then(res => {
         var data = res.data ? res.data : {};
@@ -33,7 +33,7 @@ export default class AbstractService {
   }
 
   save(formData) {
-    return axiosIs2
+    return axiosRegedit
       .post(this.endpoint, formData, config)
       .then(res => {
         var data = res.data ? res.data : {};
@@ -47,7 +47,7 @@ export default class AbstractService {
 
   update(formData) {
     return (
-      axiosIs2
+      axiosRegedit
         .put(
           "http://localhost:8081/regedit/addresses/" +
             "/" +
@@ -72,7 +72,7 @@ export default class AbstractService {
   }
 
   delete(id) {
-    return axiosIs2
+    return axiosRegedit
       .delete(this.endpoint + "/" + id)
       .then(res => {
         //console.log(res.data);

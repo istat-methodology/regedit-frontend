@@ -1,4 +1,4 @@
-import { axiosIs2 } from "@/http";
+import { axiosRegedit } from "@/http";
 import { config } from "@/common";
 
 export const userService = {
@@ -10,7 +10,7 @@ export const userService = {
 };
 function findAll() {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/users/").then(
+    axiosRegedit.get("/users/").then(
       response => {
         console.log(response.data);
         console.log(response.statusText);
@@ -28,7 +28,7 @@ function findAll() {
 }
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/users/" + id).then(
+    axiosRegedit.get("/users/" + id).then(
       response => {
         //var data = response.data ? response.data : null;
         console.log(response.data);
@@ -47,7 +47,7 @@ function findById(id) {
 }
 function save(data) {
   return new Promise((resolve, reject) => {
-    axiosIs2.post("/users/", data, config).then(
+    axiosRegedit.post("/users/", data, config).then(
       response => {
         console.log(response.data);
         console.log(response.statusText);
@@ -72,7 +72,7 @@ function update(data) {
       email: data.email,
       role: data.role
     };
-    axiosIs2.put("/users/" + data.id, user, config).then(
+    axiosRegedit.put("/users/" + data.id, user, config).then(
       response => {
         console.log(response.data);
         console.log(response.statusText);
@@ -90,7 +90,7 @@ function update(data) {
 }
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.delete("/users/" + id).then(
+    axiosRegedit.delete("/users/" + id).then(
       response => {
         console.log(response.data);
         console.log(response.statusText);

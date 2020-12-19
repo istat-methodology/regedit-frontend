@@ -1,4 +1,4 @@
-import { axiosIs2 } from "@/http";
+import { axiosRegedit } from "@/http";
 import AbstractService from "@/services/abstract.service";
 class AddressService extends AbstractService {
   constructor(endpoint) {
@@ -6,7 +6,7 @@ class AddressService extends AbstractService {
   }
 
   findByUserAndState(user, state) {
-    return axiosIs2
+    return axiosRegedit
       .get(this.endpoint, {
         params: {
           user: user,

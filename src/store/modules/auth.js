@@ -1,29 +1,30 @@
-import jwt from "jsonwebtoken";
 import { authService } from "@/services";
 import { Role } from "@/common";
-import { AuthStatus } from "@/common";
+import { AuthStatus, getUser } from "@/common";
 
 const state = {
   token: localStorage.getItem("token") || null,
-  user: null,
+  user: getUser(localStorage.getItem("token")) || null,
   status: null,
   errorMsg: null,
   role: localStorage.getItem("role") || ""
 };
 
 const mutations = {
-  AUTH_USER(state, { token, user }) {
+  AUTH_USER(state, { token }) {
+    const user = getUser(token);
     state.token = token;
     state.user = user;
     state.role = user.auth[0]; //To be fixed
 
     //store auth data in browser storage
     localStorage.setItem("token", token);
-    localStorage.setItem("role", user.auth[0]);
+    localStorage.setItem("role", state.role);
   },
   CLEAR_AUTH_DATA(state) {
     state.token = null;
     state.user = null;
+    state.status = null;
     state.role = "";
 
     //remove auth data from browser storage
@@ -43,22 +44,15 @@ const actions = {
     return authService
       .login(authData)
       .then(data => {
-        //decode JWT token
-        var decoded = jwt.decode(data.token, { complete: true });
-        console.log(decoded);
-        const user = decoded.payload;
-        console.log(user);
-
         commit("AUTH_USER", {
-          token: data.token,
-          user: user
+          token: data.token
         });
         commit("SET_STATUS", AuthStatus.Logged);
 
         return { status: AuthStatus.Logged };
       })
-      .catch(error => {
-        console.log(error);
+      .catch(err => {
+        console.log(err);
         commit("SET_STATUS", AuthStatus.InvalidCredentials);
         commit("SET_ERROR_MSG", "Incorrect username or password!");
 
@@ -66,25 +60,17 @@ const actions = {
       });
   },
   reloadCredentials({ commit }) {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (state.token) {
+      //Check if token is valid
       return authService
         .checkToken()
         .then(() => {
-          //decode JWT token
-          var decoded = jwt.decode(token, { complete: true });
-          const user = decoded.payload;
-          console.log(user);
-
-          commit("AUTH_USER", {
-            token,
-            user
-          });
-
           commit("SET_STATUS", AuthStatus.Logged);
+
+          return { status: AuthStatus.Logged };
         })
-        .catch(error => {
-          console.log(error);
+        .catch(err => {
+          console.log(err);
           commit("CLEAR_AUTH_DATA");
           commit("SET_STATUS", AuthStatus.TokenExpired);
           commit("SET_ERROR_MSG", "Your token has expired");

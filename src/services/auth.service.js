@@ -36,7 +36,7 @@ function checkToken() {
   return axiosAuth
     .post("/valid/token")
     .then(res => {
-      var data = res.data ? res.data : [];
+      var data = res.data ? res.data : {};
       //console.log(data);
       return data;
     })

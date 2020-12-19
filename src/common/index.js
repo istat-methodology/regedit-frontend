@@ -1,5 +1,5 @@
 export * from "./role";
-export * from "./authStatus";
+export * from "./authUtil";
 export * from "./context";
 export * from "./address";
 export * from "./headers";
