@@ -48,18 +48,18 @@ export default class AbstractService {
   update(formData) {
     return (
       axiosRegedit
-        .put(
+        /* .put(
           "http://localhost:8081/regedit/addresses/" +
             "/" +
             formData.progressivoIndirizzo,
           formData,
           config
+        ) */
+        .put(
+          this.endpoint + "/" + formData.progressivoIndirizzo,
+          formData,
+          config
         )
-        /* .put(
-        this.endpoint + "/" + formData.progressivoIndirizzo,
-        formData,
-        config
-      ) */
         .then(res => {
           var data = res.data ? res.data : {};
           //console.log(data);
