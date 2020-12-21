@@ -7,10 +7,17 @@ export const AuthStatus = {
 };
 
 export function getUser(token) {
+  let user = null;
   //decode JWT token
-  const decoded = jwt.decode(token, { complete: true });
-  console.log(decoded);
-  const user = decoded.payload;
-  console.log(user);
+  if (token) {
+    const decoded = jwt.decode(token, { complete: true });
+    console.log(decoded);
+    user = decoded.payload;
+    console.log(user);
+  }
   return user;
+}
+
+export function getRole(token) {
+  return token ? getUser(token).auth[0] : "";
 }

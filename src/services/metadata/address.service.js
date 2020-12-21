@@ -26,7 +26,6 @@ class AddressService extends AbstractService {
   }
   update(formData) {
     return axiosRegedit
-
       .put(
         this.endpoint + "/" + formData.progressivoIndirizzo,
         formData,

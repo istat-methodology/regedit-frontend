@@ -46,25 +46,16 @@ export default class AbstractService {
   }
 
   update(formData) {
-    return (
-      axiosRegedit
-        /* .put(
-          "http://localhost:8081/regedit/addresses/" +
-            "/" +
-            formData.progressivoIndirizzo,
-          formData,
-          config
-        ) */
-        .put(this.endpoint + "/" + formData.id, formData, config)
-        .then(res => {
-          var data = res.data ? res.data : {};
-          //console.log(data);
-          return data;
-        })
-        .catch(err => {
-          throw err;
-        })
-    );
+    return axiosRegedit
+      .put(this.endpoint + "/" + formData.id, formData, config)
+      .then(res => {
+        var data = res.data ? res.data : {};
+        //console.log(data);
+        return data;
+      })
+      .catch(err => {
+        throw err;
+      });
   }
 
   delete(id) {

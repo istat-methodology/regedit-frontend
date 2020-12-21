@@ -1,25 +1,23 @@
 import { authService } from "@/services";
 import { Role } from "@/common";
-import { AuthStatus, getUser } from "@/common";
+import { AuthStatus, getUser, getRole } from "@/common";
 
 const state = {
   token: localStorage.getItem("token") || null,
-  user: getUser(localStorage.getItem("token")) || null,
+  user: getUser(localStorage.getItem("token")),
+  role: getRole(localStorage.getItem("token")),
   status: null,
-  errorMsg: null,
-  role: localStorage.getItem("role") || ""
+  errorMsg: null
 };
 
 const mutations = {
   AUTH_USER(state, { token }) {
-    const user = getUser(token);
     state.token = token;
-    state.user = user;
-    state.role = user.auth[0]; //To be fixed
+    state.user = getUser(token);
+    state.role = getRole(token);
 
     //store auth data in browser storage
     localStorage.setItem("token", token);
-    localStorage.setItem("role", state.role);
   },
   CLEAR_AUTH_DATA(state) {
     state.token = null;
@@ -29,7 +27,6 @@ const mutations = {
 
     //remove auth data from browser storage
     localStorage.removeItem("token");
-    localStorage.removeItem("role");
   },
   SET_STATUS(state, status) {
     state.status = status;
@@ -77,6 +74,8 @@ const actions = {
 
           return { status: AuthStatus.TokenExpired };
         });
+    } else {
+      return { status: null };
     }
   },
   logout({ commit }) {

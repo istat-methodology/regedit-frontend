@@ -60,6 +60,7 @@
                         type="password"
                         class="form-control"
                         placeholder="Password"
+                        autocomplete="on"
                         v-model="password"
                       />
                     </div>
