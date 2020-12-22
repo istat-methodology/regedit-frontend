@@ -91,6 +91,7 @@ export default {
       "address/findByUserAndState",
       this.$route.params.state
     );
+    this.$store.dispatch("dug/findAll");
   }
 };
 </script>
