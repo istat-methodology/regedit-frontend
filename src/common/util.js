@@ -22,7 +22,9 @@ export function printAddress(address, type) {
   switch (type) {
     case Address.Original:
       return address.indirizzoOriginale
-        .concat(address.localitaNorm ? ", " + address.localitaNorm : "")
+        .concat(
+          address.localitaOriginale ? ", " + address.localitaOriginale : ""
+        )
         .concat(
           address.denominazioneComune ? ", " + address.denominazioneComune : ""
         );
@@ -36,6 +38,7 @@ export function printAddress(address, type) {
       return address.dugVal
         .concat(address.dufVal ? " " + address.dufVal : "")
         .concat(address.civicoVal ? " " + address.civicoVal : "")
+        .concat(address.kmVal ? " " + address.kmVal : "")
         .concat(address.esponenteVal ? " " + address.esponenteVal : "")
         .concat(address.localitaVal ? ", " + address.localitaVal : "");
     default:

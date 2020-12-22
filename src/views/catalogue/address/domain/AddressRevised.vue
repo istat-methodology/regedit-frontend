@@ -20,7 +20,7 @@
         <span>{{ address.civicoVal }}</span>
       </div>
       <div>
-        <label>Localita</label>
+        <label>Località</label>
         <span>{{ address.localitaVal }}</span>
       </div>
       <div>
