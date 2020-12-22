@@ -189,11 +189,12 @@ export default {
   methods: {
     printAddress,
     handleSelectInput(input) {
-      this.address.dugVal = input.name;
+      this.dugvalue = input.name;
     },
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid) {
+        this.address.dugVal = this.dugvalue;
         this.$emit("revise", this.address);
       }
     }
