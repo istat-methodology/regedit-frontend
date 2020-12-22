@@ -20,6 +20,10 @@
         <span>{{ address.civicoVal }}</span>
       </div>
       <div>
+        <label>Km</label>
+        <span>{{ address.kmVal }}</span>
+      </div>
+      <div>
         <label>Località</label>
         <span>{{ address.localitaVal }}</span>
       </div>
@@ -74,6 +78,14 @@
           'is-invalid': $v.address.civicoVal.$error
         }"
         v-model="address.civicoVal"
+      />
+      <CInput
+        label="Km"
+        placeholder="Km"
+        :class="{
+          'is-invalid': $v.address.kmVal.$error
+        }"
+        v-model="address.kmVal"
       />
       <CInput
         label="Località"
@@ -152,6 +164,9 @@ export default {
         required
       },
       civicoVal: {
+        required
+      },
+      kmVal: {
         required
       },
       esponenteVal: {
