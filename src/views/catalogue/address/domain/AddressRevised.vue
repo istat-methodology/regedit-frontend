@@ -209,7 +209,7 @@ export default {
       civicoVal: {
         required,
         validationRuleCivico(civicoVal) {
-          return /^[0-9?]$/.test(civicoVal) || /^[null]/.test(civicoVal);
+          return /^[0-9?]*$/.test(civicoVal) || /^[null]/.test(civicoVal);
         }
       },
       kmVal: {
