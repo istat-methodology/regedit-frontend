@@ -12,6 +12,11 @@
             v-if="address.validazione == 'SI'"
             >Validato</span
           >
+          <span
+            class="badge badge-danger ml-2 align-center"
+            v-if="address.validazione == 'NO'"
+            >Revisionato</span
+          >
           <div class="card-header-actions">
             <CButton
               shape="square"

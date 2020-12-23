@@ -1,5 +1,5 @@
 <template>
-  <CCard class="card-accent-danger" v-if="address.validazione == 'SI'">
+  <CCard class="card-accent-danger" v-if="address.stato == 2">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
     >
