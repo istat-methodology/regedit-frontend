@@ -82,6 +82,9 @@
         }"
         v-model="address.civicoVal"
       />
+      <p class="error" v-if="!$v.address.civicoVal.validationRuleCivico">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
       <CInput
         label="Km"
         placeholder="Km"
@@ -115,13 +118,25 @@
       <CInput
         label="Codice strada*"
         placeholder="Codice strada"
+        :class="{
+          'is-invalid': $v.address.cdpstrEgon.$error
+        }"
         v-model="address.cdpstrEgon"
       />
+      <p class="error" v-if="!$v.address.cdpstrEgon.validationRuleStrEgon">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
       <CInput
         label="Codice civico*"
         placeholder="Codice civico"
+        :class="{
+          'is-invalid': $v.address.cdpcivEgon.$error
+        }"
         v-model="address.cdpcivEgon"
       />
+      <p class="error" v-if="!$v.address.cdpcivEgon.validationRuleCivEgon">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
       <CInput label="Fonte*" placeholder="Fonte" v-model="address.idFonte" />
     </CCardBody>
     <CCardFooter>
@@ -167,7 +182,10 @@ export default {
         required
       },
       civicoVal: {
-        required
+        required,
+        validationRuleCivico(civicoVal) {
+          return /^[0-9?]*$/.test(civicoVal);
+        }
       },
       kmVal: {
         required
@@ -185,6 +203,18 @@ export default {
               esponente
             )
           );
+        }
+      },
+      cdpstrEgon: {
+        required,
+        validationRuleStrEgon(cdpstrEgon) {
+          return /^[0-9?]*$/.test(cdpstrEgon);
+        }
+      },
+      cdpcivEgon: {
+        required,
+        validationRuleCivEgon(cdpcivEgon) {
+          return /^[0-9?]*$/.test(cdpcivEgon);
         }
       }
     }
