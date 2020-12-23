@@ -116,6 +116,7 @@
         casistiche precedenti seguite da ' R' o ' ROSSO'
       </p>
       <CInput
+        v-if="this.idfonte == 1"
         label="Codice strada*"
         placeholder="Codice strada"
         :class="{
@@ -127,6 +128,7 @@
         I valori possibili per questo campo sono soltanto numerici
       </p>
       <CInput
+        v-if="this.idfonte == 1"
         label="Codice civico*"
         placeholder="Codice civico"
         :class="{
@@ -137,7 +139,15 @@
       <p class="error" v-if="!$v.address.cdpcivEgon.validationRuleCivEgon">
         I valori possibili per questo campo sono soltanto numerici
       </p>
-      <CInput label="Fonte*" placeholder="Fonte" v-model="address.idFonte" />
+      <!-- <CInput label="Fonte*" placeholder="Fonte" v-model="address.idFonte" /> -->
+      <label>Fonte</label>
+      <v-select
+        label="fonte"
+        :options="fonteValues"
+        v-model="address.idFonte"
+        @input="handleSelectFonte"
+        placeholder="Fonte"
+      ></v-select>
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
@@ -155,7 +165,22 @@ export default {
   name: "AddressRevised",
   data: function() {
     return {
-      dugvalue: null
+      dugvalue: null,
+      idfonte: null,
+      fonteValues: [
+        {
+          id: 1,
+          fonte: "Egon"
+        },
+        {
+          id: 2,
+          fonte: "Google Maps"
+        },
+        {
+          id: 3,
+          fonte: "Revisore"
+        }
+      ]
     };
   },
   props: {
@@ -224,6 +249,10 @@ export default {
     printAddress,
     handleSelectInput(input) {
       this.dugvalue = input.name;
+    },
+    handleSelectFonte(input) {
+      this.idfonte = input.id;
+      //this.address.idFonte = input.id;
     },
     handleSubmit() {
       this.$v.$touch(); //validate form data
