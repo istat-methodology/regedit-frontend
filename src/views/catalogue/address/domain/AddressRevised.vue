@@ -48,7 +48,7 @@
   <CCard class="card-accent-danger" v-else>
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span>
-      <div class="card-header-actions" v-if="address.validazione == 'NO'">
+      <div class="card-header-actions">
         <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
           >Revisiona</CButton
         >
@@ -62,6 +62,9 @@
         v-model="address.dugVal"
         @input="handleSelectInput"
         placeholder="Dug"
+        :class="{
+          'is-invalid': $v.address.dugVal.$error
+        }"
       ></v-select>
       <CInput
         label="Duf*"
