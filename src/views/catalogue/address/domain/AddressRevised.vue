@@ -184,7 +184,7 @@ export default {
       civicoVal: {
         required,
         validationRuleCivico(civicoVal) {
-          return /^[0-9?]*$/.test(civicoVal);
+          return /^[0-9?]$/.test(civicoVal) || /^[null]/.test(civicoVal);
         }
       },
       kmVal: {
@@ -195,6 +195,7 @@ export default {
         validationRule(esponente) {
           return (
             /^[a-zA-Z?]$/.test(esponente) ||
+            /^[null]/.test(esponente) ||
             /^[0-9?]*$/.test(esponente) ||
             /(BIS|TER|QUATER|QUINQUIES|SEXIES|SEPTIES)\b/.test(esponente) ||
             /^[a-zA-Z?](R|ROSSO)$/.test(esponente) ||
@@ -208,13 +209,13 @@ export default {
       cdpstrEgon: {
         required,
         validationRuleStrEgon(cdpstrEgon) {
-          return /^[0-9?]*$/.test(cdpstrEgon);
+          return /^[0-9?]*$/.test(cdpstrEgon) || /^[null]/.test(cdpstrEgon);
         }
       },
       cdpcivEgon: {
         required,
         validationRuleCivEgon(cdpcivEgon) {
-          return /^[0-9?]*$/.test(cdpcivEgon);
+          return /^[0-9?]*$/.test(cdpcivEgon) || /^[null]/.test(cdpcivEgon);
         }
       }
     }
