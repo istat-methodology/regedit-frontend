@@ -9,12 +9,12 @@
           {{ address.AddressOriginal }}
           <span
             class="badge badge-success ml-2 align-center"
-            v-if="address.validazione == 'SI'"
+            v-if="address.validazione == 'SI' && address.stato == 2"
             >Validato</span
           >
           <span
             class="badge badge-danger ml-2 align-center"
-            v-if="address.validazione == 'NO'"
+            v-if="address.validazione == 'NO' && address.stato == 2"
             >Revisionato</span
           >
           <div class="card-header-actions">
