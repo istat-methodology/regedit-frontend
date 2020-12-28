@@ -4,52 +4,29 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <CCard v-if="address">
-        <CCardHeader>
-          {{ address.AddressOriginal }}
-          <span
-            class="badge badge-success ml-2 align-center"
-            v-if="address.validazione == 'SI' && address.stato == 2"
-            >Validato</span
-          >
-          <span
-            class="badge badge-danger ml-2 align-center"
-            v-if="address.validazione == 'NO' && address.stato == 2"
-            >Revisionato</span
-          >
-          <div class="card-header-actions">
-            <CButton
-              shape="square"
-              size="sm"
-              color="primary"
-              class="btn-next mr-2"
-              @click="handleSkip"
-              >Salta<arrow-right-icon
-            /></CButton>
+      <template v-if="address">
+        <app-progress class="fade-in" />
+        <div class="row fade-in">
+          <div class="col-4">
+            <address-original :address="address" @skip="handleSkip" />
           </div>
-        </CCardHeader>
-        <CCardBody>
-          <div class="row">
-            <div class="col-4">
-              <address-original :address="address" />
-            </div>
-            <div class="col-4">
-              <address-suggested
-                :address="address"
-                @validate="handleValidate"
-              />
-            </div>
-            <div class="col-4">
-              <address-revised :address="address" @revise="handleRevise" />
-            </div>
+          <div class="col-4">
+            <address-suggested :address="address" @validate="handleValidate" />
           </div>
-        </CCardBody>
-      </CCard>
+          <div class="col-4">
+            <address-revised :address="address" @revise="handleRevise" />
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <tile></tile>
+      </template>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Progress from "@/components/Progress";
 import AddressOriginal from "./domain/AddressOriginal";
 import AddressSuggested from "./domain/AddressSuggested";
 import AddressRevised from "./domain/AddressRevised";
@@ -60,7 +37,8 @@ export default {
   components: {
     "address-original": AddressOriginal,
     "address-suggested": AddressSuggested,
-    "address-revised": AddressRevised
+    "address-revised": AddressRevised,
+    "app-progress": Progress
   },
   computed: {
     ...mapGetters("address", ["address"]),
@@ -89,16 +67,31 @@ export default {
           getMessage(address, state)
         );
         setTimeout(() => {
-          this.$store.dispatch("address/findNextAddress", 1);
-        }, 1000);
+          this.$store.dispatch(
+            "address/findNextAddress",
+            this.$route.params.state
+          );
+        }, 500);
       });
     }
   },
   created() {
+    const breadCrumbs = [
+      { path: "catalogue", to: "/catalogue" },
+      {
+        path: "address",
+        to: "/catalogue/address/view/" + this.$route.params.state
+      },
+      {
+        path: "edit",
+        to: "/catalogue/address/edit/" + this.$route.params.state
+      }
+    ];
     this.$store.dispatch(
       "coreui/setContext",
       getContext(this.$route.params.state)
     );
+    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
     this.$store.dispatch("dug/findAll").then(() => {
       this.$store.dispatch("address/findById");
     });

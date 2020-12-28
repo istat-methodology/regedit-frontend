@@ -61,6 +61,10 @@ axiosRegedit.interceptors.response.use(
       let token = store.getters["auth/token"];
       // Unauthorized access
       if (error.response.status === 401 || error.response.status === 403) {
+        store.dispatch("error/serverError", {
+          status: error.response.status,
+          msg: "Internal server error"
+        });
         if (token) {
           router.push("/login");
           store.commit("auth/SET_ERROR_MSG", "Your token has expired!", {

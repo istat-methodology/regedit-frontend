@@ -1,7 +1,12 @@
 <template>
-  <CCard class="card-accent-primary" v-if="address">
+  <CCard v-if="address">
     <CCardHeader class="card-header-light-grey">
       <span class="card-header-span">Indirizzo originale</span>
+      <div class="card-header-actions" v-if="!(address.stato == 2)">
+        <CButton shape="square" size="sm" color="primary" @click="$emit('skip')"
+          >Salta</CButton
+        >
+      </div>
     </CCardHeader>
     <CCardBody class="card-text">
       <div>

@@ -14,10 +14,12 @@ export const State = {
 export function getMessage(address, state) {
   switch (state) {
     case State.Validated:
-      return "Indirizzo " + address.indirizzoOriginale + " Validated!";
+      return "Indirizzo " + address.indirizzoOriginale + " validato!";
     case State.Revised:
       return (
-        "Indirizzo " + address.indirizzoOriginale + " Revised con successo!"
+        "Indirizzo " +
+        address.indirizzoOriginale +
+        " revisionaato con successo!"
       );
     case State.Skip:
       return "Indirizzo " + address.indirizzoOriginale + " sospeso!";
@@ -33,7 +35,7 @@ export function getMessageType(state) {
     case State.Revised:
       return "success";
     case State.Skip:
-      return "error";
+      return "warning";
     default:
       return "error";
   }

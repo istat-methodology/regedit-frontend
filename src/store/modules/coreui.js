@@ -55,7 +55,7 @@ const mutations = {
     state.isAddressRevised = false;
     state.isAddressSkip = false;
   },
-  CREATE_BREADCRUMBS(state, breadcrumbs) {
+  SET_BREADCRUMBS(state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
   },
   set(state, [variable, value]) {
@@ -81,7 +81,10 @@ const actions = {
     commit("CLEAR_CONTEXT");
   },
   createBreadcrumbs({ commit }, route) {
-    commit("CREATE_BREADCRUMBS", createBreadcrumbs(route));
+    commit("SET_BREADCRUMBS", createBreadcrumbs(route));
+  },
+  updateBreadcrumbs({ commit }, breadcrumbs) {
+    commit("SET_BREADCRUMBS", breadcrumbs);
   }
 };
 

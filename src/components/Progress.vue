@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-    <div class="col-4">
+    <div class="col-3">
       <CCard>
         <CCardBody class="card-body-progress">
           <div class="progress-group">
             <div class="progress-group-header">
-              <span class="title">Da lavorare</span
+              <span class="title">Da revisionare</span
               ><span class="ml-auto font-weight-bold">130/200</span>
             </div>
           </div>
@@ -13,7 +13,7 @@
         </CCardBody>
       </CCard>
     </div>
-    <div class="col-4">
+    <div class="col-3">
       <CCard>
         <CCardBody class="card-body-progress">
           <div class="progress-group">
@@ -26,7 +26,7 @@
         </CCardBody>
       </CCard>
     </div>
-    <div class="col-4">
+    <div class="col-3">
       <CCard>
         <CCardBody class="card-body-progress">
           <div class="progress-group">
@@ -36,6 +36,19 @@
             </div>
           </div>
           <CProgress :value="revisionato" color="danger" size="sm" />
+        </CCardBody>
+      </CCard>
+    </div>
+    <div class="col-3">
+      <CCard>
+        <CCardBody class="card-body-progress">
+          <div class="progress-group">
+            <div class="progress-group-header">
+              <span class="title">Sospeso</span
+              ><span class="ml-auto font-weight-bold">10/200</span>
+            </div>
+          </div>
+          <CProgress :value="revisionato" color="warning" size="sm" />
         </CCardBody>
       </CCard>
     </div>
@@ -67,6 +80,9 @@ export default {
 }
 .color-danger {
   color: #e55353;
+}
+.color-warning {
+  color: #815c15;
 }
 .card-body-progress {
   padding: 0.75rem 1.25rem;

@@ -109,12 +109,12 @@ router.beforeEach((to, from, next) => {
   // redirect to unauthorized page if not logged in and trying to access a restricted page
   const { authorize } = to.meta;
   const isAuthenticated = store.getters["auth/isAuthenticated"];
+  const serverError = store.getters["error/serverError"];
   const userRole = store.getters["auth/role"];
 
-  if (authorize.length) {
+  if (!serverError && authorize.length) {
     if (!isAuthenticated || !authorize.includes(userRole)) {
       store.dispatch("message/warning", "Sessione scaduta!");
-      console.log("Here!");
       router.push("/");
     }
   }
