@@ -5,7 +5,7 @@
     </div>
     <div class="col-12" v-else>
       <app-progress />
-      <div class="card" v-if="addresses">
+      <div class="card">
         <CCardBody>
           <CDataTable
             :items="addresses"

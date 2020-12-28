@@ -116,6 +116,10 @@ export default {
         if (res.status === AuthStatus.Logged) this.$router.push("/"); //Go to main page
       });
     }
+  },
+  created() {
+    //Clear messages
+    this.$store.dispatch("message/clear");
   }
 };
 </script>

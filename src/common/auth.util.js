@@ -11,7 +11,7 @@ export function getUser(token) {
   //decode JWT token
   if (token) {
     const decoded = jwt.decode(token, { complete: true });
-    console.log(decoded);
+    //console.log(decoded);
     user = decoded.payload;
     console.log(user);
   }
