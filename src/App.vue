@@ -13,8 +13,6 @@ export default {
     this.$store.dispatch("auth/reloadCredentials").then(res => {
       if (res.status === AuthStatus.TokenExpired) this.$router.push("/login");
     });
-    //Clear messages
-    this.$store.dispatch("message/clear");
   }
 };
 </script>

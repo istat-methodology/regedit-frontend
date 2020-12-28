@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CToaster :autohide="4000" position="top-center">
+    <CToaster :autohide="5000" position="top-center">
       <template v-if="message">
         <CToast :key="message" :show="true" :class="type">
           <template> <success-icon /> {{ getMessage }}</template>
@@ -24,9 +24,6 @@ export default {
     getMessage() {
       return this.message.split("#").pop();
     }
-  },
-  created() {
-    this.$store.dispatch("message/clear");
   }
 };
 </script>
@@ -39,7 +36,9 @@ export default {
 
 .toast-info {
   background-image: none;
-  background-color: #63c2de;
+  color: #1b508f;
+  background-color: #c6e2ff;
+  border-color: #c6e2ff;
 }
 
 .toast-error {

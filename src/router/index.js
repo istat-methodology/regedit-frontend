@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "@/store";
-
+import { Role } from "@/common";
 import Home from "@/views/Home";
 
 Vue.use(VueRouter);
@@ -44,55 +44,55 @@ const routes = [
         path: "catalogue/address/:state",
         name: "AddressList",
         component: () => import("../views/catalogue/address/AddressList"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin, Role.User] }
       },
       {
         path: "catalogue/address/edit/:id",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin, Role.User] }
       },
       {
         path: "catalogue/dug",
         name: "DugList",
         component: () => import("../views/catalogue/dug/DugList"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin, Role.User] }
       },
       {
         path: "catalogue/dug/add",
         name: "DugAdd",
         component: () => import("../views/catalogue/dug/DugAdd"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin, Role.User] }
       },
       {
         path: "catalogue/dug/edit/:id",
         name: "DugEdit",
         component: () => import("../views/catalogue/dug/DugEdit"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin, Role.User] }
       },
       {
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin] }
       },
       {
         path: "settings/users/edit/:id",
         name: "UserEdit",
         component: () => import("../views/settings/user/UserEdit"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin] }
       },
       {
         path: "settings/users/delete/:id",
         name: "UserDelete",
         component: () => import("../views/settings/user/UserDelete"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin] }
       },
       {
         path: "settings/users/add/",
         name: "UserAdd",
         component: () => import("../views/settings/user/UserAdd"),
-        meta: { authorize: [] }
+        meta: { authorize: [Role.Admin] }
       }
     ]
   },
@@ -113,12 +113,9 @@ router.beforeEach((to, from, next) => {
 
   if (authorize.length) {
     if (!isAuthenticated || !authorize.includes(userRole)) {
-      const err = {
-        code: 401,
-        message: "You cannot access this page!"
-      };
-      store.dispatch("error/unauthorized", err);
-      router.push("/unauthorized");
+      store.dispatch("message/warning", "Sessione scaduta!");
+      console.log("Here!");
+      router.push("/");
     }
   }
 

@@ -73,7 +73,12 @@ export default {
   methods: {
     handleSkip() {
       var addr = { ...this.address, stato: 3, validazione: "NO" };
-      this.$store.dispatch("address/update", addr);
+      this.$store.dispatch("address/update", addr).then(() => {
+        this.$store.dispatch(
+          "message/error",
+          "Indirizzo " + addr.indirizzoOriginale + " sospeso!"
+        );
+      });
     },
     beforeRouteUpdate(to, from, next) {
       this.$store.dispatch("coreui/setContext", getContext(to.params.state));
@@ -82,11 +87,21 @@ export default {
     },
     handleValidate() {
       var addr = { ...this.address, stato: 2, validazione: "SI" };
-      this.$store.dispatch("address/update", addr);
+      this.$store.dispatch("address/update", addr).then(() => {
+        this.$store.dispatch(
+          "message/success",
+          "Indirizzo " + addr.indirizzoOriginale + " validato!"
+        );
+      });
     },
     handleRevise() {
       var addr = { ...this.address, stato: 2, validazione: "NO" };
-      this.$store.dispatch("address/update", addr);
+      this.$store.dispatch("address/update", addr).then(() => {
+        this.$store.dispatch(
+          "message/success",
+          "Indirizzo " + addr.indirizzoOriginale + " revisionato con successo!"
+        );
+      });
     }
   },
   created() {

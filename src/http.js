@@ -58,16 +58,16 @@ axiosRegedit.interceptors.response.use(
     } else {
       console.log("Error status", error.response.status);
       //Check if user is authenticated
-      let isAuthenticated = store.getters["auth/isAuthenticated"];
+      let token = store.getters["auth/token"];
       // Unauthorized access
       if (error.response.status === 401 || error.response.status === 403) {
-        if (isAuthenticated) {
+        if (token) {
           router.push("/login");
           store.commit("auth/SET_ERROR_MSG", "Your token has expired!", {
             root: true
           });
         } else {
-          router.push("/unauthorized");
+          router.push("/");
         }
       } else {
         //Server error
