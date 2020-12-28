@@ -68,11 +68,11 @@ const actions = {
         console.log(err);
       });
   },
-  update(formData) {
+  update({ commit }, formData) {
     addressService
       .update(formData)
       .then(() => {
-        //do nothing
+        commit("SET_ADDRESS", formData);
       })
       .catch(err => {
         console.log(err);
