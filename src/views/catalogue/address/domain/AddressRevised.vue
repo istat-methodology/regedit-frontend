@@ -85,14 +85,7 @@
       <p class="error" v-if="!$v.address.civicoVal.validationRuleCivico">
         I valori possibili per questo campo sono soltanto numerici
       </p>
-      <CInput
-        label="Km"
-        placeholder="Km"
-        :class="{
-          'is-invalid': $v.address.kmVal.$error
-        }"
-        v-model="address.kmVal"
-      />
+      <CInput label="Km" placeholder="Km" v-model="address.kmVal" />
       <CInput
         label="Località"
         placeholder="Località"
@@ -147,6 +140,9 @@
         v-model="address.idFonte"
         @input="handleSelectFonte"
         placeholder="Fonte"
+        :class="{
+          'is-invalid': $v.address.idFonte.$error
+        }"
       ></v-select>
     </CCardBody>
     <CCardFooter>
@@ -197,26 +193,17 @@ export default {
   },
   validations: {
     address: {
-      localitaVal: {
-        required
-      },
+      localitaVal: {},
       dugVal: {
         required
       },
-      dufVal: {
-        required
-      },
+      dufVal: {},
       civicoVal: {
-        required,
         validationRuleCivico(civicoVal) {
           return /^[0-9?]*$/.test(civicoVal) || /^[null]/.test(civicoVal);
         }
       },
-      kmVal: {
-        required
-      },
       esponenteVal: {
-        required,
         validationRule(esponente) {
           return (
             /^[a-zA-Z?]$/.test(esponente) ||
@@ -232,16 +219,17 @@ export default {
         }
       },
       cdpstrEgon: {
-        required,
         validationRuleStrEgon(cdpstrEgon) {
           return /^[0-9?]*$/.test(cdpstrEgon) || /^[null]/.test(cdpstrEgon);
         }
       },
       cdpcivEgon: {
-        required,
         validationRuleCivEgon(cdpcivEgon) {
           return /^[0-9?]*$/.test(cdpcivEgon) || /^[null]/.test(cdpcivEgon);
         }
+      },
+      idFonte: {
+        required
       }
     }
   },
@@ -255,11 +243,16 @@ export default {
       //this.address.idFonte = input.id;
     },
     handleSubmit() {
+      var addr = {
+        ...this.address,
+        dugVal: this.dugvalue,
+        idFonte: this.idfonte
+      };
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid) {
         this.address.dugVal = this.dugvalue;
         this.address.idFonte = this.idfonte;
-        this.$emit("revise", this.address);
+        this.$emit("revise", addr);
       }
     }
   }
