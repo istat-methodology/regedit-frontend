@@ -53,7 +53,6 @@ import { mapGetters } from "vuex";
 import AddressOriginal from "./domain/AddressOriginal";
 import AddressSuggested from "./domain/AddressSuggested";
 import AddressRevised from "./domain/AddressRevised";
-import { getContext } from "@/common";
 
 export default {
   name: "AddressEdit",
@@ -78,12 +77,8 @@ export default {
           "message/error",
           "Indirizzo " + addr.indirizzoOriginale + " sospeso!"
         );
+        this.$store.dispatch("address/findNextAddress", 1);
       });
-    },
-    beforeRouteUpdate(to, from, next) {
-      this.$store.dispatch("coreui/setContext", getContext(to.params.state));
-      this.$store.dispatch("findNextAddress", to.params.state);
-      next();
     },
     handleValidate() {
       var addr = { ...this.address, stato: 2, validazione: "SI" };
@@ -92,6 +87,7 @@ export default {
           "message/success",
           "Indirizzo " + addr.indirizzoOriginale + " validato!"
         );
+        this.$store.dispatch("address/findNextAddress", 1);
       });
     },
     handleRevise() {
@@ -101,6 +97,7 @@ export default {
           "message/success",
           "Indirizzo " + addr.indirizzoOriginale + " revisionato con successo!"
         );
+        this.$store.dispatch("address/findNextAddress", 1);
       });
     }
   },

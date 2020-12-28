@@ -50,7 +50,7 @@ const actions = {
       .findNextAddress(user.userId, stateId)
       .then(data => {
         //console.log(data);
-        commit("SET_ADDRESSES", data);
+        commit("SET_ADDRESS", data);
       })
       .catch(err => {
         console.log(err);
@@ -68,23 +68,11 @@ const actions = {
         console.log(err);
       });
   },
-  update({ commit, dispatch }, formData) {
+  update(formData) {
     addressService
       .update(formData)
-      .then(data => {
-        /* let nextAddress = getNext(state.addresses, data);
-        if (nextAddress) {
-          commit("SET_ADDRESS", nextAddress);
-          dispatch("message/success", "Indirizzo aggiornato con successo!", {
-            root: true
-          });
-        } else {
-          //do something
-        } */
-        dispatch("message/success", "Indirizzo aggiornato con successo!", {
-          root: true
-        });
-        commit("SET_ADDRESS", data);
+      .then(() => {
+        //do nothing
       })
       .catch(err => {
         console.log(err);
