@@ -53,6 +53,7 @@ import { mapGetters } from "vuex";
 import AddressOriginal from "./domain/AddressOriginal";
 import AddressSuggested from "./domain/AddressSuggested";
 import AddressRevised from "./domain/AddressRevised";
+import { State, getContext, getMessage, getMessageType } from "@/common";
 
 export default {
   name: "AddressEdit",
@@ -66,41 +67,41 @@ export default {
     ...mapGetters("coreui", ["isLoading"])
   },
   methods: {
+    getMessage,
+    getMessageType,
+    getContext,
     handleSkip() {
       var addr = { ...this.address, stato: 3, validazione: "NO" };
-      this.$store.dispatch("address/update", addr).then(() => {
-        this.$store.dispatch(
-          "message/error",
-          "Indirizzo " + addr.indirizzoOriginale + " sospeso!"
-        );
-        this.$store.dispatch("address/findNextAddress", 1);
-      });
+      this.update(addr, State.Skip);
     },
     handleValidate() {
       var addr = { ...this.address, stato: 2, validazione: "SI" };
-      this.$store.dispatch("address/update", addr).then(() => {
-        this.$store.dispatch(
-          "message/success",
-          "Indirizzo " + addr.indirizzoOriginale + " validato!"
-        );
-        this.$store.dispatch("address/findNextAddress", 1);
-      });
+      this.update(addr, State.Validated);
     },
     handleRevise() {
       var addr = { ...this.address, stato: 2, validazione: "NO" };
-      this.$store.dispatch("address/update", addr).then(() => {
+      this.update(addr, State.Revised);
+    },
+    update(address, state) {
+      this.$store.dispatch("address/update", address).then(() => {
         this.$store.dispatch(
-          "message/success",
-          "Indirizzo " + addr.indirizzoOriginale + " revisionato con successo!"
+          "message/" + getMessageType(state),
+          getMessage(address, state)
         );
-        this.$store.dispatch("address/findNextAddress", 1);
+        setTimeout(() => {
+          this.$store.dispatch("address/findNextAddress", 1);
+        }, 1000);
       });
     }
   },
   created() {
-    this.$store
-      .dispatch("dug/findAll")
-      .then(this.$store.dispatch("address/findById", this.$route.params.id));
+    this.$store.dispatch(
+      "coreui/setContext",
+      getContext(this.$route.params.state)
+    );
+    this.$store.dispatch("dug/findAll").then(() => {
+      this.$store.dispatch("address/findById");
+    });
   }
 };
 </script>

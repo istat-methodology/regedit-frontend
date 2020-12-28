@@ -41,13 +41,13 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/address/:state",
+        path: "catalogue/address/view/:state",
         name: "AddressList",
         component: () => import("../views/catalogue/address/AddressList"),
         meta: { authorize: [Role.Admin, Role.User] }
       },
       {
-        path: "catalogue/address/edit/:id",
+        path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
         meta: { authorize: [Role.Admin, Role.User] }

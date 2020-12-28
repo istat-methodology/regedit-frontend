@@ -1,9 +1,9 @@
 import { addressService } from "@/services";
-// import { getNext } from "@/common";
 
 const state = {
   addresses: null,
-  address: null
+  address: null,
+  currentId: localStorage.getItem("addressId") || -1
 };
 
 const mutations = {
@@ -12,6 +12,11 @@ const mutations = {
   },
   SET_ADDRESS(state, address) {
     state.address = address;
+  },
+  SET_CURRENT_ID(state, id) {
+    state.currentId = id;
+    //store auth data in browser storage
+    localStorage.setItem("addressId", id);
   }
 };
 
@@ -52,32 +57,47 @@ const actions = {
       .then(data => {
         //console.log(data);
         commit("SET_ADDRESS", data);
+        commit("SET_CURRENT_ID", data.progressivoIndirizzo);
       })
       .catch(err => {
         console.log(err);
       });
   },
 
-  findById({ commit }, id) {
-    return addressService
-      .findById(id)
-      .then(data => {
-        //console.log(data);
-        commit("SET_ADDRESS", data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  findById({ commit, getters }) {
+    const id = getters["currentId"];
+    if (id > 0) {
+      return addressService
+        .findById(id)
+        .then(data => {
+          //console.log(data);
+          commit("SET_ADDRESS", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   },
 
-  // eslint-disable-next-line no-unused-vars
   update({ commit }, formData) {
     addressService
       .update(formData)
-      .then(() => {})
+      .then(() => {
+        commit("SET_ADDRESS", null);
+      })
       .catch(err => {
         console.log(err);
       });
+  },
+
+  setCurrentId({ commit }, id) {
+    commit("SET_CURRENT_ID", id);
+  },
+
+  clear({ commit }) {
+    commit("SET_ADDRESSES", null);
+    commit("SET_ADDRESS", null);
+    commit("SET_CURRENT_ID", -1);
   }
 };
 
@@ -87,6 +107,9 @@ const getters = {
   },
   address: state => {
     return state.address;
+  },
+  currentId: state => {
+    return state.currentId;
   }
 };
 

@@ -74,24 +74,24 @@ export default {
     getStatoString,
     getStatoColor,
     handleEdit(id) {
-      this.$router.push({ name: "AddressEdit", params: { id } });
+      this.$store.dispatch("address/setCurrentId", id);
+      this.$router.push({
+        name: "AddressEdit",
+        params: { state: this.$route.params.state }
+      });
+    },
+    load(state) {
+      this.$store.dispatch("address/clear");
+      this.$store.dispatch("coreui/setContext", getContext(state));
+      this.$store.dispatch("address/findByUserAndState", state);
     }
   },
   beforeRouteUpdate(to, from, next) {
-    this.$store.dispatch("coreui/setContext", getContext(to.params.state));
-    this.$store.dispatch("address/findByUserAndState", to.params.state);
+    this.load(to.params.state);
     next();
   },
   created() {
-    this.$store.dispatch(
-      "coreui/setContext",
-      getContext(this.$route.params.state)
-    );
-    this.$store.dispatch(
-      "address/findByUserAndState",
-      this.$route.params.state
-    );
-    this.$store.dispatch("dug/findAll");
+    this.load(this.$route.params.state);
   }
 };
 </script>
