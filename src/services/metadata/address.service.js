@@ -24,6 +24,24 @@ class AddressService extends AbstractService {
         throw err;
       });
   }
+
+  findNextAddress(user, state) {
+    return axiosRegedit
+      .get(this.endpoint + "/first-address", {
+        params: {
+          user: user,
+          stato: state
+        }
+      })
+      .then(res => {
+        var data = res.data ? res.data : [];
+        //console.log(data);
+        return data;
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
   update(formData) {
     return axiosRegedit
       .put(

@@ -1,5 +1,5 @@
 import { addressService } from "@/services";
-import { getNext } from "@/common";
+// import { getNext } from "@/common";
 
 const state = {
   addresses: null,
@@ -41,6 +41,22 @@ const actions = {
         console.log(err);
       });
   },
+
+  findNextAddress({ commit, rootGetters }, stateId) {
+    //get user from store
+    let user = rootGetters["auth/user"];
+
+    return addressService
+      .findNextAddress(user.userId, stateId)
+      .then(data => {
+        //console.log(data);
+        commit("SET_ADDRESSES", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
   findById({ commit }, id) {
     return addressService
       .findById(id)
@@ -56,7 +72,7 @@ const actions = {
     addressService
       .update(formData)
       .then(data => {
-        let nextAddress = getNext(state.addresses, data);
+        /* let nextAddress = getNext(state.addresses, data);
         if (nextAddress) {
           commit("SET_ADDRESS", nextAddress);
           dispatch("message/success", "Indirizzo aggiornato con successo!", {
@@ -64,7 +80,11 @@ const actions = {
           });
         } else {
           //do something
-        }
+        } */
+        dispatch("message/success", "Indirizzo aggiornato con successo!", {
+          root: true
+        });
+        commit("SET_ADDRESS", data);
       })
       .catch(err => {
         console.log(err);

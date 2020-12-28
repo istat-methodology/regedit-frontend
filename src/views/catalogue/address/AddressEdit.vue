@@ -53,6 +53,7 @@ import { mapGetters } from "vuex";
 import AddressOriginal from "./domain/AddressOriginal";
 import AddressSuggested from "./domain/AddressSuggested";
 import AddressRevised from "./domain/AddressRevised";
+import { getContext } from "@/common";
 
 export default {
   name: "AddressEdit",
@@ -73,6 +74,11 @@ export default {
     handleSkip() {
       var addr = { ...this.address, stato: 3, validazione: "NO" };
       this.$store.dispatch("address/update", addr);
+    },
+    beforeRouteUpdate(to, from, next) {
+      this.$store.dispatch("coreui/setContext", getContext(to.params.state));
+      this.$store.dispatch("findNextAddress", to.params.state);
+      next();
     },
     handleValidate() {
       var addr = { ...this.address, stato: 2, validazione: "SI" };
