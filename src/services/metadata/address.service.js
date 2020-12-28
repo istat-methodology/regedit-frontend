@@ -27,12 +27,7 @@ class AddressService extends AbstractService {
 
   findNextAddress(user, state) {
     return axiosRegedit
-      .get(this.endpoint + "/first-address", {
-        params: {
-          user: user,
-          stato: state
-        }
-      })
+      .get("/regedit/first-address/user/" + user + "/state/" + state)
       .then(res => {
         var data = res.data ? res.data : [];
         //console.log(data);
@@ -42,6 +37,7 @@ class AddressService extends AbstractService {
         throw err;
       });
   }
+
   update(formData) {
     return axiosRegedit
       .put(

@@ -62,11 +62,7 @@ export default {
     "address-revised": AddressRevised
   },
   computed: {
-    ...mapGetters("address", {
-      address: "address",
-      addressNext: "addressNext",
-      addressPrev: "addressPrev"
-    }),
+    ...mapGetters("address", ["address"]),
     ...mapGetters("coreui", ["isLoading"])
   },
   methods: {

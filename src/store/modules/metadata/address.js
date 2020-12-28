@@ -27,6 +27,7 @@ const actions = {
         console.log(err);
       });
   },
+
   findByUserAndState({ commit, rootGetters }, stateId) {
     //get user from store
     let user = rootGetters["auth/user"];
@@ -68,12 +69,12 @@ const actions = {
         console.log(err);
       });
   },
+
+  // eslint-disable-next-line no-unused-vars
   update({ commit }, formData) {
     addressService
       .update(formData)
-      .then(() => {
-        commit("SET_ADDRESS", formData);
-      })
+      .then(() => {})
       .catch(err => {
         console.log(err);
       });
