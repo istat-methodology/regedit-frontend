@@ -4,7 +4,7 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <app-progress class="fade-in"/>
+      <app-progress class="fade-in" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable

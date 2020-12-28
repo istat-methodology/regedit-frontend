@@ -98,26 +98,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.btn-prev > .material-design-icon > .material-design-icon__svg {
-  width: 1.4rem;
-  height: 1.1rem;
-  bottom: auto;
-  padding-right: 5px;
-}
-.btn-prev-bottom > .material-design-icon > .material-design-icon__svg {
-  width: 1.4rem;
-  height: 1rem;
-  bottom: auto;
-  padding-right: 5px;
-}
-.btn-next > .material-design-icon > .material-design-icon__svg {
-  width: 1.1rem;
-  height: 1.1rem;
-  bottom: auto;
-}
-.color-success {
-  color: #2eb85c;
-}
-</style>

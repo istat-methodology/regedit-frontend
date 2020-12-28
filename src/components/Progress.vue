@@ -72,18 +72,6 @@ export default {
 </script>
 
 <style scoped>
-.color-primary {
-  color: #321fdb;
-}
-.color-success {
-  color: #2eb85c;
-}
-.color-danger {
-  color: #e55353;
-}
-.color-warning {
-  color: #815c15;
-}
 .card-body-progress {
   padding: 0.75rem 1.25rem;
 }

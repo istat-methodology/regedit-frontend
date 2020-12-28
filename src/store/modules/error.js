@@ -11,7 +11,7 @@ const mutations = {
   SET_MSG(state, msg) {
     state.msg = msg;
   },
-  SET_SERVER_ERROR(state, isError){
+  SET_SERVER_ERROR(state, isError) {
     state.serverError = isError;
   }
 };
