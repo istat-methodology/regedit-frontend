@@ -11,7 +11,7 @@
             :class="{ 'is-invalid': $v.dug.name.$error }"
             v-model="dug.name"
           />
-          <div class="help-block" :class="{ show: $v.dug.value.$error }">
+          <div class="help-block" :class="{ show: $v.dug.name.$error }">
             This field is required
           </div>
         </CCardBody>

@@ -52,7 +52,7 @@
           Delete
         </CButton>
       </template>
-      Delete Dug '{{ selectedDug.value }}'?
+      Delete Dug '{{ selectedDug.name }}'?
     </CModal>
   </div>
 </template>

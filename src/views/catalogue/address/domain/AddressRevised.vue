@@ -258,6 +258,7 @@ export default {
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid) {
         this.address.dugVal = this.dugvalue;
+        this.address.idFonte = this.idfonte;
         this.$emit("revise", this.address);
       }
     }
