@@ -28,8 +28,6 @@ const actions = {
       });
   },
   findByUserAndState({ commit, rootGetters }, stateId) {
-    //clear addresses
-    commit("SET_ADDRESSES", null);
     //get user from store
     let user = rootGetters["auth/user"];
 
@@ -70,13 +68,16 @@ const actions = {
         console.log(err);
       });
   },
-  update({ commit }, formData) {
-    return addressService
+  update({ commit, dispatch }, formData) {
+    addressService
       .update(formData)
       .then(data => {
         /* let nextAddress = getNext(state.addresses, data);
         if (nextAddress) {
           commit("SET_ADDRESS", nextAddress);
+          dispatch("message/success", "Indirizzo aggiornato con successo!", {
+            root: true
+          });
         } else {
           //do something
         } */
