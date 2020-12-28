@@ -21,7 +21,7 @@ export function printAddress(address, type) {
   if (address === null) return "";
   switch (type) {
     case Address.Original:
-      return address.indirizzoOriginale
+      return (address.indirizzoOriginale ? address.localitaOriginale : "")
         .concat(
           address.localitaOriginale ? ", " + address.localitaOriginale : ""
         )
@@ -29,13 +29,13 @@ export function printAddress(address, type) {
           address.denominazioneComune ? ", " + address.denominazioneComune : ""
         );
     case Address.Suggested:
-      return address.dugNorm
+      return (address.dugNorm ? address.dugNorm : "")
         .concat(address.dufNorm ? " " + address.dufNorm : "")
         .concat(address.civicoNorm ? " " + address.civicoNorm : "")
         .concat(address.esponenteNorm ? " " + address.esponenteNorm : "")
         .concat(address.localitaNorm ? ", " + address.localitaNorm : "");
     case Address.Revised:
-      return address.dugVal
+      return (address.dugVal ? address.dugVal : "")
         .concat(address.dufVal ? " " + address.dufVal : "")
         .concat(address.civicoVal ? " " + address.civicoVal : "")
         .concat(address.kmVal ? " " + address.kmVal : "")
