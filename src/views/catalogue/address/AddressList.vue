@@ -22,7 +22,7 @@
                   shape="square"
                   variant="outline"
                   size="sm"
-                  :color="getStatoColor(item.stato)"
+                  :color="getStatoColor(item.stato, item.validazione)"
                   @click="handleEdit(item.progressivoIndirizzo)"
                   >{{ getStatoString(item.stato) }}</CButton
                 >
@@ -59,7 +59,7 @@ export default {
         },
         { key: "proCom", label: "PROCOM" },
         { key: "denominazioneComune", label: "Comune" },
-        { key: "validazione", label: "Validazione", _style: "width:5%;" },
+        // { key: "validazione", label: "Validazione", _style: "width:5%;" },
         {
           key: "stato",
           label: "Stato di lavorazione"

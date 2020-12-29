@@ -46,14 +46,20 @@ export function printAddress(address, type) {
   }
 }
 
-export function getStatoColor(stato) {
+export function getStatoColor(stato, validazione) {
   switch (stato) {
     case 1:
       return "primary";
     case 2:
+      if (validazione == "SI") {
+        return "success";
+      }
+      if (validazione == "NO") {
+        return "danger";
+      }
       return "success";
     case 3:
-      return "danger";
+      return "warning";
     default:
       return "primary";
   }
