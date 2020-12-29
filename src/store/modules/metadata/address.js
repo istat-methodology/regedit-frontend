@@ -90,6 +90,17 @@ const actions = {
       });
   },
 
+  open({ commit }, formData) {
+    addressService
+      .update(formData)
+      .then(data => {
+        commit("SET_ADDRESS", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
   setCurrentId({ commit }, id) {
     commit("SET_CURRENT_ID", id);
   },

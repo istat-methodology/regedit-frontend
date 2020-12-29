@@ -2,9 +2,14 @@
   <CCard v-if="address">
     <CCardHeader class="card-header-light-grey">
       <span class="card-header-span">Indirizzo originale</span>
-      <div class="card-header-actions" v-if="!(address.stato == 2)">
+      <div class="card-header-actions" v-if="address.stato == 1">
         <CButton shape="square" size="sm" color="primary" @click="$emit('skip')"
           >Salta</CButton
+        >
+      </div>
+      <div class="card-header-actions" v-else>
+        <CButton shape="square" size="sm" color="primary" @click="$emit('open')"
+          >Modifica</CButton
         >
       </div>
     </CCardHeader>

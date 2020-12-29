@@ -13,7 +13,7 @@ export function getUser(token) {
     const decoded = jwt.decode(token, { complete: true });
     //console.log(decoded);
     user = decoded.payload;
-    console.log(user);
+    //console.log(user);
   }
   return user;
 }

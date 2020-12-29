@@ -63,13 +63,14 @@ axiosRegedit.interceptors.response.use(
       if (error.response.status === 401 || error.response.status === 403) {
         store.dispatch("error/serverError", {
           status: error.response.status,
-          msg: "Internal server error"
+          msg: "Unauthorized access!"
         });
         if (token) {
           router.push("/login");
-          store.commit("auth/SET_ERROR_MSG", "Your token has expired!", {
-            root: true
-          });
+          store.commit(
+            "auth/SET_ERROR_MSG",
+            "La sessione di lavoro è scaduta!"
+          );
         } else {
           router.push("/");
         }
@@ -79,7 +80,6 @@ axiosRegedit.interceptors.response.use(
         router.push("/error");
       }
     }
-
     return Promise.reject(error);
   }
 );

@@ -67,7 +67,7 @@ const actions = {
           return { status: AuthStatus.Logged };
         })
         .catch(err => {
-          console.log(err);
+          console.log("Token expired!" + err);
           commit("CLEAR_AUTH_DATA");
           commit("SET_STATUS", AuthStatus.TokenExpired);
           commit("SET_ERROR_MSG", "Your token has expired");

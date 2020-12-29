@@ -8,7 +8,11 @@
         <app-progress class="fade-in" />
         <div class="row fade-in">
           <div class="col-4">
-            <address-original :address="address" @skip="handleSkip" />
+            <address-original
+              :address="address"
+              @skip="handleSkip"
+              @open="handleOpen"
+            />
           </div>
           <div class="col-4">
             <address-suggested :address="address" @validate="handleValidate" />
@@ -48,6 +52,15 @@ export default {
     getMessage,
     getMessageType,
     getContext,
+    handleOpen() {
+      var addr = { ...this.address, stato: 1, validazione: "" };
+      this.$store.dispatch("address/open", addr).then(() => {
+        this.$store.dispatch(
+          "message/success",
+          "L'indirizzo " + addr.indirizzoOriginale + " può essere modificato!"
+        );
+      });
+    },
     handleSkip() {
       var addr = { ...this.address, stato: 3, validazione: "NO" };
       this.update(addr, State.Skip);
