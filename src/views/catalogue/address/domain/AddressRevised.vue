@@ -1,5 +1,5 @@
 <template>
-  <CCard class="card-accent-danger" v-if="address.stato == 2">
+  <CCard v-if="address.stato == 2">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
     >
@@ -45,7 +45,7 @@
       </div>
     </CCardBody>
   </CCard>
-  <CCard class="card-accent-danger" v-else>
+  <CCard v-else>
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span>
       <div class="card-header-actions">

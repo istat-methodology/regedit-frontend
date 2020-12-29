@@ -28,15 +28,6 @@ export default {
     upperCaseFirst(str) {
       return str.replace(/^\w/, c => c.toUpperCase());
     }
-  },
-  watch: {
-    $route() {
-      this.$store.dispatch("coreui/createBreadcrumbs", this.$route);
-    }
-  },
-  created() {
-    //page reload
-    this.$store.dispatch("coreui/createBreadcrumbs", this.$route);
   }
 };
 </script>

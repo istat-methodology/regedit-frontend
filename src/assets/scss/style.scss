@@ -79,6 +79,20 @@ button:focus {
   color: #ced2d8;
 }
 
+/* Colors */
+.color-primary {
+  color: #321fdb;
+}
+.color-success {
+  color: #2eb85c;
+}
+.color-danger {
+  color: #e55353;
+}
+.color-warning {
+  color: #815c15;
+}
+
 /* Cards */
 .card-header-light-grey{
   background-color: #f6f8fa;
@@ -228,4 +242,57 @@ button:focus {
   color: #321fdb;
   border-radius: unset;
   padding-left: 0.8rem;
+}
+
+/* fade-in */
+.fade-in {
+  animation: fadeIn ease 0.8s;
+  -webkit-animation: fadeIn ease 0.8s;
+  -moz-animation: fadeIn ease 0.8s;
+  -o-animation: fadeIn ease 0.8s;
+  -ms-animation: fadeIn ease 0.8s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

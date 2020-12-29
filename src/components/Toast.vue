@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CToaster :autohide="5000" position="top-center">
+    <CToaster :autohide="4000" position="top-center">
       <template v-if="message">
         <CToast :key="message" :show="true" :class="type">
           <template> <success-icon /> {{ getMessage }}</template>
