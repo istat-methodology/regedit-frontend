@@ -45,10 +45,10 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Sospeso</span
-              ><span class="ml-auto font-weight-bold">10/200</span>
+              ><span class="ml-auto font-weight-bold">100/200</span>
             </div>
           </div>
-          <CProgress :value="revisionato" color="warning" size="sm" />
+          <CProgress :value="sospeso" color="warning" size="sm" />
         </CCardBody>
       </CCard>
     </div>
@@ -65,7 +65,8 @@ export default {
     return {
       daLavorare: 65,
       validato: 30,
-      revisionato: 5
+      revisionato: 5,
+      sospeso: 50
     };
   }
 };
