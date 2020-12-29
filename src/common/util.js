@@ -83,3 +83,11 @@ export function getStatoString(stato, validazione) {
       return "";
   }
 }
+
+export function printTotal(progressi) {
+  var total = 0;
+  progressi.array.forEach(element => {
+    total += element.count;
+  });
+  return total;
+}
