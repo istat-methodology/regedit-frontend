@@ -33,8 +33,7 @@
             class="c-sidebar-nav-link"
             :class="{ 'c-active': isAddressToRevise }"
           >
-            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da
-            revisionare
+            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da lavorare
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">
@@ -44,7 +43,7 @@
             class="c-sidebar-nav-link"
             :class="{ 'c-active': isAddressRevised }"
           >
-            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Revisionati
+            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Lavorati
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">

@@ -62,9 +62,9 @@ export function getStatoColor(stato) {
 export function getStatoString(stato) {
   switch (stato) {
     case 1:
-      return "DA REVISIONARE";
+      return "DA LAVORARE";
     case 2:
-      return "REVISIONATO";
+      return "LAVORATO";
     case 3:
       return "SOSPESO";
     default:
