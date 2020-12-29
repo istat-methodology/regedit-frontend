@@ -56,6 +56,7 @@
 </template>
 <script>
 import { CProgress } from "@coreui/vue";
+import { mapGetters } from "vuex";
 export default {
   name: "Progress",
   components: {
@@ -63,11 +64,51 @@ export default {
   },
   data() {
     return {
+      totali: 0,
       daLavorare: 65,
       validato: 30,
       revisionato: 5,
       sospeso: 50
     };
+  },
+  props: {
+    progresses: {
+      type: Object,
+      default: () => null
+    }
+  },
+  computed: {
+    ...mapGetters("progress", ["progresses"]),
+    totalProgressString() {
+      return this.printTotal(this.progresses);
+    },
+    daLavorareString() {
+      return this.printDaLavorare(this.progresses);
+    },
+    validatiString() {
+      return this.printValidati(this.progresses);
+    },
+    revisionatiString() {
+      return this.printRevisionati(this.progresses);
+    },
+    sospesiString() {
+      return this.printSospesi(this.progresses);
+    },
+    totalProgressCount() {
+      return this.countTotal(this.progresses);
+    },
+    daLavorareCount() {
+      return this.countDaLavorare(this.progresses);
+    },
+    validatiCount() {
+      return this.countValidati(this.progresses);
+    },
+    revisionatiCount() {
+      return this.countRevisionati(this.progresses);
+    },
+    sospesiCount() {
+      return this.countSospesi(this.progresses);
+    }
   }
 };
 </script>
