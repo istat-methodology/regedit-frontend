@@ -24,7 +24,7 @@
                   size="sm"
                   :color="getStatoColor(item.stato, item.validazione)"
                   @click="handleEdit(item.progressivoIndirizzo)"
-                  >{{ getStatoString(item.stato) }}</CButton
+                  >{{ getStatoString(item.stato, item.validazione) }}</CButton
                 >
               </td>
             </template>

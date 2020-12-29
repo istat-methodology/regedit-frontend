@@ -65,11 +65,17 @@ export function getStatoColor(stato, validazione) {
   }
 }
 
-export function getStatoString(stato) {
+export function getStatoString(stato, validazione) {
   switch (stato) {
     case 1:
       return "DA LAVORARE";
     case 2:
+      if (validazione == "SI") {
+        return "VALIDATO";
+      }
+      if (validazione == "NO") {
+        return "REVISIONATO";
+      }
       return "LAVORATO";
     case 3:
       return "SOSPESO";
