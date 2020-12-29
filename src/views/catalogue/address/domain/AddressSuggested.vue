@@ -2,7 +2,7 @@
   <CCard v-if="address">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo suggerito</span>
-      <div class="card-header-actions" v-if="!(address.stato == 2)">
+      <div class="card-header-actions" v-if="address.stato == 1">
         <CButton
           shape="square"
           size="sm"
@@ -12,7 +12,7 @@
         >
       </div>
     </CCardHeader>
-    <CCardBody class="card-text">
+    <CCardBody class="card-text" :class="{ colordisabled: !validated }">
       <div>
         <span class="mb-2">{{ addressString }}</span>
       </div>
@@ -53,6 +53,9 @@ export default {
   computed: {
     addressString() {
       return this.printAddress(this.address, Address.Suggested);
+    },
+    validated() {
+      return this.address.validazione === "SI" ? true : false;
     }
   },
   methods: {
@@ -79,5 +82,8 @@ export default {
   border-color: #2eb85c;
   color: #fff;
   padding: 0.1rem 0.5rem;
+}
+.colordisabled {
+  color: #ebedef;
 }
 </style>

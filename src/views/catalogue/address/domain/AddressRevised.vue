@@ -3,7 +3,7 @@
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
     >
-    <CCardBody class="card-text">
+    <CCardBody class="card-text" :class="{ colordisabled: validated }">
       <div>
         <span class="mb-2">{{ addressString }}</span>
       </div>
@@ -193,6 +193,9 @@ export default {
     ...mapGetters("dug", ["dugs"]),
     addressString() {
       return this.printAddress(this.address, Address.Revised);
+    },
+    validated() {
+      return this.address.validazione === "SI" ? true : false;
     }
   },
   validations: {
@@ -276,5 +279,8 @@ export default {
 .form-control {
   font-size: 0.75rem;
   margin-bottom: 0.5rem;
+}
+.colordisabled {
+  color: #ebedef;
 }
 </style>

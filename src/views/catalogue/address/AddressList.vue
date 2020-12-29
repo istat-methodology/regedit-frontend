@@ -59,6 +59,7 @@ export default {
         },
         { key: "proCom", label: "PROCOM" },
         { key: "denominazioneComune", label: "Comune" },
+        { key: "validazione", label: "Validazione", _style: "width:5%;" },
         {
           key: "stato",
           label: "Stato di lavorazione"
