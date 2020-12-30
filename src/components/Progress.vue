@@ -59,10 +59,10 @@
 <script>
 import { CProgress } from "@coreui/vue";
 import { mapGetters } from "vuex";
-import addressMixin from "@/components/mixins/address.mixin";
+import progressMixin from "@/components/mixins/progress.mixin";
 export default {
   name: "ProgressBar",
-  mixins: [addressMixin],
+  mixins: [progressMixin],
   components: {
     CProgress
   },
@@ -77,8 +77,10 @@ export default {
   },
   computed: {
     ...mapGetters("progress", ["progresses"]),
+
     totalProgressString() {
-      return this.printTotal(this.progresses);
+      var progressi = this.$store.state.progresses;
+      return this.printTotal(progressi);
     },
     daLavorareString() {
       return this.printDaLavorare(this.progresses);

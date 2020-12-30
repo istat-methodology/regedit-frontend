@@ -119,8 +119,8 @@ export default {
       "coreui/setContext",
       getContext(this.$route.params.state)
     );
-    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
     this.$store.dispatch("progress/findByUser");
+    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
     this.$store.dispatch("dug/findAll").then(() => {
       this.$store.dispatch("address/findById");
     });

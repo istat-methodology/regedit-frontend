@@ -86,6 +86,7 @@ export default {
         { path: "catalogue", to: "/catalogue" },
         { path: "address", to: "/catalogue/address/" }
       ];
+      this.$store.dispatch("progress/findByUser");
       this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
       this.$store.dispatch("coreui/setContext", getContext(state));
       this.$store.dispatch("address/clear");
@@ -98,7 +99,6 @@ export default {
   },
   created() {
     this.load(this.$route.params.state);
-    this.$store.dispatch("progress/findByUser");
   }
 };
 </script>

@@ -108,13 +108,6 @@ export default {
         default:
           return "";
       }
-    },
-    printTotal(progressi) {
-      var total = 0;
-      progressi.array.forEach(element => {
-        total += element.count;
-      });
-      return total.toString;
     }
   }
 };
