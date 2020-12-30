@@ -19,7 +19,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Validato</span
-              ><span class="ml-auto font-weight-bold">60/200</span>
+              ><span class="ml-auto font-weight-bold">{{
+                totalProgressString
+              }}</span>
             </div>
           </div>
           <CProgress :value="validato" color="success" size="sm" />
@@ -57,8 +59,10 @@
 <script>
 import { CProgress } from "@coreui/vue";
 import { mapGetters } from "vuex";
+import addressMixin from "@/components/mixins/address.mixin";
 export default {
   name: "Progress",
+  mixins: [addressMixin],
   components: {
     CProgress
   },
@@ -103,6 +107,9 @@ export default {
     sospesiCount() {
       return this.countSospesi(this.progresses);
     }
+  },
+  created() {
+    this.$store.dispatch("dug/findAll");
   }
 };
 </script>
