@@ -129,7 +129,7 @@ button:focus {
 .card-text > div {
   margin-bottom: 0.2rem;
 }
-.card-text > div > label {
+.card-text > label, .card-text > div > label{
   display: inline-block;
   margin-bottom: 0;
   font-size: 0.75rem;

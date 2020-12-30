@@ -37,11 +37,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getContext, getStatoColor, getStatoString } from "@/common";
+import { getContext } from "@/common";
 import Progress from "@/components/Progress";
+import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
   name: "addresslist",
+  mixins: [addressMixin],
   components: {
     "app-progress": Progress
   },
@@ -72,8 +74,6 @@ export default {
     ...mapGetters("address", ["addresses"])
   },
   methods: {
-    getStatoString,
-    getStatoColor,
     handleEdit(id) {
       this.$store.dispatch("address/setCurrentId", id);
       this.$router.push({

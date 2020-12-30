@@ -18,7 +18,16 @@
             <address-suggested :address="address" @validate="handleValidate" />
           </div>
           <div class="col-4">
-            <address-revised :address="address" @revise="handleRevise" />
+            <template v-if="address.stato == addressState.Revised">
+              <address-revised-view :address="address" />
+            </template>
+            <template v-else>
+              <address-revised-edit
+                :address="address"
+                :fonte="fonte"
+                @revise="handleRevise"
+              />
+            </template>
           </div>
         </div>
       </template>
@@ -33,24 +42,30 @@ import { mapGetters } from "vuex";
 import Progress from "@/components/Progress";
 import AddressOriginal from "./domain/AddressOriginal";
 import AddressSuggested from "./domain/AddressSuggested";
-import AddressRevised from "./domain/AddressRevised";
-import { State, getContext, getMessage, getMessageType } from "@/common";
+import AddressRevisedEdit from "./domain/AddressRevisedEdit";
+import AddressRevisedView from "./domain/AddressRevisedView";
+import fonteMixin from "@/components/mixins/fonte.mixin";
+import addressMixin from "@/components/mixins/address.mixin";
+import { getContext } from "@/common";
 
 export default {
   name: "AddressEdit",
+  mixins: [fonteMixin, addressMixin],
   components: {
     "address-original": AddressOriginal,
     "address-suggested": AddressSuggested,
-    "address-revised": AddressRevised,
+    "address-revised-edit": AddressRevisedEdit,
+    "address-revised-view": AddressRevisedView,
     "app-progress": Progress
   },
   computed: {
     ...mapGetters("address", ["address"]),
-    ...mapGetters("coreui", ["isLoading"])
+    ...mapGetters("coreui", ["isLoading"]),
+    fonte() {
+      return this.getFonteById(this.address.idFonte);
+    }
   },
   methods: {
-    getMessage,
-    getMessageType,
     getContext,
     handleOpen() {
       var addr = { ...this.address, stato: 1, validazione: "" };
@@ -63,21 +78,21 @@ export default {
     },
     handleSkip() {
       var addr = { ...this.address, stato: 3, validazione: "NO" };
-      this.update(addr, State.Skip);
+      this.update(addr, this.addressState.Skip);
     },
     handleValidate() {
       var addr = { ...this.address, stato: 2, validazione: "SI" };
-      this.update(addr, State.Validated);
+      this.update(addr, this.addressState.Validated);
     },
     handleRevise() {
       var addr = { ...this.address, stato: 2, validazione: "NO" };
-      this.update(addr, State.Revised);
+      this.update(addr, this.addressState.Revised);
     },
     update(address, state) {
       this.$store.dispatch("address/update", address).then(() => {
         this.$store.dispatch(
-          "message/" + getMessageType(state),
-          getMessage(address, state)
+          "message/" + this.getAddressMessageType(state),
+          this.getAddressMessage(address, state)
         );
         setTimeout(() => {
           this.$store.dispatch(

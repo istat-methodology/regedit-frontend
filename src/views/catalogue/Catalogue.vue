@@ -3,12 +3,11 @@
     <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Indirizzi da revisionare</span>
+          <span>Indirizzi da lavorare</span>
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi da
-          revisionare.
+          In questa sezione puoi trovare la lista degli indirizzi da lavorare.
           <p class="section-link" v-if="isAuthenticated">
             <router-link
               tag="a"
@@ -22,11 +21,11 @@
     <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Indirizzi revisionati</span>
+          <span>Indirizzi lavorati</span>
           <span class="badge float-right badge-success">New</span>
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi revisionati.
+          In questa sezione puoi trovare la lista degli indirizzi lavorati.
           <p class="section-link" v-if="isAuthenticated">
             <router-link
               tag="a"

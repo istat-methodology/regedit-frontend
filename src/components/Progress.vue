@@ -71,12 +71,6 @@ export default {
       sospeso: 50
     };
   },
-  props: {
-    progresses: {
-      type: Object,
-      default: () => null
-    }
-  },
   computed: {
     ...mapGetters("progress", ["progresses"]),
     totalProgressString() {

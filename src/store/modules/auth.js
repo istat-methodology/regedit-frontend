@@ -70,7 +70,7 @@ const actions = {
           console.log("Token expired!" + err);
           commit("CLEAR_AUTH_DATA");
           commit("SET_STATUS", AuthStatus.TokenExpired);
-          commit("SET_ERROR_MSG", "Your token has expired");
+          commit("SET_ERROR_MSG", "La sessione di lavoro è scaduta!");
 
           return { status: AuthStatus.TokenExpired };
         });

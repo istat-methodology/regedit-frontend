@@ -2,12 +2,18 @@
   <CCard v-if="address">
     <CCardHeader class="card-header-light-grey">
       <span class="card-header-span">Indirizzo originale</span>
-      <div class="card-header-actions" v-if="address.stato == 1">
+      <div
+        class="card-header-actions"
+        v-if="address.stato == addressState.TobeRevised"
+      >
         <CButton shape="square" size="sm" color="primary" @click="$emit('skip')"
           >Salta</CButton
         >
       </div>
-      <div class="card-header-actions" v-else>
+      <div
+        class="card-header-actions"
+        v-else-if="address.stato == addressState.Revised"
+      >
         <CButton shape="square" size="sm" color="primary" @click="$emit('open')"
           >Modifica</CButton
         >
@@ -15,7 +21,7 @@
     </CCardHeader>
     <CCardBody class="card-text">
       <div>
-        <span class="mb-2">{{ addressString }}</span>
+        <span class="mb-2">{{ addressPrint }}</span>
       </div>
       <div>
         <label>Comune</label>
@@ -33,10 +39,11 @@
   </CCard>
 </template>
 <script>
-import { Address, printAddress } from "@/common";
+import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
   name: "AddressOriginal",
+  mixins: [addressMixin],
   props: {
     address: {
       type: Object,
@@ -44,12 +51,9 @@ export default {
     }
   },
   computed: {
-    addressString() {
-      return this.printAddress(this.address, Address.Original);
+    addressPrint() {
+      return this.printAddress(this.address, this.addressType.Original);
     }
-  },
-  methods: {
-    printAddress
   }
 };
 </script>

@@ -1,51 +1,5 @@
 <template>
-  <CCard v-if="address.stato == 2">
-    <CCardHeader class="card-header-light-grey"
-      ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
-    >
-    <CCardBody class="card-text" :class="{ colordisabled: validated }">
-      <div>
-        <span class="mb-2">{{ addressString }}</span>
-      </div>
-      <div>
-        <label>Dug</label>
-        <span>{{ address.dugVal }}</span>
-      </div>
-      <div>
-        <label>Duf</label>
-        <span>{{ address.dufVal }}</span>
-      </div>
-      <div>
-        <label>Civico</label>
-        <span>{{ address.civicoVal }}</span>
-      </div>
-      <div>
-        <label>Km</label>
-        <span>{{ address.kmVal }}</span>
-      </div>
-      <div>
-        <label>Località</label>
-        <span>{{ address.localitaVal }}</span>
-      </div>
-      <div>
-        <label>Esponente</label>
-        <span>{{ address.esponenteVal }}</span>
-      </div>
-      <div>
-        <label>Codice strada</label>
-        <span>{{ address.cdpstrEgon }}</span>
-      </div>
-      <div>
-        <label>Codice civico</label>
-        <span>{{ address.cdpcivEgon }}</span>
-      </div>
-      <div>
-        <label>Fonte</label>
-        <span>{{ address.idFonte }}</span>
-      </div>
-    </CCardBody>
-  </CCard>
-  <CCard v-else>
+  <CCard>
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo revisionato</span>
       <div class="card-header-actions">
@@ -57,10 +11,8 @@
     <CCardBody class="card-text">
       <label>Dug*</label>
       <v-select
-        label="name"
-        :options="dugs"
+        :options="dugNames"
         v-model="address.dugVal"
-        @input="handleSelectInput"
         placeholder="Dug"
         :class="{
           'is-invalid': $v.address.dugVal.$error
@@ -69,18 +21,18 @@
       <CInput
         label="Duf*"
         placeholder="Duf"
+        v-model="address.dufVal"
         :class="{
           'is-invalid': $v.address.dufVal.$error
         }"
-        v-model="address.dufVal"
       />
       <CInput
-        label="Civico*"
+        label="Civico"
         placeholder="Civico"
+        v-model="address.civicoVal"
         :class="{
           'is-invalid': $v.address.civicoVal.$error
         }"
-        v-model="address.civicoVal"
       />
       <p class="error" v-if="!$v.address.civicoVal.validationRuleCivico">
         I valori possibili per questo campo sono soltanto numerici
@@ -89,18 +41,18 @@
       <CInput
         label="Località"
         placeholder="Località"
+        v-model="address.localitaVal"
         :class="{
           'is-invalid': $v.address.localitaVal.$error
         }"
-        v-model="address.localitaVal"
       />
       <CInput
-        label="Esponente*"
+        label="Esponente"
         placeholder="Esponente"
+        v-model="address.esponenteVal"
         :class="{
           'is-invalid': $v.address.esponenteVal.$error
         }"
-        v-model="address.esponenteVal"
       />
       <p class="error" v-if="!$v.address.esponenteVal.validationRule">
         I valori possibili per questo campo sono: · Non valorizzato. . Numerico
@@ -108,40 +60,14 @@
         ·'BIS','TER','QUATER','QUINQUIES','SEXIES','SEPTIES’ · Tutte le
         casistiche precedenti seguite da ' R' o ' ROSSO'
       </p>
-      <CInput
-        v-if="this.idfonte == 1"
-        label="Codice strada*"
-        placeholder="Codice strada"
-        :class="{
-          'is-invalid': $v.address.cdpstrEgon.$error
-        }"
-        v-model="address.cdpstrEgon"
-      />
-      <p class="error" v-if="!$v.address.cdpstrEgon.validationRuleStrEgon">
-        I valori possibili per questo campo sono soltanto numerici
-      </p>
-      <CInput
-        v-if="this.idfonte == 1"
-        label="Codice civico*"
-        placeholder="Codice civico"
-        :class="{
-          'is-invalid': $v.address.cdpcivEgon.$error
-        }"
-        v-model="address.cdpcivEgon"
-      />
-      <p class="error" v-if="!$v.address.cdpcivEgon.validationRuleCivEgon">
-        I valori possibili per questo campo sono soltanto numerici
-      </p>
-      <!-- <CInput label="Fonte*" placeholder="Fonte" v-model="address.idFonte" /> -->
       <label>Fonte</label>
       <v-select
         label="fonte"
         :options="fonteValues"
-        v-model="address.idFonte"
-        @input="handleSelectFonte"
+        v-model="fonteLocal"
         placeholder="Fonte"
         :class="{
-          'is-invalid': $v.address.idFonte.$error
+          'is-invalid': $v.fonteLocal.$error
         }"
       ></v-select>
     </CCardBody>
@@ -155,52 +81,45 @@
 <script>
 import { required } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
-import { Address, printAddress } from "@/common";
+import fonteMixin from "@/components/mixins/fonte.mixin";
 
 export default {
   name: "AddressRevised",
+  mixins: [fonteMixin],
   data: function() {
     return {
-      dugvalue: null,
-      idfonte: null,
-      fonteValues: [
-        {
-          id: 1,
-          fonte: "Egon"
-        },
-        {
-          id: 2,
-          fonte: "Google Maps"
-        },
-        {
-          id: 3,
-          fonte: "Revisore"
-        }
-      ]
+      fonteLocal: this.fonte
     };
   },
   props: {
     address: {
       type: Object,
       default: () => null
+    },
+    fonte: {
+      type: Object,
+      default: () => null
     }
   },
   computed: {
     ...mapGetters("dug", ["dugs"]),
-    addressString() {
-      return this.printAddress(this.address, Address.Revised);
-    },
-    validated() {
-      return this.address.validazione === "SI" ? true : false;
+    dugNames() {
+      return this.dugs.map(dug => {
+        return dug.name;
+      });
     }
   },
   validations: {
+    fonteLocal: {
+      required
+    },
     address: {
-      localitaVal: {},
       dugVal: {
         required
       },
-      dufVal: {},
+      dufVal: {
+        required
+      },
       civicoVal: {
         validationRuleCivico(civicoVal) {
           return /^[0-9?]*$/.test(civicoVal) || /^[null]/.test(civicoVal);
@@ -221,6 +140,9 @@ export default {
           );
         }
       },
+      localitaVal: {
+        required
+      },
       cdpstrEgon: {
         validationRuleStrEgon(cdpstrEgon) {
           return /^[0-9?]*$/.test(cdpstrEgon) || /^[null]/.test(cdpstrEgon);
@@ -230,32 +152,15 @@ export default {
         validationRuleCivEgon(cdpcivEgon) {
           return /^[0-9?]*$/.test(cdpcivEgon) || /^[null]/.test(cdpcivEgon);
         }
-      },
-      idFonte: {
-        required
       }
     }
   },
   methods: {
-    printAddress,
-    handleSelectInput(input) {
-      this.dugvalue = input.name;
-    },
-    handleSelectFonte(input) {
-      this.idfonte = input.id;
-      //this.address.idFonte = input.id;
-    },
     handleSubmit() {
-      var addr = {
-        ...this.address,
-        dugVal: this.dugvalue,
-        idFonte: this.idfonte
-      };
       this.$v.$touch(); //validate form data
-      if (!this.$v.address.$invalid) {
-        this.address.dugVal = this.dugvalue;
-        this.address.idFonte = this.idfonte;
-        this.$emit("revise", addr);
+      if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
+        this.address.idFonte = this.fonteLocal.id;
+        this.$emit("revise", this.address);
       }
     }
   }

@@ -2,7 +2,10 @@
   <CCard v-if="address">
     <CCardHeader class="card-header-light-grey"
       ><span class="card-header-span">Indirizzo suggerito</span>
-      <div class="card-header-actions" v-if="!(address.stato === 2)">
+      <div
+        class="card-header-actions"
+        v-if="!(address.stato === addressState.Revised)"
+      >
         <CButton
           shape="square"
           size="sm"
@@ -14,10 +17,12 @@
     </CCardHeader>
     <CCardBody
       class="card-text"
-      :class="{ colordisabled: !validated && address.stato === 2 }"
+      :class="{
+        colordisabled: !validated && address.stato === addressState.Revised
+      }"
     >
       <div>
-        <span class="mb-2">{{ addressString }}</span>
+        <span class="mb-2">{{ addressPrint }}</span>
       </div>
       <div>
         <label>Località</label>
@@ -43,10 +48,11 @@
   </CCard>
 </template>
 <script>
-import { Address, printAddress } from "@/common";
+import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
   name: "AddressSuggested",
+  mixins: [addressMixin],
   props: {
     address: {
       type: Object,
@@ -54,15 +60,12 @@ export default {
     }
   },
   computed: {
-    addressString() {
-      return this.printAddress(this.address, Address.Suggested);
+    addressPrint() {
+      return this.printAddress(this.address, this.addressType.Suggested);
     },
     validated() {
       return this.address.validazione === "SI" ? true : false;
     }
-  },
-  methods: {
-    printAddress
   }
 };
 </script>
