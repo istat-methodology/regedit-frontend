@@ -70,6 +70,30 @@
           'is-invalid': $v.fonteLocal.$error
         }"
       ></v-select>
+      <CInput
+        v-if="this.fonteLocal && this.fonteLocal.id == 1"
+        label="Codice strada*"
+        placeholder="Codice strada"
+        v-model="address.cdpstrEgon"
+        :class="{
+          'is-invalid': $v.address.cdpstrEgon.$error
+        }"
+      />
+      <p class="error" v-if="!$v.address.cdpstrEgon.validationRuleStrEgon">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
+      <CInput
+        v-if="this.fonteLocal && this.fonteLocal.id == 1"
+        label="Codice civico*"
+        placeholder="Codice civico"
+        v-model="address.cdpcivEgon"
+        :class="{
+          'is-invalid': $v.address.cdpcivEgon.$error
+        }"
+      />
+      <p class="error" v-if="!$v.address.cdpcivEgon.validationRuleCivEgon">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
