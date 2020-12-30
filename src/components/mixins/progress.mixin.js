@@ -37,12 +37,8 @@ export default {
     var daLavorare = 0;
     if (reports) {
       reports.forEach(element => {
-        switch (element.stato) {
-          case 2:
-            daLavorare += element.count;
-            break;
-          default:
-            break;
+        if (element.stato == 2) {
+          daLavorare += element.count;
         }
       });
     }
@@ -53,14 +49,8 @@ export default {
     var validati = 0;
     if (reports) {
       reports.forEach(element => {
-        switch (element.stato) {
-          case 2:
-            if (element.validazione === "SI") {
-              validati += element.count;
-            }
-            break;
-          default:
-            break;
+        if (element.stato == 2 && element.validazione == "SI") {
+          validati += element.count;
         }
       });
     }

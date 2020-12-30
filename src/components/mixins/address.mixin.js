@@ -102,7 +102,7 @@ export default {
           if (validazione == "NO") {
             return "REVISIONATO";
           }
-          return "LAVORATO";
+          break;
         case 3:
           return "SOSPESO";
         default:

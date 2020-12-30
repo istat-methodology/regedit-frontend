@@ -19,9 +19,7 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Validato</span
-              ><span class="ml-auto font-weight-bold"
-                >{{ validatiItems }}/{{ totalItems }}</span
-              >
+              ><span class="ml-auto font-weight-bold">{{ totalItems }}</span>
             </div>
           </div>
           <CProgress :value="validato" color="success" size="sm" />
@@ -34,7 +32,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Revisionato</span
-              ><span class="ml-auto font-weight-bold">10/200</span>
+              ><span class="ml-auto font-weight-bold">{{
+                daLavorareItems
+              }}</span>
             </div>
           </div>
           <CProgress :value="revisionato" color="danger" size="sm" />
