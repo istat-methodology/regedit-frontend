@@ -99,6 +99,7 @@ export default {
             "address/findNextAddress",
             this.$route.params.state
           );
+          this.$store.dispatch("progress/findByUser");
         }, 500);
       });
     }

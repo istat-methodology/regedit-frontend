@@ -6,7 +6,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Da revisionare</span
-              ><span class="ml-auto font-weight-bold">130/200</span>
+              ><span class="ml-auto font-weight-bold"
+                >{{ daLavorareItems }} / {{ totalItems }}</span
+              >
             </div>
           </div>
           <CProgress :value="daLavorare" color="primary" size="sm" />
@@ -19,7 +21,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Validato</span
-              ><span class="ml-auto font-weight-bold">{{ totalItems }}</span>
+              ><span class="ml-auto font-weight-bold"
+                >{{ validatiItems }} / {{ totalItems }}</span
+              >
             </div>
           </div>
           <CProgress :value="validato" color="success" size="sm" />
@@ -32,9 +36,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Revisionato</span
-              ><span class="ml-auto font-weight-bold">{{
-                daLavorareItems
-              }}</span>
+              ><span class="ml-auto font-weight-bold"
+                >{{ revisionatiItems }} / {{ totalItems }}</span
+              >
             </div>
           </div>
           <CProgress :value="revisionato" color="danger" size="sm" />
@@ -47,7 +51,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Sospeso</span
-              ><span class="ml-auto font-weight-bold">100/200</span>
+              ><span class="ml-auto font-weight-bold"
+                >{{ sospesiItems }} / {{ totalItems }}</span
+              >
             </div>
           </div>
           <CProgress :value="sospeso" color="warning" size="sm" />
@@ -66,15 +72,6 @@ export default {
   components: {
     CProgress
   },
-  data() {
-    return {
-      totali: 0,
-      daLavorare: 65,
-      validato: 30,
-      revisionato: 5,
-      sospeso: 50
-    };
-  },
   computed: {
     ...mapGetters("progress", ["reports"]),
 
@@ -92,6 +89,18 @@ export default {
     },
     sospesiItems() {
       return this.getSospesi(this.reports);
+    },
+    daLavorare() {
+      return Math.round((this.daLavorareItems / this.totalItems) * 100);
+    },
+    validato() {
+      return Math.round((this.validatiItems / this.totalItems) * 100);
+    },
+    revisionato() {
+      return Math.round((this.revisionatiItems / this.totalItems) * 100);
+    },
+    sospeso() {
+      return Math.round((this.sospesiItems / this.totalItems) * 100);
     }
   }
 };
