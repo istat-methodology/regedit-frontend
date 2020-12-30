@@ -14,7 +14,7 @@ const actions = {
   findByUser({ commit, rootGetters }) {
     let user = rootGetters["auth/user"];
     return progressService
-      .findByUser(user)
+      .findByUser(user.userId)
       .then(data => {
         //console.log(data);
         commit("SET_PROGRESSES", data);

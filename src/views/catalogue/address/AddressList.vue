@@ -98,6 +98,7 @@ export default {
   },
   created() {
     this.load(this.$route.params.state);
+    this.$store.dispatch("progress/findByUser");
   }
 };
 </script>
