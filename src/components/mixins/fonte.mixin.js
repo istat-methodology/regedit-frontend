@@ -19,9 +19,10 @@ export default {
   },
   methods: {
     getFonteById(id) {
-      return this.fonteValues.find(fonte => {
+      const fonteId = this.fonteValues.find(fonte => {
         return fonte.id == id;
       });
+      return fonteId ? fonteId : null;
     },
     getFonteByName(name) {
       return this.fonteValues.find(fonte => {

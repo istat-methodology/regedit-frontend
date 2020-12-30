@@ -70,6 +70,30 @@
           'is-invalid': $v.fonteLocal.$error
         }"
       ></v-select>
+      <CInput
+        v-if="this.fonteLocal && this.fonteLocal.id == 1"
+        label="Codice strada*"
+        placeholder="Codice strada"
+        v-model="address.cdpstrEgon"
+        :class="{
+          'is-invalid': egonStreetInvalid
+        }"
+      />
+      <p class="error" v-if="!$v.address.cdpstrEgon.validationRuleStrEgon">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
+      <CInput
+        v-if="this.fonteLocal && this.fonteLocal.id == 1"
+        label="Codice civico*"
+        placeholder="Codice civico"
+        v-model="address.cdpcivEgon"
+        :class="{
+          'is-invalid': egonCivicInvalid
+        }"
+      />
+      <p class="error" v-if="!$v.address.cdpcivEgon.validationRuleCivEgon">
+        I valori possibili per questo campo sono soltanto numerici
+      </p>
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
@@ -88,7 +112,9 @@ export default {
   mixins: [fonteMixin],
   data: function() {
     return {
-      fonteLocal: this.fonte
+      fonteLocal: this.fonte,
+      egonCivErr: true,
+      egonStreetErr: true
     };
   },
   props: {
@@ -107,6 +133,12 @@ export default {
       return this.dugs.map(dug => {
         return dug.name;
       });
+    },
+    egonCivicInvalid() {
+      return this.egonCivErr || this.$v.address.cdpcivEgon.$error;
+    },
+    egonStreetInvalid() {
+      return this.egonStreetErr || this.$v.address.cdpstrEgon.$error;
     }
   },
   validations: {
@@ -158,7 +190,19 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
+      if (this.fonteLocal && this.fonteLocal.id == 1) {
+        this.egonStreetErr = this.address.cdpstrEgon ? false : true;
+        this.egonCivErr = this.address.cdpcivEgon ? false : true;
+      } else {
+        this.egonStreetErr = false;
+        this.egonCivErr = false;
+      }
+      if (
+        !this.$v.address.$invalid &&
+        !this.$v.fonteLocal.$invalid &&
+        !this.egonStreetErr &&
+        !this.egonCivErr
+      ) {
         this.address.idFonte = this.fonteLocal.id;
         this.$emit("revise", this.address);
       }
