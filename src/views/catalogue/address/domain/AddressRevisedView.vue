@@ -32,16 +32,16 @@
         <span>{{ address.esponenteVal | dashEmpty }}</span>
       </div>
       <div>
+        <label>Fonte</label>
+        <span>{{ fonte | dashEmpty }}</span>
+      </div>
+      <div>
         <label>Codice strada</label>
         <span>{{ address.cdpstrEgon | dashEmpty }}</span>
       </div>
       <div>
         <label>Codice civico</label>
         <span>{{ address.cdpcivEgon | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Fonte</label>
-        <span>{{ fonte | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>
