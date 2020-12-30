@@ -15,10 +15,55 @@ export default {
       var total = 0;
       if (reports) {
         reports.forEach(element => {
-          total += element.count;
+          switch (element.stato) {
+            case 1:
+              total += element.count;
+              break;
+            case 2:
+              total += element.count;
+              break;
+            case 3:
+              total += element.count;
+              break;
+            default:
+              break;
+          }
         });
       }
       return total;
     }
+  },
+  getDaLavorare(reports) {
+    var daLavorare = 0;
+    if (reports) {
+      reports.forEach(element => {
+        switch (element.stato) {
+          case 2:
+            daLavorare += element.count;
+            break;
+          default:
+            break;
+        }
+      });
+    }
+    return daLavorare;
+  },
+
+  getValidati(reports) {
+    var validati = 0;
+    if (reports) {
+      reports.forEach(element => {
+        switch (element.stato) {
+          case 2:
+            if (element.validazione === "SI") {
+              validati += element.count;
+            }
+            break;
+          default:
+            break;
+        }
+      });
+    }
+    return validati;
   }
 };

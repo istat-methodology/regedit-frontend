@@ -19,7 +19,9 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Validato</span
-              ><span class="ml-auto font-weight-bold">{{ total }}</span>
+              ><span class="ml-auto font-weight-bold"
+                >{{ validatiItems }}/{{ totalItems }}</span
+              >
             </div>
           </div>
           <CProgress :value="validato" color="success" size="sm" />
@@ -76,35 +78,20 @@ export default {
   computed: {
     ...mapGetters("progress", ["reports"]),
 
-    total() {
+    totalItems() {
       return this.getTotal(this.reports);
     },
-    daLavorareString() {
-      return this.printDaLavorare(this.reports);
+    daLavorareItems() {
+      return this.getDaLavorare(this.reports);
     },
-    validatiString() {
-      return this.printValidati(this.reports);
+    validatiItems() {
+      return this.getValidati(this.reports);
     },
-    revisionatiString() {
-      return this.printRevisionati(this.reports);
+    revisionatiItems() {
+      return this.getRevisionati(this.reports);
     },
-    sospesiString() {
-      return this.printSospesi(this.reports);
-    },
-    totalProgressCount() {
-      return this.countTotal(this.reports);
-    },
-    daLavorareCount() {
-      return this.countDaLavorare(this.reports);
-    },
-    validatiCount() {
-      return this.countValidati(this.reports);
-    },
-    revisionatiCount() {
-      return this.countRevisionati(this.reports);
-    },
-    sospesiCount() {
-      return this.countSospesi(this.reports);
+    sospesiItems() {
+      return this.getSospesi(this.reports);
     }
   }
 };
