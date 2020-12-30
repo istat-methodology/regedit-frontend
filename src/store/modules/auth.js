@@ -38,6 +38,7 @@ const mutations = {
 
 const actions = {
   login({ commit }, authData) {
+    commit("CLEAR_AUTH_DATA");
     return authService
       .login(authData)
       .then(data => {

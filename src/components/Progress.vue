@@ -19,9 +19,7 @@
           <div class="progress-group">
             <div class="progress-group-header">
               <span class="title">Validato</span
-              ><span class="ml-auto font-weight-bold">{{
-                totalProgressString
-              }}</span>
+              ><span class="ml-auto font-weight-bold">{{ total }}</span>
             </div>
           </div>
           <CProgress :value="validato" color="success" size="sm" />
@@ -76,38 +74,37 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("progress", ["progresses"]),
+    ...mapGetters("progress", ["reports"]),
 
-    totalProgressString() {
-      var progressi = this.$store.state.progresses;
-      return this.printTotal(progressi);
+    total() {
+      return this.getTotal(this.reports);
     },
     daLavorareString() {
-      return this.printDaLavorare(this.progresses);
+      return this.printDaLavorare(this.reports);
     },
     validatiString() {
-      return this.printValidati(this.progresses);
+      return this.printValidati(this.reports);
     },
     revisionatiString() {
-      return this.printRevisionati(this.progresses);
+      return this.printRevisionati(this.reports);
     },
     sospesiString() {
-      return this.printSospesi(this.progresses);
+      return this.printSospesi(this.reports);
     },
     totalProgressCount() {
-      return this.countTotal(this.progresses);
+      return this.countTotal(this.reports);
     },
     daLavorareCount() {
-      return this.countDaLavorare(this.progresses);
+      return this.countDaLavorare(this.reports);
     },
     validatiCount() {
-      return this.countValidati(this.progresses);
+      return this.countValidati(this.reports);
     },
     revisionatiCount() {
-      return this.countRevisionati(this.progresses);
+      return this.countRevisionati(this.reports);
     },
     sospesiCount() {
-      return this.countSospesi(this.progresses);
+      return this.countSospesi(this.reports);
     }
   }
 };

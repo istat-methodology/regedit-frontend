@@ -11,12 +11,14 @@ export default {
     };
   },
   methods: {
-    printTotal(progressi) {
+    getTotal(reports) {
       var total = 0;
-      progressi.array.forEach(element => {
-        total += element.count;
-      });
-      return total.toString;
+      if (reports) {
+        reports.forEach(element => {
+          total += element.count;
+        });
+      }
+      return total;
     }
   }
 };

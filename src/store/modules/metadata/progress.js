@@ -1,12 +1,12 @@
 import { progressService } from "@/services";
 
 const state = {
-  progresses: null
+  reports: null
 };
 
 const mutations = {
-  SET_PROGRESSES(state, progresses) {
-    state.progresses = progresses;
+  SET_REPORTS(state, reports) {
+    state.reports = reports;
   }
 };
 
@@ -17,7 +17,7 @@ const actions = {
       .findByUser(user.userId)
       .then(data => {
         //console.log(data);
-        commit("SET_PROGRESSES", data);
+        commit("SET_REPORTS", data);
       })
       .catch(err => {
         console.log(err);
@@ -26,8 +26,8 @@ const actions = {
 };
 
 const getters = {
-  progress: state => {
-    return state.progresses;
+  reports: state => {
+    return state.reports;
   }
 };
 
