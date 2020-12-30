@@ -107,9 +107,6 @@ export default {
     sospesiCount() {
       return this.countSospesi(this.progresses);
     }
-  },
-  created() {
-    this.$store.dispatch("dug/findAll");
   }
 };
 </script>

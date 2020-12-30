@@ -11,7 +11,8 @@ const mutations = {
 };
 
 const actions = {
-  findByUser({ commit }, user) {
+  findByUser({ commit, rootGetters }) {
+    let user = rootGetters["auth/user"];
     return progressService
       .findByUser(user)
       .then(data => {
