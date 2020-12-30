@@ -61,7 +61,7 @@ import { CProgress } from "@coreui/vue";
 import { mapGetters } from "vuex";
 import addressMixin from "@/components/mixins/address.mixin";
 export default {
-  name: "Progress",
+  name: "ProgressBar",
   mixins: [addressMixin],
   components: {
     CProgress

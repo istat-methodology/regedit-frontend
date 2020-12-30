@@ -114,7 +114,7 @@ export default {
       progressi.array.forEach(element => {
         total += element.count;
       });
-      return total;
+      return total.toString;
     }
   }
 };
