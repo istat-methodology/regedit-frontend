@@ -4,7 +4,9 @@ export default {
       var total = 0;
       if (reports) {
         reports.forEach(element => {
-          total += element.count;
+          if (element.stato == 1 || element.stato == 2 || element.stato == 3) {
+            total += element.count;
+          }
         });
       }
       //console.log("Totale: " + total);
