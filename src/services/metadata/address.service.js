@@ -29,7 +29,7 @@ class AddressService extends AbstractService {
     return axiosRegedit
       .get(this.endpoint + "/first-address/user/" + user + "/state/" + state)
       .then(res => {
-        var data = res.data ? res.data : [];
+        var data = res.data ? res.data : {};
         //console.log(data);
         return data;
       })

@@ -20,14 +20,14 @@ const actions = {
       .findAll()
       .then(data => {
         commit("SET_DUGS", data);
-        commit("SET_DUG", null); //clear businessService
+        commit("SET_DUG", null); //clear dug
       })
       .catch(err => {
         console.log(err);
       });
   },
   save({ commit, dispatch }, formData) {
-    dugService
+    return dugService
       .save(formData)
       .then(data => {
         //console.log(data);
@@ -52,7 +52,7 @@ const actions = {
       });
   },
   update({ commit, dispatch }, formData) {
-    dugService
+    return dugService
       .update(formData)
       .then(data => {
         commit("SET_DUG", data);
@@ -65,7 +65,7 @@ const actions = {
       });
   },
   delete({ dispatch }, id) {
-    dugService
+    return dugService
       .delete(id)
       .then(() => {
         dispatch("findAll");

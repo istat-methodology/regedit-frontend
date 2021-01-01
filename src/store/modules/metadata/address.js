@@ -58,25 +58,23 @@ const actions = {
         //console.log(data);
         commit("SET_ADDRESS", data);
         commit("SET_CURRENT_ID", data.progressivoIndirizzo);
+        return data;
       })
       .catch(err => {
         console.log(err);
       });
   },
 
-  findById({ commit, getters }) {
-    const id = getters["currentId"];
-    if (id > 0) {
-      return addressService
-        .findById(id)
-        .then(data => {
-          //console.log(data);
-          commit("SET_ADDRESS", data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+  findById({ commit }, id) {
+    return addressService
+      .findById(id)
+      .then(data => {
+        //console.log(data);
+        commit("SET_ADDRESS", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
 
   update({ commit }, formData) {

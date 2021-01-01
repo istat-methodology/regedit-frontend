@@ -95,10 +95,17 @@ export default {
           this.getAddressMessage(address, state)
         );
         setTimeout(() => {
-          this.$store.dispatch(
-            "address/findNextAddress",
-            this.$route.params.state
-          );
+          this.$store
+            .dispatch("address/findNextAddress", this.$route.params.state)
+            .then(res => {
+              if (Object.keys(res).length === 0) {
+                this.$store.dispatch(
+                  "message/success",
+                  "Complimenti hai completato il tuo lavoro!"
+                );
+                this.$router.push("/catalogue");
+              }
+            });
           this.$store.dispatch("progress/findByUser");
         }, 500);
       });
@@ -116,14 +123,31 @@ export default {
         to: "/catalogue/address/edit/" + this.$route.params.state
       }
     ];
+    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
     this.$store.dispatch(
       "coreui/setContext",
       getContext(this.$route.params.state)
     );
+
     this.$store.dispatch("progress/findByUser");
-    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
+
     this.$store.dispatch("dug/findAll").then(() => {
-      this.$store.dispatch("address/findById");
+      const currentId = this.$store.getters["address/currentId"];
+      if (currentId > 0) {
+        this.$store.dispatch("address/findById", currentId);
+      } else {
+        this.$store
+          .dispatch("address/findNextAddress", this.$route.params.state)
+          .then(res => {
+            if (Object.keys(res).length === 0) {
+              this.$store.dispatch(
+                "message/success",
+                "Complimenti hai completato il tuo lavoro!"
+              );
+              this.$router.push("/catalogue");
+            }
+          });
+      }
     });
   }
 };
