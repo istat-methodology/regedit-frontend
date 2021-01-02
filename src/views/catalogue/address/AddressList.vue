@@ -29,7 +29,7 @@
               </td>
             </template>
 
-            <template #no-items-view v-bind:addresses="{ addresses }">
+            <template #no-items-view :addresses="{ addresses }">
               <div class="no-data" v-if="addresses && addresses.length == 0">
                 Nessun dato disponibile
               </div>
