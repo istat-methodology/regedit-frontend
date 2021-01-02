@@ -28,6 +28,13 @@
                 >
               </td>
             </template>
+
+            <template #no-items-view v-bind:addresses="{ addresses }">
+              <div class="no-data" v-if="addresses && addresses.length == 0">
+                Nessun dato disponibile
+              </div>
+              <div v-else><tile></tile></div>
+            </template>
           </CDataTable>
         </CCardBody>
       </div>
@@ -37,7 +44,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getContext } from "@/common";
 import Progress from "@/components/Progress";
 import addressMixin from "@/components/mixins/address.mixin";
 
@@ -64,7 +70,10 @@ export default {
         // { key: "validazione", label: "Validazione", _style: "width:5%;" },
         {
           key: "stato",
-          label: "Stato di lavorazione"
+          label: "",
+          _style: "width:2%",
+          sorter: false,
+          filter: false
         }
       ]
     };
@@ -82,13 +91,8 @@ export default {
       });
     },
     load(state) {
-      const breadCrumbs = [
-        { path: "catalogue", to: "/catalogue" },
-        { path: "address", to: "/catalogue/address/" }
-      ];
+      this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("progress/findByUser");
-      this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
-      this.$store.dispatch("coreui/setContext", getContext(state));
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
     }

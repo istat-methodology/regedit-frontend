@@ -64,7 +64,7 @@ export default {
       return this.printAddress(this.address, this.addressType.Suggested);
     },
     validated() {
-      return this.address.validazione === "SI" ? true : false;
+      return this.isAddressValidated(this.address);
     }
   }
 };

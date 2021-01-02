@@ -108,6 +108,9 @@ export default {
         default:
           return "";
       }
+    },
+    isAddressValidated(address) {
+      return address.validazione === "SI" ? true : false;
     }
   }
 };

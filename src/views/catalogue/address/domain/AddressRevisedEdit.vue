@@ -190,6 +190,7 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
+      //validate street and civic if fonteLocal == EGON
       if (this.fonteLocal && this.fonteLocal.id == 1) {
         this.egonStreetErr = this.address.cdpstrEgon ? false : true;
         this.egonCivErr = this.address.cdpcivEgon ? false : true;

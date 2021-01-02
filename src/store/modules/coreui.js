@@ -1,4 +1,4 @@
-import { Context, createBreadcrumbs } from "@/common";
+import { Context } from "@/common";
 
 const state = {
   sidebarShow: "responsive",
@@ -8,13 +8,7 @@ const state = {
   isHome: false,
   isAddressToRevise: false,
   isAddressRevised: false,
-  isAddressSkip: false,
-  breadcrumbs: [
-    {
-      path: "metadata",
-      to: "/metadata"
-    }
-  ]
+  isAddressSkip: false
 };
 
 const mutations = {
@@ -55,9 +49,6 @@ const mutations = {
     state.isAddressRevised = false;
     state.isAddressSkip = false;
   },
-  SET_BREADCRUMBS(state, breadcrumbs) {
-    state.breadcrumbs = breadcrumbs;
-  },
   set(state, [variable, value]) {
     state[variable] = value;
   }
@@ -79,12 +70,6 @@ const actions = {
   },
   clearContext({ commit }) {
     commit("CLEAR_CONTEXT");
-  },
-  createBreadcrumbs({ commit }, route) {
-    commit("SET_BREADCRUMBS", createBreadcrumbs(route));
-  },
-  updateBreadcrumbs({ commit }, breadcrumbs) {
-    commit("SET_BREADCRUMBS", breadcrumbs);
   }
 };
 
@@ -112,9 +97,6 @@ const getters = {
   },
   isAddressSkip: state => {
     return state.isAddressSkip;
-  },
-  breadcrumbs: state => {
-    return state.breadcrumbs;
   }
 };
 

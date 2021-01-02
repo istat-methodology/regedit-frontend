@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     validated() {
-      return this.address.validazione === "SI" ? true : false;
+      return this.isAddressValidated(this.address);
     },
     addressPrint() {
       return this.printAddress(this.address, this.addressType.Revised);

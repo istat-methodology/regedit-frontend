@@ -74,8 +74,6 @@ export default {
     ...mapGetters("auth", ["isAuthenticated"])
   },
   created() {
-    const breadCrumbs = [{ path: "catalogue", to: "/catalogue" }];
-    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
     this.$store.dispatch("coreui/setContext", Context.Home);
     //clear cache
     this.$store.dispatch("address/clear");

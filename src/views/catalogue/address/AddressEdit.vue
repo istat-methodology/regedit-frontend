@@ -46,7 +46,6 @@ import AddressRevisedEdit from "./domain/AddressRevisedEdit";
 import AddressRevisedView from "./domain/AddressRevisedView";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 import addressMixin from "@/components/mixins/address.mixin";
-import { getContext } from "@/common";
 
 export default {
   name: "AddressEdit",
@@ -66,7 +65,6 @@ export default {
     }
   },
   methods: {
-    getContext,
     handleOpen() {
       var addr = { ...this.address, stato: 1, validazione: "" };
       this.$store.dispatch("address/open", addr).then(() => {
@@ -97,40 +95,24 @@ export default {
         setTimeout(() => {
           this.$store
             .dispatch("address/findNextAddress", this.$route.params.state)
-            .then(res => {
-              if (Object.keys(res).length === 0) {
-                this.$store.dispatch(
-                  "message/success",
-                  "Complimenti hai completato il tuo lavoro!"
-                );
-                this.$router.push("/catalogue");
-              }
-            });
+            .then(res => this.checkCompleted(res));
           this.$store.dispatch("progress/findByUser");
         }, 500);
       });
+    },
+    checkCompleted(nextAddress) {
+      if (Object.keys(nextAddress).length === 0) {
+        this.$store.dispatch(
+          "message/success",
+          "Complimenti hai completato il tuo lavoro!"
+        );
+        this.$router.push("/catalogue");
+      }
     }
   },
   created() {
-    const breadCrumbs = [
-      { path: "catalogue", to: "/catalogue" },
-      {
-        path: "address",
-        to: "/catalogue/address/view/" + this.$route.params.state
-      },
-      {
-        path: "edit",
-        to: "/catalogue/address/edit/" + this.$route.params.state
-      }
-    ];
-    this.$store.dispatch("coreui/updateBreadcrumbs", breadCrumbs);
-    this.$store.dispatch(
-      "coreui/setContext",
-      getContext(this.$route.params.state)
-    );
-
+    this.$store.dispatch("coreui/setContext", this.$route.params.state);
     this.$store.dispatch("progress/findByUser");
-
     this.$store.dispatch("dug/findAll").then(() => {
       const currentId = this.$store.getters["address/currentId"];
       if (currentId > 0) {
@@ -138,15 +120,7 @@ export default {
       } else {
         this.$store
           .dispatch("address/findNextAddress", this.$route.params.state)
-          .then(res => {
-            if (Object.keys(res).length === 0) {
-              this.$store.dispatch(
-                "message/success",
-                "Complimenti hai completato il tuo lavoro!"
-              );
-              this.$router.push("/catalogue");
-            }
-          });
+          .then(res => this.checkCompleted(res));
       }
     });
   }
