@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CToaster :autohide="4000" position="top-center">
+    <CToaster :autohide="3000" position="top-center">
       <template v-if="message">
         <CToast :key="message" :show="true" :class="type">
           <template> <success-icon /> {{ getMessage }}</template>
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .toaster .toast {
-  width: 90%;
+  width: 100%;
   padding: 0.2rem 0.4rem;
 }
 

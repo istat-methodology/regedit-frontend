@@ -65,7 +65,7 @@ export default {
           label: "Indirizzo",
           _style: "min-width:25%;"
         },
-        { key: "proCom", label: "PROCOM" },
+        { key: "proCom", label: "Procom" },
         { key: "denominazioneComune", label: "Comune" },
         {
           key: "stato",

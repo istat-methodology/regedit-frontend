@@ -50,13 +50,14 @@ button:focus {
 }
 
 .table th, .table td {
-  padding: 0.65rem;
+  padding: 0.45rem 0.65rem;
+  vertical-align: middle;
 }
 
 .table thead th {
   border-top: none;
   border-bottom: none;
-  padding: 0.2rem;
+  padding: 0.2rem 0.45rem;
 }
 
 .table-hover tbody tr:hover {
