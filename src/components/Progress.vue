@@ -5,13 +5,13 @@
         <CCardBody class="card-body-progress">
           <div class="progress-group">
             <div class="progress-group-header">
-              <span class="title">Da revisionare</span
+              <span class="title">Da lavorare</span
               ><span class="ml-auto font-weight-bold"
-                >{{ daLavorareItems }} / {{ totalItems }}</span
+                >{{ daLavorare }} / {{ total }}</span
               >
             </div>
           </div>
-          <CProgress :value="daLavorare" color="primary" size="sm" />
+          <CProgress :value="daLavorareRatio" color="primary" size="sm" />
         </CCardBody>
       </CCard>
     </div>
@@ -20,13 +20,13 @@
         <CCardBody class="card-body-progress">
           <div class="progress-group">
             <div class="progress-group-header">
-              <span class="title">Validato</span
+              <span class="title">Validati</span
               ><span class="ml-auto font-weight-bold"
-                >{{ validatiItems }} / {{ totalItems }}</span
+                >{{ validati }} / {{ total }}</span
               >
             </div>
           </div>
-          <CProgress :value="validato" color="success" size="sm" />
+          <CProgress :value="validatiRatio" color="success" size="sm" />
         </CCardBody>
       </CCard>
     </div>
@@ -35,13 +35,13 @@
         <CCardBody class="card-body-progress">
           <div class="progress-group">
             <div class="progress-group-header">
-              <span class="title">Revisionato</span
+              <span class="title">Revisionati</span
               ><span class="ml-auto font-weight-bold"
-                >{{ revisionatiItems }} / {{ totalItems }}</span
+                >{{ revisionati }} / {{ total }}</span
               >
             </div>
           </div>
-          <CProgress :value="revisionato" color="danger" size="sm" />
+          <CProgress :value="revisionatiRatio" color="danger" size="sm" />
         </CCardBody>
       </CCard>
     </div>
@@ -50,13 +50,13 @@
         <CCardBody class="card-body-progress">
           <div class="progress-group">
             <div class="progress-group-header">
-              <span class="title">Sospeso</span
+              <span class="title">Sospesi</span
               ><span class="ml-auto font-weight-bold"
-                >{{ sospesiItems }} / {{ totalItems }}</span
+                >{{ sospesi }} / {{ total }}</span
               >
             </div>
           </div>
-          <CProgress :value="sospeso" color="warning" size="sm" />
+          <CProgress :value="sospesiRatio" color="warning" size="sm" />
         </CCardBody>
       </CCard>
     </div>
@@ -75,32 +75,32 @@ export default {
   computed: {
     ...mapGetters("progress", ["reports"]),
 
-    totalItems() {
+    total() {
       return this.getTotal(this.reports);
     },
-    daLavorareItems() {
+    daLavorare() {
       return this.getDaLavorare(this.reports);
     },
-    validatiItems() {
+    validati() {
       return this.getValidati(this.reports);
     },
-    revisionatiItems() {
+    revisionati() {
       return this.getRevisionati(this.reports);
     },
-    sospesiItems() {
+    sospesi() {
       return this.getSospesi(this.reports);
     },
-    daLavorare() {
-      return Math.round((this.daLavorareItems / this.totalItems) * 100);
+    daLavorareRatio() {
+      return Math.round((this.daLavorare / this.total) * 100);
     },
-    validato() {
-      return Math.round((this.validatiItems / this.totalItems) * 100);
+    validatiRatio() {
+      return Math.round((this.validati / this.total) * 100);
     },
-    revisionato() {
-      return Math.round((this.revisionatiItems / this.totalItems) * 100);
+    revisionatiRatio() {
+      return Math.round((this.revisionati / this.total) * 100);
     },
-    sospeso() {
-      return Math.round((this.sospesiItems / this.totalItems) * 100);
+    sospesiRatio() {
+      return Math.round((this.sospesi / this.total) * 100);
     }
   }
 };

@@ -13,15 +13,17 @@ const mutations = {
 const actions = {
   findByUser({ commit, rootGetters }) {
     let user = rootGetters["auth/user"];
-    return progressService
-      .findByUser(user.userId)
-      .then(data => {
-        //console.log(data);
-        commit("SET_REPORTS", data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (user) {
+      return progressService
+        .findByUser(user.userId)
+        .then(data => {
+          //console.log(data);
+          commit("SET_REPORTS", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 

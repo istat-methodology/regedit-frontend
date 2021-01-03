@@ -4,7 +4,9 @@
       <div class="card">
         <header class="card-header">
           <span>Indirizzi da lavorare</span>
-          <span class="badge float-right badge-success">New</span>
+          <span class="badge float-right badge-primary" v-if="isAuthenticated"
+            >{{ daLavorare }} / {{ total }}</span
+          >
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi da lavorare.
@@ -15,7 +17,7 @@
               ><span>Vai alla lista <chevron-right-icon /></span>
             </router-link>
           </p>
-          <p class="section-link" v-if="isAuthenticated">
+          <p class="section-link" v-if="isAuthenticated && daLavorare > 0">
             <router-link
               tag="a"
               :to="{ name: 'AddressEdit', params: { state: 1 } }"
@@ -29,7 +31,9 @@
       <div class="card">
         <header class="card-header">
           <span>Indirizzi lavorati</span>
-          <span class="badge float-right badge-success">New</span>
+          <span class="badge float-right badge-success" v-if="isAuthenticated"
+            >{{ lavorati }} / {{ total }}</span
+          >
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi lavorati.
@@ -47,7 +51,9 @@
       <div class="card">
         <header class="card-header">
           <span>Indirizzi sospesi</span>
-          <span class="badge float-right badge-success">New</span>
+          <span class="badge float-right badge-warning" v-if="isAuthenticated"
+            >{{ sospesi }} / {{ total }}</span
+          >
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi sospesi.
@@ -67,14 +73,30 @@
 <script>
 import { Context } from "@/common";
 import { mapGetters } from "vuex";
+import progressMixin from "@/components/mixins/progress.mixin";
 
 export default {
   name: "Catalogue",
+  mixins: [progressMixin],
   computed: {
-    ...mapGetters("auth", ["isAuthenticated"])
+    ...mapGetters("auth", ["isAuthenticated"]),
+    ...mapGetters("progress", ["reports"]),
+    total() {
+      return this.getTotal(this.reports);
+    },
+    daLavorare() {
+      return this.getDaLavorare(this.reports);
+    },
+    lavorati() {
+      return this.getValidati(this.reports) + this.getRevisionati(this.reports);
+    },
+    sospesi() {
+      return this.getSospesi(this.reports);
+    }
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.Home);
+    this.$store.dispatch("progress/findByUser");
     //clear cache
     this.$store.dispatch("address/clear");
   }

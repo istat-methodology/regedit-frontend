@@ -19,6 +19,7 @@
         class="c-header-nav-items"
         placement="bottom"
         add-menu-classes="dropdown-menu-right pt-0"
+        v-if="isAuthenticated"
       >
         <template #toggler>
           <CHeaderNavLink>
@@ -28,7 +29,7 @@
         <CDropdownHeader tag="div" class="text-center" color="light">
           <strong>Gestione</strong>
         </CDropdownHeader>
-        <CDropdownItem>
+        <CDropdownItem v-if="isAdmin">
           <router-link
             tag="a"
             :to="{
@@ -60,7 +61,7 @@ import HeaderNav from "./HeaderNav";
 
 export default {
   computed: {
-    ...mapGetters("auth", ["isAuthenticated"])
+    ...mapGetters("auth", ["isAuthenticated", "isAdmin"])
   },
   components: {
     "app-header-dropdown-account": HeaderDropdownAccnt,

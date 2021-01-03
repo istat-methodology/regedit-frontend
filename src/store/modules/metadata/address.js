@@ -36,33 +36,35 @@ const actions = {
   findByUserAndState({ commit, rootGetters }, stateId) {
     //get user from store
     let user = rootGetters["auth/user"];
-
-    return addressService
-      .findByUserAndState(user.userId, stateId)
-      .then(data => {
-        //console.log(data);
-        commit("SET_ADDRESSES", data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (user) {
+      return addressService
+        .findByUserAndState(user.userId, stateId)
+        .then(data => {
+          //console.log(data);
+          commit("SET_ADDRESSES", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   },
 
   findNextAddress({ commit, rootGetters }, stateId) {
     //get user from store
     let user = rootGetters["auth/user"];
-
-    return addressService
-      .findNextAddress(user.userId, stateId)
-      .then(data => {
-        //console.log(data);
-        commit("SET_ADDRESS", data);
-        commit("SET_CURRENT_ID", data.progressivoIndirizzo);
-        return data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (user) {
+      return addressService
+        .findNextAddress(user.userId, stateId)
+        .then(data => {
+          //console.log(data);
+          commit("SET_ADDRESS", data);
+          commit("SET_CURRENT_ID", data.progressivoIndirizzo);
+          return data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   },
 
   findById({ commit }, id) {
