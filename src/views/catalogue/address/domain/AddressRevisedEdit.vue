@@ -12,6 +12,7 @@
       <label>Dug*</label>
       <v-select
         :options="dugNames"
+        filled
         v-model="address.dugVal"
         placeholder="Dug"
         :class="{
