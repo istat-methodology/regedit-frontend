@@ -71,30 +71,30 @@
           'is-invalid': $v.fonteLocal.$error
         }"
       ></v-select>
-      <CInput
-        v-if="this.fonteLocal && this.fonteLocal.id == 1"
-        label="Codice strada*"
-        placeholder="Codice strada"
-        v-model="address.cdpstrEgon"
-        :class="{
-          'is-invalid': egonStreetInvalid
-        }"
-      />
-      <p class="error" v-if="!$v.address.cdpstrEgon.validationRuleStrEgon">
-        I valori possibili per questo campo sono soltanto numerici
-      </p>
-      <CInput
-        v-if="this.fonteLocal && this.fonteLocal.id == 1"
-        label="Codice civico*"
-        placeholder="Codice civico"
-        v-model="address.cdpcivEgon"
-        :class="{
-          'is-invalid': egonCivicInvalid
-        }"
-      />
-      <p class="error" v-if="!$v.address.cdpcivEgon.validationRuleCivEgon">
-        I valori possibili per questo campo sono soltanto numerici
-      </p>
+      <template v-if="fonteEgon">
+        <CInput
+          label="Codice strada*"
+          placeholder="Codice strada"
+          v-model="address.cdpstrEgon"
+          :class="{
+            'is-invalid': $v.address.cdpstrEgon.$error
+          }"
+        />
+        <p class="error" v-if="$v.address.cdpstrEgon.$error">
+          I valori possibili per questo campo sono soltanto numerici
+        </p>
+        <CInput
+          label="Codice civico*"
+          placeholder="Codice civico"
+          v-model="address.cdpcivEgon"
+          :class="{
+            'is-invalid': $v.address.cdpcivEgon.$error
+          }"
+        />
+        <p class="error" v-if="$v.address.cdpcivEgon.$error">
+          I valori possibili per questo campo sono soltanto numerici
+        </p>
+      </template>
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
@@ -104,7 +104,7 @@
   </CCard>
 </template>
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required, requiredIf } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 
@@ -113,9 +113,7 @@ export default {
   mixins: [fonteMixin],
   data: function() {
     return {
-      fonteLocal: this.fonte,
-      egonCivErr: true,
-      egonStreetErr: true
+      fonteLocal: this.fonte
     };
   },
   props: {
@@ -135,11 +133,8 @@ export default {
         return dug.name;
       });
     },
-    egonCivicInvalid() {
-      return this.egonCivErr || this.$v.address.cdpcivEgon.$error;
-    },
-    egonStreetInvalid() {
-      return this.egonStreetErr || this.$v.address.cdpstrEgon.$error;
+    fonteEgon() {
+      return this.fonteLocal && this.fonteLocal.id == 1 ? true : false;
     }
   },
   validations: {
@@ -177,13 +172,19 @@ export default {
         required
       },
       cdpstrEgon: {
+        required: requiredIf(function() {
+          return this.fonteEgon;
+        }),
         validationRuleStrEgon(cdpstrEgon) {
-          return /^[0-9?]*$/.test(cdpstrEgon) || /^[null]/.test(cdpstrEgon);
+          return /^[0-9?]*$/.test(cdpstrEgon);
         }
       },
       cdpcivEgon: {
+        required: requiredIf(function() {
+          return this.fonteEgon;
+        }),
         validationRuleCivEgon(cdpcivEgon) {
-          return /^[0-9?]*$/.test(cdpcivEgon) || /^[null]/.test(cdpcivEgon);
+          return /^[0-9?]*$/.test(cdpcivEgon);
         }
       }
     }
@@ -191,21 +192,12 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      //validate street and civic if fonteLocal == EGON
-      if (this.fonteLocal && this.fonteLocal.id == 1) {
-        this.egonStreetErr = this.address.cdpstrEgon ? false : true;
-        this.egonCivErr = this.address.cdpcivEgon ? false : true;
-      } else {
-        this.egonStreetErr = false;
-        this.egonCivErr = false;
-      }
-      if (
-        !this.$v.address.$invalid &&
-        !this.$v.fonteLocal.$invalid &&
-        !this.egonStreetErr &&
-        !this.egonCivErr
-      ) {
+      if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
         this.address.idFonte = this.fonteLocal.id;
+        if (!this.fonteEgon) {
+          this.address.cdpstrEgon = null;
+          this.address.cdpcivEgon = null;
+        }
         this.$emit("revise", this.address);
       }
     }
