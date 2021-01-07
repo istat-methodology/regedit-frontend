@@ -34,7 +34,7 @@
           'is-invalid': $v.address.civicoVal.$error
         }"
       />
-      <p class="error" v-if="!$v.address.civicoVal.validationRuleCivico">
+      <p class="error" v-if="!$v.address.civicoVal.$error">
         I valori possibili per questo campo sono soltanto numerici
       </p>
       <CInput label="Km" placeholder="Km" v-model="address.kmVal" />
@@ -70,7 +70,7 @@
           'is-invalid': $v.fonteLocal.$error
         }"
       ></v-select>
-      <template v-if="fonteEgon">
+      <template v-if="isFonteEgon">
         <CInput
           label="Codice strada*"
           placeholder="Codice strada"
@@ -103,12 +103,12 @@
   </CCard>
 </template>
 <script>
-import { required, requiredIf } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 
 export default {
-  name: "AddressRevised",
+  name: "AddressRevisedEdit",
   mixins: [fonteMixin],
   data: function() {
     return {
@@ -132,7 +132,7 @@ export default {
         return dug.name;
       });
     },
-    fonteEgon() {
+    isFonteEgon() {
       return this.fonteLocal && this.fonteLocal.id == 1 ? true : false;
     }
   },
@@ -148,8 +148,8 @@ export default {
         required
       },
       civicoVal: {
-        validationRuleCivico(civicoVal) {
-          return /^[0-9?]*$/.test(civicoVal) || /^[null]/.test(civicoVal);
+        validationRuleCivico(civico) {
+          return /^[0-9?]*$/.test(civico) || /^[null]/.test(civico);
         }
       },
       esponenteVal: {
@@ -171,19 +171,13 @@ export default {
         required
       },
       cdpstrEgon: {
-        required: requiredIf(function() {
-          return this.fonteEgon;
-        }),
-        validationRuleStrEgon(cdpstrEgon) {
-          return /^[0-9?]*$/.test(cdpstrEgon);
+        validationRuleStrEgon(stradaEgon) {
+          return this.isFonteEgon ? /^[0-9?]+$/.test(stradaEgon) : true;
         }
       },
       cdpcivEgon: {
-        required: requiredIf(function() {
-          return this.fonteEgon;
-        }),
-        validationRuleCivEgon(cdpcivEgon) {
-          return /^[0-9?]*$/.test(cdpcivEgon);
+        validationRuleCivEgon(civicoEgon) {
+          return this.isFonteEgon ? /^[0-9?]+$/.test(civicoEgon) : true;
         }
       }
     }
@@ -193,7 +187,7 @@ export default {
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
         this.address.idFonte = this.fonteLocal.id;
-        if (!this.fonteEgon) {
+        if (!this.isFonteEgon) {
           this.address.cdpstrEgon = null;
           this.address.cdpcivEgon = null;
         }

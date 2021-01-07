@@ -48,7 +48,7 @@ import Progress from "@/components/Progress";
 import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
-  name: "addresslist",
+  name: "AddressList",
   mixins: [addressMixin],
   components: {
     "app-progress": Progress
