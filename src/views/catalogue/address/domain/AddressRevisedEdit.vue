@@ -12,7 +12,7 @@
       <label>Dug*</label>
 
       <v-select
-        :options="dugNames"
+        :options="dugs"
         filled
         v-model="address.dugVal"
         placeholder="Dug"
@@ -135,19 +135,6 @@ export default {
   },
   computed: {
     ...mapGetters("dug", ["dugs"]),
-    dugNames() {
-      var dugList = new Array();
-
-      this.dugs.map(dug => {
-        var dugItem = {
-          value: dug.id,
-          label: dug.name
-        };
-
-        dugList.push(dugItem);
-      });
-      return dugList;
-    },
     fonteEgon() {
       return this.fonteLocal && this.fonteLocal.id == 1 ? true : false;
     }
