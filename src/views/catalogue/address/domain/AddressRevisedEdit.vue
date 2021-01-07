@@ -139,12 +139,7 @@ export default {
       var dugList = new Array();
 
       this.dugs.map(dug => {
-        var dugItem = {
-          value: dug.id,
-          label: dug.name
-        };
-
-        dugList.push(dugItem);
+        dugList.push(dug.name);
       });
       return dugList;
     },
