@@ -10,23 +10,14 @@
     >
     <CCardBody class="card-text">
       <label>Dug*</label>
-
       <v-select
-        label="name"
-        :options="dugs"
-        filled
-        v-model="address.dugVal"
-        placeholder="Dug"
-        :class="{ 'is-invalid': $v.address.dugVal.$error }"
-      />
-      <!-- <CSelect
-        label="label"
         :options="dugNames"
+        v-model="address.dugVal"
         placeholder="Dug"
         :class="{
           'is-invalid': $v.address.dugVal.$error
         }"
-      /> -->
+      ></v-select>
       <CInput
         label="Duf*"
         placeholder="Duf"
@@ -136,6 +127,11 @@ export default {
   },
   computed: {
     ...mapGetters("dug", ["dugs"]),
+    dugNames() {
+      return this.dugs.map(dug => {
+        return dug.name;
+      });
+    },
     fonteEgon() {
       return this.fonteLocal && this.fonteLocal.id == 1 ? true : false;
     }
