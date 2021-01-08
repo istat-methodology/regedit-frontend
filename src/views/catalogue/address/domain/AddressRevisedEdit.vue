@@ -34,7 +34,7 @@
           'is-invalid': $v.address.civicoVal.$error
         }"
       />
-      <p class="error" v-if="!$v.address.civicoVal.$error">
+      <p class="error" v-if="!$v.address.civicoVal.validationRuleCivico">
         I valori possibili per questo campo sono soltanto numerici
       </p>
       <CInput label="Km" placeholder="Km" v-model="address.kmVal" />
