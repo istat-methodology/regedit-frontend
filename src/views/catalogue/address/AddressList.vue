@@ -18,10 +18,7 @@
           >
             <template #stato="{item}">
               <td>
-                <CBadge
-                  :shape="pill"
-                  :color="getStatoColor(item.stato, item.validazione)"
-                >
+                <CBadge :color="getStatoColor(item.stato, item.validazione)">
                   {{ getStatoString(item.stato, item.validazione) }}
                 </CBadge>
               </td>
@@ -93,6 +90,7 @@ export default {
           key: "stato",
           label: "Esito",
           _style: "width:10%",
+          sorter: true,
           filter: true
         },
         {
