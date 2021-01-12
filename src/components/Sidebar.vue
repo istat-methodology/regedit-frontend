@@ -64,6 +64,7 @@
 import { mapGetters } from "vuex";
 
 export default {
+  name: "Sidebar",
   computed: {
     ...mapGetters("auth", ["isAuthenticated"]),
     ...mapGetters("coreui", {

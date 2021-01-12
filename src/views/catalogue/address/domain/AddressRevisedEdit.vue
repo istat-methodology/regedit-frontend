@@ -42,9 +42,6 @@
         label="Località"
         placeholder="Località"
         v-model="address.localitaVal"
-        :class="{
-          'is-invalid': $v.address.localitaVal.$error
-        }"
       />
       <CInput
         label="Esponente"
@@ -166,9 +163,6 @@ export default {
             )
           );
         }
-      },
-      localitaVal: {
-        required
       },
       cdpstrEgon: {
         validationRuleStrEgon(stradaEgon) {

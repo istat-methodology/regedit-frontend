@@ -16,15 +16,8 @@
             hover
             pagination
           >
-            <template #stato="{item}">
-              <td>
-                <CBadge :color="getStatoColor(item.stato, item.validazione)">
-                  {{ getStatoString(item.stato, item.validazione) }}
-                </CBadge>
-              </td>
-            </template>
             <template #action="{item}">
-              <!-- <td>
+              <td>
                 <CButton
                   shape="square"
                   variant="outline"
@@ -32,16 +25,6 @@
                   :color="getStatoColor(item.stato, item.validazione)"
                   @click="handleEdit(item.progressivoIndirizzo)"
                   >{{ getStatoString(item.stato, item.validazione) }}</CButton
-                >
-              </td> -->
-              <td>
-                <CButton
-                  shape="square"
-                  variant="outline"
-                  size="sm"
-                  color="primary"
-                  @click="handleEdit(item.progressivoIndirizzo)"
-                  >DETAIL</CButton
                 >
               </td>
             </template>
@@ -63,20 +46,19 @@
 import { mapGetters } from "vuex";
 import Progress from "@/components/Progress";
 import addressMixin from "@/components/mixins/address.mixin";
-import { CBadge } from "@coreui/vue";
 export default {
   name: "AddressList",
   mixins: [addressMixin],
   components: {
-    "app-progress": Progress,
-    CBadge
+    "app-progress": Progress
   },
   data() {
     return {
       fields: [
         {
           key: "progressivoIndirizzo",
-          label: "Progressivo"
+          label: "Progressivo",
+          _style: "width:10%;"
         },
         {
           key: "indirizzoOriginale",
@@ -85,14 +67,7 @@ export default {
         },
         { key: "proCom", label: "Procom" },
         { key: "denominazioneComune", label: "Comune" },
-        { key: "dataMod", label: "Data lavorazione" },
-        {
-          key: "stato",
-          label: "Esito",
-          _style: "width:10%",
-          sorter: true,
-          filter: true
-        },
+        { key: "validazione", label: "Validazione", _style: "width:10%;" },
         {
           key: "action",
           label: "",

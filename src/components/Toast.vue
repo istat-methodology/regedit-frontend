@@ -15,6 +15,7 @@ import { CToaster, CToast } from "@coreui/vue";
 import { mapGetters } from "vuex";
 
 export default {
+  name: "Toast",
   components: {
     CToaster,
     CToast

@@ -20,6 +20,7 @@
 import breadcrumbMixin from "@/components/mixins/breadcrumb.mixin";
 
 export default {
+  name: "BreadCrumb",
   mixins: [breadcrumbMixin],
   data() {
     return {

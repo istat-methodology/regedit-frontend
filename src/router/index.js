@@ -44,31 +44,31 @@ const routes = [
         path: "catalogue/address/view/:state",
         name: "AddressList",
         component: () => import("../views/catalogue/address/AddressList"),
-        meta: { authorize: [Role.Admin, Role.User] }
+        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
       },
       {
         path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
-        meta: { authorize: [Role.Admin, Role.User] }
+        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
       },
       {
         path: "catalogue/dug",
         name: "DugList",
         component: () => import("../views/catalogue/dug/DugList"),
-        meta: { authorize: [Role.Admin, Role.User] }
+        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
       },
       {
         path: "catalogue/dug/add",
         name: "DugAdd",
         component: () => import("../views/catalogue/dug/DugAdd"),
-        meta: { authorize: [Role.Admin, Role.User] }
+        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
       },
       {
         path: "catalogue/dug/edit/:id",
         name: "DugEdit",
         component: () => import("../views/catalogue/dug/DugEdit"),
-        meta: { authorize: [Role.Admin, Role.User] }
+        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
       },
       {
         path: "settings/users",
@@ -114,7 +114,7 @@ router.beforeEach((to, from, next) => {
 
   if (!serverError && authorize.length) {
     if (!isAuthenticated || !authorize.includes(userRole)) {
-      store.dispatch("message/warning", "Sessione scaduta!");
+      store.dispatch("message/warning", "Non sei autorizzato ad accedere!");
       router.push("/");
     }
   }

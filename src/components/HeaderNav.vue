@@ -16,6 +16,7 @@
 import { mapGetters } from "vuex";
 
 export default {
+  name: "HeaderNav",
   computed: {
     ...mapGetters("coreui", ["isHome"])
   },
