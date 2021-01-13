@@ -60,6 +60,7 @@ import BreadCrumb from "./BreadCrumb";
 import HeaderNav from "./HeaderNav";
 
 export default {
+  name: "Header",
   computed: {
     ...mapGetters("auth", ["isAuthenticated", "isAdmin"])
   },

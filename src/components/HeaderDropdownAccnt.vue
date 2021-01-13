@@ -42,6 +42,7 @@ import { CDropdownDivider } from "@coreui/vue";
 import { mapGetters } from "vuex";
 
 export default {
+  name: "HeaderDropdownAccount",
   components: {
     CDropdownDivider
   },
