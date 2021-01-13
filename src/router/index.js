@@ -41,6 +41,12 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "catalogue/dailyreport",
+        name: "DailyReport",
+        component: () => import("../views/catalogue/address/DailyReport"),
+        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+      },
+      {
         path: "catalogue/address/view/:state",
         name: "AddressList",
         component: () => import("../views/catalogue/address/AddressList"),

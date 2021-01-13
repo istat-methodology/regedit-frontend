@@ -1,12 +1,12 @@
-import { dailyReportService } from "@/services";
+import { dailyRepService } from "@/services";
 
 const state = {
-  reports: null
+  dailyReports: null
 };
 
 const mutations = {
   SET_REPORTS(state, reports) {
-    state.reports = reports;
+    state.dailyReports = reports;
   }
 };
 
@@ -14,7 +14,7 @@ const actions = {
   findByUser({ commit, rootGetters }) {
     let user = rootGetters["auth/user"];
     if (user) {
-      return dailyReportService
+      return dailyRepService
         .findByUser(user.userId)
         .then(data => {
           //console.log(data);
@@ -24,16 +24,26 @@ const actions = {
           console.log(err);
         });
     }
+  },
+  findAll({ commit }) {
+    return dailyRepService
+      .findAll()
+      .then(data => {
+        commit("SET_REPORTS", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 
 const getters = {
   reports: state => {
-    return state.reports;
+    return state.dailyReports;
   }
 };
 
-export const dailyreport = {
+export const dailyReport = {
   namespaced: true,
   state,
   mutations,

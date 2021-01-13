@@ -40,6 +40,4 @@ class dailyReportService extends AbstractService {
   }
 }
 
-export const dailyreportService = new dailyReportService(
-  "/regedit/report-daily"
-);
+export const dailyRepService = new dailyReportService("/regedit/report-daily");
