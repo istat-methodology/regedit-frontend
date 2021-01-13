@@ -1,7 +1,7 @@
 import AbstractService from "@/services/abstract.service";
 import { axiosRegedit } from "@/http";
 
-class DailyReportService extends AbstractService {
+class dailyReportService extends AbstractService {
   findByUser(user) {
     return axiosRegedit
       .get(this.endpoint + "/users/" + user)
@@ -40,6 +40,6 @@ class DailyReportService extends AbstractService {
   }
 }
 
-export const dailyreportService = new DailyReportService(
+export const dailyreportService = new dailyReportService(
   "/regedit/report-daily"
 );

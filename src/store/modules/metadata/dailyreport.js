@@ -1,4 +1,4 @@
-import { progressService } from "@/services";
+import { dailyReportService } from "@/services";
 
 const state = {
   reports: null
@@ -14,7 +14,7 @@ const actions = {
   findByUser({ commit, rootGetters }) {
     let user = rootGetters["auth/user"];
     if (user) {
-      return progressService
+      return dailyReportService
         .findByUser(user.userId)
         .then(data => {
           //console.log(data);
@@ -33,7 +33,7 @@ const getters = {
   }
 };
 
-export const progress = {
+export const dailyreport = {
   namespaced: true,
   state,
   mutations,
