@@ -7,7 +7,7 @@
       <div class="card fade-in">
         <template>
           <div>
-            <bar-chart :chart-data="datacollection"></bar-chart>
+            <bar-chart :chartdata="chartdata" :options="options"> </bar-chart>
             <button @click="fillData()">Randomize</button>
           </div>
         </template>
@@ -61,19 +61,27 @@ import BarChart from "@/components/mixins/BarChart";
 
 export default {
   name: "DailyReport",
-
-  mounted() {
-    // this.chartData is created in the mixin.
-    // If you want to pass options please create a local options object
-    //this.renderChart(this.chartData, this.options);
-    this.fillData();
-  },
   components: {
     BarChart
   },
   data() {
     return {
-      datacollection: null,
+      loaded: false,
+      chartdata: {
+        labels: ["January", "February"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: [40, 20]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      },
+
       fields: [
         {
           key: "user",
@@ -91,36 +99,36 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.loaded = false;
+    try {
+      /*  const { userlist } = await fetch('/api/userlist') */
+      /* this.chartdata = this.localchartdata;
+      this.options = this.localoptions; */
+      this.loaded = true;
+    } catch (e) {
+      console.error(e);
+    }
+  },
   computed: {
     /* ...mapGetters("coreui", ["isLoading"]), */
     ...mapGetters("dailyReport", ["reports"])
   },
   methods: {
     fillData() {
-      this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt()],
+      this.chartdata = {
+        labels: ["January", "February"],
         datasets: [
           {
             label: "Data One",
             backgroundColor: "#f87979",
-            data: [this.getRandomInt(), this.getRandomInt()]
-          },
-          {
-            label: "Data two",
-            backgroundColor: "#f87979",
-            data: [this.getRandomInt(), this.getRandomInt()]
-          },
-          {
-            label: "Data tree",
-            backgroundColor: "#f87979",
-            data: [this.getRandomInt(), this.getRandomInt()]
-          },
-          {
-            label: "Data four",
-            backgroundColor: "#f87979",
-            data: [this.getRandomInt(), this.getRandomInt()]
+            data: [40, 20]
           }
         ]
+      };
+      this.options = {
+        responsive: true,
+        maintainAspectRatio: false
       };
     },
     getRandomInt() {
