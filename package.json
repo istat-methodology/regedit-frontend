@@ -12,10 +12,12 @@
     "@coreui/icons": "^1.0.1",
     "@coreui/vue": "^3.2.7",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "core-js": "^3.8.2",
     "jsonwebtoken": "^8.5.1",
     "query-string": "^6.13.8",
     "vue": "^2.6.12",
+    "vue-chartjs": "^3.5.1",
     "vue-material-design-icons": "^4.11.0",
     "vue-router": "^3.4.9",
     "vue-select": "^3.11.2",
@@ -38,7 +40,7 @@
     "eslint-plugin-vue": "^6.1.2",
     "node-sass": "^4.14.1",
     "prettier": "^1.19.1",
-    "sass": "^1.32.2",
+    "sass": "^1.32.4",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.12"
   }

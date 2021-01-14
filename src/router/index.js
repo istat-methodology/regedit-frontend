@@ -43,7 +43,7 @@ const routes = [
       {
         path: "catalogue/dailyreport",
         name: "DailyReport",
-        component: () => import("../views/catalogue/address/DailyReport"),
+        component: () => import("../views/catalogue/report/DailyReport"),
         meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
       },
       {
