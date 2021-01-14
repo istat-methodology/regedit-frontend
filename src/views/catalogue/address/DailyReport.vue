@@ -4,6 +4,16 @@
       <tile></tile>
     </div> -->
     <div class="col-12">
+      <div class="card fade-in">
+        <template>
+          <div>
+            <line-chart :chart-data="datacollection"></line-chart>
+            <button @click="fillData()">Randomize</button>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div class="col-12">
       <!--  <app-progress class="fade-in" /> -->
       <div class="card fade-in">
         <CCardBody>
@@ -46,14 +56,22 @@
 import { mapGetters } from "vuex";
 /* import Progress from "@/components/Progress"; */
 /* import addressMixin from "@/components/mixins/address.mixin"; */
+import LineChart from "@/components/mixins/LineChart";
+
 export default {
   name: "DailyReport",
-  /*  mixins: [addressMixin], */
-  /* components: {
-    "app-progress": Progress
-  }, */
+  mounted() {
+    // this.chartData is created in the mixin.
+    // If you want to pass options please create a local options object
+    //this.renderChart(this.chartData, this.options);
+    this.fillData();
+  },
+  components: {
+    LineChart
+  },
   data() {
     return {
+      datacollection: null,
       fields: [
         {
           key: "user",
@@ -76,6 +94,36 @@ export default {
     ...mapGetters("dailyReport", ["reports"])
   },
   methods: {
+    fillData() {
+      this.datacollection = {
+        labels: [this.getRandomInt(), this.getRandomInt()],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: [this.getRandomInt(), this.getRandomInt()]
+          },
+          {
+            label: "Data two",
+            backgroundColor: "#f87979",
+            data: [this.getRandomInt(), this.getRandomInt()]
+          },
+          {
+            label: "Data tree",
+            backgroundColor: "#f87979",
+            data: [this.getRandomInt(), this.getRandomInt()]
+          },
+          {
+            label: "Data four",
+            backgroundColor: "#f87979",
+            data: [this.getRandomInt(), this.getRandomInt()]
+          }
+        ]
+      };
+    },
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    }
     /*  handleEdit(id) {
       this.$store.dispatch("address/setCurrentId", id);
       this.$router.push({
@@ -102,3 +150,9 @@ export default {
   } */
 };
 </script>
+<style>
+.small {
+  max-width: 600px;
+  margin: 150px auto;
+}
+</style>
