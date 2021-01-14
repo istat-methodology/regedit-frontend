@@ -23,7 +23,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import Toast from "@/components/Toast";
-
 export default {
   name: "App",
   components: {

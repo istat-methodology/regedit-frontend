@@ -7,7 +7,7 @@
       <div class="card fade-in">
         <template>
           <div>
-            <line-chart :chart-data="datacollection"></line-chart>
+            <bar-chart :chart-data="datacollection"></bar-chart>
             <button @click="fillData()">Randomize</button>
           </div>
         </template>
@@ -56,10 +56,12 @@
 import { mapGetters } from "vuex";
 /* import Progress from "@/components/Progress"; */
 /* import addressMixin from "@/components/mixins/address.mixin"; */
-import LineChart from "@/components/mixins/LineChart";
+//import LineChart from "@/components/mixins/LineChart";
+import BarChart from "@/components/mixins/BarChart";
 
 export default {
   name: "DailyReport",
+
   mounted() {
     // this.chartData is created in the mixin.
     // If you want to pass options please create a local options object
@@ -67,7 +69,7 @@ export default {
     this.fillData();
   },
   components: {
-    LineChart
+    BarChart
   },
   data() {
     return {
