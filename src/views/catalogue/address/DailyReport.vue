@@ -116,20 +116,7 @@ export default {
   },
   methods: {
     fillData() {
-      this.chartdata = {
-        labels: ["January", "February"],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "#f87979",
-            data: [40, 20]
-          }
-        ]
-      };
-      this.options = {
-        responsive: true,
-        maintainAspectRatio: false
-      };
+      this.$children[0].renderChart(this.chartdata, this.options);
     },
     getRandomInt() {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
