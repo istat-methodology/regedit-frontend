@@ -13,7 +13,11 @@
         <div class="card fade-in">
           <CCardBody>
             <label>Utenti</label>
-            <v-select :options="userNames" placeholder="Utenti"></v-select>
+            <v-select
+              v-if="users"
+              :options="userNames"
+              placeholder="Utenti"
+            ></v-select>
             <CDataTable
               :items="reports"
               :fields="fields"
@@ -116,8 +120,8 @@ export default {
     this.fillData();
   },
   created() {
-    this.$store.dispatch("userList/findAll");
     this.$store.dispatch("dailyReport/findAll");
+    this.$store.dispatch("userList/findAll");
   }
 };
 </script>
