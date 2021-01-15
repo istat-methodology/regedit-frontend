@@ -11,11 +11,10 @@ const mutations = {
 };
 
 const actions = {
-  findByUser({ commit, rootGetters }) {
-    let user = rootGetters["auth/user"];
+  findByUser({ commit }, user) {
     if (user) {
       return dailyRepService
-        .findByUser(user.userId)
+        .findByUser(user)
         .then(data => {
           //console.log(data);
           commit("SET_REPORTS", data);

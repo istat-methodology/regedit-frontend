@@ -15,8 +15,10 @@
             <label>Utenti</label>
             <v-select
               v-if="users"
-              :options="userNames"
+              label="name"
+              :options="users"
               placeholder="Utenti"
+              @input="changeUser"
             ></v-select>
             <CDataTable
               :items="reports"
@@ -67,14 +69,20 @@ export default {
   computed: {
     /* ...mapGetters("coreui", ["isLoading"]), */
     ...mapGetters("dailyReport", ["reports"]),
-    ...mapGetters("userList", ["users"]),
-    userNames() {
+    ...mapGetters("userList", ["users"])
+    /*  userNames() {
       return this.users.map(user => {
         return user.name;
       });
-    }
+    } */
   },
   methods: {
+    changeUser(value) {
+      //this.$router.push({path: a })
+      console.log(value.id);
+
+      this.$store.dispatch("dailyReport/findByUser", value.id);
+    },
     fillData() {
       this.chartData = {
         labels: ["11 Gennaio", "12 Gennaio", "13 Gennaio", "14 Gennaio"],
