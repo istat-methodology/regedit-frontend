@@ -12,6 +12,8 @@
       <div class="col-12">
         <div class="card fade-in">
           <CCardBody>
+            <label>Utenti</label>
+            <v-select :options="userNames" placeholder="Utenti"></v-select>
             <CDataTable
               :items="reports"
               :fields="fields"
@@ -60,7 +62,13 @@ export default {
   },
   computed: {
     /* ...mapGetters("coreui", ["isLoading"]), */
-    ...mapGetters("dailyReport", ["reports"])
+    ...mapGetters("dailyReport", ["reports"]),
+    ...mapGetters("userList", ["users"]),
+    userNames() {
+      return this.users.map(user => {
+        return user.name;
+      });
+    }
   },
   methods: {
     fillData() {
@@ -108,6 +116,7 @@ export default {
     this.fillData();
   },
   created() {
+    this.$store.dispatch("userList/findAll");
     this.$store.dispatch("dailyReport/findAll");
   }
 };

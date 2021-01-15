@@ -10,6 +10,7 @@ import { dug } from "./modules/metadata/dug";
 import { user } from "./modules/user/user";
 import { progress } from "./modules/metadata/progress";
 import { dailyReport } from "./modules/metadata/dailyreport";
+import { userList } from "./modules/metadata/userlist";
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     dug,
     user,
     progress,
-    dailyReport
+    dailyReport,
+    userList
   }
 });
