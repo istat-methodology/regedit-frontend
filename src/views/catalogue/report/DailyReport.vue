@@ -69,7 +69,7 @@ export default {
   computed: {
     /* ...mapGetters("coreui", ["isLoading"]), */
     ...mapGetters("dailyReport", ["reports"]),
-    ...mapGetters("userList", ["users"])
+    ...mapGetters("user", ["users"])
     /*  userNames() {
       return this.users.map(user => {
         return user.name;
@@ -129,7 +129,7 @@ export default {
   },
   created() {
     this.$store.dispatch("dailyReport/findAll");
-    this.$store.dispatch("userList/findAll");
+    this.$store.dispatch("user/findAll");
   }
 };
 </script>

@@ -52,7 +52,7 @@ const actions = {
       .catch(err => {
         console.log(err);
         commit("SET_STATUS", AuthStatus.InvalidCredentials);
-        commit("SET_ERROR_MSG", "Incorrect username or password!");
+        commit("SET_ERROR_MSG", "Credenziali di accesso errate!");
 
         return { status: AuthStatus.InvalidCredentials };
       });
@@ -67,8 +67,8 @@ const actions = {
 
           return { status: AuthStatus.Logged };
         })
-        .catch(err => {
-          console.log("Token expired!" + err);
+        .catch(() => {
+          console.log("Token expired!");
           commit("CLEAR_AUTH_DATA");
           commit("SET_STATUS", AuthStatus.TokenExpired);
           commit("SET_ERROR_MSG", "La sessione di lavoro è scaduta!");
@@ -104,6 +104,12 @@ const getters = {
   },
   isAdmin: state => {
     return state.role == Role.Admin;
+  },
+  isSupervisor: state => {
+    return state.role == Role.Supervisor;
+  },
+  isReviewer: state => {
+    return state.role == Role.Reviewer;
   }
 };
 

@@ -24,7 +24,7 @@
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
-      <template v-if="isAuthenticated">
+      <template v-if="isReviewer">
         <li class="c-sidebar-nav-title">Indirizzi</li>
         <li class="c-sidebar-nav-item">
           <router-link
@@ -66,7 +66,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Sidebar",
   computed: {
-    ...mapGetters("auth", ["isAuthenticated"]),
+    ...mapGetters("auth", ["isReviewer"]),
     ...mapGetters("coreui", {
       show: "sidebarShow",
       minimize: "sidebarMinimize",

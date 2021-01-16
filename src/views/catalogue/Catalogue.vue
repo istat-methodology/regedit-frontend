@@ -1,29 +1,18 @@
 <template>
-  <div class="row">
+  <div v-if="isSupervisor">
+    <app-landing-supervisor />
+  </div>
+  <div v-else-if="isReviewer">
+    <app-landing-reviewer />
+  </div>
+  <div class="row" v-else>
     <div class="col-4">
       <div class="card">
         <header class="card-header">
           <span>Indirizzi da lavorare</span>
-          <span class="badge float-right badge-primary" v-if="isAuthenticated"
-            >{{ daLavorare }} / {{ total }}</span
-          >
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi da lavorare.
-          <p class="section-link" v-if="isAuthenticated">
-            <router-link
-              tag="a"
-              :to="{ name: 'AddressList', params: { state: 1 } }"
-              ><span>Vai alla lista <chevron-right-icon /></span>
-            </router-link>
-          </p>
-          <p class="section-link" v-if="isAuthenticated && daLavorare > 0">
-            <router-link
-              tag="a"
-              :to="{ name: 'AddressEdit', params: { state: 1 } }"
-              ><span>Inizia subito a lavorare <chevron-right-icon /></span>
-            </router-link>
-          </p>
         </div>
       </div>
     </div>
@@ -31,19 +20,9 @@
       <div class="card">
         <header class="card-header">
           <span>Indirizzi lavorati</span>
-          <span class="badge float-right badge-success" v-if="isAuthenticated"
-            >{{ lavorati }} / {{ total }}</span
-          >
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi lavorati.
-          <p class="section-link" v-if="isAuthenticated">
-            <router-link
-              tag="a"
-              :to="{ name: 'AddressList', params: { state: 2 } }"
-              ><span>Vai alla lista <chevron-right-icon /></span>
-            </router-link>
-          </p>
         </div>
       </div>
     </div>
@@ -51,19 +30,9 @@
       <div class="card">
         <header class="card-header">
           <span>Indirizzi sospesi</span>
-          <span class="badge float-right badge-warning" v-if="isAuthenticated"
-            >{{ sospesi }} / {{ total }}</span
-          >
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi sospesi.
-          <p class="section-link" v-if="isAuthenticated">
-            <router-link
-              tag="a"
-              :to="{ name: 'AddressList', params: { state: 3 } }"
-              ><span>Vai alla lista <chevron-right-icon /></span>
-            </router-link>
-          </p>
         </div>
       </div>
     </div>
@@ -73,38 +42,20 @@
 <script>
 import { Context } from "@/common";
 import { mapGetters } from "vuex";
-import progressMixin from "@/components/mixins/progress.mixin";
+import Reviewer from "./landing/Reviewer";
+import Supervisor from "./landing/Supervisor";
 
 export default {
   name: "Catalogue",
-  mixins: [progressMixin],
+  components: {
+    "app-landing-reviewer": Reviewer,
+    "app-landing-supervisor": Supervisor
+  },
   computed: {
-    ...mapGetters("auth", ["isAuthenticated"]),
-    ...mapGetters("progress", ["reports"]),
-    total() {
-      return this.getTotal(this.reports);
-    },
-    daLavorare() {
-      return this.getDaLavorare(this.reports);
-    },
-    lavorati() {
-      return this.getValidati(this.reports) + this.getRevisionati(this.reports);
-    },
-    sospesi() {
-      return this.getSospesi(this.reports);
-    }
+    ...mapGetters("auth", ["isReviewer", "isSupervisor"])
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.Home);
-    this.$store.dispatch("progress/findByUser");
-    //clear cache
-    this.$store.dispatch("address/clear");
   }
 };
 </script>
-
-<style scoped>
-.material-design-icon > .material-design-icon__svg {
-  bottom: -0.17rem;
-}
-</style>

@@ -1,6 +1,7 @@
 import Vue from "vue";
 
 import {
+  CBadge,
   CContainer,
   CWrapper,
   CToaster,
@@ -29,6 +30,7 @@ import {
   CDataTable
 } from "@coreui/vue";
 
+Vue.component("CBadge", CBadge);
 Vue.component("CContainer", CContainer);
 Vue.component("CWrapper", CWrapper);
 Vue.component("CToaster", CToaster);

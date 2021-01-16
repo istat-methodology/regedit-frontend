@@ -44,37 +44,37 @@ const routes = [
         path: "catalogue/dailyreport",
         name: "DailyReport",
         component: () => import("../views/catalogue/report/DailyReport"),
-        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "catalogue/address/view/:state",
         name: "AddressList",
         component: () => import("../views/catalogue/address/AddressList"),
-        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
-        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/dug",
         name: "DugList",
         component: () => import("../views/catalogue/dug/DugList"),
-        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/dug/add",
         name: "DugAdd",
         component: () => import("../views/catalogue/dug/DugAdd"),
-        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/dug/edit/:id",
         name: "DugEdit",
         component: () => import("../views/catalogue/dug/DugEdit"),
-        meta: { authorize: [Role.Admin, Role.User, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "settings/users",
@@ -115,10 +115,9 @@ router.beforeEach((to, from, next) => {
   // redirect to unauthorized page if not logged and trying to access a restricted page
   const { authorize } = to.meta;
   const isAuthenticated = store.getters["auth/isAuthenticated"];
-  const serverError = store.getters["error/serverError"];
   const userRole = store.getters["auth/role"];
 
-  if (!serverError && authorize.length) {
+  if (authorize.length) {
     if (!isAuthenticated || !authorize.includes(userRole)) {
       store.dispatch("message/warning", "Non sei autorizzato ad accedere!");
       router.push("/");

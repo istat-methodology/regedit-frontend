@@ -1,5 +1,11 @@
 import jwt from "jsonwebtoken";
 
+export const Role = {
+  Admin: "ROLE_ADMIN",
+  Reviewer: "ROLE_REVIEWER",
+  Supervisor: "ROLE_SUPERVISOR"
+};
+
 export const AuthStatus = {
   Logged: "LOGGED",
   InvalidCredentials: "INVALID_CREDENTIALS",
