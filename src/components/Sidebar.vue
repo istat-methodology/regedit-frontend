@@ -24,8 +24,10 @@
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
-      <template v-if="isReviewer">
-        <li class="c-sidebar-nav-title">Indirizzi</li>
+      <template v-if="isReviewer || assignedId > 0">
+        <li class="c-sidebar-nav-title">
+          Indirizzi <small class="pl-1">{{ assignedName }}</small>
+        </li>
         <li class="c-sidebar-nav-item">
           <router-link
             tag="a"
@@ -34,6 +36,9 @@
             :class="{ 'c-active': isAddressToRevise }"
           >
             <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da lavorare
+            <span class="badge badge-primary"
+              >{{ daLavorare }} / {{ total }}</span
+            >
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">
@@ -44,6 +49,9 @@
             :class="{ 'c-active': isAddressRevised }"
           >
             <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Lavorati
+            <span class="badge badge-success"
+              >{{ lavorati }} / {{ total }}</span
+            >
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">
@@ -54,6 +62,7 @@
             :class="{ 'c-active': isAddressSkip }"
           >
             <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Sospesi
+            <span class="badge badge-warning">{{ sospesi }} / {{ total }}</span>
           </router-link>
         </li>
       </template>
@@ -62,11 +71,14 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import progressMixin from "@/components/mixins/progress.mixin";
 
 export default {
   name: "Sidebar",
+  mixins: [progressMixin],
   computed: {
     ...mapGetters("auth", ["isReviewer"]),
+    ...mapGetters("address", ["assignedId", "assignedName"]),
     ...mapGetters("coreui", {
       show: "sidebarShow",
       minimize: "sidebarMinimize",
@@ -74,7 +86,20 @@ export default {
       isAddressToRevise: "isAddressToRevise",
       isAddressRevised: "isAddressRevised",
       isAddressSkip: "isAddressSkip"
-    })
+    }),
+    ...mapGetters("progress", ["reports"]),
+    total() {
+      return this.getTotal(this.reports);
+    },
+    daLavorare() {
+      return this.getDaLavorare(this.reports);
+    },
+    lavorati() {
+      return this.getValidati(this.reports) + this.getRevisionati(this.reports);
+    },
+    sospesi() {
+      return this.getSospesi(this.reports);
+    }
   }
 };
 </script>

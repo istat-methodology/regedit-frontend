@@ -1,4 +1,5 @@
 import { progressService } from "@/services";
+import { getUserId } from "@/common";
 
 const state = {
   reports: null
@@ -11,11 +12,11 @@ const mutations = {
 };
 
 const actions = {
-  findByUser({ commit, rootGetters }) {
-    let user = rootGetters["auth/user"];
-    if (user) {
+  findByUser({ commit }) {
+    let userId = getUserId();
+    if (userId > 0) {
       return progressService
-        .findByUser(user.userId)
+        .findByUser(userId)
         .then(data => {
           //console.log(data);
           commit("SET_REPORTS", data);

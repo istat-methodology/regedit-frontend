@@ -12,11 +12,17 @@
             hover
             pagination
           >
-            <template #name="{item}">
-              <td>
-                <CBadge color="primary">
-                  {{ item.name }}
-                </CBadge>
+            <template #assign="{item}">
+              <td class="py-2">
+                <CButton
+                  :color="getColor(item)"
+                  variant="outline"
+                  square
+                  size="sm"
+                  @click="assign(item)"
+                >
+                  {{ Boolean(item.assigned) ? "Selezionato" : "Seleziona" }}
+                </CButton>
               </td>
             </template>
           </CDataTable>
@@ -30,7 +36,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "DailyReport",
+  name: "Supervisor",
   data() {
     return {
       fields: [
@@ -38,6 +44,11 @@ export default {
           key: "email",
           label: "Identificativo",
           _style: "width:10%;"
+        },
+        {
+          key: "name",
+          label: "Nome",
+          _style: "width:25%;"
         },
         {
           key: "daLavorare",
@@ -55,20 +66,24 @@ export default {
           _style: "width:10%;"
         },
         {
-          key: "name",
-          label: "Nome",
-          _style: "width:25%;"
+          key: "assign",
+          label: "Seleziona",
+          _style: "width:5%;",
+          sorter: false,
+          filter: false
         }
       ]
     };
   },
   computed: {
     ...mapGetters("user", ["users"]),
+    ...mapGetters("address", ["assignedId"]),
     usersReport() {
-      return this.users.map((user, id) => {
+      return this.users.map((user, index) => {
         return {
           ...user,
-          id,
+          index,
+          assigned: this.isAssigned(user),
           daLavorare: 435,
           lavorati: 184,
           sospesi: 5
@@ -77,8 +92,30 @@ export default {
     }
   },
   methods: {
-    changeUser(value) {
-      this.$store.dispatch("dailyReport/findByUser", value.id);
+    isAssigned(user) {
+      return this.assignedId > 0
+        ? user.id === parseInt(this.assignedId)
+        : false;
+    },
+    clearAssigned() {
+      this.usersReport.map(user => {
+        return {
+          ...user,
+          assigned: false
+        };
+      });
+    },
+    assign(user) {
+      this.clearAssigned();
+      this.usersReport.splice(user.index, 1, { ...user, assigned: true });
+      this.$store.dispatch("address/setAssigned", {
+        id: user.id,
+        name: user.email
+      });
+      this.$store.dispatch("progress/findByUser");
+    },
+    getColor(user) {
+      return user.assigned ? "success" : "primary";
     }
   },
   created() {

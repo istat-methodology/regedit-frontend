@@ -56,25 +56,25 @@ const routes = [
         path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
-        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "catalogue/dug",
         name: "DugList",
         component: () => import("../views/catalogue/dug/DugList"),
-        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "catalogue/dug/add",
         name: "DugAdd",
         component: () => import("../views/catalogue/dug/DugAdd"),
-        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "catalogue/dug/edit/:id",
         name: "DugEdit",
         component: () => import("../views/catalogue/dug/DugEdit"),
-        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "settings/users",
@@ -120,11 +120,13 @@ router.beforeEach((to, from, next) => {
   if (authorize.length) {
     if (!isAuthenticated || !authorize.includes(userRole)) {
       store.dispatch("message/warning", "Non sei autorizzato ad accedere!");
-      router.push("/");
+      next({ name: "Home" });
+    } else {
+      next();
     }
+  } else {
+    next();
   }
-
-  next();
 });
 
 export default router;

@@ -1,9 +1,12 @@
 import { addressService } from "@/services";
+import { getUserId } from "@/common";
 
 const state = {
   addresses: null,
   address: null,
-  currentId: localStorage.getItem("addressId") || -1
+  currentId: localStorage.getItem("addressId") || -1,
+  assignedId: localStorage.getItem("assignedId") || -1,
+  assignedName: localStorage.getItem("assignedName") || ""
 };
 
 const mutations = {
@@ -15,8 +18,15 @@ const mutations = {
   },
   SET_CURRENT_ID(state, id) {
     state.currentId = id;
-    //store auth data in browser storage
+    //store current address in browser storage
     localStorage.setItem("addressId", id);
+  },
+  SET_ASSIGNED(state, user) {
+    state.assignedId = user.id;
+    state.assignedName = user.name;
+    //store assigned user in browser storage
+    localStorage.setItem("assignedId", user.id);
+    localStorage.setItem("assignedName", user.name);
   }
 };
 
@@ -33,12 +43,12 @@ const actions = {
       });
   },
 
-  findByUserAndState({ commit, rootGetters }, stateId) {
+  findByUserAndState({ commit }, stateId) {
     //get user from store
-    let user = rootGetters["auth/user"];
-    if (user) {
+    let userId = getUserId();
+    if (userId > 0) {
       return addressService
-        .findByUserAndState(user.userId, stateId)
+        .findByUserAndState(userId, stateId)
         .then(data => {
           //console.log(data);
           commit("SET_ADDRESSES", data);
@@ -49,12 +59,12 @@ const actions = {
     }
   },
 
-  findNextAddress({ commit, rootGetters }, stateId) {
+  findNextAddress({ commit }, stateId) {
     //get user from store
-    let user = rootGetters["auth/user"];
-    if (user) {
+    let userId = getUserId();
+    if (userId > 0) {
       return addressService
-        .findNextAddress(user.userId, stateId)
+        .findNextAddress(userId, stateId)
         .then(data => {
           //console.log(data);
           commit("SET_ADDRESS", data);
@@ -105,6 +115,10 @@ const actions = {
     commit("SET_CURRENT_ID", id);
   },
 
+  setAssigned({ commit }, user) {
+    commit("SET_ASSIGNED", user);
+  },
+
   clear({ commit }) {
     commit("SET_ADDRESSES", null);
     commit("SET_ADDRESS", null);
@@ -121,6 +135,12 @@ const getters = {
   },
   currentId: state => {
     return state.currentId;
+  },
+  assignedId: state => {
+    return state.assignedId;
+  },
+  assignedName: state => {
+    return state.assignedName;
   }
 };
 

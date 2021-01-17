@@ -54,12 +54,32 @@ axiosRegedit.interceptors.response.use(
         status: "Network error",
         message: "Please check your internet connection!"
       });
+      router.push("/error");
     } else {
       console.log("Error status", error.response.status);
-      //Server error
-      store.dispatch("error/serverError", error.response);
+      //Check if user is authenticated
+      let token = store.getters["auth/token"];
+      // Unauthorized access
+      if (error.response.status === 401 || error.response.status === 403) {
+        store.dispatch("error/serverError", {
+          status: error.response.status,
+          msg: "Unauthorized access!"
+        });
+        if (token) {
+          router.push("/login");
+          store.commit(
+            "auth/SET_ERROR_MSG",
+            "La sessione di lavoro è scaduta!"
+          );
+        } else {
+          router.push("/");
+        }
+      } else {
+        //Server error
+        store.dispatch("error/serverError", error.response);
+        router.push("/error");
+      }
     }
-    router.push("/error");
     return Promise.reject(error);
   }
 );
