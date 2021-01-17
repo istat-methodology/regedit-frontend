@@ -58,6 +58,7 @@ export default {
     "app-progress": Progress
   },
   computed: {
+    ...mapGetters("auth", ["isSupervisor", "user"]),
     ...mapGetters("address", ["address"]),
     ...mapGetters("coreui", ["isLoading"]),
     fonte() {
@@ -66,7 +67,12 @@ export default {
   },
   methods: {
     handleOpen() {
-      var addr = { ...this.address, stato: 1, validazione: "" };
+      var addr = {
+        ...this.address,
+        stato: 1,
+        validazione: "",
+        idSupervisor: this.isSupervisor ? this.user.userId : null
+      };
       this.$store.dispatch("address/open", addr).then(() => {
         this.$store.dispatch(
           "message/success",
@@ -75,15 +81,30 @@ export default {
       });
     },
     handleSkip() {
-      var addr = { ...this.address, stato: 3, validazione: "NO" };
+      var addr = {
+        ...this.address,
+        stato: 3,
+        validazione: "NO",
+        idSupervisor: this.isSupervisor ? this.user.userId : null
+      };
       this.update(addr, this.addressState.Skip);
     },
     handleValidate() {
-      var addr = { ...this.address, stato: 2, validazione: "SI" };
+      var addr = {
+        ...this.address,
+        stato: 2,
+        validazione: "SI",
+        idSupervisor: this.isSupervisor ? this.user.userId : null
+      };
       this.update(addr, this.addressState.Validated);
     },
     handleRevise() {
-      var addr = { ...this.address, stato: 2, validazione: "NO" };
+      var addr = {
+        ...this.address,
+        stato: 2,
+        validazione: "NO",
+        idSupervisor: this.isSupervisor ? this.user.userId : null
+      };
       this.update(addr, this.addressState.Revised);
     },
     update(address, state) {
