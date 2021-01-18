@@ -1,4 +1,4 @@
-import { progressService } from "@/services";
+import { progressReportService } from "@/services";
 import { getUserId } from "@/common";
 
 const state = {
@@ -15,7 +15,7 @@ const actions = {
   findByUser({ commit }) {
     let userId = getUserId();
     if (userId > 0) {
-      return progressService
+      return progressReportService
         .findByUser(userId)
         .then(data => {
           //console.log(data);
