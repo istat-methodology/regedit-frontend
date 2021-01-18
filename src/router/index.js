@@ -56,7 +56,7 @@ const routes = [
         path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
-        meta: { authorize: [Role.Admin, Role.Supervisor] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/dug",
