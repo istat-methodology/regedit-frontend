@@ -10,14 +10,10 @@ const axiosRegedit = axios.create({
   baseURL: process.env.VUE_APP_DEV_SERVER
 });
 
-//request interceptor
+//auth request interceptor
 axiosAuth.interceptors.request.use(
   config => {
     store.dispatch("coreui/loading", true);
-    const token = store.getters["auth/token"];
-    if (token && !("Authorization" in config.headers)) {
-      config.headers["Authorization"] = token;
-    }
     return config;
   },
   error => {
@@ -25,7 +21,19 @@ axiosAuth.interceptors.request.use(
   }
 );
 
-//request interceptor
+//auth response interceptor
+axiosAuth.interceptors.response.use(
+  response => {
+    store.dispatch("coreui/loading", false);
+    return response;
+  },
+  error => {
+    store.dispatch("coreui/loading", false);
+    return Promise.reject(error);
+  }
+);
+
+//regedit request interceptor
 axiosRegedit.interceptors.request.use(
   config => {
     store.dispatch("coreui/loading", true);
@@ -40,7 +48,7 @@ axiosRegedit.interceptors.request.use(
   }
 );
 
-//response interceptor
+//regedit response interceptor
 axiosRegedit.interceptors.response.use(
   response => {
     store.dispatch("coreui/loading", false);

@@ -34,6 +34,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { Role } from "@/common";
 
 export default {
   name: "Supervisor",
@@ -49,6 +50,11 @@ export default {
           key: "name",
           label: "Nome",
           _style: "width:25%;"
+        },
+        {
+          key: "role",
+          label: "Ruolo",
+          _style: "width:10%;"
         },
         {
           key: "daLavorare",
@@ -119,7 +125,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("user/findAll");
+    this.$store.dispatch("user/findByRole", Role.Reviewer);
   }
 };
 </script>

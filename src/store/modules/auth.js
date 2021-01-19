@@ -25,8 +25,8 @@ const mutations = {
     state.status = null;
     state.role = "";
 
-    //remove auth data from browser storage
-    localStorage.removeItem("token");
+    //Clear local storage!
+    localStorage.clear();
   },
   SET_STATUS(state, status) {
     state.status = status;
@@ -79,8 +79,13 @@ const actions = {
       return { status: null };
     }
   },
-  logout({ commit }) {
+  logout({ commit, dispatch }) {
     commit("CLEAR_AUTH_DATA");
+    //Clear messages
+    commit("SET_ERROR_MSG", null);
+    dispatch("message/clear", null, {
+      root: true
+    });
   }
 };
 const getters = {

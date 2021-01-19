@@ -30,53 +30,52 @@
                 <h3 class="mt-3">Accedi a RegEdit</h3>
               </CCardHeader>
               <CCardBody class="mb-0 mt-3">
-                <CForm>
-                  <CAlert color="danger" v-if="errorMsg" class="text-center">
-                    <span>{{ errorMsg }}</span>
-                  </CAlert>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <CIcon name="cilUser"></CIcon>
-                        </div>
+                <CAlert color="danger" v-if="errorMsg" class="text-center">
+                  <span>{{ errorMsg }}</span>
+                </CAlert>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <CIcon name="cilUser"></CIcon>
                       </div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Username"
-                        v-model.trim="username"
-                      />
                     </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Username"
+                      v-model.trim="username"
+                    />
                   </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <CIcon name="cil-lock-locked"></CIcon>
-                        </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <CIcon name="cil-lock-locked"></CIcon>
                       </div>
-                      <input
-                        type="password"
-                        class="form-control"
-                        placeholder="Password"
-                        autocomplete="on"
-                        v-model="password"
-                      />
                     </div>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      autocomplete="on"
+                      v-model="password"
+                    />
                   </div>
-                  <CRow>
-                    <CCol col="12">
-                      <CButton
-                        shape="square"
-                        size="sm"
-                        color="primary"
-                        @click.prevent="handleSubmit"
-                        >Sign in</CButton
-                      >
-                    </CCol>
-                  </CRow>
-                </CForm>
+                </div>
+                <CRow>
+                  <CCol col="12">
+                    <CButton
+                      :disabled="isLoading"
+                      shape="square"
+                      size="sm"
+                      color="primary"
+                      @click.prevent="handleSubmit"
+                      >Sign in</CButton
+                    >
+                  </CCol>
+                </CRow>
               </CCardBody>
             </CCard>
           </div>
@@ -87,15 +86,14 @@
 </template>
 
 <script>
-import { CRow, CCol, CForm } from "@coreui/vue";
+import { CRow, CCol } from "@coreui/vue";
 import { mapGetters } from "vuex";
 import { AuthStatus } from "@/common";
 
 export default {
   components: {
     CRow,
-    CCol,
-    CForm
+    CCol
   },
   data() {
     return {
@@ -104,7 +102,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["errorMsg"])
+    ...mapGetters("auth", ["errorMsg"]),
+    ...mapGetters("coreui", ["isLoading"])
   },
   methods: {
     handleSubmit() {
