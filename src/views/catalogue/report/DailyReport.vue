@@ -124,7 +124,7 @@ export default {
     }, */
     fillData() {
       this.datacollection = {
-        labels: ["11 Gennaio", "12 Gennaio", "13 Gennaio", "14 Gennaio"],
+        labels: ["11 Gennaio", "12 Gennaio", "13 Gennaio"],
         datasets: [
           {
             label: "Revisionati",
