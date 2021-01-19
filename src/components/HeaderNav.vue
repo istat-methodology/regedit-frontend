@@ -2,7 +2,9 @@
   <div class="c-subheader-nav mfe-2">
     <template v-if="isSupervisor">
       <span class="revisore">Revisore:</span>
-      <span class="revisore-name pl-1 pr-2">{{ assignedName }}</span>
+      <span class="revisore-name pl-1 pr-2">
+        {{ assignedName | dashEmpty }}</span
+      >
     </template>
     <template v-else>
       <a href=" https://www.google.it/maps" target="_blank" class="pr-3"

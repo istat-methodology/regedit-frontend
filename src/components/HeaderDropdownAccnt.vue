@@ -51,10 +51,11 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("auth/logout");
-      if (this.$router.currentRoute.path != "/catalogue") {
-        this.$router.push("/");
-      }
+      this.$store.dispatch("auth/logout").then(() => {
+        if (this.$router.currentRoute.path != "/catalogue") {
+          this.$router.push("/");
+        }
+      });
     }
   }
 };
