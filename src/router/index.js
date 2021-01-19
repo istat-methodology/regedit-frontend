@@ -44,7 +44,7 @@ const routes = [
         path: "catalogue/dailyreport",
         name: "DailyReport",
         component: () => import("../views/catalogue/report/DailyReport"),
-        meta: { authorize: [Role.Admin, Role.Supervisor] }
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/address/view/:state",

@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-12">
         <div class="card fade-in">
-          <bar-chart :chartData="chartData"> </bar-chart>
+          <!--  <bar-chart :chartData="chartData"> </bar-chart> -->
+          <line-chart :chartdata="datacollection"> </line-chart>
           <button @click="fillData()">Randomize</button>
         </div>
       </div>
@@ -39,16 +40,17 @@
 
 <script>
 import { mapGetters } from "vuex";
-import BarChart from "@/components/charts/BarChart";
+import LineChart from "@/components/charts/LineChart";
 
 export default {
-  name: "DailyReport",
+  name: "Report",
   components: {
-    BarChart
+    LineChart
   },
   data() {
     return {
       chartData: {},
+      datacollection: {},
       fields: [
         {
           key: "user",
@@ -83,7 +85,7 @@ export default {
 
       this.$store.dispatch("dailyReport/findByUser", value.id);
     },
-    fillData() {
+    /* fillData() {
       this.chartData = {
         labels: ["11 Gennaio", "12 Gennaio", "13 Gennaio", "14 Gennaio"],
         datasets: [
@@ -119,6 +121,40 @@ export default {
           }
         ]
       };
+    }, */
+    fillData() {
+      this.datacollection = {
+        labels: [this.getRandomInt(), this.getRandomInt()],
+        datasets: [
+          {
+            label: "Revisionati",
+            backgroundColor: "#2eb85c",
+            data: [
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
+          },
+          {
+            label: "Validati",
+            backgroundColor: "#e55353",
+            data: [
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
+          },
+          {
+            label: "Sospesi",
+            backgroundColor: "#f9b115",
+            data: [
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
+          }
+        ]
+      };
     },
     getRandomInt() {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
@@ -130,6 +166,7 @@ export default {
   created() {
     this.$store.dispatch("dailyReport/findAll");
     this.$store.dispatch("user/findAll");
+    this.fillData();
   }
 };
 </script>
