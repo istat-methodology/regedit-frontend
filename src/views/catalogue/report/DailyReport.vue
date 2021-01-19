@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="card fade-in">
           <!--  <bar-chart :chartData="chartData"> </bar-chart> -->
-          <line-chart :chartdata="datacollection"> </line-chart>
+          <line-chart :chartData="datacollection"> </line-chart>
           <button @click="fillData()">Randomize</button>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     /* ...mapGetters("coreui", ["isLoading"]), */
-    ...mapGetters("dailyReport", ["reports"]),
+    ...mapGetters("daily", ["reports"]),
     ...mapGetters("user", ["users"])
     /*  userNames() {
       return this.users.map(user => {
@@ -83,7 +83,7 @@ export default {
       //this.$router.push({path: a })
       console.log(value.id);
 
-      this.$store.dispatch("dailyReport/findByUser", value.id);
+      this.$store.dispatch("daily/findByUser", value.id);
     },
     /* fillData() {
       this.chartData = {
@@ -164,7 +164,7 @@ export default {
     this.fillData();
   },
   created() {
-    this.$store.dispatch("dailyReport/findAll");
+    this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
     this.fillData();
   }
