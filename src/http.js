@@ -57,29 +57,31 @@ axiosRegedit.interceptors.response.use(
   error => {
     store.dispatch("coreui/loading", false);
     //Network connection error
+    console.log("Error response " + error.response);
+    console.log("Error status " + error.response.status);
     if (typeof error.response === "undefined") {
-      store.dispatch("error/serverError", {
-        status: "Network error",
-        message: "Please check your internet connection!"
-      });
-      router.push("/error");
+      let token = store.getters["auth/token"];
+      if (token) {
+        store.commit("auth/SET_ERROR_MSG", "La sessione di lavoro è scaduta!");
+        router.push("/login");
+      }
     } else {
       console.log("Error status", error.response.status);
       //Check if user is authenticated
       let token = store.getters["auth/token"];
       // Unauthorized access
       if (error.response.status === 401 || error.response.status === 403) {
-        store.dispatch("error/serverError", {
-          status: error.response.status,
-          msg: "Unauthorized access!"
-        });
         if (token) {
-          router.push("/login");
           store.commit(
             "auth/SET_ERROR_MSG",
             "La sessione di lavoro è scaduta!"
           );
+          router.push("/login");
         } else {
+          store.dispatch("error/serverError", {
+            status: error.response.status,
+            msg: "Unauthorized access!"
+          });
           router.push("/");
         }
       } else {
