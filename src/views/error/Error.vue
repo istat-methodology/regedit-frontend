@@ -14,7 +14,7 @@
           <p class="text-muted">{{ msg }}</p>
         </div>
         <div class="clearfix mb-3">
-          <router-link tag="a" to="/">
+          <router-link tag="a" to="/login">
             <CIcon name="cilHome"></CIcon>
             <span>&nbsp;Go to home page</span>
           </router-link>
