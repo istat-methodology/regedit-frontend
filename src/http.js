@@ -56,14 +56,37 @@ axiosRegedit.interceptors.response.use(
   },
   error => {
     store.dispatch("coreui/loading", false);
-    let token = store.getters["auth/token"];
-    if (token) {
-      store.commit("auth/SET_ERROR_MSG", "La sessione di lavoro è scaduta!");
-      router.push("/login");
+    if (typeof error.response === "undefined") {
+      let token = store.getters["auth/token"];
+      if (token) {
+        store.commit("auth/SET_ERROR_MSG", "La sessione di lavoro è scaduta!");
+        router.push("/login");
+      }
     } else {
-      //Server error
-      store.dispatch("error/serverError", "Server error");
-      router.push("/error");
+      console.log("Error status", error.response.status);
+      //Check if user is authenticated
+      let token = store.getters["auth/token"];
+      // Unauthorized access
+      if (error.response.status === 401 || error.response.status === 403) {
+        if (token) {
+          store.commit("auth/CLEAR_AUTH_DATA");
+          store.commit(
+            "auth/SET_ERROR_MSG",
+            "La sessione di lavoro è scaduta!"
+          );
+          router.push("/login");
+        } else {
+          store.dispatch("error/serverError", {
+            status: error.response.status,
+            msg: "Unauthorized access!"
+          });
+          router.push("/");
+        }
+      } else {
+        //Server error
+        store.dispatch("error/serverError", error.response);
+        router.push("/error");
+      }
     }
     return Promise.reject(error);
   }

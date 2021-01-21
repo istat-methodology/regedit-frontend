@@ -86,14 +86,6 @@ const actions = {
     dispatch("message/clear", null, {
       root: true
     });
-    //Unassign reviewer
-    dispatch(
-      "address/setAssigned",
-      { id: -1, name: "" },
-      {
-        root: true
-      }
-    );
   }
 };
 const getters = {
