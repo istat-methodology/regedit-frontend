@@ -24,7 +24,7 @@ Vue.use(VueSpinners);
 Vue.component("v-select", vSelect);
 
 Vue.filter("dashEmpty", value => {
-  return value ? value : "-";
+  return value == null || value == "" ? "-" : value;
 });
 
 new Vue({

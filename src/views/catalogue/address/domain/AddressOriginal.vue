@@ -6,7 +6,7 @@
         class="card-header-actions"
         v-if="address.stato == addressState.TobeRevised"
       >
-        <CButton shape="square" size="sm" color="primary" @click="$emit('skip')"
+        <CButton shape="square" size="sm" color="warning" @click="$emit('skip')"
           >Salta</CButton
         >
       </div>
