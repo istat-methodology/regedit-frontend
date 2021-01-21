@@ -27,6 +27,10 @@ const mutations = {
     //store assigned user in browser storage
     localStorage.setItem("assignedId", user.id);
     localStorage.setItem("assignedName", user.name);
+  },
+  CLEAR_ASSIGNED(state) {
+    state.assignedId = -1;
+    state.assignedName = "";
   }
 };
 
@@ -119,10 +123,13 @@ const actions = {
     commit("SET_ASSIGNED", user);
   },
 
+  clearAssigned({ commit }) {
+    commit("CLEAR_ASSIGNED");
+  },
+
   clear({ commit }) {
     commit("SET_ADDRESSES", null);
     commit("SET_ADDRESS", null);
-    commit("SET_CURRENT_ID", -1);
   }
 };
 

@@ -91,6 +91,18 @@
           I valori possibili per questo campo sono soltanto numerici
         </p>
       </template>
+      <CTextarea
+        label="Note"
+        placeholder="Note"
+        rows="3"
+        v-model="address.note"
+        :class="{
+          'is-invalid': $v.address.note.$error
+        }"
+      />
+      <p class="error" v-if="$v.address.note.$error">
+        Si possono inserire max 500 caratteri
+      </p>
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
@@ -100,7 +112,7 @@
   </CCard>
 </template>
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required, maxLength } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 
@@ -173,6 +185,9 @@ export default {
         validationRuleCivEgon(civicoEgon) {
           return this.isFonteEgon ? /^[0-9?]+$/.test(civicoEgon) : true;
         }
+      },
+      note: {
+        maxLength: maxLength(500)
       }
     }
   },

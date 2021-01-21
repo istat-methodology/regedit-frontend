@@ -16,6 +16,9 @@
             hover
             pagination
           >
+            <template #validazione="{item}">
+              <td>{{ item.validazione | dashEmpty }}</td>
+            </template>
             <template #action="{item}">
               <td>
                 <CButton

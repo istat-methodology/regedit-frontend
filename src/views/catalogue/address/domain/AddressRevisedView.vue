@@ -43,6 +43,10 @@
         <label>Codice civico</label>
         <span>{{ address.cdpcivEgon | dashEmpty }}</span>
       </div>
+      <div>
+        <label>Note</label>
+        <span>{{ address.note | dashEmpty }}</span>
+      </div>
     </CCardBody>
   </CCard>
 </template>
