@@ -14,7 +14,9 @@
         </CHeaderNavLink>
       </template>
       <CDropdownHeader tag="div" class="text-center" color="light">
-        <strong>{{ user.sub }}</strong>
+        <strong>
+          <small class="pl-1" v-if="user">Logged in as:{{ user.name }}></small>
+        </strong>
       </CDropdownHeader>
       <CDropdownItem>
         <user-icon /><span class="pl-2"> Profile</span>
@@ -47,7 +49,8 @@ export default {
     CDropdownDivider
   },
   computed: {
-    ...mapGetters("auth", ["isAuthenticated", "user"])
+    ...mapGetters("auth", ["isAuthenticated"]),
+    ...mapGetters("user", ["user"])
   },
   methods: {
     logout() {
