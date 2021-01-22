@@ -91,6 +91,16 @@
           I valori possibili per questo campo sono soltanto numerici
         </p>
       </template>
+      <label>Fittizio*</label>
+      <v-select
+        label="value"
+        :options="fittizioValues"
+        v-model="fittizioLocal"
+        placeholder="Fittizio"
+        :class="{
+          'is-invalid': $v.fittizioLocal.$error
+        }"
+      ></v-select>
       <CTextarea
         label="Note"
         placeholder="Note"
@@ -115,13 +125,15 @@
 import { required, maxLength } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 import fonteMixin from "@/components/mixins/fonte.mixin";
+import fittizioMixin from "@/components/mixins/fittizio.mixin";
 
 export default {
   name: "AddressRevisedEdit",
-  mixins: [fonteMixin],
+  mixins: [fonteMixin, fittizioMixin],
   data: function() {
     return {
-      fonteLocal: this.fonte
+      fonteLocal: this.fonte,
+      fittizioLocal: this.fittizio
     };
   },
   props: {
@@ -130,6 +142,10 @@ export default {
       default: () => null
     },
     fonte: {
+      type: Object,
+      default: () => null
+    },
+    fittizio: {
       type: Object,
       default: () => null
     }
@@ -147,6 +163,9 @@ export default {
   },
   validations: {
     fonteLocal: {
+      required
+    },
+    fittizioLocal: {
       required
     },
     address: {
@@ -196,6 +215,7 @@ export default {
       this.$v.$touch(); //validate form data
       if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
         this.address.idFonte = this.fonteLocal.id;
+        this.address.fittizio = this.fittizioLocal.id;
         if (!this.isFonteEgon) {
           this.address.cdpstrEgon = null;
           this.address.cdpcivEgon = null;

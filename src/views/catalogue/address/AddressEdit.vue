@@ -25,6 +25,7 @@
               <address-revised-edit
                 :address="address"
                 :fonte="fonte"
+                :fittizio="fittizio"
                 @revise="handleRevise"
               />
             </template>
@@ -45,11 +46,12 @@ import AddressSuggested from "./domain/AddressSuggested";
 import AddressRevisedEdit from "./domain/AddressRevisedEdit";
 import AddressRevisedView from "./domain/AddressRevisedView";
 import fonteMixin from "@/components/mixins/fonte.mixin";
+import fittizioMixin from "@/components/mixins/fittizio.mixin";
 import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
   name: "AddressEdit",
-  mixins: [fonteMixin, addressMixin],
+  mixins: [fonteMixin, fittizioMixin, addressMixin],
   components: {
     "address-original": AddressOriginal,
     "address-suggested": AddressSuggested,
@@ -58,11 +60,14 @@ export default {
     "app-progress": Progress
   },
   computed: {
+    ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("auth", ["isSupervisor", "loggedUser"]),
     ...mapGetters("address", ["address"]),
-    ...mapGetters("coreui", ["isLoading"]),
     fonte() {
       return this.getFonteById(this.address.idFonte);
+    },
+    fittizio() {
+      return this.getFittizioById(parseInt(this.address.fittizio));
     }
   },
   methods: {

@@ -44,6 +44,10 @@
         <span>{{ address.cdpcivEgon | dashEmpty }}</span>
       </div>
       <div>
+        <label>Fittizio</label>
+        <span>{{ fittizio | dashEmpty }}</span>
+      </div>
+      <div>
         <label>Note</label>
         <span>{{ address.note | dashEmpty }}</span>
       </div>
@@ -53,10 +57,11 @@
 <script>
 import addressMixin from "@/components/mixins/address.mixin";
 import fonteMixin from "@/components/mixins/fonte.mixin";
+import fittizioMixin from "@/components/mixins/fittizio.mixin";
 
 export default {
   name: "AddressRevisedView",
-  mixins: [addressMixin, fonteMixin],
+  mixins: [addressMixin, fonteMixin, fittizioMixin],
   props: {
     address: {
       type: Object,
@@ -73,6 +78,10 @@ export default {
     fonte() {
       const addrFonte = this.getFonteById(this.address.idFonte);
       return addrFonte ? addrFonte.fonte : "";
+    },
+    fittizio() {
+      const addrFittizio = this.getFittizioById(this.address.fittizio);
+      return addrFittizio ? addrFittizio.value : "";
     }
   }
 };

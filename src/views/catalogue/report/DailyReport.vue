@@ -40,7 +40,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {Context} from "@/common";
+import { Context } from "@/common";
 import LineChart from "@/components/charts/LineChart";
 
 export default {
