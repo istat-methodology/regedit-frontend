@@ -33,6 +33,7 @@ import BlockIcon from "icons/ToyBrickOutline.vue";
 import ArrowLeftIcon from "icons/ChevronDoubleLeft.vue";
 import ArrowRightIcon from "icons/ChevronDoubleRight.vue";
 import WarningIcon from "icons/AlertOctagonOutline.vue";
+import ChartBarIcon from "icons/ChartBar.vue";
 
 Vue.component("chevron-right-icon", ChevronRightBoxIcon);
 Vue.component("home-icon", HomeIcon);
@@ -57,3 +58,4 @@ Vue.component("block-icon", BlockIcon);
 Vue.component("arrow-left-icon", ArrowLeftIcon);
 Vue.component("arrow-right-icon", ArrowRightIcon);
 Vue.component("warning-icon", WarningIcon);
+Vue.component("chart-bar-icon", ChartBarIcon);

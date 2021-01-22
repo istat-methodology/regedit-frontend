@@ -119,11 +119,14 @@ export default {
     assign(user) {
       this.clearAssigned();
       this.usersReport.splice(user.index, 1, { ...user, assigned: true });
-      this.$store.dispatch("address/setAssigned", {
-        id: user.id,
-        name: user.email
-      });
-      this.$store.dispatch("progress/findByUser");
+      this.$store
+        .dispatch("address/setAssigned", {
+          id: user.id,
+          name: user.email
+        })
+        .then(() => {
+          this.$store.dispatch("progress/findByUser");
+        });
     },
     getReport(user) {
       return this.reports.find(report => {
@@ -147,6 +150,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch("progress/findByUser");
     this.$store.dispatch("pivot/findAll").then(() => {
       this.$store.dispatch("user/findByRole", Role.Reviewer);
     });

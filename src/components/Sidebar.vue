@@ -24,6 +24,21 @@
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
+      <template v-if="isSupervisor">
+        <li class="c-sidebar-nav-title">
+          Report
+        </li>
+        <li class="c-sidebar-nav-item">
+          <router-link
+            tag="a"
+            :to="{ name: 'DailyReport' }"
+            class="c-sidebar-nav-link"
+            :class="{ 'c-active': isDailyReport }"
+          >
+            <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Giornaliero
+          </router-link>
+        </li>
+      </template>
       <template v-if="isReviewer || assignedId > 0">
         <li class="c-sidebar-nav-title">
           Indirizzi <small class="pl-1">{{ assignedName }}</small>
@@ -77,12 +92,13 @@ export default {
   name: "Sidebar",
   mixins: [progressMixin],
   computed: {
-    ...mapGetters("auth", ["isReviewer"]),
+    ...mapGetters("auth", ["isReviewer", "isSupervisor"]),
     ...mapGetters("address", ["assignedId", "assignedName"]),
     ...mapGetters("coreui", {
       show: "sidebarShow",
       minimize: "sidebarMinimize",
       isHome: "isHome",
+      isDailyReport: "isDailyReport",
       isAddressToRevise: "isAddressToRevise",
       isAddressRevised: "isAddressRevised",
       isAddressSkip: "isAddressSkip"

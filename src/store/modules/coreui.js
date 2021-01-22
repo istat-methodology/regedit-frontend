@@ -8,7 +8,8 @@ const state = {
   isHome: false,
   isAddressToRevise: false,
   isAddressRevised: false,
-  isAddressSkip: false
+  isAddressSkip: false,
+  isDailyReport: false
 };
 
 const mutations = {
@@ -38,6 +39,9 @@ const mutations = {
       case Context.AddressSkip:
         state.isAddressSkip = true;
         break;
+      case Context.DailyReport:
+        state.isDailyReport = true;
+        break;
       default:
         break;
     }
@@ -48,6 +52,7 @@ const mutations = {
     state.isAddressToRevise = false;
     state.isAddressRevised = false;
     state.isAddressSkip = false;
+    state.isDailyReport = false;
   },
   set(state, [variable, value]) {
     state[variable] = value;
@@ -97,6 +102,9 @@ const getters = {
   },
   isAddressSkip: state => {
     return state.isAddressSkip;
+  },
+  isDailyReport: state => {
+    return state.isDailyReport;
   }
 };
 

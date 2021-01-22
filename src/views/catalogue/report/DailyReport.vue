@@ -40,6 +40,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import {Context} from "@/common";
 import LineChart from "@/components/charts/LineChart";
 
 export default {
@@ -164,6 +165,7 @@ export default {
     this.fillData();
   },
   created() {
+    this.$store.dispatch("coreui/setContext", Context.DailyReport);
     this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
     this.fillData();
