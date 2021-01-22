@@ -57,7 +57,7 @@ axiosRegedit.interceptors.response.use(
   error => {
     store.dispatch("coreui/loading", false);
     if (typeof error.response === "undefined") {
-      //Server error
+      //Server access error
       store.dispatch(
         "error/serverError",
         "Server is not responding! Check your network connection..."
@@ -69,6 +69,7 @@ axiosRegedit.interceptors.response.use(
       let token = store.getters["auth/token"];
       // Unauthorized access
       if (error.response.status === 401 || error.response.status === 403) {
+        //Token expired
         if (token) {
           store.commit("auth/CLEAR_AUTH_DATA");
           store.commit(
@@ -81,10 +82,9 @@ axiosRegedit.interceptors.response.use(
             status: error.response.status,
             msg: "Unauthorized access!"
           });
-          router.push("/");
         }
       } else {
-        //Server error
+        //Internal server error
         store.dispatch("error/serverError", error.response);
         router.push("/error");
       }
