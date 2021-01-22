@@ -1,6 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" v-if="isLoading">
+      <tile></tile>
+    </div>
+    <div class="col-12" v-else>
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
@@ -82,7 +85,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("user", ["users"]),
+    ...mapGetters("pivot", ["reports"]),
     ...mapGetters("address", ["assignedId"]),
     usersReport() {
       return this.users.map((user, index) => {
@@ -90,9 +95,9 @@ export default {
           ...user,
           index,
           assigned: this.isAssigned(user),
-          daLavorare: 435,
-          lavorati: 184,
-          sospesi: 5
+          daLavorare: this.getDalavorare(user),
+          lavorati: this.getLavorati(user),
+          sospesi: this.getSospesi(user)
         };
       });
     }
@@ -120,13 +125,31 @@ export default {
       });
       this.$store.dispatch("progress/findByUser");
     },
+    getReport(user) {
+      return this.reports.find(report => {
+        return report.user == user.id;
+      });
+    },
+    getDalavorare(user) {
+      const report = this.getReport(user);
+      return report === undefined ? "-" : report.dalavorare;
+    },
+    getLavorati(user) {
+      const report = this.getReport(user);
+      return report === undefined ? "-" : report.revisionati + report.validati;
+    },
+    getSospesi(user) {
+      const report = this.getReport(user);
+      return report === undefined ? "-" : report.sospesi;
+    },
     getColor(user) {
       return user.assigned ? "success" : "primary";
     }
   },
   created() {
-    this.$store.dispatch("user/findByRole", Role.Reviewer);
-    this.$store.dispatch("pivot/findAll");
+    this.$store.dispatch("pivot/findAll").then(() => {
+      this.$store.dispatch("user/findByRole", Role.Reviewer);
+    });
   }
 };
 </script>

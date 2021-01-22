@@ -71,12 +71,13 @@ axiosRegedit.interceptors.response.use(
       if (error.response.status === 401 || error.response.status === 403) {
         //Token expired
         if (token) {
-          store.commit("auth/CLEAR_AUTH_DATA");
-          store.commit(
-            "auth/SET_ERROR_MSG",
-            "La sessione di lavoro è scaduta!"
-          );
-          router.push("/login");
+          store.dispatch("auth/logout").then(() => {
+            store.commit(
+              "auth/SET_ERROR_MSG",
+              "La sessione di lavoro è scaduta!"
+            );
+            router.push("/login");
+          });
         } else {
           store.dispatch("error/serverError", {
             status: error.response.status,
