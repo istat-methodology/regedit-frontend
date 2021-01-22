@@ -33,49 +33,51 @@
                 <CAlert color="danger" v-if="errorMsg" class="text-center">
                   <span>{{ errorMsg }}</span>
                 </CAlert>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <CIcon name="cilUser"></CIcon>
+                <CForm>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <CIcon name="cilUser"></CIcon>
+                        </div>
                       </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Username"
+                        v-model.trim="username"
+                      />
                     </div>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                      v-model.trim="username"
-                    />
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <CIcon name="cil-lock-locked"></CIcon>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <CIcon name="cil-lock-locked"></CIcon>
+                        </div>
                       </div>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        autocomplete="on"
+                        v-model="password"
+                      />
                     </div>
-                    <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Password"
-                      autocomplete="on"
-                      v-model="password"
-                    />
                   </div>
-                </div>
-                <CRow>
-                  <CCol col="12">
-                    <CButton
-                      :disabled="isLoading"
-                      shape="square"
-                      size="sm"
-                      color="primary"
-                      @click.prevent="handleSubmit"
-                      >Sign in</CButton
-                    >
-                  </CCol>
-                </CRow>
+                  <CRow>
+                    <CCol col="12">
+                      <CButton
+                        :disabled="isLoading"
+                        shape="square"
+                        size="sm"
+                        color="primary"
+                        @click.prevent="handleSubmit"
+                        >Sign in</CButton
+                      >
+                    </CCol>
+                  </CRow>
+                </CForm>
               </CCardBody>
             </CCard>
           </div>
@@ -86,14 +88,15 @@
 </template>
 
 <script>
-import { CRow, CCol } from "@coreui/vue";
+import { CRow, CCol, CForm } from "@coreui/vue";
 import { mapGetters } from "vuex";
 import { AuthStatus } from "@/common";
 
 export default {
   components: {
     CRow,
-    CCol
+    CCol,
+    CForm
   },
   data() {
     return {

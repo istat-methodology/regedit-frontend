@@ -14,7 +14,7 @@
         </CHeaderNavLink>
       </template>
       <CDropdownHeader tag="div" class="text-center" color="light">
-        Logged: {{ user.sub }}
+        Logged: {{ loggedUser.sub }}
       </CDropdownHeader>
       <CDropdownItem>
         <user-icon /><span class="pl-2"> Profile</span>
@@ -47,7 +47,7 @@ export default {
     CDropdownDivider
   },
   computed: {
-    ...mapGetters("auth", ["isAuthenticated", "user"])
+    ...mapGetters("auth", ["isAuthenticated", "loggedUser"])
   },
   methods: {
     logout() {

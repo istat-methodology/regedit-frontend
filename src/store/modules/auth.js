@@ -4,7 +4,7 @@ import { AuthStatus, getUser, getRole } from "@/common";
 
 const state = {
   token: localStorage.getItem("token") || null,
-  user: getUser(localStorage.getItem("token")),
+  loggedUser: getUser(localStorage.getItem("token")),
   role: getRole(localStorage.getItem("token")),
   status: null,
   errorMsg: null
@@ -13,7 +13,7 @@ const state = {
 const mutations = {
   AUTH_USER(state, { token }) {
     state.token = token;
-    state.user = getUser(token);
+    state.loggedUser = getUser(token);
     state.role = getRole(token);
 
     //store auth data in browser storage
@@ -21,7 +21,7 @@ const mutations = {
   },
   CLEAR_AUTH_DATA(state) {
     state.token = null;
-    state.user = null;
+    state.loggedUser = null;
     state.status = null;
     state.role = "";
 
@@ -96,8 +96,8 @@ const actions = {
   }
 };
 const getters = {
-  user: state => {
-    return state.user;
+  loggedUser: state => {
+    return state.loggedUser;
   },
   isAuthenticated: state => {
     return state.token !== null;

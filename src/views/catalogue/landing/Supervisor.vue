@@ -126,6 +126,7 @@ export default {
   },
   created() {
     this.$store.dispatch("user/findByRole", Role.Reviewer);
+    this.$store.dispatch("pivot/findAll");
   }
 };
 </script>

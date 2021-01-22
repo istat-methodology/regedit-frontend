@@ -58,7 +58,7 @@ export default {
     "app-progress": Progress
   },
   computed: {
-    ...mapGetters("auth", ["isSupervisor", "user"]),
+    ...mapGetters("auth", ["isSupervisor", "loggedUser"]),
     ...mapGetters("address", ["address"]),
     ...mapGetters("coreui", ["isLoading"]),
     fonte() {
@@ -71,7 +71,7 @@ export default {
         ...this.address,
         stato: 1,
         validazione: "",
-        idSupervisor: this.isSupervisor ? this.user.userId : null
+        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
       this.$store.dispatch("address/open", addr).then(() => {
         this.$store.dispatch(
@@ -85,7 +85,7 @@ export default {
         ...this.address,
         stato: 3,
         validazione: "NO",
-        idSupervisor: this.isSupervisor ? this.user.userId : null
+        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
       this.update(addr, this.addressState.Skip);
     },
@@ -94,7 +94,7 @@ export default {
         ...this.address,
         stato: 2,
         validazione: "SI",
-        idSupervisor: this.isSupervisor ? this.user.userId : null
+        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
       this.update(addr, this.addressState.Validated);
     },
@@ -103,7 +103,7 @@ export default {
         ...this.address,
         stato: 2,
         validazione: "NO",
-        idSupervisor: this.isSupervisor ? this.user.userId : null
+        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
       this.update(addr, this.addressState.Revised);
     },

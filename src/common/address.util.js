@@ -5,7 +5,7 @@ export function getUserId() {
   if (store.getters["auth/isSupervisor"])
     id = store.getters["address/assignedId"];
   else {
-    let user = store.getters["auth/user"];
+    let user = store.getters["auth/loggedUser"];
     if (user) id = user.userId;
   }
   return id;

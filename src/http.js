@@ -57,11 +57,12 @@ axiosRegedit.interceptors.response.use(
   error => {
     store.dispatch("coreui/loading", false);
     if (typeof error.response === "undefined") {
-      let token = store.getters["auth/token"];
-      if (token) {
-        store.commit("auth/SET_ERROR_MSG", "La sessione di lavoro è scaduta!");
-        router.push("/login");
-      }
+      //Server error
+      store.dispatch(
+        "error/serverError",
+        "Server is not responding! Check your network connection..."
+      );
+      router.push("/error");
     } else {
       console.log("Error status", error.response.status);
       //Check if user is authenticated
