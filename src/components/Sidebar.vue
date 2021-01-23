@@ -31,11 +31,11 @@
         <li class="c-sidebar-nav-item">
           <router-link
             tag="a"
-            :to="{ name: 'DailyReport' }"
+            :to="{ name: 'TotalReport' }"
             class="c-sidebar-nav-link"
-            :class="{ 'c-active': isDailyReport }"
+            :class="{ 'c-active': isTotalReport }"
           >
-            <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Giornaliero
+            <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Totali
           </router-link>
         </li>
       </template>
@@ -99,6 +99,7 @@ export default {
       minimize: "sidebarMinimize",
       isHome: "isHome",
       isDailyReport: "isDailyReport",
+      isTotalReport: "isTotalReport",
       isAddressToRevise: "isAddressToRevise",
       isAddressRevised: "isAddressRevised",
       isAddressSkip: "isAddressSkip"

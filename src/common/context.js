@@ -3,5 +3,6 @@ export const Context = {
   AddressToRevise: 1,
   AddressRevised: 2,
   AddressSkip: 3,
-  DailyReport: 4
+  DailyReport: 4,
+  TotalReport: 5
 };
