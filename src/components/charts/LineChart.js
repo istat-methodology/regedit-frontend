@@ -15,7 +15,7 @@ export default {
         return {
           responsive: true,
           maintainAspectRatio: false
-        }
+        };
       }
     }
   },

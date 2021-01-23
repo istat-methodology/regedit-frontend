@@ -11,7 +11,7 @@ export default {
         daLavorare: report ? report.dalavorare : "-",
         validati: report ? report.validati : "-",
         revisionati: report ? report.revisionati : "-",
-        sospesi: report ? report.sospesi : "-" 
+        sospesi: report ? report.sospesi : "-"
       };
     }
   }
