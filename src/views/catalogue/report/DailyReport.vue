@@ -42,9 +42,11 @@
 import { mapGetters } from "vuex";
 import { Context } from "@/common";
 import LineChart from "@/components/charts/LineChart";
+import pivotMixin from "@/components/mixins/pivot.mixin";
 
 export default {
   name: "Report",
+  mixins: [pivotMixin],
   components: {
     LineChart
   },
@@ -72,6 +74,7 @@ export default {
   computed: {
     /* ...mapGetters("coreui", ["isLoading"]), */
     ...mapGetters("daily", ["reports"]),
+    ...mapGetters("pivot", ["reportsByDate"]),
     ...mapGetters("user", ["users"])
     /*  userNames() {
       return this.users.map(user => {
@@ -85,6 +88,7 @@ export default {
       console.log(value.id);
 
       this.$store.dispatch("daily/findByUser", value.id);
+      this.$store.dispatch("pivot/findByDate", 2, "2021-01-01", "2021-02-02");
     },
     /* fillData() {
       this.chartData = {
@@ -125,7 +129,7 @@ export default {
     }, */
     fillData() {
       this.datacollection = {
-        labels: ["11 Gennaio", "12 Gennaio", "13 Gennaio"],
+        labels: this.getLabels(this.reportsByDate),
         datasets: [
           {
             label: "Revisionati",
@@ -168,6 +172,7 @@ export default {
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
+    this.$store.dispatch("pivot/findByDate", 2, "2021-01-01", "2021-02-02");
     this.fillData();
   }
 };
