@@ -54,11 +54,6 @@ export default {
         {
           key: "name",
           label: "Nome",
-          _style: "width:25%;"
-        },
-        {
-          key: "role",
-          label: "Ruolo",
           _style: "width:10%;"
         },
         {

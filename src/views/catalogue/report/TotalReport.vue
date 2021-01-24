@@ -3,9 +3,7 @@
     <div class="row">
       <div class="col-12">
         <CCard>
-          <CCardHeader
-            >Totale indirizzi lavorati da ciascun revisore</CCardHeader
-          >
+          <CCardHeader>Totale indirizzi lavorati</CCardHeader>
           <CCardBody>
             <bar-chart :chartData="chartData" />
           </CCardBody>
@@ -19,11 +17,12 @@
 import { mapGetters } from "vuex";
 import { Context, Role } from "@/common";
 import BarChart from "@/components/charts/BarChart";
+import chartMixin from "@/components/mixins/chart.mixin";
 import pivotMixin from "@/components/mixins/pivot.mixin";
 
 export default {
   name: "TotalReport",
-  mixins: [pivotMixin],
+  mixins: [chartMixin, pivotMixin],
   components: {
     BarChart
   },
@@ -43,14 +42,16 @@ export default {
       data.labels = ["Da lavorare", "Validati", "Revisionati", "Sospesi"];
       data.datasets = [];
       this.usersReport.forEach(user => {
+        const color = this.getColor();
         data.datasets.push({
           label: user.email,
-          backgroundColor: "rgba(46, 184, 92, 0.2)",
-          borderColor: "#2eb85c",
+          backgroundColor: color.background,
+          borderColor: color.border,
           borderWidth: 2,
           data: [user.daLavorare, user.validati, user.revisionati, user.sospesi]
         });
       });
+      this.clearColor();
       return data;
     }
   },
