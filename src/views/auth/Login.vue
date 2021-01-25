@@ -120,8 +120,8 @@ export default {
     }
   },
   created() {
-    //Clear messages
-    this.$store.dispatch("message/clear");
+    //Clear session
+    this.$store.dispatch("auth/logout");
   }
 };
 </script>

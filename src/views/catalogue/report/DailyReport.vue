@@ -1,20 +1,39 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-4">
-        <!-- <label>Utenti</label> -->
-        <v-select
-          v-if="users"
-          label="name"
-          :options="users"
-          placeholder="Utente"
-          @input="changeUser"
-        ></v-select>
+      <div class="col-12">
+        <CCard>
+          <CCardHeader>
+            Filtri di ricerca
+          </CCardHeader>
+          <CCardBody>
+            <div class="row">
+              <div class="col-4">
+                <!-- <label>Utenti</label> -->
+                <v-select
+                  v-if="users"
+                  label="name"
+                  :options="users"
+                  placeholder="Utente"
+                  @input="changeUser"
+                ></v-select>
+              </div>
+              <div class="col-4">
+                <datepicker
+                  :value="date"
+                  input-class="form-control"
+                ></datepicker>
+              </div>
+              <div class="col-4">
+                <datepicker
+                  :value="date"
+                  input-class="form-control"
+                ></datepicker>
+              </div>
+            </div>
+          </CCardBody>
+        </CCard>
       </div>
-      <div class="col-4">
-        <datepicker :value="date"></datepicker>
-      </div>
-      <div class="col-4"><datepicker :value="date"></datepicker></div>
     </div>
     <div class="row">
       <div class="col-12">
@@ -158,5 +177,12 @@ export default {
 .small {
   max-width: 600px;
   margin: 150px auto;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #fff;
+  opacity: 1;
+  margin-bottom: 1rem;
 }
 </style>

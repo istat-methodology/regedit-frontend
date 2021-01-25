@@ -54,6 +54,11 @@ export default {
           _style: "width:10%;"
         },
         {
+          key: "userSurname",
+          label: "Cognome",
+          _style: "width:10%;"
+        },
+        {
           key: "dalavorare",
           label: "Da lavorare",
           _style: "width:10%;"
@@ -88,13 +93,15 @@ export default {
     ...mapGetters("pivot", ["reports"]),
     ...mapGetters("address", ["assignedId"]),
     usersReport() {
-      return this.reports.map((userReport, index) => {
-        return {
-          ...userReport,
-          index,
-          assigned: this.isAssigned(userReport)
-        };
-      });
+      return this.reports
+        ? this.reports.map((userReport, index) => {
+            return {
+              ...userReport,
+              index,
+              assigned: this.isAssigned(userReport)
+            };
+          })
+        : [];
     }
   },
   methods: {
