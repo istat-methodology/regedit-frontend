@@ -37,27 +37,24 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Role } from "@/common";
-import pivotMixin from "@/components/mixins/pivot.mixin";
 
 export default {
   name: "Supervisor",
-  mixins: [pivotMixin],
   data() {
     return {
       fields: [
         {
-          key: "email",
+          key: "userEmail",
           label: "Identificativo",
           _style: "width:10%;"
         },
         {
-          key: "name",
+          key: "userName",
           label: "Nome",
           _style: "width:10%;"
         },
         {
-          key: "daLavorare",
+          key: "dalavorare",
           label: "Da lavorare",
           _style: "width:10%;"
         },
@@ -88,24 +85,22 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("user", ["users"]),
     ...mapGetters("pivot", ["reports"]),
     ...mapGetters("address", ["assignedId"]),
     usersReport() {
-      return this.users.map((user, index) => {
+      return this.reports.map((userReport, index) => {
         return {
-          ...user,
+          ...userReport,
           index,
-          assigned: this.isAssigned(user),
-          ...this.getPivot(this.reports, user)
+          assigned: this.isAssigned(userReport)
         };
       });
     }
   },
   methods: {
-    isAssigned(user) {
+    isAssigned(userReport) {
       return this.assignedId > 0
-        ? user.id === parseInt(this.assignedId)
+        ? userReport.userId === parseInt(this.assignedId)
         : false;
     },
     clearAssigned() {
@@ -116,13 +111,16 @@ export default {
         };
       });
     },
-    assign(user) {
+    assign(userReport) {
       this.clearAssigned();
-      this.usersReport.splice(user.index, 1, { ...user, assigned: true });
+      this.usersReport.splice(userReport.index, 1, {
+        ...userReport,
+        assigned: true
+      });
       this.$store
         .dispatch("address/setAssigned", {
-          id: user.id,
-          name: user.email
+          id: userReport.userId,
+          name: userReport.userEmail
         })
         .then(() => {
           this.$store.dispatch("progress/findByUser");
@@ -134,9 +132,7 @@ export default {
   },
   created() {
     this.$store.dispatch("progress/findByUser");
-    this.$store.dispatch("pivot/findAll").then(() => {
-      this.$store.dispatch("user/findByRole", Role.Reviewer);
-    });
+    this.$store.dispatch("pivot/findAll");
   }
 };
 </script>

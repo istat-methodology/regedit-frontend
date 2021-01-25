@@ -34,7 +34,7 @@ export default {
       this.reports.forEach(report => {
         const color = this.getColor();
         chartData.datasets.push({
-          label: report.user,
+          label: report.userEmail,
           backgroundColor: color.background,
           borderColor: color.border,
           borderWidth: 2,
