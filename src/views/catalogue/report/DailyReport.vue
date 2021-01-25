@@ -1,10 +1,26 @@
 <template>
   <div>
     <div class="row">
+      <div class="col-4">
+        <!-- <label>Utenti</label> -->
+        <v-select
+          v-if="users"
+          label="name"
+          :options="users"
+          placeholder="Utente"
+          @input="changeUser"
+        ></v-select>
+      </div>
+      <div class="col-4">
+        <datepicker :value="date"></datepicker>
+      </div>
+      <div class="col-4"><datepicker :value="date"></datepicker></div>
+    </div>
+    <div class="row">
       <div class="col-12">
         <div class="card fade-in">
           <line-chart :chartData="chartData"> </line-chart>
-          <button @click="fillData()">Randomize</button>
+          <!-- <button @click="fillData()">Randomize</button> -->
         </div>
       </div>
     </div>
@@ -12,14 +28,6 @@
       <div class="col-12">
         <div class="card fade-in">
           <CCardBody>
-            <label>Utenti</label>
-            <v-select
-              v-if="users"
-              label="name"
-              :options="users"
-              placeholder="Utenti"
-              @input="changeUser"
-            ></v-select>
             <CDataTable
               :items="reports"
               :fields="fields"
@@ -42,15 +50,17 @@ import { mapGetters } from "vuex";
 import { Context } from "@/common";
 import LineChart from "@/components/charts/LineChart";
 import pivotMixin from "@/components/mixins/pivot.mixin";
-
+import Datepicker from "vuejs-datepicker";
 export default {
   name: "Report",
   mixins: [pivotMixin],
   components: {
-    LineChart
+    LineChart,
+    Datepicker
   },
   data() {
     return {
+      date: new Date(2016, 9, 16),
       fields: [
         {
           key: "user",
