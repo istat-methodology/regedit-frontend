@@ -23,23 +23,23 @@ export default {
       });
       var datasets = [
         {
-          label: "dalavorare",
-          backgroundColor: "primary",
+          label: "da lavorare",
+          backgroundColor: "#c6e2ff",
           data: dalavorare
         },
         {
           label: "validati",
-          backgroundColor: "success",
+          backgroundColor: "#dbf2e3",
           data: validati
         },
         {
           label: "revisionati",
-          backgroundColor: "danger",
+          backgroundColor: "#fee2e1",
           data: revisionati
         },
         {
           label: "sospesi",
-          backgroundColor: "warning",
+          backgroundColor: "#fff3cd",
           data: sospesi
         }
       ];
