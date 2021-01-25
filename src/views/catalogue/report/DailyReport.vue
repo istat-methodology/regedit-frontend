@@ -98,7 +98,12 @@ export default {
   methods: {
     changeUser(value) {
       this.$store.dispatch("daily/findByUser", value.id);
-      this.$store.dispatch("pivot/findByDate", 2, "2021-01-01", "2021-02-02");
+      this.$store.dispatch(
+        "pivot/findByDate",
+        value.id,
+        "2021-01-01",
+        "2021-02-02"
+      );
     },
     fillData() {
       this.datacollection = {
