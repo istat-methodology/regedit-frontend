@@ -51,7 +51,6 @@ export default {
   },
   data() {
     return {
-      chartData: {},
       fields: [
         {
           key: "user",
@@ -72,7 +71,29 @@ export default {
   computed: {
     ...mapGetters("daily", ["reports"]),
     ...mapGetters("pivot", ["reportsByDate"]),
-    ...mapGetters("user", ["users"])
+    ...mapGetters("user", ["users"]),
+    chartData() {
+      var chartData = {};
+      chartData.labels = this.getLabels(this.reportsByDate);
+      chartData.datasets = [];
+      this.reportsByDate.forEach(report => {
+        /*  const color = this.getColor(); */
+        chartData.datasets.push({
+          /*  label: report.user,
+          backgroundColor: color.background,
+          borderColor: color.border,
+          borderWidth: 2, */
+          data: [
+            report.dalavorare,
+            report.validati,
+            report.revisionati,
+            report.sospesi
+          ]
+        });
+      });
+      /* this.clearColor(); */
+      return chartData;
+    }
   },
   methods: {
     changeUser(value) {
