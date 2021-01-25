@@ -77,24 +77,6 @@ export default {
       if (this.reportsByDate) {
         chartData.labels = this.getLabels(this.reportsByDate);
         chartData.datasets = this.getDatasets(this.reportsByDate);
-        /* this.reportsByDate.forEach(report => {
-        const color = this.getColor();
-        chartData.datasets.push({
-          label: report.user,
-          backgroundColor: color.background,
-          borderColor: color.border,
-          borderWidth: 2,
-          label: report.dataMod,
-
-          data: [
-            report.dalavorare,
-            report.validati,
-            report.revisionati,
-            report.sospesi
-          ]
-        }); 
-      });
-      this.clearColor(); */
       }
       return chartData;
     }
@@ -109,7 +91,7 @@ export default {
         "2021-02-02"
       );
     },
-    fillData() {
+    /* fillData() {
       this.datacollection = {
         labels: this.getLabels(this.reportsByDate),
         datasets: [
@@ -145,7 +127,7 @@ export default {
           }
         ]
       };
-    },
+    }, */
     getRandomInt() {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
