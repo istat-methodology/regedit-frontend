@@ -94,7 +94,7 @@ export default {
     getStatoString(stato, validazione) {
       switch (stato) {
         case 1:
-          return "DA LAVORARE";
+          return "LAVORA";
         case 2:
           if (validazione == "SI") {
             return "VALIDATO";

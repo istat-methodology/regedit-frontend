@@ -15,51 +15,44 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Context, Role } from "@/common";
+import { Context } from "@/common";
 import BarChart from "@/components/charts/BarChart";
 import chartMixin from "@/components/mixins/chart.mixin";
-import pivotMixin from "@/components/mixins/pivot.mixin";
 
 export default {
   name: "TotalReport",
-  mixins: [chartMixin, pivotMixin],
+  mixins: [chartMixin],
   components: {
     BarChart
   },
   computed: {
     ...mapGetters("pivot", ["reports"]),
-    ...mapGetters("user", ["users"]),
-    usersReport() {
-      return this.users.map(user => {
-        return {
-          ...user,
-          ...this.getPivot(this.reports, user)
-        };
-      });
-    },
     chartData() {
-      var data = {};
-      data.labels = ["Da lavorare", "Validati", "Revisionati", "Sospesi"];
-      data.datasets = [];
-      this.usersReport.forEach(user => {
+      var chartData = {};
+      chartData.labels = ["Da lavorare", "Validati", "Revisionati", "Sospesi"];
+      chartData.datasets = [];
+      this.reports.forEach(report => {
         const color = this.getColor();
-        data.datasets.push({
-          label: user.email,
+        chartData.datasets.push({
+          label: report.user,
           backgroundColor: color.background,
           borderColor: color.border,
           borderWidth: 2,
-          data: [user.daLavorare, user.validati, user.revisionati, user.sospesi]
+          data: [
+            report.dalavorare,
+            report.validati,
+            report.revisionati,
+            report.sospesi
+          ]
         });
       });
       this.clearColor();
-      return data;
+      return chartData;
     }
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.TotalReport);
-    this.$store.dispatch("pivot/findAll").then(() => {
-      this.$store.dispatch("user/findByRole", Role.Reviewer);
-    });
+    this.$store.dispatch("pivot/findAll");
   }
 };
 </script>

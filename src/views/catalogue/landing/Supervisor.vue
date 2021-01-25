@@ -128,23 +128,6 @@ export default {
           this.$store.dispatch("progress/findByUser");
         });
     },
-    getReport(user) {
-      return this.reports.find(report => {
-        return report.user == user.id;
-      });
-    },
-    getDalavorare(user) {
-      const report = this.getReport(user);
-      return report === undefined ? "-" : report.dalavorare;
-    },
-    getLavorati(user) {
-      const report = this.getReport(user);
-      return report === undefined ? "-" : report.revisionati + report.validati;
-    },
-    getSospesi(user) {
-      const report = this.getReport(user);
-      return report === undefined ? "-" : report.sospesi;
-    },
     getColor(user) {
       return user.assigned ? "success" : "primary";
     }
