@@ -74,24 +74,28 @@ export default {
     ...mapGetters("user", ["users"]),
     chartData() {
       var chartData = {};
-      chartData.labels = this.getLabels(this.reportsByDate);
-      chartData.datasets = [];
-      this.reportsByDate.forEach(report => {
-        /*  const color = this.getColor(); */
+      if (this.reportsByDate) {
+        chartData.labels = this.getLabels(this.reportsByDate);
+        chartData.datasets = this.getDatasets(this.reportsByDate);
+        /* this.reportsByDate.forEach(report => {
+        const color = this.getColor();
         chartData.datasets.push({
-          /*  label: report.user,
+          label: report.user,
           backgroundColor: color.background,
           borderColor: color.border,
-          borderWidth: 2, */
+          borderWidth: 2,
+          label: report.dataMod,
+
           data: [
             report.dalavorare,
             report.validati,
             report.revisionati,
             report.sospesi
           ]
-        });
+        }); 
       });
-      /* this.clearColor(); */
+      this.clearColor(); */
+      }
       return chartData;
     }
   },
