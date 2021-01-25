@@ -24,22 +24,22 @@ export default {
       var datasets = [
         {
           label: "dalavorare",
-          backgroundColor: "",
+          backgroundColor: "primary",
           data: dalavorare
         },
         {
           label: "validati",
-          backgroundColor: "",
+          backgroundColor: "success",
           data: validati
         },
         {
           label: "revisionati",
-          backgroundColor: "",
+          backgroundColor: "danger",
           data: revisionati
         },
         {
           label: "sospesi",
-          backgroundColor: "",
+          backgroundColor: "warning",
           data: sospesi
         }
       ];
