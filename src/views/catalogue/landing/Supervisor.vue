@@ -38,9 +38,11 @@
 <script>
 import { mapGetters } from "vuex";
 import { Role } from "@/common";
+import pivotMixin from "@/components/mixins/pivot.mixin";
 
 export default {
   name: "Supervisor",
+  mixins: [pivotMixin],
   data() {
     return {
       fields: [
@@ -65,8 +67,13 @@ export default {
           _style: "width:10%;"
         },
         {
-          key: "lavorati",
-          label: "Lavorati",
+          key: "validati",
+          label: "Validati",
+          _style: "width:10%;"
+        },
+        {
+          key: "revisionati",
+          label: "Revisionati",
           _style: "width:10%;"
         },
         {
@@ -95,9 +102,7 @@ export default {
           ...user,
           index,
           assigned: this.isAssigned(user),
-          daLavorare: this.getDalavorare(user),
-          lavorati: this.getLavorati(user),
-          sospesi: this.getSospesi(user)
+          ...this.getPivot(this.reports, user)
         };
       });
     }

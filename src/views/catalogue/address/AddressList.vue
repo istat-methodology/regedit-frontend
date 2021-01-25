@@ -49,6 +49,7 @@
 import { mapGetters } from "vuex";
 import Progress from "@/components/Progress";
 import addressMixin from "@/components/mixins/address.mixin";
+
 export default {
   name: "AddressList",
   mixins: [addressMixin],

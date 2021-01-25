@@ -11,7 +11,12 @@ export default {
     },
     options: {
       type: Object,
-      default: null
+      default: () => {
+        return {
+          responsive: true,
+          maintainAspectRatio: false
+        };
+      }
     }
   },
   mounted() {

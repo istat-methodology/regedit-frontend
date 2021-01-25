@@ -3,8 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card fade-in">
-          <!--  <bar-chart :chartData="chartData"> </bar-chart> -->
-          <line-chart :chartData="datacollection"> </line-chart>
+          <line-chart :chartData="chartData"> </line-chart>
           <button @click="fillData()">Randomize</button>
         </div>
       </div>
@@ -53,7 +52,6 @@ export default {
   data() {
     return {
       chartData: {},
-      datacollection: {},
       fields: [
         {
           key: "user",
@@ -72,68 +70,23 @@ export default {
     };
   },
   computed: {
-    /* ...mapGetters("coreui", ["isLoading"]), */
     ...mapGetters("daily", ["reports"]),
     ...mapGetters("pivot", ["reportsByDate"]),
     ...mapGetters("user", ["users"])
-    /*  userNames() {
-      return this.users.map(user => {
-        return user.name;
-      });
-    } */
   },
   methods: {
     changeUser(value) {
-      //this.$router.push({path: a })
-      console.log(value.id);
-
       this.$store.dispatch("daily/findByUser", value.id);
       this.$store.dispatch("pivot/findByDate", 2, "2021-01-01", "2021-02-02");
     },
-    /* fillData() {
-      this.chartData = {
-        labels: ["11 Gennaio", "12 Gennaio", "13 Gennaio", "14 Gennaio"],
-        datasets: [
-          {
-            label: "Validati",
-            backgroundColor: "#2eb85c",
-            data: [
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
-          },
-          {
-            label: "Revisionati",
-            backgroundColor: "#e55353",
-            data: [
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
-          },
-          {
-            label: "Sospesi",
-            backgroundColor: "#f9b115",
-            data: [
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
-          }
-        ]
-      };
-    }, */
     fillData() {
       this.datacollection = {
         labels: this.getLabels(this.reportsByDate),
         datasets: [
           {
             label: "Revisionati",
-            backgroundColor: "#2eb85c",
+            borderColor: "#2eb85c",
+            backgroundColor: "transparent",
             data: [
               this.getRandomInt(),
               this.getRandomInt(),
@@ -142,7 +95,8 @@ export default {
           },
           {
             label: "Validati",
-            backgroundColor: "#e55353",
+            borderColor: "#e55353",
+            backgroundColor: "transparent",
             data: [
               this.getRandomInt(),
               this.getRandomInt(),
@@ -151,7 +105,8 @@ export default {
           },
           {
             label: "Sospesi",
-            backgroundColor: "#f9b115",
+            borderColor: "#f9b115",
+            backgroundColor: "transparent",
             data: [
               this.getRandomInt(),
               this.getRandomInt(),

@@ -47,6 +47,12 @@ const routes = [
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
+        path: "catalogue/totalreport",
+        name: "TotalReport",
+        component: () => import("../views/catalogue/report/TotalReport"),
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+      },
+      {
         path: "catalogue/address/view/:state",
         name: "AddressList",
         component: () => import("../views/catalogue/address/AddressList"),
