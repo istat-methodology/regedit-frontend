@@ -19,13 +19,15 @@
               </div>
               <div class="col-4">
                 <datepicker
-                  :value="date"
+                  v-if="firstofmonth"
+                  :value="firstofmonth"
                   input-class="form-control"
                 ></datepicker>
               </div>
               <div class="col-4">
                 <datepicker
-                  :value="date"
+                  v-if="today"
+                  :value="today"
                   input-class="form-control"
                 ></datepicker>
               </div>
@@ -77,7 +79,8 @@ export default {
   },
   data() {
     return {
-      date: new Date(2016, 9, 16),
+      today: null,
+      firstofmonth: null,
       fields: [
         {
           key: "user",
@@ -114,8 +117,8 @@ export default {
       this.$store.dispatch(
         "pivot/findByDate",
         value.id,
-        "2021-01-01",
-        "2021-02-02"
+        this.firstofmonth,
+        this.today
       );
     },
     getRandomInt() {
@@ -123,10 +126,31 @@ export default {
     }
   },
   created() {
+    var dataodierna = new Date();
+    this.today =
+      dataodierna.getFullYear() +
+      "-" +
+      (dataodierna.getMonth() + 1) +
+      "-" +
+      dataodierna.getDate();
+    var firstday = new Date();
+    firstday.setDate("1");
+    this.firstofmonth =
+      firstday.getFullYear() +
+      "-" +
+      (firstday.getMonth() + 1) +
+      "-" +
+      firstday.getDate();
+
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
-    this.$store.dispatch("pivot/findByDate", null, "2021-01-01", "2021-02-02");
+    this.$store.dispatch(
+      "pivot/findByDate",
+      null,
+      this.firstofmonth,
+      this.today
+    );
   }
 };
 </script>
