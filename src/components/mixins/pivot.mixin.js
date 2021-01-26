@@ -11,22 +11,22 @@ export default {
       return labels;
     },
     getDatasets(reportsByDate) {
-      var dalavorare = [];
+      /* var dalavorare = []; */
       var validati = [];
       var revisionati = [];
       var sospesi = [];
       reportsByDate.forEach(elementData => {
-        dalavorare.push(elementData.dalavorare);
+        /*  dalavorare.push(elementData.dalavorare); */
         validati.push(elementData.validati);
         revisionati.push(elementData.revisionati);
         sospesi.push(elementData.sospesi);
       });
       var datasets = [
-        {
+        /* {
           label: "da lavorare",
           backgroundColor: "#c6e2ff",
           data: dalavorare
-        },
+        }, */
         {
           label: "validati",
           backgroundColor: "#dbf2e3",
