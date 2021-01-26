@@ -19,15 +19,19 @@
               </div>
               <div class="col-4">
                 <datepicker
-                  v-if="firstofmonth"
-                  :value="firstofmonth"
+                  name="start"
+                  v-if="start"
+                  :value="start"
+                  @selected="changedStartDate()"
                   input-class="form-control"
                 ></datepicker>
               </div>
               <div class="col-4">
                 <datepicker
-                  v-if="today"
-                  :value="today"
+                  name="end"
+                  v-if="end"
+                  :value="end"
+                  @selected="changedEndDate()"
                   input-class="form-control"
                 ></datepicker>
               </div>
@@ -81,6 +85,9 @@ export default {
     return {
       today: null,
       firstofmonth: null,
+      selectedUser: null,
+      start: null,
+      end: null,
       fields: [
         {
           key: "user",
@@ -113,6 +120,7 @@ export default {
   },
   methods: {
     changeUser(value) {
+      this.selectedUser = value.id;
       this.$store.dispatch("daily/findByUser", value.id);
       this.$store.dispatch(
         "pivot/findByDate",
@@ -121,26 +129,65 @@ export default {
         this.today
       );
     },
-    getRandomInt() {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    changedStartDate() {
+      this.today =
+        this.start.getFullYear() +
+        "-" +
+        (this.start.getMonth() + 1) +
+        "-" +
+        this.start.getDate();
+      this.firstofmonth =
+        this.end.getFullYear() +
+        "-" +
+        (this.end.getMonth() + 1) +
+        "-" +
+        this.end.getDate();
+      this.$store.dispatch("daily/findByUser", this.selectedUser);
+      this.$store.dispatch(
+        "pivot/findByDate",
+        this.selectedUser,
+        this.firstofmonth,
+        this.today
+      );
+    },
+    changedEndDate() {
+      this.today =
+        this.start.getFullYear() +
+        "-" +
+        (this.start.getMonth() + 1) +
+        "-" +
+        this.start.getDate();
+      this.firstofmonth =
+        this.end.getFullYear() +
+        "-" +
+        (this.end.getMonth() + 1) +
+        "-" +
+        this.end.getDate();
+      this.$store.dispatch("daily/findByUser", this.selectedUser);
+      this.$store.dispatch(
+        "pivot/findByDate",
+        this.selectedUser,
+        this.firstofmonth,
+        this.today
+      );
     }
   },
   created() {
-    var dataodierna = new Date();
+    this.start = new Date();
+    this.end = new Date();
+    this.start.setDate("1");
     this.today =
-      dataodierna.getFullYear() +
+      this.start.getFullYear() +
       "-" +
-      (dataodierna.getMonth() + 1) +
+      (this.start.getMonth() + 1) +
       "-" +
-      dataodierna.getDate();
-    var firstday = new Date();
-    firstday.setDate("1");
+      this.start.getDate();
     this.firstofmonth =
-      firstday.getFullYear() +
+      this.end.getFullYear() +
       "-" +
-      (firstday.getMonth() + 1) +
+      (this.end.getMonth() + 1) +
       "-" +
-      firstday.getDate();
+      this.end.getDate();
 
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     this.$store.dispatch("daily/findAll");
