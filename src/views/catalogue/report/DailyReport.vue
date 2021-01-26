@@ -9,7 +9,6 @@
           <CCardBody>
             <div class="row">
               <div class="col-4">
-                <!-- <label>Utenti</label> -->
                 <v-select
                   v-if="users"
                   label="name"
@@ -39,7 +38,6 @@
       <div class="col-12">
         <div class="card fade-in">
           <line-chart :chartData="chartData"> </line-chart>
-          <!-- <button @click="fillData()">Randomize</button> -->
         </div>
       </div>
     </div>
@@ -120,56 +118,15 @@ export default {
         "2021-02-02"
       );
     },
-    /* fillData() {
-      this.datacollection = {
-        labels: this.getLabels(this.reportsByDate),
-        datasets: [
-          {
-            label: "Revisionati",
-            borderColor: "#2eb85c",
-            backgroundColor: "transparent",
-            data: [
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
-          },
-          {
-            label: "Validati",
-            borderColor: "#e55353",
-            backgroundColor: "transparent",
-            data: [
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
-          },
-          {
-            label: "Sospesi",
-            borderColor: "#f9b115",
-            backgroundColor: "transparent",
-            data: [
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
-          }
-        ]
-      };
-    }, */
     getRandomInt() {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
-  },
-  mounted() {
-    this.fillData();
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
     this.$store.dispatch("pivot/findByDate", null, "2021-01-01", "2021-02-02");
-    this.fillData();
   }
 };
 </script>
