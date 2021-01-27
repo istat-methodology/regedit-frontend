@@ -205,7 +205,9 @@ export default {
       },
       cdpcivEgon: {
         validationRuleCivEgon(civicoEgon) {
-          return this.isFonteEgon ? /^[0-9?]+$/.test(civicoEgon) : true;
+          /*  return this.isFonteEgon ? /^[0-9?]+$/.test(civicoEgon) : true; */
+
+          return /^[0-9?]*$/.test(civicoEgon) || /^[null]/.test(civicoEgon);
         },
         maxLength: maxLength(15)
       },
