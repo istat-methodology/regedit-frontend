@@ -77,7 +77,8 @@
           }"
         />
         <p class="error" v-if="$v.address.cdpstrEgon.$error">
-          I valori possibili per questo campo sono soltanto numerici
+          I valori possibili per questo campo sono soltanto numerici e lunghi
+          massimo 12 caratteri
         </p>
         <CInput
           label="Codice civico*"
@@ -88,7 +89,8 @@
           }"
         />
         <p class="error" v-if="$v.address.cdpcivEgon.$error">
-          I valori possibili per questo campo sono soltanto numerici
+          I valori possibili per questo campo sono soltanto numerici e lunghi
+          massimo 15 caratteri
         </p>
       </template>
       <label>Fittizio*</label>
@@ -198,12 +200,14 @@ export default {
       cdpstrEgon: {
         validationRuleStrEgon(stradaEgon) {
           return this.isFonteEgon ? /^[0-9?]+$/.test(stradaEgon) : true;
-        }
+        },
+        maxLength: maxLength(12)
       },
       cdpcivEgon: {
         validationRuleCivEgon(civicoEgon) {
           return this.isFonteEgon ? /^[0-9?]+$/.test(civicoEgon) : true;
-        }
+        },
+        maxLength: maxLength(15)
       },
       note: {
         maxLength: maxLength(500)
