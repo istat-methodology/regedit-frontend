@@ -18,13 +18,23 @@ export default {
       const fittizio = this.fittizioValues.find(fittizio => {
         return fittizio.id == id;
       });
-      return fittizio ? fittizio : null;
+      return fittizio
+        ? fittizio
+        : {
+            id: 2,
+            value: "NO"
+          };
     },
     getFittizioByValue(value) {
       const fittizio = this.fittizioValues.find(fittizio => {
         return fittizio.value == value;
       });
-      return fittizio ? fittizio : null;
+      return fittizio
+        ? fittizio
+        : {
+            id: 2,
+            value: "NO"
+          };
     }
   }
 };
