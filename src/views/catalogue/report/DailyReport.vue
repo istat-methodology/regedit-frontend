@@ -21,7 +21,7 @@
                 <datepicker
                   name="start"
                   v-if="start"
-                  :value="start"
+                  v-model="start"
                   @selected="changedStartDate()"
                   input-class="form-control"
                 ></datepicker>
@@ -30,7 +30,7 @@
                 <datepicker
                   name="end"
                   v-if="end"
-                  :value="end"
+                  v-model="end"
                   @selected="changedEndDate()"
                   input-class="form-control"
                 ></datepicker>
@@ -130,6 +130,7 @@ export default {
           this.today
         );
       } else {
+        this.selectedUser = null;
         this.$store.dispatch("daily/findAll");
         this.$store.dispatch(
           "pivot/findByDate",
@@ -141,17 +142,17 @@ export default {
     },
     changedStartDate() {
       this.today =
-        this.start.getFullYear() +
-        "-" +
-        (this.start.getMonth() + 1) +
-        "-" +
-        this.start.getDate();
-      this.firstofmonth =
         this.end.getFullYear() +
         "-" +
         (this.end.getMonth() + 1) +
         "-" +
         this.end.getDate();
+      this.firstofmonth =
+        this.start.getFullYear() +
+        "-" +
+        (this.start.getMonth() + 1) +
+        "-" +
+        this.start.getDate();
       this.$store.dispatch("daily/findByUser", this.selectedUser);
       this.$store.dispatch(
         "pivot/findByDate",
@@ -162,17 +163,17 @@ export default {
     },
     changedEndDate() {
       this.today =
-        this.start.getFullYear() +
-        "-" +
-        (this.start.getMonth() + 1) +
-        "-" +
-        this.start.getDate();
-      this.firstofmonth =
         this.end.getFullYear() +
         "-" +
         (this.end.getMonth() + 1) +
         "-" +
         this.end.getDate();
+      this.firstofmonth =
+        this.start.getFullYear() +
+        "-" +
+        (this.start.getMonth() + 1) +
+        "-" +
+        this.start.getDate();
       this.$store.dispatch("daily/findByUser", this.selectedUser);
       this.$store.dispatch(
         "pivot/findByDate",
