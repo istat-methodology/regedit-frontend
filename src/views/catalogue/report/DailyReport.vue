@@ -19,7 +19,7 @@
               </div>
               <div class="col-4">
                 <datepicker
-                  name="start"
+                  name="startDay"
                   v-if="start"
                   v-model="start"
                   @selected="changedStartDate()"
@@ -28,7 +28,7 @@
               </div>
               <div class="col-4">
                 <datepicker
-                  name="end"
+                  name="endDay"
                   v-if="end"
                   v-model="end"
                   @selected="changedEndDate()"
