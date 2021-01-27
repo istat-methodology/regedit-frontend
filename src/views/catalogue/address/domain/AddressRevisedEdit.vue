@@ -99,9 +99,6 @@
         :options="fittizioValues"
         v-model="fittizioLocal"
         placeholder="Fittizio"
-        :class="{
-          'is-invalid': $v.fittizioLocal.$error
-        }"
       ></v-select>
       <CTextarea
         label="Note"
@@ -167,9 +164,9 @@ export default {
     fonteLocal: {
       required
     },
-    fittizioLocal: {
+    /* fittizioLocal: {
       required
-    },
+    }, */
     address: {
       dugVal: {
         required
