@@ -83,8 +83,8 @@ export default {
   },
   data() {
     return {
-      today: null,
       firstofmonth: null,
+      today: null,
       selectedUser: null,
       start: null,
       end: null,
@@ -141,18 +141,18 @@ export default {
       }
     },
     changedStartDate() {
-      this.today =
-        this.end.getFullYear() +
-        "-" +
-        (this.end.getMonth() + 1) +
-        "-" +
-        this.end.getDate();
       this.firstofmonth =
         this.start.getFullYear() +
         "-" +
         (this.start.getMonth() + 1) +
         "-" +
         this.start.getDate();
+      this.today =
+        this.end.getFullYear() +
+        "-" +
+        (this.end.getMonth() + 1) +
+        "-" +
+        this.end.getDate();
       this.$store.dispatch("daily/findByUser", this.selectedUser);
       this.$store.dispatch(
         "pivot/findByDate",
@@ -162,18 +162,19 @@ export default {
       );
     },
     changedEndDate() {
-      this.today =
-        this.end.getFullYear() +
-        "-" +
-        (this.end.getMonth() + 1) +
-        "-" +
-        this.end.getDate();
       this.firstofmonth =
         this.start.getFullYear() +
         "-" +
         (this.start.getMonth() + 1) +
         "-" +
         this.start.getDate();
+      this.today =
+        this.end.getFullYear() +
+        "-" +
+        (this.end.getMonth() + 1) +
+        "-" +
+        this.end.getDate();
+
       this.$store.dispatch("daily/findByUser", this.selectedUser);
       this.$store.dispatch(
         "pivot/findByDate",
@@ -187,13 +188,13 @@ export default {
     this.start = new Date();
     this.end = new Date();
     this.start.setDate("1");
-    this.today =
+    this.firstofmonth =
       this.start.getFullYear() +
       "-" +
       (this.start.getMonth() + 1) +
       "-" +
       this.start.getDate();
-    this.firstofmonth =
+    this.today =
       this.end.getFullYear() +
       "-" +
       (this.end.getMonth() + 1) +
