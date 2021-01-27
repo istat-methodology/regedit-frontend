@@ -216,11 +216,7 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      if (
-        !this.$v.address.$invalid &&
-        !this.$v.fonteLocal.$invalid &&
-        !this.$v.fittizioLocal.$invalid
-      ) {
+      if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
         this.address.idFonte = this.fonteLocal.id;
         this.address.fittizio = this.fittizioLocal.id;
         if (!this.isFonteEgon) {
