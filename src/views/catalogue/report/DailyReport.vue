@@ -120,14 +120,24 @@ export default {
   },
   methods: {
     changeUser(value) {
-      this.selectedUser = value.id;
-      this.$store.dispatch("daily/findByUser", value.id);
-      this.$store.dispatch(
-        "pivot/findByDate",
-        value.id,
-        this.firstofmonth,
-        this.today
-      );
+      if (value != null) {
+        this.selectedUser = value.id;
+        this.$store.dispatch("daily/findByUser", value.id);
+        this.$store.dispatch(
+          "pivot/findByDate",
+          value.id,
+          this.firstofmonth,
+          this.today
+        );
+      } else {
+        this.$store.dispatch("daily/findAll");
+        this.$store.dispatch(
+          "pivot/findByDate",
+          null,
+          this.firstofmonth,
+          this.today
+        );
+      }
     },
     changedStartDate() {
       this.today =
