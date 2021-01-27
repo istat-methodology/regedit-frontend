@@ -24,6 +24,10 @@
         <span class="mb-2">{{ addressPrint }}</span>
       </div>
       <div>
+        <label>Procom</label>
+        <span>{{ address.proCom | dashEmpty }}</span>
+      </div>
+      <div>
         <label>Comune</label>
         <span>{{ address.denominazioneComune | dashEmpty }}</span>
       </div>
