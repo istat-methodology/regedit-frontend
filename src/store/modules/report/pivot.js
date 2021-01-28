@@ -35,6 +35,17 @@ const actions = {
       .catch(err => {
         console.log(err);
       });
+  },
+
+  findByDateTotal({ commit }, start, end) {
+    return pivotReportService
+      .findByDateTotal(start, end)
+      .then(data => {
+        commit("SET_REPORTSBYDATE", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 

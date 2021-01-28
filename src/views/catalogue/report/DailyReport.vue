@@ -13,7 +13,7 @@
                   v-if="users"
                   label="name"
                   :options="users"
-                  placeholder="Utente"
+                  placeholder="Tutti gli utenti"
                   @input="changeUser"
                 ></v-select>
               </div>
@@ -133,8 +133,7 @@ export default {
         this.selectedUser = null;
         this.$store.dispatch("daily/findAll");
         this.$store.dispatch(
-          "pivot/findByDate",
-          null,
+          "pivot/findByDateTotal",
           this.firstofmonth,
           this.today
         );
@@ -205,8 +204,7 @@ export default {
     this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
     this.$store.dispatch(
-      "pivot/findByDate",
-      null,
+      "pivot/findByDateTotal",
       this.firstofmonth,
       this.today
     );
