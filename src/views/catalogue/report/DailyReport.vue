@@ -13,7 +13,7 @@
                   v-if="users"
                   label="name"
                   :options="users"
-                  placeholder="Tutti gli utenti"
+                  placeholder="Tutti gli Utenti"
                   @input="changeUser"
                 ></v-select>
               </div>
@@ -140,47 +140,90 @@ export default {
       }
     },
     changedStartDate() {
-      this.firstofmonth =
-        this.start.getFullYear() +
-        "-" +
-        (this.start.getMonth() + 1) +
-        "-" +
-        this.start.getDate();
-      this.today =
-        this.end.getFullYear() +
-        "-" +
-        (this.end.getMonth() + 1) +
-        "-" +
-        this.end.getDate();
-      this.$store.dispatch("daily/findByUser", this.selectedUser);
-      this.$store.dispatch(
-        "pivot/findByDate",
-        this.selectedUser,
-        this.firstofmonth,
-        this.today
-      );
+      if (this.selectedUser != null) {
+        this.firstofmonth =
+          this.start.getFullYear() +
+          "-" +
+          (this.start.getMonth() + 1) +
+          "-" +
+          this.start.getDate();
+        this.today =
+          this.end.getFullYear() +
+          "-" +
+          (this.end.getMonth() + 1) +
+          "-" +
+          this.end.getDate();
+        this.$store.dispatch("daily/findByUser", this.selectedUser);
+        this.$store.dispatch(
+          "pivot/findByDate",
+          this.selectedUser,
+          this.firstofmonth,
+          this.today
+        );
+      } else {
+        this.firstofmonth =
+          this.start.getFullYear() +
+          "-" +
+          (this.start.getMonth() + 1) +
+          "-" +
+          this.start.getDate();
+        this.today =
+          this.end.getFullYear() +
+          "-" +
+          (this.end.getMonth() + 1) +
+          "-" +
+          this.end.getDate();
+        this.$store.dispatch("daily/findAll");
+        this.$store.dispatch(
+          "pivot/findByDateTotal",
+          this.firstofmonth,
+          this.today
+        );
+      }
     },
     changedEndDate() {
-      this.firstofmonth =
-        this.start.getFullYear() +
-        "-" +
-        (this.start.getMonth() + 1) +
-        "-" +
-        this.start.getDate();
-      this.today =
-        this.end.getFullYear() +
-        "-" +
-        (this.end.getMonth() + 1) +
-        "-" +
-        this.end.getDate();
+      if (this.selectedUser != null) {
+        this.firstofmonth =
+          this.start.getFullYear() +
+          "-" +
+          (this.start.getMonth() + 1) +
+          "-" +
+          this.start.getDate();
+        this.today =
+          this.end.getFullYear() +
+          "-" +
+          (this.end.getMonth() + 1) +
+          "-" +
+          this.end.getDate();
 
-      this.$store.dispatch("daily/findByUser", this.selectedUser);
-      this.$store.dispatch(
-        "pivot/findByDate",
-        this.selectedUser,
-        this.firstofmonth,
-        this.today
-      );
+        this.$store.dispatch("daily/findByUser", this.selectedUser);
+        this.$store.dispatch(
+          "pivot/findByDate",
+          this.selectedUser,
+          this.firstofmonth,
+          this.today
+        );
+      } else {
+        this.firstofmonth =
+          this.start.getFullYear() +
+          "-" +
+          (this.start.getMonth() + 1) +
+          "-" +
+          this.start.getDate();
+        this.today =
+          this.end.getFullYear() +
+          "-" +
+          (this.end.getMonth() + 1) +
+          "-" +
+          this.end.getDate();
+
+        this.$store.dispatch("daily/findAll");
+        this.$store.dispatch(
+          "pivot/findByDateTotal",
+          this.firstofmonth,
+          this.today
+        );
+      }
     }
   },
   created() {
