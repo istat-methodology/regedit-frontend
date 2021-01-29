@@ -31,12 +31,17 @@
         </CDropdownHeader>
         <CDropdownItem>
           <router-link
-            tag="a"
             :to="{
               name: 'DugList'
             }"
+            custom
+            v-slot="{ href, navigate }"
           >
-            <span class="pl-1"><arrow-right-icon class="pr-3" />Lista Dug</span>
+            <a :href="href" @click="navigate">
+              <span class="pl-1"
+                ><arrow-right-icon class="pr-3" />Lista Dug</span
+              >
+            </a>
           </router-link>
         </CDropdownItem>
       </CDropdown>

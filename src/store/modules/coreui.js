@@ -26,8 +26,8 @@ const mutations = {
     state.isLoading = isLoading;
   },
   SET_CONTEXT(state, context) {
-    state.context = context;
-    switch (context) {
+    state.context = parseInt(context);
+    switch (parseInt(context)) {
       case Context.Home:
         state.isHome = true;
         break;

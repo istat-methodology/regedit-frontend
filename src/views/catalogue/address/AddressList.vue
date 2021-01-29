@@ -16,6 +16,9 @@
             hover
             pagination
           >
+            <template #dataMod="{item}">
+              <td>{{ item.dataMod | formatDate }}</td>
+            </template>
             <template #validazione="{item}">
               <td>{{ item.validazione | dashEmpty }}</td>
             </template>
@@ -72,6 +75,7 @@ export default {
         { key: "proCom", label: "Procom" },
         { key: "denominazioneComune", label: "Comune" },
         { key: "validazione", label: "Validazione", _style: "width:10%;" },
+        { key: "dataMod", label: "Utlima modifica", _style: "width:20%;" },
         {
           key: "action",
           label: "",
@@ -95,6 +99,7 @@ export default {
       });
     },
     load(state) {
+      console.log("State " + state);
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("progress/findByUser");
       this.$store.dispatch("address/clear");

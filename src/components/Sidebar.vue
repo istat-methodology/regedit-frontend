@@ -15,13 +15,16 @@
     <ul class="c-sidebar-nav h-100 ps" style="position: relative;">
       <li class="c-sidebar-nav-item">
         <router-link
-          tag="a"
           :to="{ name: 'Home' }"
           class="c-sidebar-nav-link"
           :class="{ 'c-active': isHome }"
+          custom
+          v-slot="{ href, navigate }"
         >
-          <CIcon name="cil-home" class="c-sidebar-nav-icon" />Home
-          <span class="badge badge-primary">Alpha</span>
+          <a :href="href" @click="navigate">
+            <CIcon name="cil-home" class="c-sidebar-nav-icon" />Home
+            <span class="badge badge-primary">Alpha</span>
+          </a>
         </router-link>
       </li>
       <template v-if="isSupervisor">
@@ -30,22 +33,28 @@
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            tag="a"
             :to="{ name: 'TotalReport' }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active': isTotalReport }"
+            custom
+            v-slot="{ href, navigate }"
           >
-            <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Totali
+            <a :href="href" @click="navigate">
+              <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Totali
+            </a>
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            tag="a"
             :to="{ name: 'DailyReport' }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active': isDailyReport }"
+            custom
+            v-slot="{ href, navigate }"
           >
-            <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Giornaliero
+            <a :href="href" @click="navigate">
+              <CIcon name="cil-chart" class="c-sidebar-nav-icon" />Giornaliero
+            </a>
           </router-link>
         </li>
       </template>
@@ -55,39 +64,50 @@
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            tag="a"
             :to="{ name: 'AddressList', params: { state: 1 } }"
             class="c-sidebar-nav-link"
-            :class="{ 'c-active': isAddressToRevise }"
+            :class="{ 'c-active c-active-primary': isAddressToRevise }"
+            custom
+            v-slot="{ href, navigate }"
           >
-            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da lavorare
-            <span class="badge badge-primary"
-              >{{ daLavorare }} / {{ total }}</span
-            >
+            <a :href="href" @click="navigate">
+              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da lavorare
+              <span class="badge badge-primary"
+                >{{ daLavorare }} / {{ total }}</span
+              >
+            </a>
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            tag="a"
             :to="{ name: 'AddressList', params: { state: 2 } }"
             class="c-sidebar-nav-link"
-            :class="{ 'c-active': isAddressRevised }"
+            :class="{ 'c-active c-active-success': isAddressRevised }"
+            custom
+            v-slot="{ href, navigate }"
           >
-            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Lavorati
-            <span class="badge badge-success"
-              >{{ lavorati }} / {{ total }}</span
-            >
+            <a :href="href" @click="navigate">
+              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Lavorati
+              <span class="badge badge-success"
+                >{{ lavorati }} / {{ total }}</span
+              >
+            </a>
           </router-link>
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            tag="a"
             :to="{ name: 'AddressList', params: { state: 3 } }"
             class="c-sidebar-nav-link"
-            :class="{ 'c-active': isAddressSkip }"
+            :class="{ 'c-active c-active-warning': isAddressSkip }"
+            custom
+            v-slot="{ href, navigate }"
           >
-            <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Sospesi
-            <span class="badge badge-warning">{{ sospesi }} / {{ total }}</span>
+            <a :href="href" @click="navigate">
+              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Sospesi
+              <span class="badge badge-warning"
+                >{{ sospesi }} / {{ total }}</span
+              >
+            </a>
           </router-link>
         </li>
       </template>
@@ -134,5 +154,14 @@ export default {
 .brand {
   font-size: 1.2em;
   padding-left: 1rem;
+}
+.c-active-primary {
+  border-left: 3px solid#321fdb;
+}
+.c-active-success {
+  border-left: 3px solid#2eb85c;
+}
+.c-active-warning {
+  border-left: 3px solid#f9b115;
 }
 </style>

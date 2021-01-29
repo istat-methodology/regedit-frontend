@@ -7,9 +7,11 @@
       :key="breadcrumb.path"
     >
       <template v-if="index < breadcrumbs.length - 1">
-        <router-link tag="a" :to="breadcrumb.to">{{
-          upperCaseFirst(breadcrumb.path)
-        }}</router-link>
+        <router-link :to="breadcrumb.to" custom v-slot="{ href, navigate }">
+          <a :href="href" @click="navigate">
+            {{ upperCaseFirst(breadcrumb.path) }}
+          </a>
+        </router-link>
       </template>
       <template v-else>{{ upperCaseFirst(breadcrumb.path) }}</template>
     </li>

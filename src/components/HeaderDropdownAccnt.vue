@@ -30,8 +30,10 @@
   </div>
   <div v-else>
     <CHeaderNavLink>
-      <router-link tag="a" to="/login">
-        <span><user-icon /> Login</span>
+      <router-link custom v-slot="{ href, navigate }" to="/login">
+        <a :href="href" @click="navigate"
+          ><span><user-icon /> Login</span></a
+        >
       </router-link>
     </CHeaderNavLink>
   </div>

@@ -26,6 +26,9 @@ Vue.component("v-select", vSelect);
 Vue.filter("dashEmpty", value => {
   return value == null || value == "" ? "-" : value;
 });
+Vue.filter("formatDate", value => {
+  return value ? new Date(value).toLocaleString() : "-";
+});
 
 new Vue({
   router,

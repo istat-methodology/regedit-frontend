@@ -99,6 +99,6 @@ export default {
   margin-bottom: 0.5rem;
 }
 .colordisabled {
-  color: #ebedef;
+  color: #ced2d8;
 }
 </style>
