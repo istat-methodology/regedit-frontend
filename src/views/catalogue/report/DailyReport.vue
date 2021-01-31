@@ -115,8 +115,8 @@ export default {
         chartData.datasets = this.getDatasets(this.reportsByDateTotal);
       }
       if (this.reportsByDate && this.selectedUser != null) {
-        chartData.labels = this.getLabels(this.reportsByDateTotal);
-        chartData.datasets = this.getDatasets(this.reportsByDateTotal);
+        chartData.labels = this.getLabels(this.reportsByDate);
+        chartData.datasets = this.getDatasets(this.reportsByDate);
       }
       return chartData;
     }
