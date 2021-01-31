@@ -2,7 +2,8 @@ import { pivotReportService } from "@/services";
 
 const state = {
   pivotReports: null,
-  pivotReportsByDate: null
+  pivotReportsByDate: null,
+  pivotReportsByDateTotal: null
 };
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
   },
   SET_REPORTSBYDATE(state, reports) {
     state.pivotReportsByDate = reports;
+  },
+  SET_REPORTSBYDATETOTAL(state, reports) {
+    state.pivotReportsByDateTotal = reports;
   }
 };
 
@@ -41,7 +45,7 @@ const actions = {
     return pivotReportService
       .findByDateTotal(start, end)
       .then(data => {
-        commit("SET_REPORTSBYDATE", data);
+        commit("SET_REPORTSBYDATETOTAL", data);
       })
       .catch(err => {
         console.log(err);
@@ -55,6 +59,9 @@ const getters = {
   },
   reportsByDate: state => {
     return state.pivotReportsByDate;
+  },
+  reportsByDateTotal: state => {
+    return state.pivotReportsByDateTotal;
   }
 };
 
