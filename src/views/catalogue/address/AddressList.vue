@@ -99,7 +99,6 @@ export default {
       });
     },
     load(state) {
-      console.log("State " + state);
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("progress/findByUser");
       this.$store.dispatch("address/clear");

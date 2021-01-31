@@ -99,6 +99,9 @@
         :options="fittizioValues"
         v-model="fittizioLocal"
         placeholder="Fittizio"
+        :class="{
+          'is-invalid': $v.fittizioLocal.$error
+        }"
       ></v-select>
       <CTextarea
         label="Note"
@@ -164,9 +167,9 @@ export default {
     fonteLocal: {
       required
     },
-    /* fittizioLocal: {
+    fittizioLocal: {
       required
-    }, */
+    },
     address: {
       dugVal: {
         required
@@ -202,8 +205,6 @@ export default {
       },
       cdpcivEgon: {
         validationRuleCivEgon(civicoEgon) {
-          /*  return this.isFonteEgon ? /^[0-9?]+$/.test(civicoEgon) : true; */
-
           return /^[0-9?]*$/.test(civicoEgon) || /^[null]/.test(civicoEgon);
         },
         maxLength: maxLength(15)
@@ -216,7 +217,11 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      if (!this.$v.address.$invalid && !this.$v.fonteLocal.$invalid) {
+      if (
+        !this.$v.address.$invalid &&
+        !this.$v.fonteLocal.$invalid &&
+        !this.$v.fittizioLocal.$invalid
+      ) {
         this.address.idFonte = this.fonteLocal.id;
         this.address.fittizio = this.fittizioLocal.id;
         if (!this.isFonteEgon) {
