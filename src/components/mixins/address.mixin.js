@@ -19,15 +19,17 @@ export default {
       if (address === null) return "";
       switch (type) {
         case this.addressType.Original:
-          return (address.indirizzoOriginale ? address.indirizzoOriginale : "")
-            .concat(
-              address.localitaOriginale ? ", " + address.localitaOriginale : ""
-            )
-            .concat(
+          return (address.indirizzoOriginale
+            ? address.indirizzoOriginale
+            : ""
+          ).concat(
+            address.localitaOriginale ? ", " + address.localitaOriginale : ""
+          );
+        /* .concat(
               address.denominazioneComune
                 ? ", " + address.denominazioneComune
                 : ""
-            );
+            ); */
         case this.addressType.Suggested:
           return (address.dugNorm ? address.dugNorm : "")
             .concat(address.dufNorm ? " " + address.dufNorm : "")
