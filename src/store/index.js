@@ -11,6 +11,7 @@ import { user } from "./modules/user/user";
 import { progress } from "./modules/report/progress";
 import { daily } from "./modules/report/daily";
 import { pivot } from "./modules/report/pivot";
+import { version } from "./modules/appversioning/appversion";
 
 Vue.use(Vuex);
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     user,
     progress,
     daily,
-    pivot
+    pivot,
+    version
   }
 });
