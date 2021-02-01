@@ -9,7 +9,7 @@
       >
     </div>
     <div class="ml-auto">
-      <span class="mr-1">App Version: {{ appVersion }}</span>
+      <span class="mr-1">Version: {{ appVersion }}</span>
     </div>
     <div class="ml-auto">
       <span class="mr-1">Powered by</span>

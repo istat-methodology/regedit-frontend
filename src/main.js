@@ -23,6 +23,7 @@ Vue.use(Vuelidate);
 Vue.use(VueSpinners);
 Vue.component("v-select", vSelect);
 
+//Vue filters
 Vue.filter("dashEmpty", value => {
   return value == null || value == "" ? "-" : value;
 });

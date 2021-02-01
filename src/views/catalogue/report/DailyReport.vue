@@ -11,9 +11,9 @@
               <div class="col-4">
                 <v-select
                   v-if="users"
-                  label="name"
+                  label="email"
                   :options="users"
-                  placeholder="Tutti gli Utenti"
+                  placeholder="Tutti gli utenti"
                   @input="changeUser"
                 ></v-select>
               </div>

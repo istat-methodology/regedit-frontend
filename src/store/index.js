@@ -11,7 +11,7 @@ import { user } from "./modules/user/user";
 import { progress } from "./modules/report/progress";
 import { daily } from "./modules/report/daily";
 import { pivot } from "./modules/report/pivot";
-import { version } from "./modules/appversioning/appversion";
+import { version } from "./modules/versioning/appversion";
 
 Vue.use(Vuex);
 

@@ -25,11 +25,6 @@ export default {
           ).concat(
             address.localitaOriginale ? ", " + address.localitaOriginale : ""
           );
-        /* .concat(
-              address.denominazioneComune
-                ? ", " + address.denominazioneComune
-                : ""
-            ); */
         case this.addressType.Suggested:
           return (address.dugNorm ? address.dugNorm : "")
             .concat(address.dufNorm ? " " + address.dufNorm : "")
