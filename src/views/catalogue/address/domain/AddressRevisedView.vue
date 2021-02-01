@@ -8,6 +8,10 @@
         <span class="mb-2">{{ addressPrint }}</span>
       </div>
       <div>
+        <label>Località</label>
+        <span>{{ address.localitaVal | dashEmpty }}</span>
+      </div>
+      <div>
         <label>Dug</label>
         <span>{{ address.dugVal | dashEmpty }}</span>
       </div>
@@ -22,10 +26,6 @@
       <div>
         <label>Km</label>
         <span>{{ address.kmVal | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Località</label>
-        <span>{{ address.localitaVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Esponente</label>

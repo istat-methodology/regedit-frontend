@@ -8,7 +8,13 @@
         >
       </div></CCardHeader
     >
+
     <CCardBody class="card-text">
+      <CInput
+        label="Località"
+        placeholder="Località"
+        v-model="address.localitaVal"
+      />
       <label>Dug*</label>
       <v-select
         :options="dugNames"
@@ -38,11 +44,6 @@
         I valori possibili per questo campo sono soltanto numerici
       </p>
       <CInput label="Km" placeholder="Km" v-model="address.kmVal" />
-      <CInput
-        label="Località"
-        placeholder="Località"
-        v-model="address.localitaVal"
-      />
       <CInput
         label="Esponente"
         placeholder="Esponente"
