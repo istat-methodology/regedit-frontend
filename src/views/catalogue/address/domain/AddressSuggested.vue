@@ -90,6 +90,6 @@ export default {
   padding: 0.1rem 0.5rem;
 }
 .colordisabled {
-  color: #ebedef;
+  color: #9da5b1;
 }
 </style>
