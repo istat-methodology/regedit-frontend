@@ -106,15 +106,10 @@ export default {
   computed: {
     ...mapGetters("daily", ["reports"]),
     ...mapGetters("pivot", ["reportsByDate"]),
-    ...mapGetters("pivot", ["reportsByDateTotal"]),
     ...mapGetters("user", ["users"]),
     chartData() {
       var chartData = {};
-      if (this.reportsByDateTotal && this.selectedUser == null) {
-        chartData.labels = this.getLabels(this.reportsByDateTotal);
-        chartData.datasets = this.getDatasets(this.reportsByDateTotal);
-      }
-      if (this.reportsByDate && this.selectedUser != null) {
+      if (this.reportsByDate) {
         chartData.labels = this.getLabels(this.reportsByDate);
         chartData.datasets = this.getDatasets(this.reportsByDate);
       }
