@@ -22,7 +22,7 @@
                   name="startDay"
                   v-model="start"
                   lang="en"
-                  @selected="changedStartDate()"
+                  @input="changedStartDate()"
                   input-class="form-control"
                 ></datepicker>
               </div>
@@ -31,7 +31,7 @@
                   name="endDay"
                   v-model="end"
                   lang="en"
-                  @selected="changedEndDate()"
+                  @input="changedEndDate()"
                   input-class="form-control"
                 ></datepicker>
               </div>
