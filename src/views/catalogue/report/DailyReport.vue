@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card fade-in">
-          <line-chart :chartData="chartData"> </line-chart>
+          <line-chart v-if="chartData" :chartData="chartData"> </line-chart>
         </div>
       </div>
     </div>
