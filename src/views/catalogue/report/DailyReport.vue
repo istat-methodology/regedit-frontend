@@ -21,7 +21,7 @@
                 <datepicker
                   name="startDay"
                   v-model="start"
-                  lang="en"
+                  lang="it"
                   @input="changedStartDate()"
                   input-class="form-control"
                 ></datepicker>
@@ -30,7 +30,7 @@
                 <datepicker
                   name="endDay"
                   v-model="end"
-                  lang="en"
+                  lang="it"
                   @input="changedEndDate()"
                   input-class="form-control"
                 ></datepicker>
@@ -47,12 +47,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
         <div class="card fade-in">
           <CCardBody>
             <CDataTable
-              :items="reports"
               :fields="fields"
               column-filter
               :items-per-page="10"
@@ -64,7 +63,7 @@
           </CCardBody>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -104,7 +103,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("daily", ["reports"]),
     ...mapGetters("pivot", ["reportsByDate"]),
     ...mapGetters("user", ["users"]),
     chartData() {
@@ -132,29 +130,29 @@ export default {
         this.end.getDate();
       if (value != null) {
         this.selectedUser = value.id;
-        this.$store.dispatch("daily/findByUser", value.id);
+        // this.$store.dispatch("daily/findByUser", value.id);
         this.$store.dispatch("pivot/findByDate", value.id, startdate, enddate);
       } else {
-        this.$store.dispatch("daily/findAll");
+        // this.$store.dispatch("daily/findAll");
         this.$store.dispatch("pivot/findByDateTotal", startdate, enddate);
       }
     },
     changedStartDate() {
+      var startdate =
+        this.start.getFullYear() +
+        "-" +
+        (this.start.getMonth() + 1) +
+        "-" +
+        this.start.getDate();
+      var enddate =
+        this.end.getFullYear() +
+        "-" +
+        (this.end.getMonth() + 1) +
+        "-" +
+        this.end.getDate();
       if (this.start) {
-        var startdate =
-          this.start.getFullYear() +
-          "-" +
-          (this.start.getMonth() + 1) +
-          "-" +
-          this.start.getDate();
-        var enddate =
-          this.end.getFullYear() +
-          "-" +
-          (this.end.getMonth() + 1) +
-          "-" +
-          this.end.getDate();
         if (this.selectedUser != null) {
-          this.$store.dispatch("daily/findByUser", this.selectedUser);
+          //  this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
             "pivot/findByDate",
             this.selectedUser,
@@ -162,27 +160,27 @@ export default {
             enddate
           );
         } else {
-          this.$store.dispatch("daily/findAll");
+          // this.$store.dispatch("daily/findAll");
           this.$store.dispatch("pivot/findByDateTotal", startdate, enddate);
         }
       }
     },
     changedEndDate() {
+      var startdate =
+        this.start.getFullYear() +
+        "-" +
+        (this.start.getMonth() + 1) +
+        "-" +
+        this.start.getDate();
+      var enddate =
+        this.end.getFullYear() +
+        "-" +
+        (this.end.getMonth() + 1) +
+        "-" +
+        this.end.getDate();
       if (this.end) {
-        var startdate =
-          this.start.getFullYear() +
-          "-" +
-          (this.start.getMonth() + 1) +
-          "-" +
-          this.start.getDate();
-        var enddate =
-          this.end.getFullYear() +
-          "-" +
-          (this.end.getMonth() + 1) +
-          "-" +
-          this.end.getDate();
         if (this.selectedUser != null) {
-          this.$store.dispatch("daily/findByUser", this.selectedUser);
+          // this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
             "pivot/findByDate",
             this.selectedUser,
@@ -190,7 +188,7 @@ export default {
             enddate
           );
         } else {
-          this.$store.dispatch("daily/findAll");
+          //  this.$store.dispatch("daily/findAll");
           this.$store.dispatch("pivot/findByDateTotal", startdate, enddate);
         }
       }
@@ -214,7 +212,7 @@ export default {
       this.end.getDate();
 
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
-    this.$store.dispatch("daily/findAll");
+    // this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
     this.$store.dispatch("pivot/findByDateTotal", startdate, enddate);
   }
