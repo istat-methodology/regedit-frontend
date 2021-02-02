@@ -131,8 +131,9 @@ export default {
         (this.endDay.getMonth() + 1) +
         "-" +
         this.endDay.getDate();
-      payload = { id: value.id, start: this.startdate, end: this.enddate };
+
       if (value != null) {
+        payload = { id: value.id, start: this.startdate, end: this.enddate };
         this.selectedUser = value.id;
         // this.$store.dispatch("daily/findByUser", value.id);
         this.$store.dispatch(

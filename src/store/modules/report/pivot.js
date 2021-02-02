@@ -26,9 +26,9 @@ const actions = {
       });
   },
 
-  findByDate({ commit }, user, payload) {
+  findByDate({ commit }, payload) {
     return pivotReportService
-      .findByDate(user, payload.start, payload.end)
+      .findByDate(payload.id, payload.start, payload.end)
       .then(data => {
         commit("SET_REPORTSBYDATE", data);
       })
