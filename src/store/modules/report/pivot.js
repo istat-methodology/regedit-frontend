@@ -26,9 +26,9 @@ const actions = {
       });
   },
 
-  findByDate({ commit }, user, start, end) {
+  findByDate({ commit }, user, startday, endday) {
     return pivotReportService
-      .findByDate(user, start, end)
+      .findByDate(user, startday, endday)
       .then(data => {
         commit("SET_REPORTSBYDATE", data);
       })
@@ -37,9 +37,9 @@ const actions = {
       });
   },
 
-  findByDateTotal({ commit }, start, end) {
+  findByDateTotal({ commit }, startday, endday) {
     return pivotReportService
-      .findByDateTotal(start, end)
+      .findByDateTotal(startday, endday)
       .then(data => {
         commit("SET_REPORTSBYDATE", data);
       })

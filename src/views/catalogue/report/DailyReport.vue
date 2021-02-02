@@ -20,7 +20,7 @@
               <div class="col-4">
                 <datepicker
                   name="startDay"
-                  v-model="start"
+                  v-model="startDay"
                   lang="it"
                   @input="changedStartDate()"
                   input-class="form-control"
@@ -29,7 +29,7 @@
               <div class="col-4">
                 <datepicker
                   name="endDay"
-                  v-model="end"
+                  v-model="endDay"
                   lang="it"
                   @input="changedEndDate()"
                   input-class="form-control"
@@ -83,8 +83,8 @@ export default {
   data() {
     return {
       selectedUser: null,
-      start: null,
-      end: null,
+      startDay: null,
+      endDay: null,
       fields: [
         {
           key: "user",
@@ -117,17 +117,17 @@ export default {
   methods: {
     changeUser(value) {
       var startdate =
-        this.start.getFullYear() +
+        this.startDay.getFullYear() +
         "-" +
-        (this.start.getMonth() + 1) +
+        (this.startDay.getMonth() + 1) +
         "-" +
-        this.start.getDate();
+        this.startDay.getDate();
       var enddate =
-        this.end.getFullYear() +
+        this.endDay.getFullYear() +
         "-" +
-        (this.end.getMonth() + 1) +
+        (this.endDay.getMonth() + 1) +
         "-" +
-        this.end.getDate();
+        this.endDay.getDate();
       if (value != null) {
         this.selectedUser = value.id;
         // this.$store.dispatch("daily/findByUser", value.id);
@@ -139,18 +139,18 @@ export default {
     },
     changedStartDate() {
       var startdate =
-        this.start.getFullYear() +
+        this.startDay.getFullYear() +
         "-" +
-        (this.start.getMonth() + 1) +
+        (this.startDay.getMonth() + 1) +
         "-" +
-        this.start.getDate();
+        this.startDay.getDate();
       var enddate =
-        this.end.getFullYear() +
+        this.endDay.getFullYear() +
         "-" +
-        (this.end.getMonth() + 1) +
+        (this.endDay.getMonth() + 1) +
         "-" +
-        this.end.getDate();
-      if (this.start) {
+        this.endDay.getDate();
+      if (this.startDay) {
         if (this.selectedUser != null) {
           //  this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
@@ -167,18 +167,18 @@ export default {
     },
     changedEndDate() {
       var startdate =
-        this.start.getFullYear() +
+        this.startDay.getFullYear() +
         "-" +
-        (this.start.getMonth() + 1) +
+        (this.startDay.getMonth() + 1) +
         "-" +
-        this.start.getDate();
+        this.startDay.getDate();
       var enddate =
-        this.end.getFullYear() +
+        this.endDay.getFullYear() +
         "-" +
-        (this.end.getMonth() + 1) +
+        (this.endDay.getMonth() + 1) +
         "-" +
-        this.end.getDate();
-      if (this.end) {
+        this.endDay.getDate();
+      if (this.endDay) {
         if (this.selectedUser != null) {
           // this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
@@ -195,21 +195,21 @@ export default {
     }
   },
   created() {
-    this.start = new Date();
-    this.end = new Date();
-    this.start.setDate("1");
+    this.startDay = new Date();
+    this.endDay = new Date();
+    this.startDay.setDate("1");
     var startdate =
-      this.start.getFullYear() +
+      this.startDay.getFullYear() +
       "-" +
-      (this.start.getMonth() + 1) +
+      (this.startDay.getMonth() + 1) +
       "-" +
-      this.start.getDate();
+      this.startDay.getDate();
     var enddate =
-      this.end.getFullYear() +
+      this.endDay.getFullYear() +
       "-" +
-      (this.end.getMonth() + 1) +
+      (this.endDay.getMonth() + 1) +
       "-" +
-      this.end.getDate();
+      this.endDay.getDate();
 
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     // this.$store.dispatch("daily/findAll");

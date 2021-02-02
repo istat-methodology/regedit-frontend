@@ -36,13 +36,13 @@ function findByUser(user) {
       throw err;
     });
 }
-function findByDate(user, start, end) {
+function findByDate(user, startday, endday) {
   return axiosRegedit
     .get("/regedit/report-daily-pivot", {
       params: {
         user: user,
-        dateModInf: start,
-        dateModSup: end
+        dateModInf: startday,
+        dateModSup: endday
       }
     })
     .then(res => {
@@ -54,12 +54,12 @@ function findByDate(user, start, end) {
       throw err;
     });
 }
-function findByDateTotal(start, end) {
+function findByDateTotal(startday, endday) {
   return axiosRegedit
     .get("/regedit/report-total-daily-pivot", {
       params: {
-        dateModInf: start,
-        dateModSup: end
+        dateModInf: startday,
+        dateModSup: endday
       }
     })
     .then(res => {
