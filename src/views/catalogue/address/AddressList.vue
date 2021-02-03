@@ -4,7 +4,35 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <app-progress class="fade-in" />
+      <div class="card fade-in">
+        <CCardHeader
+          ><span class="filter-head">Filtri di ricerca</span></CCardHeader
+        >
+        <CCardBody>
+          <div class="row">
+            <div class="col-4">
+              <v-select
+                :options="comuni"
+                placeholder="Tutti i comuni"
+                v-model="comune"
+              ></v-select>
+            </div>
+            <div class="col-4">
+              <CInput placeholder="Indirizzo" v-model="indirizzo" />
+            </div>
+            <div class="col-4">
+              <CButton
+                shape="square"
+                size="sm"
+                color="primary"
+                class="mt-1"
+                @click="handleFilter"
+                >Filtra</CButton
+              >
+            </div>
+          </div>
+        </CCardBody>
+      </div>
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
@@ -51,41 +79,17 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Progress from "@/components/Progress";
 import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
   name: "AddressList",
   mixins: [addressMixin],
-  components: {
-    "app-progress": Progress
-  },
   data() {
     return {
       sorterValue: { column: null, asc: false },
-      fields: [
-        {
-          key: "progressivoIndirizzo",
-          label: "Progressivo",
-          _style: "width:10%;"
-        },
-        {
-          key: "indirizzoOriginale",
-          label: "Indirizzo",
-          _style: "min-width:25%;"
-        },
-        { key: "proCom", label: "Procom" },
-        { key: "denominazioneComune", label: "Comune" },
-        { key: "validazione", label: "Validazione", _style: "width:10%;" },
-        { key: "dataMod", label: "Ultima modifica", _style: "width:20%;" },
-        {
-          key: "action",
-          label: "",
-          _style: "width:10%",
-          sorter: false,
-          filter: false
-        }
-      ]
+      comuni: ["Arluno", "Basiglio", "Corbetta"],
+      comune: null,
+      indirizzo: ""
     };
   },
   computed: {
@@ -99,6 +103,9 @@ export default {
         name: "AddressEdit",
         params: { state: this.$route.params.state }
       });
+    },
+    handleFilter() {
+      console.log("Clicked filter!")
     },
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
@@ -117,3 +124,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.filter-head {
+  font-weight: 600;
+}
+</style>

@@ -11,7 +11,30 @@ export default {
         Revised: 2,
         Skip: 3,
         Validated: 4
-      }
+      },
+      fields: [
+        {
+          key: "progressivoIndirizzo",
+          label: "Progressivo",
+          _style: "width:10%;"
+        },
+        {
+          key: "indirizzoOriginale",
+          label: "Indirizzo",
+          _style: "min-width:25%;"
+        },
+        { key: "proCom", label: "Procom" },
+        { key: "denominazioneComune", label: "Comune" },
+        { key: "validazione", label: "Validazione", _style: "width:10%;" },
+        { key: "dataMod", label: "Ultima modifica", _style: "width:20%;" },
+        {
+          key: "action",
+          label: "",
+          _style: "width:10%",
+          sorter: false,
+          filter: false
+        }
+      ]
     };
   },
   methods: {
