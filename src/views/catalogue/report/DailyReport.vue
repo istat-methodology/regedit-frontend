@@ -118,6 +118,7 @@ export default {
   },
   methods: {
     changeUser(value) {
+      var payload;
       this.startdate =
         this.startDay.getFullYear() +
         "-" +
@@ -130,25 +131,31 @@ export default {
         (this.endDay.getMonth() + 1) +
         "-" +
         this.endDay.getDate();
+
       if (value != null) {
+        payload = { id: value.id, start: this.startdate, end: this.enddate };
         this.selectedUser = value.id;
         // this.$store.dispatch("daily/findByUser", value.id);
         this.$store.dispatch(
           "pivot/findByDate",
-          value.id,
+          payload
+          /*  value.id,
           this.startdate,
-          this.enddate
+          this.enddate */
         );
       } else {
         // this.$store.dispatch("daily/findAll");
+        payload = { id: null, start: this.startdate, end: this.enddate };
         this.$store.dispatch(
           "pivot/findByDateTotal",
-          this.startdate,
-          this.enddate
+          payload
+          /* this.startdate,
+          this.enddate */
         );
       }
     },
     changedStartDate() {
+      var payload;
       this.startdate =
         this.startDay.getFullYear() +
         "-" +
@@ -161,26 +168,34 @@ export default {
         (this.endDay.getMonth() + 1) +
         "-" +
         this.endDay.getDate();
+      payload = {
+        id: this.selectedUser,
+        start: this.startdate,
+        end: this.enddate
+      };
       if (this.startDay) {
         if (this.selectedUser != null) {
           //  this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
             "pivot/findByDate",
-            this.selectedUser,
+            payload
+            /* this.selectedUser,
             this.startdate,
-            this.enddate
+            this.enddate */
           );
         } else {
           // this.$store.dispatch("daily/findAll");
           this.$store.dispatch(
             "pivot/findByDateTotal",
-            this.startdate,
-            this.enddate
+            payload
+            /* this.startdate,
+            this.enddate */
           );
         }
       }
     },
     changedEndDate() {
+      var payload;
       this.startdate =
         this.startDay.getFullYear() +
         "-" +
@@ -193,27 +208,35 @@ export default {
         (this.endDay.getMonth() + 1) +
         "-" +
         this.endDay.getDate();
+      payload = {
+        id: this.selectedUser,
+        start: this.startdate,
+        end: this.enddate
+      };
       if (this.endDay) {
         if (this.selectedUser != null) {
           // this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
             "pivot/findByDate",
-            this.selectedUser,
+            payload
+            /*  this.selectedUser,
             this.startdate,
-            this.enddate
+            this.enddate */
           );
         } else {
           //  this.$store.dispatch("daily/findAll");
           this.$store.dispatch(
             "pivot/findByDateTotal",
-            this.startdate,
-            this.enddate
+            payload
+            /*  this.startdate,
+            this.enddate */
           );
         }
       }
     }
   },
   created() {
+    var payload;
     this.startDay = new Date();
     this.endDay = new Date();
     this.startDay.setDate("1");
@@ -229,11 +252,17 @@ export default {
       (this.endDay.getMonth() + 1) +
       "-" +
       this.endDay.getDate();
+    payload = {
+      id: this.selectedUser,
+      start: this.startdate,
+      end: this.enddate
+    };
 
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     // this.$store.dispatch("daily/findAll");
     this.$store.dispatch("user/findAll");
-    this.$store.dispatch("pivot/findByDateTotal", this.startdate, this.enddate);
+    this.$store.dispatch("pivot/findByDateTotal", payload);
+    /* this.$store.dispatch("pivot/findByDateTotal", this.startdate, this.enddate); */
   }
 };
 </script>
