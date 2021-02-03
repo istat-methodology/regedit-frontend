@@ -24,6 +24,7 @@ import {
   CCardBody,
   CCardFooter,
   CInput,
+  CInputCheckbox,
   CTextarea,
   CButton,
   CAlert,
@@ -53,6 +54,7 @@ Vue.component("CCardHeader", CCardHeader);
 Vue.component("CCardBody", CCardBody);
 Vue.component("CCardFooter", CCardFooter);
 Vue.component("CInput", CInput);
+Vue.component("CInputCheckbox", CInputCheckbox);
 Vue.component("CTextarea", CTextarea);
 Vue.component("CButton", CButton);
 Vue.component("CAlert", CAlert);

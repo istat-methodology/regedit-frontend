@@ -4,5 +4,6 @@ export const Context = {
   AddressRevised: 2,
   AddressSkip: 3,
   DailyReport: 4,
-  TotalReport: 5
+  TotalReport: 5,
+  Block: 6
 };
