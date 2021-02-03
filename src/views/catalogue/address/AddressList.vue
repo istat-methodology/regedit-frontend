@@ -11,8 +11,9 @@
             :items="addresses"
             :fields="fields"
             column-filter
-            :items-per-page="10"
+            :items-per-page="50"
             sorter
+            :sorterValue="sorterValue"
             hover
             pagination
           >
@@ -61,6 +62,7 @@ export default {
   },
   data() {
     return {
+      sorterValue: { column: null, asc: false },
       fields: [
         {
           key: "progressivoIndirizzo",
@@ -75,7 +77,7 @@ export default {
         { key: "proCom", label: "Procom" },
         { key: "denominazioneComune", label: "Comune" },
         { key: "validazione", label: "Validazione", _style: "width:10%;" },
-        { key: "dataMod", label: "Utlima modifica", _style: "width:20%;" },
+        { key: "dataMod", label: "Ultima modifica", _style: "width:20%;" },
         {
           key: "action",
           label: "",
@@ -103,6 +105,7 @@ export default {
       this.$store.dispatch("progress/findByUser");
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
+      this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },
   beforeRouteUpdate(to, from, next) {
