@@ -105,7 +105,7 @@ export default {
       });
     },
     handleFilter() {
-      console.log("Clicked filter!")
+      console.log("Clicked filter!");
     },
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
