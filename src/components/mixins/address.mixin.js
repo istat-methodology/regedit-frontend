@@ -34,6 +34,27 @@ export default {
           sorter: false,
           filter: false
         }
+      ],
+      blockFields: [
+        {
+          key: "selected",
+          label: "",
+          _style: "width:1%;",
+          sorter: false,
+          filter: false
+        },
+        {
+          key: "progressivoIndirizzo",
+          label: "Progressivo",
+          _style: "width:10%;"
+        },
+        {
+          key: "indirizzoOriginale",
+          label: "Indirizzo",
+          _style: "min-width:25%;"
+        },
+        { key: "proCom", label: "Procom" },
+        { key: "denominazioneComune", label: "Comune" }
       ]
     };
   },

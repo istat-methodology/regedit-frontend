@@ -36,31 +36,26 @@
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="addresses"
-            :fields="fields"
-            column-filter
+            :items="selectableAddresses"
+            :fields="blockFields"
             :items-per-page="50"
+            addTableClasses="table-block"
             sorter
-            :sorterValue="sorterValue"
             hover
             pagination
           >
-            <template #dataMod="{item}">
-              <td>{{ item.dataMod | formatDate }}</td>
+            <template #selected-header>
+              <CInputCheckbox
+                :checked="globalCheck"
+                @update:checked="toggleAll"
+              />
             </template>
-            <template #validazione="{item}">
-              <td>{{ item.validazione | dashEmpty }}</td>
-            </template>
-            <template #action="{item}">
+            <template #selected="{item}">
               <td>
-                <CButton
-                  shape="square"
-                  variant="outline"
-                  size="sm"
-                  :color="getStatoColor(item.stato, item.validazione)"
-                  @click="handleEdit(item.progressivoIndirizzo)"
-                  >{{ getStatoString(item.stato, item.validazione) }}</CButton
-                >
+                <CInputCheckbox
+                  :checked="item.selected"
+                  @update:checked="toggleSelected(item)"
+                />
               </td>
             </template>
 
@@ -79,40 +74,53 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { Context } from "@/common";
 import addressMixin from "@/components/mixins/address.mixin";
 
 export default {
   name: "AddressList",
   mixins: [addressMixin],
-  data() {
+  data: () => {
     return {
-      sorterValue: { column: null, asc: false },
       comuni: ["Arluno", "Basiglio", "Corbetta"],
       comune: null,
-      indirizzo: ""
+      indirizzo: "",
+      globalCheck: false
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"])
+    ...mapGetters("address", ["addresses"]),
+    selectableAddresses() {
+      return this.addresses
+        ? this.addresses.map((address, index) => {
+            return {
+              ...address,
+              index,
+              selected: false
+            };
+          })
+        : [];
+    }
   },
   methods: {
-    handleEdit(id) {
-      this.$store.dispatch("address/setCurrentId", id);
-      this.$router.push({
-        name: "AddressEdit",
-        params: { state: this.$route.params.state }
+    toggleSelected(address) {
+      address.selected = !address.selected;
+    },
+    toggleAll() {
+      this.globalCheck = !this.globalCheck;
+      this.selectableAddresses.map(address => {
+        address.selected = this.globalCheck;
       });
     },
     handleFilter() {
       console.log("Clicked filter!");
     },
     load(state) {
-      this.$store.dispatch("coreui/setContext", state);
+      this.$store.dispatch("coreui/setContext", Context.Block);
       this.$store.dispatch("progress/findByUser");
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
-      this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },
   beforeRouteUpdate(to, from, next) {
@@ -129,7 +137,10 @@ export default {
 .filter-head {
   font-weight: 600;
 }
+.form-check {
+  padding-bottom: 1.25rem;
+}
 .table thead th {
-  padding: 0.2rem 0.45rem;
+  padding: 0.45rem 0.65rem;
 }
 </style>
