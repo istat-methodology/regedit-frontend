@@ -116,7 +116,11 @@ export default {
   },
   methods: {
     selectComune(value) {
-      this.procom = value.procom;
+      if (value != null) {
+        this.procom = value.procom;
+      } else {
+        this.procom = null;
+      }
     },
     handleEdit(id) {
       this.$store.dispatch("address/setCurrentId", id);
