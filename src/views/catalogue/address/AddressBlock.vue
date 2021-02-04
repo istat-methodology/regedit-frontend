@@ -91,6 +91,8 @@ export default {
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("address", ["addresses"]),
+    ...mapGetters("address", ["filterPROCOM"]),
+    ...mapGetters("address", ["filterAddress"]),
     selectableAddresses() {
       return this.addresses
         ? this.addresses.map((address, index) => {
@@ -114,6 +116,12 @@ export default {
       });
     },
     handleFilter() {
+      var filters;
+      filters = {
+        procom: this.comune,
+        address: this.indirizzo
+      };
+      this.$store.dispatch("address/setFilters", filters);
       console.log("Clicked filter!");
     },
     load(state) {

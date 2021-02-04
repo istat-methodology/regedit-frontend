@@ -4,6 +4,8 @@ import { getUserId } from "@/common";
 const state = {
   addresses: null,
   address: null,
+  filterPROCOM: null,
+  filterAddress: null,
   currentId: localStorage.getItem("addressId") || -1,
   assignedId: localStorage.getItem("assignedId") || -1,
   assignedName: localStorage.getItem("assignedName") || ""
@@ -31,10 +33,17 @@ const mutations = {
   CLEAR_ASSIGNED(state) {
     state.assignedId = -1;
     state.assignedName = "";
+  },
+  SET_FILTERS(state, filters) {
+    state.filterPROCOM = filters.procom;
+    state.filterAddress = filters.address;
   }
 };
 
 const actions = {
+  setFilters: ({ commit }, filters) => {
+    commit("SET_FILTERS", filters);
+  },
   findAll({ commit }) {
     return addressService
       .findAll()
