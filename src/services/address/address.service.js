@@ -7,12 +7,14 @@ class AddressService extends AbstractService {
     super(endpoint);
   }
 
-  findByUserAndState(user, state) {
+  findByUserAndState(user, state, procom, address) {
     return axiosRegedit
       .get(this.endpoint, {
         params: {
           user: user,
-          stato: state
+          stato: state,
+          proCom: procom,
+          indirizzoOriginaleStartWith: address
         }
       })
       .then(res => {

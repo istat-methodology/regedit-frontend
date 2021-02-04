@@ -61,7 +61,12 @@ const actions = {
     let userId = getUserId();
     if (userId > 0) {
       return addressService
-        .findByUserAndState(userId, stateId)
+        .findByUserAndState(
+          userId,
+          stateId,
+          state.filterPROCOM,
+          state.filterAddress
+        )
         .then(data => {
           //console.log(data);
           commit("SET_ADDRESSES", data);

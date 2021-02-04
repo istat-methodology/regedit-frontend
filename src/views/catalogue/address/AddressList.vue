@@ -126,6 +126,16 @@ export default {
       });
     },
     handleFilter() {
+      var filters;
+      filters = {
+        procom: this.procom,
+        address: this.indirizzo
+      };
+      this.$store.dispatch("address/setFilters", filters);
+      this.$store.dispatch(
+        "address/findByUserAndState",
+        this.$route.params.state
+      );
       console.log("Clicked filter!");
     },
     load(state) {
