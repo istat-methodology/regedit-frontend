@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     changeUser(value) {
-      var payload;
+      var filters;
       this.startdate =
         this.startDay.getFullYear() +
         "-" +
@@ -133,29 +133,29 @@ export default {
         this.endDay.getDate();
 
       if (value != null) {
-        payload = { id: value.id, start: this.startdate, end: this.enddate };
+        filters = { id: value.id, start: this.startdate, end: this.enddate };
         this.selectedUser = value.id;
         // this.$store.dispatch("daily/findByUser", value.id);
         this.$store.dispatch(
           "pivot/findByDate",
-          payload
+          filters
           /*  value.id,
           this.startdate,
           this.enddate */
         );
       } else {
         // this.$store.dispatch("daily/findAll");
-        payload = { id: null, start: this.startdate, end: this.enddate };
+        filters = { id: null, start: this.startdate, end: this.enddate };
         this.$store.dispatch(
           "pivot/findByDateTotal",
-          payload
+          filters
           /* this.startdate,
           this.enddate */
         );
       }
     },
     changedStartDate() {
-      var payload;
+      var filters;
       this.startdate =
         this.startDay.getFullYear() +
         "-" +
@@ -168,7 +168,7 @@ export default {
         (this.endDay.getMonth() + 1) +
         "-" +
         this.endDay.getDate();
-      payload = {
+      filters = {
         id: this.selectedUser,
         start: this.startdate,
         end: this.enddate
@@ -178,7 +178,7 @@ export default {
           //  this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
             "pivot/findByDate",
-            payload
+            filters
             /* this.selectedUser,
             this.startdate,
             this.enddate */
@@ -187,7 +187,7 @@ export default {
           // this.$store.dispatch("daily/findAll");
           this.$store.dispatch(
             "pivot/findByDateTotal",
-            payload
+            filters
             /* this.startdate,
             this.enddate */
           );
@@ -195,7 +195,7 @@ export default {
       }
     },
     changedEndDate() {
-      var payload;
+      var filters;
       this.startdate =
         this.startDay.getFullYear() +
         "-" +
@@ -208,7 +208,7 @@ export default {
         (this.endDay.getMonth() + 1) +
         "-" +
         this.endDay.getDate();
-      payload = {
+      filters = {
         id: this.selectedUser,
         start: this.startdate,
         end: this.enddate
@@ -218,7 +218,7 @@ export default {
           // this.$store.dispatch("daily/findByUser", this.selectedUser);
           this.$store.dispatch(
             "pivot/findByDate",
-            payload
+            filters
             /*  this.selectedUser,
             this.startdate,
             this.enddate */
@@ -227,7 +227,7 @@ export default {
           //  this.$store.dispatch("daily/findAll");
           this.$store.dispatch(
             "pivot/findByDateTotal",
-            payload
+            filters
             /*  this.startdate,
             this.enddate */
           );
