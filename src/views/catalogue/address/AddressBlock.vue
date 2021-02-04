@@ -12,9 +12,11 @@
           <div class="row">
             <div class="col-4">
               <v-select
+                v-if="comuni"
+                label="name"
                 :options="comuni"
                 placeholder="Tutti i comuni"
-                v-model="comune"
+                @input="selectComune"
               ></v-select>
             </div>
             <div class="col-4">
@@ -82,7 +84,24 @@ export default {
   mixins: [addressMixin],
   data: () => {
     return {
-      comuni: ["Arluno", "Basiglio", "Corbetta"],
+      comuni: [
+        {
+          procom: "15146",
+          name: "Milano"
+        },
+        {
+          procom: "15154",
+          name: "Nerviano"
+        },
+        {
+          procom: "15166",
+          name: "Paderno Dugnano"
+        },
+        {
+          procom: "16108",
+          name: "Gandino"
+        }
+      ],
       comune: null,
       indirizzo: "",
       globalCheck: false
