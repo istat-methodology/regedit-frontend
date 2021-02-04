@@ -29,8 +29,8 @@ export default {
         }, */
         {
           label: "validati",
-          backgroundColor: "rgba(155, 255, 105, 0.2)",
-          borderColor: "rgba(155, 255, 105, 1)",
+          backgroundColor: "rgba(46, 184, 92, 0.2)",
+          borderColor: "rgba(46, 184, 92, 1)",
           data: validati
         },
         {
