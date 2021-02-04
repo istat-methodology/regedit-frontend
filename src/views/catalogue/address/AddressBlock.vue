@@ -12,7 +12,6 @@
           <div class="row">
             <div class="col-4">
               <v-select
-                v-if="comuni"
                 label="name"
                 :options="comuni"
                 placeholder="Tutti i comuni"
@@ -125,6 +124,9 @@ export default {
     }
   },
   methods: {
+    selectComune(value) {
+      this.comune = value.procom;
+    },
     toggleSelected(address) {
       address.selected = !address.selected;
     },

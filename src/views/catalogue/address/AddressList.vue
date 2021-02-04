@@ -12,9 +12,10 @@
           <div class="row">
             <div class="col-4">
               <v-select
+                label="name"
                 :options="comuni"
                 placeholder="Tutti i comuni"
-                v-model="comune"
+                @input="selectComune"
               ></v-select>
             </div>
             <div class="col-4">
@@ -87,8 +88,25 @@ export default {
   data() {
     return {
       sorterValue: { column: null, asc: false },
-      comuni: ["Arluno", "Basiglio", "Corbetta"],
-      comune: null,
+      comuni: [
+        {
+          procom: "15146",
+          name: "Milano"
+        },
+        {
+          procom: "15154",
+          name: "Nerviano"
+        },
+        {
+          procom: "15166",
+          name: "Paderno Dugnano"
+        },
+        {
+          procom: "16108",
+          name: "Gandino"
+        }
+      ],
+      procom: null,
       indirizzo: ""
     };
   },
@@ -97,6 +115,9 @@ export default {
     ...mapGetters("address", ["addresses"])
   },
   methods: {
+    selectComune(value) {
+      this.procom = value.procom;
+    },
     handleEdit(id) {
       this.$store.dispatch("address/setCurrentId", id);
       this.$router.push({
