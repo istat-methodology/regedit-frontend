@@ -139,7 +139,7 @@ export default {
     handleFilter() {
       var filters;
       filters = {
-        procom: this.comune,
+        procom: this.procom,
         address: this.indirizzo
       };
       this.$store.dispatch("address/setFilters", filters);
