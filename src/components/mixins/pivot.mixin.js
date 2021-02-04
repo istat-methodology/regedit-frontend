@@ -29,17 +29,20 @@ export default {
         }, */
         {
           label: "validati",
-          backgroundColor: "#dbf2e3",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
           data: validati
         },
         {
           label: "revisionati",
-          backgroundColor: "#fee2e1",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255,99,132,1)",
           data: revisionati
         },
         {
           label: "sospesi",
-          backgroundColor: "#fff3cd",
+          backgroundColor: "rgba(255, 206, 86, 0.2)",
+          borderColor: "rgba(255, 206, 86, 1)",
           data: sospesi
         }
       ];
