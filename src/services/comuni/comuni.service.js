@@ -26,4 +26,4 @@ class ComuniService extends AbstractService {
   }
 }
 
-export const addressService = new ComuniService("/regedit/addresses");
+export const comuniService = new ComuniService("/regedit/addresses");
