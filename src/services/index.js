@@ -5,3 +5,5 @@ export * from "./user/user.service";
 export * from "./report/daily.service";
 export * from "./report/pivot.service";
 export * from "./report/progress.service";
+export * from "./report/progress.service";
+export * from "./comuni/comuni.service";
