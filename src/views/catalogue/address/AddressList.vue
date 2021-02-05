@@ -115,7 +115,9 @@ export default {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("address", ["addresses"]),
     ...mapGetters("elencoComuni", ["comuni"]),
-    ...mapGetters("auth", ["loggedUser"])
+    ...mapGetters("auth", ["isSupervisor"]),
+    ...mapGetters("auth", ["loggedUser"]),
+    ...mapGetters("address", ["assignedId"])
   },
   methods: {
     selectComune(value) {
@@ -148,10 +150,18 @@ export default {
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("progress/findByUser");
-      this.$store.dispatch(
-        "elencoComuni/findComuniByUser",
-        this.loggedUser.userId
-      );
+      if (this.isSupervisor) {
+        this.$store.dispatch(
+          "elencoComuni/findComuniByUser",
+          this.assignedId
+          /* this.loggedUser.userId */
+        );
+      } else {
+        this.$store.dispatch(
+          "elencoComuni/findComuniByUser",
+          this.loggedUser.userId
+        );
+      }
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
