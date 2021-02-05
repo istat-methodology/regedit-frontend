@@ -27,9 +27,14 @@ class AddressService extends AbstractService {
       });
   }
 
-  findNextAddress(user, state) {
+  findNextAddress(user, state, procom, address) {
     return axiosRegedit
-      .get(this.endpoint + "/first-address/user/" + user + "/state/" + state)
+      .get(this.endpoint + "/first-address/user/" + user + "/state/" + state, {
+        params: {
+          proCom: procom,
+          indirizzoOriginaleStartWith: address
+        }
+      })
       .then(res => {
         var data = res.data ? res.data : {};
         //console.log(data);

@@ -82,7 +82,12 @@ const actions = {
     let userId = getUserId();
     if (userId > 0) {
       return addressService
-        .findNextAddress(userId, stateId)
+        .findNextAddress(
+          userId,
+          stateId,
+          state.filterPROCOM,
+          state.filterAddress
+        )
         .then(data => {
           //console.log(data);
           commit("SET_ADDRESS", data);
