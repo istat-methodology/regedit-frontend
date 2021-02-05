@@ -1,5 +1,5 @@
 import { addressService } from "@/services";
-import { getUserId } from "../../../services/comuni/node_modules/@/common";
+import { getUserId } from "@/common";
 
 const state = {
   addresses: null,

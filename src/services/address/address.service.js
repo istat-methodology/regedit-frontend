@@ -1,6 +1,6 @@
-import { axiosRegedit } from "../comuni/node_modules/@/http";
-import AbstractService from "../comuni/node_modules/@/services/abstract.service";
-import { config } from "../comuni/node_modules/@/common";
+import { axiosRegedit } from "@/http";
+import AbstractService from "@/services/abstract.service";
+import { config } from "@/common";
 
 class AddressService extends AbstractService {
   constructor(endpoint) {

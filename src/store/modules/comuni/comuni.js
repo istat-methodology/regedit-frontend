@@ -12,17 +12,15 @@ const mutations = {
 
 const actions = {
   findComuniByUser({ commit }, user, state) {
-    if (user) {
-      return comuniService
-        .findComuniByUser(user, state)
-        .then(data => {
-          //console.log(data);
-          commit("SET_COMUNI", data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+    return comuniService
+      .findComuniByUser(user, state)
+      .then(data => {
+        //console.log(data);
+        commit("SET_COMUNI", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 

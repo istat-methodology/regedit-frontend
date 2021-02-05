@@ -12,6 +12,7 @@ import { progress } from "./modules/report/progress";
 import { daily } from "./modules/report/daily";
 import { pivot } from "./modules/report/pivot";
 import { version } from "./modules/versioning/appversion";
+import { elencoComuni } from "./modules/comuni/comuni";
 
 Vue.use(Vuex);
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     progress,
     daily,
     pivot,
-    version
+    version,
+    elencoComuni
   }
 });

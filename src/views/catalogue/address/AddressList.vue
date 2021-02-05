@@ -12,7 +12,8 @@
           <div class="row">
             <div class="col-4">
               <v-select
-                label="name"
+                v-if="comuni"
+                label="denominazioneComune"
                 :options="comuni"
                 placeholder="Tutti i comuni"
                 @input="selectComune"
@@ -88,7 +89,7 @@ export default {
   data() {
     return {
       sorterValue: { column: null, asc: false },
-      comuni: [
+      /* comuni: [
         {
           procom: "15146",
           name: "Milano"
@@ -105,19 +106,21 @@ export default {
           procom: "16108",
           name: "Gandino"
         }
-      ],
+      ],*/
       procom: null,
       indirizzo: ""
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"])
+    ...mapGetters("address", ["addresses"]),
+    ...mapGetters("elencoComuni", ["comuni"]),
+    ...mapGetters("user", ["user"])
   },
   methods: {
     selectComune(value) {
       if (value != null) {
-        this.procom = value.procom;
+        this.procom = value.proCom;
       } else {
         this.procom = null;
       }
@@ -145,6 +148,7 @@ export default {
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("progress/findByUser");
+      this.$store.dispatch("elencoComuni/findComuniByUser", this.user);
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;

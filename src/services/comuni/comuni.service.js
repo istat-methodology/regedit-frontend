@@ -8,7 +8,7 @@ class ComuniService extends AbstractService {
   findComuniByUser(user, state) {
     {
       return axiosRegedit
-        .get(this.endpoint + "/comuni", {
+        .get(this.endpoint + "/addresses-comuni", {
           params: {
             user: user,
             stato: state
@@ -26,4 +26,4 @@ class ComuniService extends AbstractService {
   }
 }
 
-export const comuniService = new ComuniService("/regedit/addresses");
+export const comuniService = new ComuniService("/regedit");
