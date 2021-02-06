@@ -4,7 +4,7 @@ import { getUserId } from "@/common";
 const state = {
   addresses: null,
   address: null,
-  filterPROCOM: null,
+  filterComune: null,
   filterAddress: null,
   currentId: localStorage.getItem("addressId") || -1,
   assignedId: localStorage.getItem("assignedId") || -1,
@@ -34,16 +34,23 @@ const mutations = {
     state.assignedId = -1;
     state.assignedName = "";
   },
-  SET_FILTERS(state, filters) {
-    state.filterPROCOM = filters.procom;
-    state.filterAddress = filters.address;
+  SET_FILTER_COMUNE(state, comune) {
+    state.filterComune = comune;
+  },
+  SET_FILTER_ADDRESS(state, address) {
+    state.filterAddress = address;
   }
 };
 
 const actions = {
-  setFilters: ({ commit }, filters) => {
-    commit("SET_FILTERS", filters);
+  setFilterComune: ({ commit }, comune) => {
+    commit("SET_FILTER_COMUNE", comune);
   },
+
+  setFilterAddress: ({ commit }, address) => {
+    commit("SET_FILTER_ADDRESS", address);
+  },
+
   findAll({ commit }) {
     return addressService
       .findAll()
@@ -64,7 +71,7 @@ const actions = {
         .findByUserAndState(
           userId,
           stateId,
-          state.filterPROCOM,
+          state.filterComune ? state.filterComune.proCom : null,
           state.filterAddress
         )
         .then(data => {
@@ -85,7 +92,7 @@ const actions = {
         .findNextAddress(
           userId,
           stateId,
-          state.filterPROCOM,
+          state.filterComune ? state.filterComune.proCom : null,
           state.filterAddress
         )
         .then(data => {
@@ -167,6 +174,12 @@ const getters = {
   },
   assignedName: state => {
     return state.assignedName;
+  },
+  filterComune: state => {
+    return state.filterComune;
+  },
+  filterAddress: state => {
+    return state.filterAddress;
   }
 };
 

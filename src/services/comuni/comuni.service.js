@@ -5,7 +5,25 @@ class ComuniService extends AbstractService {
   constructor(endpoint) {
     super(endpoint);
   }
-  findComuniByUser(user, state) {
+  findComuniByUser(user) {
+    {
+      return axiosRegedit
+        .get(this.endpoint + "/addresses-comuni", {
+          params: {
+            user: user
+          }
+        })
+        .then(res => {
+          var data = res.data ? res.data : {};
+          //console.log(data);
+          return data;
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }
+  findComuniByUserAndState(user, state) {
     {
       return axiosRegedit
         .get(this.endpoint + "/addresses-comuni", {

@@ -1,4 +1,5 @@
 import { comuniService } from "@/services";
+import { getUserId } from "@/common";
 
 const state = {
   comuni: null
@@ -11,16 +12,20 @@ const mutations = {
 };
 
 const actions = {
-  findComuniByUser({ commit }, user, state) {
-    return comuniService
-      .findComuniByUser(user, state)
-      .then(data => {
-        //console.log(data);
-        commit("SET_COMUNI", data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  findComuniByUser({ commit }) {
+    //get user from store
+    let userId = getUserId();
+    if (userId > 0) {
+      return comuniService
+        .findComuniByUser(userId)
+        .then(data => {
+          //console.log(data);
+          commit("SET_COMUNI", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 

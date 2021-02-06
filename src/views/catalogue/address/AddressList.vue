@@ -4,37 +4,7 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <div class="card fade-in">
-        <CCardHeader
-          ><span class="filter-head">Filtri di ricerca</span></CCardHeader
-        >
-        <CCardBody>
-          <div class="row">
-            <div class="col-4">
-              <v-select
-                v-if="comuni"
-                label="denominazioneComune"
-                :options="comuni"
-                placeholder="Tutti i comuni"
-                @input="selectComune"
-              ></v-select>
-            </div>
-            <div class="col-4">
-              <CInput placeholder="Indirizzo" v-model="indirizzo" />
-            </div>
-            <div class="col-4">
-              <CButton
-                shape="square"
-                size="sm"
-                color="primary"
-                class="mt-1"
-                @click="handleFilter"
-                >Filtra</CButton
-              >
-            </div>
-          </div>
-        </CCardBody>
-      </div>
+      <app-search-filter @filter="handleFilter" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
@@ -82,51 +52,24 @@
 <script>
 import { mapGetters } from "vuex";
 import addressMixin from "@/components/mixins/address.mixin";
+import SearchFilter from "@/components/SearchFilter";
 
 export default {
   name: "AddressList",
   mixins: [addressMixin],
+  components: {
+    "app-search-filter": SearchFilter
+  },
   data() {
     return {
-      sorterValue: { column: null, asc: false },
-      /* comuni: [
-        {
-          procom: "15146",
-          name: "Milano"
-        },
-        {
-          procom: "15154",
-          name: "Nerviano"
-        },
-        {
-          procom: "15166",
-          name: "Paderno Dugnano"
-        },
-        {
-          procom: "16108",
-          name: "Gandino"
-        }
-      ],*/
-      procom: null,
-      indirizzo: ""
+      sorterValue: { column: null, asc: false }
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"]),
-    ...mapGetters("elencoComuni", ["comuni"]),
-    ...mapGetters("auth", ["isSupervisor"]),
-    ...mapGetters("auth", ["loggedUser"]),
-    ...mapGetters("address", ["assignedId"])
+    ...mapGetters("address", ["addresses"])
   },
   methods: {
-    selectComune(value) {
-      if (value != null) {
-        this.procom = value.proCom;
-      } else {
-        this.procom = null;
-      }
-    },
     handleEdit(id) {
       this.$store.dispatch("address/setCurrentId", id);
       this.$router.push({
@@ -135,35 +78,17 @@ export default {
       });
     },
     handleFilter() {
-      var filters;
-      filters = {
-        procom: this.procom,
-        address: this.indirizzo
-      };
-      this.$store.dispatch("address/setFilters", filters);
       this.$store.dispatch(
         "address/findByUserAndState",
         this.$route.params.state
       );
-      console.log("Clicked filter!");
     },
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
-      this.$store.dispatch("progress/findByUser");
-      if (this.isSupervisor) {
-        this.$store.dispatch(
-          "elencoComuni/findComuniByUser",
-          this.assignedId
-          /* this.loggedUser.userId */
-        );
-      } else {
-        this.$store.dispatch(
-          "elencoComuni/findComuniByUser",
-          this.loggedUser.userId
-        );
-      }
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
+      this.$store.dispatch("progress/findByUser");
+      this.$store.dispatch("elencoComuni/findComuniByUser");
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },
@@ -178,9 +103,6 @@ export default {
 </script>
 
 <style scoped>
-.filter-head {
-  font-weight: 600;
-}
 .table thead th {
   padding: 0.2rem 0.45rem;
 }
