@@ -156,6 +156,11 @@ const actions = {
   clear({ commit }) {
     commit("SET_ADDRESSES", null);
     commit("SET_ADDRESS", null);
+  },
+
+  clearFilters({ commit }) {
+    commit("SET_FILTER_COMUNE", null);
+    commit("SET_FILTER_ADDRESS", null);
   }
 };
 

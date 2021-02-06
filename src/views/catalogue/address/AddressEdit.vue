@@ -7,15 +7,38 @@
       <template v-if="address">
         <app-progress class="fade-in" />
         <div class="row fade-in">
-          <div class="col-4">
-            <address-original
-              :address="address"
-              @skip="handleSkip"
-              @open="handleOpen"
-            />
-          </div>
-          <div class="col-4">
-            <address-suggested :address="address" @validate="handleValidate" />
+          <div class="col-8">
+            <div class="row">
+              <div class="col-6">
+                <address-original
+                  :address="address"
+                  @skip="handleSkip"
+                  @open="handleOpen"
+                />
+              </div>
+              <div class="col-6">
+                <address-suggested
+                  :address="address"
+                  @validate="handleValidate"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <CCard>
+                  <CCardHeader class="card-header-light-grey">
+                    <span class="card-header-span">Note</span>
+                  </CCardHeader>
+                  <CCardBody class="card-text">
+                    <CTextarea
+                      placeholder="Note"
+                      rows="5"
+                      v-model="address.note"
+                    />
+                  </CCardBody>
+                </CCard>
+              </div>
+            </div>
           </div>
           <div class="col-4">
             <template v-if="address.stato == addressState.Revised">
@@ -62,7 +85,7 @@ export default {
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("auth", ["isSupervisor", "loggedUser"]),
-    ...mapGetters("address", ["address"]),
+    ...mapGetters("address", ["address", "filterComune", "filterAddress"]),
     fonte() {
       return this.getFonteById(this.address.idFonte);
     },
@@ -128,11 +151,23 @@ export default {
     },
     checkCompleted(nextAddress) {
       if (Object.keys(nextAddress).length === 0) {
-        this.$store.dispatch(
-          "message/success",
-          "Complimenti hai completato il tuo lavoro!"
-        );
-        this.$router.push("/catalogue");
+        if (this.filterComune || this.filterAddress) {
+          this.$store.dispatch(
+            "message/success",
+            this.getCompletedMessage(this.filterComune, this.filterAddress)
+          );
+          this.$store.dispatch("address/clearFilters");
+          this.$router.push({
+            name: "AddressList",
+            params: { state: this.$route.params.state }
+          });
+        } else {
+          this.$store.dispatch(
+            "message/success",
+            "Complimenti hai completato il tuo lavoro!"
+          );
+          this.$router.push("/catalogue");
+        }
       }
     }
   },
@@ -152,3 +187,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.card-header-span {
+  font-weight: 600;
+  line-height: 1.7;
+}
+</style>

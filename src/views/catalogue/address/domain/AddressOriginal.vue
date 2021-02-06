@@ -4,18 +4,15 @@
       <span class="card-header-span">Indirizzo originale</span>
       <div
         class="card-header-actions"
-        v-if="address.stato == addressState.TobeRevised"
-      >
-        <CButton shape="square" size="sm" color="warning" @click="$emit('skip')"
-          >Salta</CButton
-        >
-      </div>
-      <div
-        class="card-header-actions"
-        v-else-if="address.stato == addressState.Revised"
+        v-if="address.stato == addressState.Revised"
       >
         <CButton shape="square" size="sm" color="primary" @click="$emit('open')"
           >Modifica</CButton
+        >
+      </div>
+      <div class="card-header-actions" v-else>
+        <CButton shape="square" size="sm" color="warning" @click="$emit('skip')"
+          >Sospendi</CButton
         >
       </div>
     </CCardHeader>

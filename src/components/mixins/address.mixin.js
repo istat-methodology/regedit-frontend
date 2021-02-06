@@ -152,6 +152,11 @@ export default {
     },
     isAddressValidated(address) {
       return address.validazione === "SI" ? true : false;
+    },
+    getCompletedMessage(comune, address) {
+      return "Complimenti hai completato "
+        .concat(comune ? comune.denominazioneComune + ", " : " ")
+        .concat(address ? address : "");
     }
   }
 };

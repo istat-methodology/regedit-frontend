@@ -110,7 +110,7 @@
             </a>
           </router-link>
         </li>
-        <li class="c-sidebar-nav-title">
+        <!--li class="c-sidebar-nav-title">
           Revisioni in blocco <small class="pl-1">{{ assignedName }}</small>
         </li>
         <li class="c-sidebar-nav-item">
@@ -128,7 +128,7 @@
               >
             </a>
           </router-link>
-        </li>
+        </li-->
       </template>
     </ul>
   </CSidebar>
