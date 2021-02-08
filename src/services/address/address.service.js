@@ -27,7 +27,7 @@ class AddressService extends AbstractService {
       });
   }
 
-  findNextAddress(user, state, procom, address) {
+  /* findNextAddress(user, state, procom, address) {
     return axiosRegedit
       .get(this.endpoint + "/first-address/user/" + user + "/state/" + state, {
         params: {
@@ -43,6 +43,51 @@ class AddressService extends AbstractService {
       .catch(err => {
         throw err;
       });
+  } */
+
+  findNextAddress(user, state, procom, address) {
+    if (state > 1) {
+      return axiosRegedit
+        .get(
+          this.endpoint + "/first-address/user/" + user + "/state/" + state,
+          {
+            params: {
+              proCom: procom,
+              indirizzoOriginaleStartWith: address,
+              orderBy: "dataMod"
+            }
+          }
+        )
+        .then(res => {
+          var data = res.data ? res.data : {};
+          //console.log(data);
+          return data;
+        })
+        .catch(err => {
+          throw err;
+        });
+    } else {
+      if (state) {
+        return axiosRegedit
+          .get(
+            this.endpoint + "/first-address/user/" + user + "/state/" + state,
+            {
+              params: {
+                proCom: procom,
+                indirizzoOriginaleStartWith: address
+              }
+            }
+          )
+          .then(res => {
+            var data = res.data ? res.data : {};
+            //console.log(data);
+            return data;
+          })
+          .catch(err => {
+            throw err;
+          });
+      }
+    }
   }
 
   update(formData) {
