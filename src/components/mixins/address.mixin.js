@@ -16,17 +16,29 @@ export default {
         {
           key: "progressivoIndirizzo",
           label: "Progressivo",
-          _style: "width:10%;"
+          _style: "width:10%;",
+          filter: false
         },
         {
           key: "indirizzoOriginale",
           label: "Indirizzo",
-          _style: "min-width:25%;"
+          _style: "min-width:25%;",
+          filter: false
         },
-        { key: "proCom", label: "Procom" },
-        { key: "denominazioneComune", label: "Comune" },
-        { key: "validazione", label: "Validazione", _style: "width:10%;" },
-        { key: "dataMod", label: "Ultima modifica", _style: "width:20%;" },
+        { key: "proCom", label: "Procom", filter: false },
+        { key: "denominazioneComune", label: "Comune", filter: false },
+        {
+          key: "validazione",
+          label: "Validazione",
+          _style: "width:10%;",
+          filter: false
+        },
+        {
+          key: "dataMod",
+          label: "Ultima modifica",
+          _style: "width:20%;",
+          filter: false
+        },
         {
           key: "action",
           label: "",
