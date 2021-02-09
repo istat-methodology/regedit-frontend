@@ -5,7 +5,14 @@ const state = {
   addresses: null,
   address: null,
   filterComune: null,
+  sortComune: null,
   filterAddress: null,
+  sortAddress: null,
+  filterProcom: null,
+  sortProcom: null,
+  filterDate: null,
+  sortDate: null,
+
   currentId: localStorage.getItem("addressId") || -1,
   assignedId: localStorage.getItem("assignedId") || -1,
   assignedName: localStorage.getItem("assignedName") || ""
