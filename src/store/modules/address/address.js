@@ -47,17 +47,17 @@ const mutations = {
   SET_FILTER_ADDRESS(state, address) {
     state.filterAddress = address;
   },
-  SET_SORT_COMUNE(state, sort) {
-    state.sortComune = sort;
-  },
-  SET_SORT_ADDRESS(state, sort) {
-    state.sortAddress = sort;
-  },
   SET_FILTER_PROCOM(state, procom) {
     state.filterProcom = procom;
   },
   SET_FILTER_DATE(state, date) {
     state.filterDate = date;
+  },
+  SET_SORT_COMUNE(state, sort) {
+    state.sortComune = sort;
+  },
+  SET_SORT_ADDRESS(state, sort) {
+    state.sortAddress = sort;
   },
   SET_SORT_PROCOM(state, sort) {
     state.sortProcom = sort;
@@ -74,6 +74,27 @@ const actions = {
 
   setFilterAddress: ({ commit }, address) => {
     commit("SET_FILTER_ADDRESS", address);
+  },
+  setFilterProcom: ({ commit }, comune) => {
+    commit("SET_FILTER_PROCOM", comune);
+  },
+
+  setFilterDate: ({ commit }, address) => {
+    commit("SET_FILTER_DATE", address);
+  },
+  setSortComune: ({ commit }, comune) => {
+    commit("SET_SORT_COMUNE", comune);
+  },
+
+  setSortAddress: ({ commit }, address) => {
+    commit("SET_SORT_ADDRESS", address);
+  },
+  setSortProcom: ({ commit }, comune) => {
+    commit("SET_SORT_PROCOM", comune);
+  },
+
+  setSortDate: ({ commit }, address) => {
+    commit("SET_SORT_DATE", address);
   },
 
   findAll({ commit }) {
@@ -210,6 +231,24 @@ const getters = {
   },
   filterAddress: state => {
     return state.filterAddress;
+  },
+  filterProcom: state => {
+    return state.filterProcom;
+  },
+  filterDate: state => {
+    return state.filterDate;
+  },
+  sortComune: state => {
+    return state.sortComune;
+  },
+  sortAddress: state => {
+    return state.sortAddress;
+  },
+  sortProcom: state => {
+    return state.sortComune;
+  },
+  sortDate: state => {
+    return state.sortAddress;
   }
 };
 

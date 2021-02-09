@@ -12,7 +12,6 @@
             :fields="fields"
             column-filter
             :items-per-page="50"
-            sorter
             :sorterValue="sorterValue"
             hover
             pagination

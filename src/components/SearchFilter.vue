@@ -16,7 +16,13 @@
         </div>
         <div class="col-1">
           <label class="c-switch c-switch-label c-switch-primary">
-            <input type="checkbox" class="c-switch-input" checked />
+            <input
+              name="sortComune"
+              type="checkbox"
+              class="c-switch-input"
+              v-bind="sortComune"
+              checked
+            />
             <span
               class="c-switch-slider"
               data-checked="ASC"
@@ -30,7 +36,12 @@
         </div>
         <div class="col-1">
           <label class="c-switch c-switch-label c-switch-primary">
-            <input type="checkbox" class="c-switch-input" checked />
+            <input
+              type="checkbox"
+              class="c-switch-input"
+              v-bind="sortAddress"
+              checked
+            />
             <span
               class="c-switch-slider"
               data-checked="ASC"
@@ -60,7 +71,7 @@ export default {
   name: "SearchFilter",
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
-    ...mapGetters("address", ["filterComune", "filterAddress"]),
+    ...mapGetters("address", ["filterComune", "sortComune", "filterAddress"]),
     comune: {
       get: function() {
         return this.filterComune;
