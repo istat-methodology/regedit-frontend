@@ -35,7 +35,11 @@
         </div>
         <div class="col-1">
           <label class="c-switch c-switch-label c-switch-primary">
-            <input type="checkbox" class="c-switch-input" checked />
+            <input
+              type="checkbox"
+              class="c-switch-input"
+              v-model="addressSorting"
+            />
             <span
               class="c-switch-slider"
               data-checked="ASC"
@@ -88,6 +92,14 @@ export default {
       },
       set: function(comuneSort) {
         this.$store.dispatch("address/setSortComune", comuneSort);
+      }
+    },
+    addressSorting: {
+      get: function() {
+        return this.sortAddress;
+      },
+      set: function(addressSort) {
+        this.$store.dispatch("address/setSortAddress", addressSort);
       }
     }
   }
