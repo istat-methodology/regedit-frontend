@@ -5,7 +5,7 @@
     >
     <CCardBody>
       <div class="row">
-        <div class="col-4">
+        <div class="col-3">
           <v-select
             v-if="comuni"
             label="denominazioneComune"
@@ -14,10 +14,31 @@
             v-model="comune"
           ></v-select>
         </div>
-        <div class="col-4">
+        <div class="col-1">
+          <label class="c-switch c-switch-label c-switch-primary">
+            <input type="checkbox" class="c-switch-input" checked />
+            <span
+              class="c-switch-slider"
+              data-checked="ASC"
+              data-unchecked="DES"
+            ></span>
+          </label>
+        </div>
+
+        <div class="col-3">
           <CInput placeholder="Indirizzo" v-model="indirizzo" />
         </div>
-        <div class="col-4">
+        <div class="col-1">
+          <label class="c-switch c-switch-label c-switch-primary">
+            <input type="checkbox" class="c-switch-input" checked />
+            <span
+              class="c-switch-slider"
+              data-checked="ASC"
+              data-unchecked="DES"
+            ></span>
+          </label>
+        </div>
+        <div class="col-3">
           <CButton
             shape="square"
             size="sm"

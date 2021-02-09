@@ -34,7 +34,9 @@ class AddressService extends AbstractService {
           proCom: procom,
           indirizzoOriginaleStartWith: address,
           // eslint-disable-next-line prettier/prettier
-          orderBy: state > 1 ? 'dataMod' : null
+          orderBy: state > 1 ? 'dataMod' : null,
+          // eslint-disable-next-line prettier/prettier
+          sort: 'desc'
         }
       })
       .then(res => {
