@@ -73,6 +73,7 @@
                         size="sm"
                         color="primary"
                         @click.prevent="handleSubmit"
+                        @keyup.enter="handleSubmit"
                         >Sign in</CButton
                       >
                     </CCol>
