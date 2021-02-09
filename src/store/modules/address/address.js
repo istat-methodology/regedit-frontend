@@ -46,6 +46,24 @@ const mutations = {
   },
   SET_FILTER_ADDRESS(state, address) {
     state.filterAddress = address;
+  },
+  SET_SORT_COMUNE(state, sort) {
+    state.sortComune = sort;
+  },
+  SET_SORT_ADDRESS(state, sort) {
+    state.sortAddress = sort;
+  },
+  SET_FILTER_PROCOM(state, procom) {
+    state.filterProcom = procom;
+  },
+  SET_FILTER_DATE(state, date) {
+    state.filterDate = date;
+  },
+  SET_SORT_PROCOM(state, sort) {
+    state.sortProcom = sort;
+  },
+  SET_SORT_DATE(state, sort) {
+    state.sortDate = sort;
   }
 };
 
