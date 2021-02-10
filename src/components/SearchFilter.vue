@@ -70,7 +70,7 @@ export default {
   name: "SearchFilter",
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
-    ...mapGetters("address", ["filterComune", "sortComune", "filterAddress"]),
+    ...mapGetters("address", ["filterComune", "filterAddress"]),
     comune: {
       get: function() {
         return this.filterComune;
