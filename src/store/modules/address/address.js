@@ -5,13 +5,11 @@ const state = {
   addresses: null,
   address: null,
   filterComune: null,
-  sortComune: null,
   filterAddress: null,
+  /* filterDate: null,
+  sortComune: null,
   sortAddress: null,
-  filterProcom: null,
-  sortProcom: null,
-  filterDate: null,
-  sortDate: null,
+  sortDate: null, */
 
   currentId: localStorage.getItem("addressId") || -1,
   assignedId: localStorage.getItem("assignedId") || -1,
@@ -46,11 +44,8 @@ const mutations = {
   },
   SET_FILTER_ADDRESS(state, address) {
     state.filterAddress = address;
-  },
-  SET_FILTER_PROCOM(state, procom) {
-    state.filterProcom = procom;
-  },
-  SET_FILTER_DATE(state, date) {
+  }
+  /*  SET_FILTER_DATE(state, date) {
     state.filterDate = date;
   },
   SET_SORT_COMUNE(state, sort) {
@@ -59,12 +54,9 @@ const mutations = {
   SET_SORT_ADDRESS(state, sort) {
     state.sortAddress = sort;
   },
-  SET_SORT_PROCOM(state, sort) {
-    state.sortProcom = sort;
-  },
   SET_SORT_DATE(state, sort) {
     state.sortDate = sort;
-  }
+  } */
 };
 
 const actions = {
@@ -75,27 +67,21 @@ const actions = {
   setFilterAddress: ({ commit }, address) => {
     commit("SET_FILTER_ADDRESS", address);
   },
-  setFilterProcom: ({ commit }, comune) => {
-    commit("SET_FILTER_PROCOM", comune);
-  },
 
-  setFilterDate: ({ commit }, address) => {
+  /* setFilterDate: ({ commit }, address) => {
     commit("SET_FILTER_DATE", address);
   },
-  setSortComune: ({ commit }, comune) => {
+   setSortComune: ({ commit }, comune) => {
     commit("SET_SORT_COMUNE", comune);
   },
 
   setSortAddress: ({ commit }, address) => {
     commit("SET_SORT_ADDRESS", address);
   },
-  setSortProcom: ({ commit }, comune) => {
-    commit("SET_SORT_PROCOM", comune);
-  },
 
   setSortDate: ({ commit }, address) => {
     commit("SET_SORT_DATE", address);
-  },
+  }, */
 
   findAll({ commit }) {
     return addressService
@@ -231,11 +217,8 @@ const getters = {
   },
   filterAddress: state => {
     return state.filterAddress;
-  },
-  filterProcom: state => {
-    return state.filterProcom;
-  },
-  filterDate: state => {
+  }
+  /* filterDate: state => {
     return state.filterDate;
   },
   sortComune: state => {
@@ -245,11 +228,8 @@ const getters = {
     return state.sortAddress;
   },
   sortProcom: state => {
-    return state.sortComune;
-  },
-  sortDate: state => {
-    return state.sortAddress;
-  }
+    return state.sortDate;
+  } */
 };
 
 export const address = {

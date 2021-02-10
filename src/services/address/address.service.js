@@ -14,7 +14,7 @@ class AddressService extends AbstractService {
           user: user,
           stato: state,
           proCom: procom,
-          indirizzoOriginaleStartWith: address
+          indirizzoOriginaleContains: address
         }
       })
       .then(res => {
@@ -32,11 +32,11 @@ class AddressService extends AbstractService {
       .get(this.endpoint + "/first-address/user/" + user + "/state/" + state, {
         params: {
           proCom: procom,
-          indirizzoOriginaleStartWith: address,
-          // eslint-disable-next-line prettier/prettier
+          indirizzoOriginaleContains: address
+          /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
           // eslint-disable-next-line prettier/prettier
-          sort: 'desc'
+          sort: 'desc' */
         }
       })
       .then(res => {

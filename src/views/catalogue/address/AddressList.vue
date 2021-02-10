@@ -15,6 +15,7 @@
             :sorterValue="sorterValue"
             hover
             pagination
+            sorter
           >
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
