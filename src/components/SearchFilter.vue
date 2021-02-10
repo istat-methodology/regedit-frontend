@@ -36,6 +36,7 @@
         <div class="col-1">
           <label class="c-switch c-switch-label c-switch-primary">
             <input
+              name="sortIndirizzo"
               type="checkbox"
               class="c-switch-input"
               v-model="addressSorting"
