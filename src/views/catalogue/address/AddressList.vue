@@ -13,6 +13,7 @@
             column-filter
             :items-per-page="50"
             :sorterValue="sorterValue"
+            @update:sorter-value="sortChanged"
             hover
             pagination
             sorter
@@ -70,6 +71,9 @@ export default {
     ...mapGetters("address", ["addresses"])
   },
   methods: {
+    sortChanged(sortArray) {
+      console.log(sortArray);
+    },
     handleEdit(id) {
       this.$store.dispatch("address/setCurrentId", id);
       this.$router.push({
