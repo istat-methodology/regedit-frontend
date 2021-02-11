@@ -32,7 +32,7 @@
                   variant="outline"
                   size="sm"
                   :color="getStatoColor(item.stato, item.validazione)"
-                  @click="handleEdit(item.progressivoIndirizzo)"
+                  @click="handleEdit(item.progressivoIndirizzo, item.index)"
                   >{{ getStatoString(item.stato, item.validazione) }}</CButton
                 >
               </td>
@@ -78,11 +78,12 @@ export default {
     },
     handleEdit(id, index) {
       this.$store.dispatch("address/setCurrentId", id);
+      this.$store.dispatch("address/setCurrentIndex", index);
       this.$router.push({
         name: "AddressEdit",
         params: { state: this.$route.params.state }
       });
-       console.log(index);
+      console.log(index);
     },
     handleFilter() {
       this.$store.dispatch(
