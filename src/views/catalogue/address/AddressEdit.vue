@@ -99,7 +99,8 @@ export default {
         ...this.address,
         stato: 1,
         validazione: "",
-        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
+        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null,
+        index: this.index
       };
       this.$store.dispatch("address/open", addr).then(() => {
         this.$store.dispatch(
@@ -107,6 +108,7 @@ export default {
           "L'indirizzo " + addr.indirizzoOriginale + " può essere modificato!"
         );
       });
+      this.$store.dispatch("address/setCurrentIndex", addr.index);
     },
     handleSkip() {
       var addr = {
@@ -141,9 +143,10 @@ export default {
           "message/" + this.getAddressMessageType(state),
           this.getAddressMessage(address, state)
         );
+        this.$store.dispatch("address/updateCurrentIndex");
         setTimeout(() => {
           this.$store
-            .dispatch("address/findNextAddress", this.$route.params.state)
+            .dispatch("address/findNextAddress")
             .then(res => this.checkCompleted(res));
           this.$store.dispatch("progress/findByUser");
         }, 500);

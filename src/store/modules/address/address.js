@@ -126,8 +126,18 @@ const actions = {
         });
     }
   },
+  findNextAddress({ commit }) {
+    //get user from store
 
-  findNextAddress({ commit }, stateId) {
+    //console.log(data);
+    commit("SET_ADDRESS", state.addresses[state.currentIndex - 1]);
+    commit(
+      "SET_CURRENT_ID",
+      state.addresses[state.currentIndex - 1].progressivoIndirizzo
+    );
+  },
+
+  /* findNextAddress({ commit }, stateId) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
@@ -148,7 +158,7 @@ const actions = {
           console.log(err);
         });
     }
-  },
+  }, */
 
   findById({ commit }, id) {
     return addressService
@@ -187,8 +197,8 @@ const actions = {
   setCurrentId({ commit }, id) {
     commit("SET_CURRENT_ID", id);
   },
-  updateCurrentIndex({ commit }, id) {
-    commit("SET_CURRENT_INDEX", id + 1);
+  updateCurrentIndex({ commit }) {
+    commit("SET_CURRENT_INDEX", state.currentIndex + 1);
   },
   setCurrentIndex({ commit }, id) {
     commit("SET_CURRENT_INDEX", id);
