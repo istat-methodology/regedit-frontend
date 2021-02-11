@@ -10,7 +10,7 @@ const state = {
   sortComune: null,
   sortAddress: null,
   sortDate: null, */
-
+  currentIndex: null,
   currentId: localStorage.getItem("addressId") || -1,
   assignedId: localStorage.getItem("assignedId") || -1,
   assignedName: localStorage.getItem("assignedName") || ""
@@ -27,6 +27,9 @@ const mutations = {
     state.currentId = id;
     //store current address in browser storage
     localStorage.setItem("addressId", id);
+  },
+  SET_CURRENT_INDEX(state, id) {
+    state.currentIndex = id;
   },
   SET_ASSIGNED(state, user) {
     state.assignedId = user.id;
@@ -183,6 +186,12 @@ const actions = {
 
   setCurrentId({ commit }, id) {
     commit("SET_CURRENT_ID", id);
+  },
+  updateCurrentIndex({ commit }, id) {
+    commit("SET_CURRENT_INDEX", id + 1);
+  },
+  setCurrentIndex({ commit }, id) {
+    commit("SET_CURRENT_INDEX", id);
   },
 
   setAssigned({ commit }, user) {
