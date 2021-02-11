@@ -13,11 +13,12 @@
             column-filter
             :items-per-page="50"
             :sorterValue="sorterValue"
-            @update:sorter-value="sortChanged"
+            @filtered-items-change="sortChange"
             hover
             pagination
             sorter
           >
+            <!--  @update:sorter-value="sortChanged" -->
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
             </template>
@@ -71,15 +72,17 @@ export default {
     ...mapGetters("address", ["addresses"])
   },
   methods: {
-    sortChanged(sortArray) {
+    sortChange(sortArray) {
       console.log(sortArray);
+      this.$store.dispatch("address/setSortedList", sortArray);
     },
-    handleEdit(id) {
+    handleEdit(id, index) {
       this.$store.dispatch("address/setCurrentId", id);
       this.$router.push({
         name: "AddressEdit",
         params: { state: this.$route.params.state }
       });
+       console.log(index);
     },
     handleFilter() {
       this.$store.dispatch(

@@ -83,6 +83,14 @@ const actions = {
     commit("SET_SORT_DATE", address);
   }, */
 
+  setSortedList({ commit }, addressList) {
+    var newlist = addressList.map((items, index = 0) => ({
+      ...items,
+      index: index + 1
+    }));
+    commit("SET_ADDRESSES", newlist);
+  },
+
   findAll({ commit }) {
     return addressService
       .findAll()
