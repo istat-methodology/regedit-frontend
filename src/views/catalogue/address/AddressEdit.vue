@@ -152,7 +152,18 @@ export default {
         }, 500);
       });
     },
-    checkCompleted(nextAddress) {
+
+    checkCompleted(isok) {
+      if (!isok) {
+        this.$store.dispatch(
+          "message/success",
+          "Complimenti hai completato il tuo lavoro!"
+        ),
+          this.$router.push("/catalogue");
+      }
+    }
+  },
+  /* checkCompleted(nextAddress) {
       if (Object.keys(nextAddress).length === 0) {
         if (this.filterComune || this.filterAddress) {
           this.$store.dispatch(
@@ -173,7 +184,7 @@ export default {
         }
       }
     }
-  },
+  }, */
   created() {
     this.$store.dispatch("coreui/setContext", this.$route.params.state);
     this.$store.dispatch("progress/findByUser");

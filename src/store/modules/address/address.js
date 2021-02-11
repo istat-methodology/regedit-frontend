@@ -130,11 +130,17 @@ const actions = {
     //get user from store
 
     //console.log(data);
-    commit("SET_ADDRESS", state.addresses[state.currentIndex - 1]);
-    commit(
-      "SET_CURRENT_ID",
-      state.addresses[state.currentIndex - 1].progressivoIndirizzo
-    );
+    var status = null;
+    status = state.addresses[state.currentIndex - 1];
+    if (status) {
+      commit("SET_ADDRESS", state.addresses[state.currentIndex - 1]);
+      commit(
+        "SET_CURRENT_ID",
+        state.addresses[state.currentIndex - 1].progressivoIndirizzo
+      );
+      return true;
+    }
+    return false;
   },
 
   /* findNextAddress({ commit }, stateId) {
