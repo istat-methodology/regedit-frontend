@@ -54,6 +54,9 @@
             </template>
           </div>
         </div>
+        <CButton shape="square" size="sm" color="danger" @click="handleScroll"
+          >Scroll</CButton
+        >
       </template>
       <template v-else>
         <tile></tile>
@@ -168,7 +171,19 @@ export default {
         }, 500);
       });
     },
-
+    handleScroll() {
+      this.$store.dispatch("address/updateCurrentIndex");
+      setTimeout(() => {
+        this.$store
+          .dispatch("address/findNextAddress")
+          .then(res => this.checkCompleted(res));
+        this.$store.dispatch("progress/findByUser");
+        this.$router.push({
+          name: "AddressEdit",
+          params: { state: this.$route.params.state }
+        });
+      }, 500);
+    },
     checkCompleted(isok) {
       if (!isok) {
         this.$store.dispatch(
