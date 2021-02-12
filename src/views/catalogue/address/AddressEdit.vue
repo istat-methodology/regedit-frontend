@@ -210,7 +210,10 @@ export default {
         this.$store.dispatch("address/findById", currentId);
       } else {
         this.$store
-          .dispatch("address/findNextAddress", this.$route.params.state)
+          .dispatch(
+            "address/findNextAddressToWorkSoon",
+            this.$route.params.state
+          )
           .then(res => this.checkCompleted(res));
       }
     });

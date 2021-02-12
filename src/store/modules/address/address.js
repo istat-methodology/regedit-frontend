@@ -131,6 +131,7 @@ const actions = {
 
     //console.log(data);
     var status = null;
+
     status = state.addresses[state.currentIndex - 1];
     if (status) {
       commit("SET_ADDRESS", state.addresses[state.currentIndex - 1]);
@@ -143,7 +144,7 @@ const actions = {
     return false;
   },
 
-  /* findNextAddress({ commit }, stateId) {
+  findNextAddressToWorkSoon({ commit }, stateId) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
@@ -164,7 +165,7 @@ const actions = {
           console.log(err);
         });
     }
-  }, */
+  },
 
   findById({ commit }, id) {
     return addressService
