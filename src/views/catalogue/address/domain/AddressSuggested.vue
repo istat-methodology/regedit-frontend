@@ -37,6 +37,10 @@
         <span>{{ address.dufNorm | dashEmpty }}</span>
       </div>
       <div>
+        <label>Km</label>
+        <span>{{ address.kmNorm | dashEmpty }}</span>
+      </div>
+      <div>
         <label>Civico</label>
         <span>{{ address.civicoNorm | dashEmpty }}</span>
       </div>
