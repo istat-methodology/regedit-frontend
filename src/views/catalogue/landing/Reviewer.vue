@@ -17,13 +17,13 @@
               ><span>Vai alla lista <chevron-right-icon /></span>
             </router-link>
           </p>
-          <p class="section-link" v-if="daLavorare > 0">
+          <!-- <p class="section-link" v-if="daLavorare > 0">
             <router-link
               tag="a"
               :to="{ name: 'AddressEdit', params: { state: 1 } }"
               ><span>Inizia subito a lavorare <chevron-right-icon /></span>
             </router-link>
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
