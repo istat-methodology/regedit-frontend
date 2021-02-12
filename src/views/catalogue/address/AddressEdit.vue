@@ -94,7 +94,7 @@ export default {
     }
   },
   methods: {
-    handleOpen() {
+    /*  handleOpen() {
       var addr = {
         ...this.address,
         stato: 1,
@@ -109,7 +109,7 @@ export default {
         );
       });
       this.$store.dispatch("address/setCurrentIndex", addr.index);
-    },
+    }, */
     handleOpenModify() {
       var addr = {
         ...this.address,
