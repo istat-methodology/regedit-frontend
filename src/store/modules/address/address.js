@@ -10,7 +10,7 @@ const state = {
   sortComune: null,
   sortAddress: null,
   sortDate: null, */
-  currentIndex: null,
+  currentIndex: 0,
   currentId: localStorage.getItem("addressId") || -1,
   assignedId: localStorage.getItem("assignedId") || -1,
   assignedName: localStorage.getItem("assignedName") || ""

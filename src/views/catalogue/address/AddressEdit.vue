@@ -13,7 +13,7 @@
                 <address-original
                   :address="address"
                   @skip="handleSkip"
-                  @open="handleOpen"
+                  @open="handleOpenModify"
                 />
               </div>
               <div class="col-6">
@@ -109,6 +109,22 @@ export default {
         );
       });
       this.$store.dispatch("address/setCurrentIndex", addr.index);
+    },
+    handleOpenModify() {
+      var addr = {
+        ...this.address,
+        stato: 1,
+        validazione: "",
+        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
+        /* index: this.index */
+      };
+      this.$store.dispatch("address/open", addr).then(() => {
+        this.$store.dispatch(
+          "message/success",
+          "L'indirizzo " + addr.indirizzoOriginale + " può essere modificato!"
+        );
+      });
+      /* this.$store.dispatch("address/setCurrentIndex", addr.index); */
     },
     handleSkip() {
       var addr = {
