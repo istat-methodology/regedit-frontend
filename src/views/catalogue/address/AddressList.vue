@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     sortChange(sortArray) {
-      console.log(sortArray);
+      /*  console.log(sortArray); */
       this.$store.dispatch("address/setSortedList", sortArray);
     },
     handleEdit(id, index) {
