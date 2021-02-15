@@ -55,9 +55,6 @@
             </template>
           </div>
         </div>
-        <CButton shape="square" size="sm" color="danger" @click="handleScroll"
-          >Scroll</CButton
-        >
       </template>
       <template v-else>
         <tile></tile>
