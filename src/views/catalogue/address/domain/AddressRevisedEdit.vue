@@ -58,7 +58,7 @@
         ·'BIS','TER','QUATER','QUINQUIES','SEXIES','SEPTIES’ · Tutte le
         casistiche precedenti seguite da ' R' o ' ROSSO'
       </p>
-      <label>Fonte</label>
+      <label>Fonte*</label>
       <v-select
         label="fonte"
         :options="fonteValues"

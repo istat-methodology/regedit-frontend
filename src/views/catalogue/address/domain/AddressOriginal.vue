@@ -10,7 +10,7 @@
           shape="square"
           class="mr-2"
           size="sm"
-          color="primary"
+          color="info"
           @click="$emit('next')"
           >Salta</CButton
         >
@@ -19,6 +19,14 @@
         >
       </div>
       <div class="card-header-actions" v-else>
+        <CButton
+          shape="square"
+          class="mr-2"
+          size="sm"
+          color="info"
+          @click="$emit('next')"
+          >Salta</CButton
+        >
         <CButton shape="square" size="sm" color="warning" @click="$emit('skip')"
           >Sospendi</CButton
         >
