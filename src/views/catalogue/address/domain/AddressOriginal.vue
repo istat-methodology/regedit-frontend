@@ -6,6 +6,14 @@
         class="card-header-actions"
         v-if="address.stato == addressState.Revised"
       >
+        <CButton
+          shape="square"
+          class="mr-2"
+          size="sm"
+          color="primary"
+          @click="$emit('next')"
+          >Salta</CButton
+        >
         <CButton shape="square" size="sm" color="primary" @click="$emit('open')"
           >Modifica</CButton
         >

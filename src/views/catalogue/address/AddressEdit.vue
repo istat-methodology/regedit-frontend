@@ -13,7 +13,8 @@
                 <address-original
                   :address="address"
                   @skip="handleSkip"
-                  @open="handleOpenModify"
+                  @next="handleNext"
+                  @open="handleOpen"
                 />
               </div>
               <div class="col-6">
@@ -97,29 +98,12 @@ export default {
     }
   },
   methods: {
-    /*  handleOpen() {
-      var addr = {
-        ...this.address,
-        stato: 1,
-        validazione: "",
-        idSupervisor: this.isSupervisor ? this.loggedUser.userId : null,
-        index: this.index
-      };
-      this.$store.dispatch("address/open", addr).then(() => {
-        this.$store.dispatch(
-          "message/success",
-          "L'indirizzo " + addr.indirizzoOriginale + " può essere modificato!"
-        );
-      });
-      this.$store.dispatch("address/setCurrentIndex", addr.index);
-    }, */
-    handleOpenModify() {
+    handleOpen() {
       var addr = {
         ...this.address,
         stato: 1,
         validazione: "",
         idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
-        /* index: this.index */
       };
       this.$store.dispatch("address/open", addr).then(() => {
         this.$store.dispatch(
@@ -127,7 +111,6 @@ export default {
           "L'indirizzo " + addr.indirizzoOriginale + " può essere modificato!"
         );
       });
-      /* this.$store.dispatch("address/setCurrentIndex", addr.index); */
     },
     handleSkip() {
       var addr = {
@@ -171,7 +154,7 @@ export default {
         }, 500);
       });
     },
-    handleScroll() {
+    handleNext() {
       this.$store.dispatch("address/updateCurrentIndex");
       setTimeout(() => {
         this.$store
@@ -186,16 +169,6 @@ export default {
     },
     checkCompleted(isok) {
       if (!isok) {
-        this.$store.dispatch(
-          "message/success",
-          "Complimenti hai completato il tuo lavoro!"
-        ),
-          this.$router.push("/catalogue");
-      }
-    }
-  },
-  /* checkCompleted(nextAddress) {
-      if (Object.keys(nextAddress).length === 0) {
         if (this.filterComune || this.filterAddress) {
           this.$store.dispatch(
             "message/success",
@@ -210,12 +183,12 @@ export default {
           this.$store.dispatch(
             "message/success",
             "Complimenti hai completato il tuo lavoro!"
-          );
-          this.$router.push("/catalogue");
+          ),
+            this.$router.push("/catalogue");
         }
       }
     }
-  }, */
+  },
   created() {
     this.$store.dispatch("coreui/setContext", this.$route.params.state);
     this.$store.dispatch("progress/findByUser");
