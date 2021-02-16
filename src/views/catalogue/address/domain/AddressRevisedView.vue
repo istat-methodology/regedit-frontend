@@ -47,10 +47,10 @@
         <label>Fittizio</label>
         <span>{{ fittizio | dashEmpty }}</span>
       </div>
-      <div>
+      <!-- <div>
         <label>Note</label>
         <span>{{ address.note | dashEmpty }}</span>
-      </div>
+      </div> -->
     </CCardBody>
   </CCard>
 </template>
