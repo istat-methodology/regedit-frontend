@@ -82,7 +82,7 @@
           massimo 12 caratteri
         </p>
         <CInput
-          label="Codice civico*"
+          label="Codice civico"
           placeholder="Codice civico"
           v-model="address.cdpcivEgon"
           :class="{
