@@ -26,6 +26,21 @@ const actions = {
           console.log(err);
         });
     }
+  },
+  findComuniByUserAndState({ commit }, state) {
+    //get user from store
+    let userId = getUserId();
+    if (userId > 0) {
+      return comuniService
+        .findComuniByUser(userId, state)
+        .then(data => {
+          //console.log(data);
+          commit("SET_COMUNI", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 
