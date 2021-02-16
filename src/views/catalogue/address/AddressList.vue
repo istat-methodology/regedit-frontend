@@ -96,7 +96,7 @@ export default {
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
       this.$store.dispatch("progress/findByUser");
-      this.$store.dispatch("elencoComuni/findComuniByUser");
+      this.$store.dispatch("elencoComuni/findComuniByUserAndState", state);
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },

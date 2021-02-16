@@ -32,7 +32,7 @@ const actions = {
     let userId = getUserId();
     if (userId > 0) {
       return comuniService
-        .findComuniByUser(userId, state)
+        .findComuniByUserAndState(userId, state)
         .then(data => {
           //console.log(data);
           commit("SET_COMUNI", data);
