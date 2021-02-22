@@ -7,14 +7,15 @@ class AddressService extends AbstractService {
     super(endpoint);
   }
 
-  findByUserAndState(user, state, procom, address) {
+  findByUserAndState(user, state, procom, address, validazione) {
     return axiosRegedit
       .get(this.endpoint, {
         params: {
           user: user,
           stato: state,
           proCom: procom,
-          indirizzoOriginaleContains: address
+          indirizzoOriginaleContains: address,
+          validazione: validazione
         }
       })
       .then(res => {
@@ -27,12 +28,13 @@ class AddressService extends AbstractService {
       });
   }
 
-  findNextAddress(user, state, procom, address) {
+  findNextAddress(user, state, procom, address, validazione) {
     return axiosRegedit
       .get(this.endpoint + "/first-address/user/" + user + "/state/" + state, {
         params: {
           proCom: procom,
-          indirizzoOriginaleContains: address
+          indirizzoOriginaleContains: address,
+          validazione: validazione
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
           // eslint-disable-next-line prettier/prettier

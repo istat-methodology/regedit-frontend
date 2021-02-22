@@ -122,7 +122,8 @@ const actions = {
           userId,
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
-          state.filterAddress
+          state.filterAddress,
+          state.filterValidazione ? state.filterValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -160,7 +161,8 @@ const actions = {
           userId,
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
-          state.filterAddress
+          state.filterAddress,
+          state.filterValidazione ? state.filterValidazione.value : null
         )
         .then(data => {
           //console.log(data);
