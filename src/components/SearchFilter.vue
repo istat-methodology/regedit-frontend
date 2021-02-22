@@ -48,7 +48,15 @@
             ></span>
           </label>
         </div> -->
-        <div class="col-3">
+        <div class="col-2">
+          <v-select
+            label="value"
+            :options="validazioneValues"
+            v-model="validazione"
+            placeholder="Validazione"
+          ></v-select>
+        </div>
+        <div class="col-2">
           <CButton
             shape="square"
             size="sm"
@@ -65,12 +73,17 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import ValidazioneMixin from "@/components/mixins/validazione.mixin";
 export default {
   name: "SearchFilter",
+  mixins: [ValidazioneMixin],
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
-    ...mapGetters("address", ["filterComune", "filterAddress"]),
+    ...mapGetters("address", [
+      "filterComune",
+      "filterAddress",
+      "filterValidazione"
+    ]),
     comune: {
       get: function() {
         return this.filterComune;
@@ -87,7 +100,18 @@ export default {
         this.$store.dispatch("address/setFilterAddress", selectedAddress);
       }
     },
-    comuneSorting: {
+    validazione: {
+      get: function() {
+        return this.filterValidazione;
+      },
+      set: function(selectedValidazione) {
+        this.$store.dispatch(
+          "address/setFilterValidazione",
+          selectedValidazione
+        );
+      }
+    }
+    /*  comuneSorting: {
       get: function() {
         return this.sortComune;
       },
@@ -102,7 +126,7 @@ export default {
       set: function(addressSort) {
         this.$store.dispatch("address/setSortAddress", addressSort);
       }
-    }
+    } */
   }
 };
 </script>

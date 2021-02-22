@@ -6,6 +6,7 @@ const state = {
   address: null,
   filterComune: null,
   filterAddress: null,
+  filterValidazione: null,
   /* filterDate: null,
   sortComune: null,
   sortAddress: null,
@@ -47,6 +48,9 @@ const mutations = {
   },
   SET_FILTER_ADDRESS(state, address) {
     state.filterAddress = address;
+  },
+  SET_FILTER_VALIDAZIONE(state, validazione) {
+    state.filterValidazione = validazione;
   }
   /*  SET_FILTER_DATE(state, date) {
     state.filterDate = date;
@@ -69,6 +73,9 @@ const actions = {
 
   setFilterAddress: ({ commit }, address) => {
     commit("SET_FILTER_ADDRESS", address);
+  },
+  setFilterValidazione: ({ commit }, validazione) => {
+    commit("SET_FILTER_VALIDAZIONE", validazione);
   },
 
   /* setFilterDate: ({ commit }, address) => {
@@ -251,6 +258,9 @@ const getters = {
   },
   filterAddress: state => {
     return state.filterAddress;
+  },
+  filterValidazione: state => {
+    return state.filterValidazione;
   }
   /* filterDate: state => {
     return state.filterDate;
