@@ -15,7 +15,7 @@ class AddressService extends AbstractService {
           stato: state,
           proCom: procom,
           indirizzoOriginaleContains: address,
-          validazione: validazione
+          validazione: state == 2 ? validazione : null
         }
       })
       .then(res => {
@@ -34,7 +34,7 @@ class AddressService extends AbstractService {
         params: {
           proCom: procom,
           indirizzoOriginaleContains: address,
-          validazione: validazione
+          validazione: state == 2 ? validazione : null
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
           // eslint-disable-next-line prettier/prettier

@@ -236,6 +236,7 @@ const actions = {
   clearFilters({ commit }) {
     commit("SET_FILTER_COMUNE", null);
     commit("SET_FILTER_ADDRESS", null);
+    commit("SET_FILTER_VALIDAZIONE", null);
   }
 };
 
