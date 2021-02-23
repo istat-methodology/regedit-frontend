@@ -4,7 +4,10 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <app-search-filter @filter="handleFilter" :stato="state" />
+      <app-search-filter
+        @filter="handleFilter"
+        :stato="this.$route.params.state"
+      />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
