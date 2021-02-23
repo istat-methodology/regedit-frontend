@@ -14,42 +14,12 @@
             v-model="comune"
           ></v-select>
         </div>
-        <!-- <div class="col-1">
-          <label class="c-switch c-switch-label c-switch-primary">
-            <input
-              name="sortComune"
-              type="checkbox"
-              class="c-switch-input"
-              v-model="comuneSorting"
-            />
-            <span
-              class="c-switch-slider"
-              data-checked="ASC"
-              data-unchecked="DES"
-            ></span>
-          </label>
-        </div> -->
-
         <div class="col-4">
           <CInput placeholder="Indirizzo" v-model="indirizzo" />
         </div>
-        <!-- <div class="col-1">
-          <label class="c-switch c-switch-label c-switch-primary">
-            <input
-              name="sortIndirizzo"
-              type="checkbox"
-              class="c-switch-input"
-              v-model="addressSorting"
-            />
-            <span
-              class="c-switch-slider"
-              data-checked="ASC"
-              data-unchecked="DES"
-            ></span>
-          </label>
-        </div> -->
         <div class="col-2">
           <v-select
+            v-if="stato == 2"
             label="value"
             :options="validazioneValues"
             v-model="validazione"
@@ -76,6 +46,9 @@ import { mapGetters } from "vuex";
 import ValidazioneMixin from "@/components/mixins/validazione.mixin";
 export default {
   name: "SearchFilter",
+  props: {
+    stato: null
+  },
   mixins: [ValidazioneMixin],
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
@@ -111,22 +84,6 @@ export default {
         );
       }
     }
-    /*  comuneSorting: {
-      get: function() {
-        return this.sortComune;
-      },
-      set: function(comuneSort) {
-        this.$store.dispatch("address/setSortComune", comuneSort);
-      }
-    },
-    addressSorting: {
-      get: function() {
-        return this.sortAddress;
-      },
-      set: function(addressSort) {
-        this.$store.dispatch("address/setSortAddress", addressSort);
-      }
-    } */
   }
 };
 </script>

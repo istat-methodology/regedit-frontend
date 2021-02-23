@@ -4,7 +4,7 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <app-search-filter @filter="handleFilter" />
+      <app-search-filter @filter="handleFilter" :stato="state" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
