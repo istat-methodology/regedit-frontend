@@ -11,16 +11,33 @@
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="addresses"
+            :items="selectableAddresses"
             :fields="fields"
             column-filter
-            :items-per-page="50"
+            items-per-page-select
+            :items-per-page="items4page"
             :sorterValue="sorterValue"
             @filtered-items-change="sortChange"
             hover
+            clickable-rows
             pagination
             sorter
           >
+            <template #select-filter>
+              <CInputCheckbox @update:checked="e => checkAll(e)" custom />
+            </template>
+
+            <template #select="{item}">
+              <td>
+                <CInputCheckbox
+                  :checked="item.selected"
+                  @update:checked="check(item)"
+                  custom
+                />
+                <!--  :checked="item._selected" -->
+              </td>
+            </template>
+
             <!--  @update:sorter-value="sortChanged" -->
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
@@ -67,14 +84,48 @@ export default {
   },
   data() {
     return {
-      sorterValue: { column: null, asc: false }
+      sorterValue: { column: null, asc: false },
+      items4page: 50
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"])
+    ...mapGetters("address", ["addresses"]),
+    selectableAddresses() {
+      return this.addresses
+        ? this.addresses.map((address, index) => {
+            return {
+              ...address,
+              index,
+              selected: false
+            };
+          })
+        : [];
+    }
   },
   methods: {
+    /* check(item) {
+      console.log(item);
+    }, */
+    check(item) {
+      console.log(item, item.index);
+      const val = Boolean(this.addresses[item.index].selected);
+      this.$set(this.addresses[item.index], "selected", !val);
+    },
+    checkAll(checked) {
+      console.log(checked);
+      var checkitems = this.items4page;
+      for (let i = 1; i <= checkitems; i++) {
+        this.$set(this.addresses[i], "selected", checked);
+      }
+      /* this.addresses.forEach(item => {
+        console.log(item, item.index);
+        if (item.index > checkitems) {
+          return;
+        }
+        this.$set(item, "selected", checked);
+      }); */
+    },
     sortChange(sortArray) {
       /*  console.log(sortArray); */
       this.$store.dispatch("address/setSortedList", sortArray);

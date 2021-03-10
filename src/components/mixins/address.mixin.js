@@ -14,6 +14,9 @@ export default {
       },
       fields: [
         {
+          key: "select"
+        },
+        {
           key: "progressivoIndirizzo",
           label: "Progressivo",
           _style: "width:10%;",
