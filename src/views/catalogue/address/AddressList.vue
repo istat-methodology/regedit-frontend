@@ -19,7 +19,6 @@
             :sorterValue="sorterValue"
             @filtered-items-change="sortChange"
             hover
-            clickable-rows
             pagination
             sorter
           >
