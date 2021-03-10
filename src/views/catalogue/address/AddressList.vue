@@ -109,13 +109,15 @@ export default {
     check(item) {
       console.log(item, item.index);
       const val = Boolean(this.addresses[item.index].selected);
-      this.$set(this.addresses[item.index], "selected", !val);
+      /* this.$set(this.addresses[item.index], "selected", !val); */
+      this.addresses[item.index].selected = val;
     },
     checkAll(checked) {
       console.log(checked);
       var checkitems = this.items4page;
       for (let i = 1; i <= checkitems; i++) {
-        this.$set(this.addresses[i], "selected", checked);
+        /*  this.$set(this.addresses[i], "selected", checked); */
+        this.addresses[i].selected = checked;
       }
       /* this.addresses.forEach(item => {
         console.log(item, item.index);
