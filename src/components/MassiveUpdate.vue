@@ -8,6 +8,7 @@
         <div class="col-5">
           <v-select
             v-if="dugs"
+            v-model="dug"
             :options="dugNames"
             placeholder="Dug"
           ></v-select>
@@ -26,7 +27,7 @@
             size="sm"
             color="primary"
             class="mt-1"
-            @click="$emit('insertselected')"
+            @click="$emit('update-selected', $event, dug, duf, note)"
             >Inserisci</CButton
           >
         </div>
@@ -46,6 +47,13 @@ export default {
   },
   computed: {
     ...mapGetters("dug", ["dugs"]),
+    data: function() {
+      return {
+        dug: String,
+        duf: String,
+        note: String
+      };
+    },
     dugNames() {
       return this.dugs.map(dug => {
         return dug.name;
