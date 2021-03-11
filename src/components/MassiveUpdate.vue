@@ -8,18 +8,18 @@
         <div class="col-5">
           <v-select
             v-if="dugs"
-            v-model="dug"
+            v-model="dugVal"
             :options="dugNames"
             placeholder="Dug"
           ></v-select>
         </div>
         <div class="col-5">
-          <CInput placeholder="Duf" v-model="duf" />
+          <CInput placeholder="Duf" v-model="dufVal" />
         </div>
       </div>
       <div class="row">
         <div class="col-10">
-          <CTextarea placeholder="Note" rows="1" v-model="note" />
+          <CTextarea placeholder="Note" rows="1" v-model="noteVal" />
         </div>
         <div class="col-2">
           <CButton
@@ -27,7 +27,7 @@
             size="sm"
             color="primary"
             class="mt-1"
-            @click="$emit('update-selected', $event, dug, duf, note)"
+            @click="$emit('update-selected', $event, dugVal, dufVal, noteVal)"
             >Inserisci</CButton
           >
         </div>
@@ -40,18 +40,13 @@
 import { mapGetters } from "vuex";
 export default {
   name: "MassiveUpdate",
-  props: {
-    dug: String,
-    duf: String,
-    note: String
-  },
   computed: {
     ...mapGetters("dug", ["dugs"]),
     data: function() {
       return {
-        dug: String,
-        duf: String,
-        note: String
+        dugVal: "",
+        dufVal: "",
+        noteVal: ""
       };
     },
     dugNames() {

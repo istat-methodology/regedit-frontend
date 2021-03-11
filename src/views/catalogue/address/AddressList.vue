@@ -8,7 +8,7 @@
         @filter="handleFilter"
         :stato="this.$route.params.state"
       />
-      <app-massive-update @insertinselected="handleFilter" />
+      <app-massive-update @update-selected="updateSelected" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
@@ -99,6 +99,9 @@ export default {
     }
   },
   methods: {
+    /* updateSelected(dug, duf, note) {
+      console.log(dug + duf + note);
+    }, */
     toggleSelected(address) {
       address.selected = !address.selected;
     },
