@@ -8,6 +8,7 @@
         @filter="handleFilter"
         :stato="this.$route.params.state"
       />
+      <app-massive-update @insertinselected="handleFilter" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
@@ -17,27 +18,25 @@
             items-per-page-select
             :items-per-page="items4page"
             :sorterValue="sorterValue"
-            @filtered-items-change="sortChange"
+            addTableClasses="table-block"
             hover
             pagination
             sorter
           >
-            <template #select-filter>
-              <CInputCheckbox @update:checked="e => checkAll(e)" custom />
+            <template #selected-header>
+              <CInputCheckbox
+                :checked="globalCheck"
+                @update:checked="toggleAll"
+              />
             </template>
-
-            <template #select="{item}">
+            <template #selected="{item}">
               <td>
                 <CInputCheckbox
                   :checked="item.selected"
-                  @update:checked="check(item)"
-                  custom
+                  @update:checked="toggleSelected(item)"
                 />
-                <!--  :checked="item._selected" -->
               </td>
             </template>
-
-            <!--  @update:sorter-value="sortChanged" -->
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
             </template>
@@ -56,13 +55,6 @@
                 >
               </td>
             </template>
-
-            <template #no-items-view :addresses="{ addresses }">
-              <div class="no-data" v-if="addresses && addresses.length == 0">
-                Nessun dato disponibile
-              </div>
-              <div v-else><tile></tile></div>
-            </template>
           </CDataTable>
         </CCardBody>
       </div>
@@ -73,18 +65,22 @@
 <script>
 import { mapGetters } from "vuex";
 import addressMixin from "@/components/mixins/address.mixin";
+
 import SearchFilter from "@/components/SearchFilter";
+import MassiveUpdate from "@/components/MassiveUpdate";
 
 export default {
   name: "AddressList",
   mixins: [addressMixin],
   components: {
-    "app-search-filter": SearchFilter
+    "app-search-filter": SearchFilter,
+    "app-massive-update": MassiveUpdate
   },
   data() {
     return {
       sorterValue: { column: null, asc: false },
-      items4page: 50
+      items4page: 50,
+      globalCheck: false
     };
   },
   computed: {
@@ -103,32 +99,19 @@ export default {
     }
   },
   methods: {
-    /* check(item) {
-      console.log(item);
-    }, */
-    check(item) {
-      console.log(item, item.index);
-      const val = Boolean(this.addresses[item.index].selected);
-      /* this.$set(this.addresses[item.index], "selected", !val); */
-      this.addresses[item.index].selected = val;
+    toggleSelected(address) {
+      address.selected = !address.selected;
     },
-    checkAll(checked) {
-      console.log(checked);
-      var checkitems = this.items4page;
-      for (let i = 1; i <= checkitems; i++) {
-        /*  this.$set(this.addresses[i], "selected", checked); */
-        this.addresses[i].selected = checked;
-      }
-      /* this.addresses.forEach(item => {
-        console.log(item, item.index);
-        if (item.index > checkitems) {
-          return;
-        }
-        this.$set(item, "selected", checked);
-      }); */
+    toggleAll() {
+      this.globalCheck = !this.globalCheck;
+      /* for (let i = 1; i < this.items4page; i++) {
+        this.addresses[i].selected = this.globalCheck;
+      } */
+      this.selectableAddresses.map(address => {
+        address.selected = this.globalCheck;
+      });
     },
     sortChange(sortArray) {
-      /*  console.log(sortArray); */
       this.$store.dispatch("address/setSortedList", sortArray);
     },
     handleEdit(id, index) {
@@ -161,12 +144,19 @@ export default {
   },
   created() {
     this.load(this.$route.params.state);
+    this.$store.dispatch("dug/findAll");
   }
 };
 </script>
 
 <style scoped>
+.filter-head {
+  font-weight: 600;
+}
+.form-check {
+  padding-bottom: 1.25rem;
+}
 .table thead th {
-  padding: 0.2rem 0.45rem;
+  padding: 0.45rem 0.65rem;
 }
 </style>
