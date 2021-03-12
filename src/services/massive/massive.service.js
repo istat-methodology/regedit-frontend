@@ -6,9 +6,20 @@ class MassiveService extends AbstractService {
     super(endpoint);
   }
 
-  update(massiveData) {
+  update(addrList, dug, duf, note) {
     return axiosRegedit
-      .put(this.endpoint + "/" + massiveData)
+      .put(
+        this.endpoint +
+          "/" +
+          {
+            params: {
+              addressList: addrList,
+              dugVal: dug,
+              dufVal: duf,
+              noteVal: note
+            }
+          }
+      )
       .then(res => {
         var data = res.data ? res.data : {};
         console.log(data);
