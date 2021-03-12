@@ -16,6 +16,7 @@ class MassiveService extends AbstractService {
               addressList: addrList,
               dugVal: dug,
               dufVal: duf,
+              state: 2,
               noteVal: note
             }
           }

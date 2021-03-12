@@ -4,7 +4,7 @@ const actions = {
   update({ dispatch }, addrList, dug, duf, note) {
     return massiveService
       .update(addrList, dug, duf, note)
-      .then(dispatch("message/success", "Data saved!"))
+      .then(dispatch("message/success", "Data updated!"))
       .catch(err => {
         console.log(err);
       });
