@@ -99,9 +99,9 @@ export default {
     }
   },
   methods: {
-    /* updateSelected(dug, duf, note) {
+    updateSelected(dug, duf, note) {
       console.log(dug + duf + note);
-    }, */
+    },
     toggleSelected(address) {
       address.selected = !address.selected;
     },
