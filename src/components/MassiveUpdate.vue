@@ -40,11 +40,6 @@
 import { mapGetters } from "vuex";
 export default {
   name: "MassiveUpdate",
-  /*  props: {
-    dugVal: null,
-    dufVal: null,
-    noteVal: null
-  }, */
   data: function() {
     return {
       dugVal: null,
@@ -87,12 +82,6 @@ export default {
     setDug(dug) {
       return dug;
     }
-    /* ...mapGetters("elencoComuni", ["comuni"]),
-    ...mapGetters("address", [
-      "filterComune",
-      "filterAddress",
-      "filterValidazione"
-    ]), */
   }
 };
 </script>
