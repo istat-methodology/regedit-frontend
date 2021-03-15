@@ -96,7 +96,8 @@ const actions = {
   setSortedList({ commit }, addressList) {
     var newlist = addressList.map((items, index = 0) => ({
       ...items,
-      index: index + 1
+      index: index + 1,
+      selected: false
     }));
     commit("SET_ADDRESSES", newlist);
   },

@@ -172,6 +172,15 @@ export default {
     isAddressValidated(address) {
       return address.validazione === "SI" ? true : false;
     },
+    getSelected(addresses) {
+      var selezionati = [];
+      addresses.forEach(element => {
+        if (element.selected) {
+          selezionati.push(element.progressivoIndirizzo);
+        }
+      });
+      return selezionati;
+    },
     getCompletedMessage(comune, address) {
       return "Complimenti hai completato "
         .concat(comune ? comune.denominazioneComune + ", " : " ")

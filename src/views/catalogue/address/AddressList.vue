@@ -12,7 +12,7 @@
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="selectableAddresses"
+            :items="addresses"
             :fields="fields"
             column-filter
             items-per-page-select
@@ -85,8 +85,8 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"]),
-    selectableAddresses() {
+    ...mapGetters("address", ["addresses"])
+    /* selectableAddresses() {
       return this.addresses
         ? this.addresses.map((address, index) => {
             return {
@@ -96,20 +96,23 @@ export default {
             };
           })
         : [];
-    }
+    } */
   },
   methods: {
     updateSelected(dug, duf, note) {
+      var payload;
       var addressList = [];
-      this.addresses.forEach(address => {
-        if (address.selected) {
-          addressList.push(address.progressivoIndirizzo);
-        }
-      });
+      addressList = this.getSelected(this.addresses);
 
-      console.log(
-        Array.from(addressList.toString) + "-" + dug + "-" + duf + "-" + note
-      );
+      payload = {
+        dug: dug,
+        duf: duf,
+        note: note,
+        addrList: addressList
+      };
+      this.$store.dispatch("massive/update", payload);
+
+      console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
     },
     toggleSelected(address) {
       address.selected = !address.selected;
@@ -119,7 +122,7 @@ export default {
       /* for (let i = 1; i < this.items4page; i++) {
         this.addresses[i].selected = this.globalCheck;
       } */
-      this.selectableAddresses.map(address => {
+      this.addresses.map(address => {
         address.selected = this.globalCheck;
       });
     },
