@@ -100,7 +100,16 @@ export default {
   },
   methods: {
     updateSelected(dug, duf, note) {
-      console.log(dug + duf + note);
+      var addressList = [];
+      this.addresses.forEach(address => {
+        if (address.selected) {
+          addressList.push(address.progressivoIndirizzo);
+        }
+      });
+
+      console.log(
+        Array.from(addressList.toString) + "-" + dug + "-" + duf + "-" + note
+      );
     },
     toggleSelected(address) {
       address.selected = !address.selected;

@@ -11,7 +11,7 @@ const actions = {
   }
 };
 
-export const dug = {
+export const massive = {
   namespaced: true,
   actions
 };
