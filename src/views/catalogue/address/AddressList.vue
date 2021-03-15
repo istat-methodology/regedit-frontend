@@ -80,7 +80,8 @@ export default {
     return {
       sorterValue: { column: null, asc: false },
       items4page: 50,
-      globalCheck: false
+      globalCheck: false,
+      actualState: null
     };
   },
   computed: {
@@ -113,6 +114,7 @@ export default {
       this.$store.dispatch("massive/update", payload);
 
       console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
+      this.$store.dispatch("AddressList/", this.actualState);
     },
     toggleSelected(address) {
       address.selected = !address.selected;
@@ -145,6 +147,7 @@ export default {
       );
     },
     load(state) {
+      this.actualState = state;
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
