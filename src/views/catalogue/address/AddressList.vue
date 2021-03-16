@@ -114,7 +114,10 @@ export default {
       this.$store.dispatch("massive/update", payload);
 
       console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
-      this.$store.dispatch("AddressList/", this.actualState);
+      this.$router.push({
+        name: "AddressList",
+        params: { state: this.$route.params.state }
+      });
     },
     toggleSelected(address) {
       address.selected = !address.selected;

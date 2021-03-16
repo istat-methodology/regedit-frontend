@@ -9,7 +9,7 @@ class MassiveService extends AbstractService {
     return axiosRegedit
       .put(this.endpoint + "/", {
         params: {
-          addressList: payload.addrList,
+          addressList: payload.addrList.join(","),
           dugVal: payload.dug,
           dufVal: payload.duf,
           state: 2,
