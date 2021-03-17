@@ -98,16 +98,12 @@ export default {
         note: note,
         addrList: addressList
       };
-      this.$store.dispatch("massive/update", payload);
-      setTimeout(() => {
-        //this.globalCheck = false;
-        //this.$store.dispatch("progress/findByUser");
+      this.$store.dispatch("massive/update", payload).then(() => {
         this.$store.dispatch(
           "address/findByUserAndState",
           this.$route.params.state
         );
-      }, 500);
-
+      });
       console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
     },
     toggleSelected(address) {
