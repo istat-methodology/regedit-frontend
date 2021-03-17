@@ -80,24 +80,12 @@ export default {
     return {
       sorterValue: { column: null, asc: false },
       items4page: 50,
-      globalCheck: false,
-      actualState: null
+      globalCheck: false
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("address", ["addresses"])
-    /* selectableAddresses() {
-      return this.addresses
-        ? this.addresses.map((address, index) => {
-            return {
-              ...address,
-              index,
-              selected: false
-            };
-          })
-        : [];
-    } */
   },
   methods: {
     updateSelected(dug, duf, note) {
@@ -111,14 +99,18 @@ export default {
         note: note,
         addrList: addressList
       };
+      event.preventDefault();
       this.$store.dispatch("massive/update", payload);
+      setTimeout(() => {
+        //this.globalCheck = false;
+        //this.$store.dispatch("progress/findByUser");
+        this.$store.dispatch(
+          "address/findByUserAndState",
+          this.$route.params.state
+        );
+      }, 500);
 
       console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
-      this.$router.$route;
-      /* this.$router.push({
-        name: "AddressList",
-        params: { state: this.$route.params.state }
-      }); */
     },
     toggleSelected(address) {
       address.selected = !address.selected;
