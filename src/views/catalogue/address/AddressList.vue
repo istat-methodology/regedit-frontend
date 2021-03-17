@@ -18,7 +18,6 @@
             items-per-page-select
             :items-per-page="items4page"
             :sorterValue="sorterValue"
-            addTableClasses="table-block"
             hover
             pagination
             sorter
@@ -99,7 +98,6 @@ export default {
         note: note,
         addrList: addressList
       };
-      event.preventDefault();
       this.$store.dispatch("massive/update", payload);
       setTimeout(() => {
         //this.globalCheck = false;
