@@ -14,13 +14,6 @@ export default {
       },
       fields: [
         {
-          key: "selected",
-          label: "",
-          _style: "width:1%;",
-          sorter: false,
-          filter: false
-        },
-        {
           key: "progressivoIndirizzo",
           label: "Progressivo",
           _style: "width:10%;",
@@ -73,7 +66,32 @@ export default {
           _style: "min-width:25%;"
         },
         { key: "proCom", label: "Procom" },
-        { key: "denominazioneComune", label: "Comune" }
+        { key: "denominazioneComune", label: "Comune" },
+        {
+          key: "dugVal",
+          label: "dug",
+          _style: "width:10%;",
+          filter: false
+        },
+        {
+          key: "dufVal",
+          label: "duf",
+          _style: "width:10%;",
+          filter: false
+        },
+        {
+          key: "dataMod",
+          label: "Ultima modifica",
+          _style: "width:20%;",
+          filter: false
+        }
+        /*  {
+          key: "action",
+          label: "",
+          _style: "width:10%",
+          sorter: false,
+          filter: false
+        } */
       ]
     };
   },

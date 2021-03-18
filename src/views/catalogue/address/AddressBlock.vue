@@ -4,46 +4,23 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <div class="card fade-in">
-        <CCardHeader
-          ><span class="filter-head">Filtri di ricerca</span></CCardHeader
-        >
-        <CCardBody>
-          <div class="row">
-            <div class="col-4">
-              <v-select
-                label="name"
-                :options="comuni"
-                placeholder="Tutti i comuni"
-                @input="selectComune"
-              ></v-select>
-            </div>
-            <div class="col-4">
-              <CInput placeholder="Indirizzo" v-model="indirizzo" />
-            </div>
-            <div class="col-4">
-              <CButton
-                shape="square"
-                size="sm"
-                color="primary"
-                class="mt-1"
-                @click="handleFilter"
-                >Filtra</CButton
-              >
-            </div>
-          </div>
-        </CCardBody>
-      </div>
+      <app-search-filter
+        @filter="handleFilter"
+        :stato="this.$route.params.state"
+      />
+      <app-massive-update @update-selected="updateSelected" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="selectableAddresses"
+            :items="addresses"
             :fields="blockFields"
-            :items-per-page="50"
-            addTableClasses="table-block"
-            sorter
+            column-filter
+            items-per-page-select
+            :items-per-page="items4page"
+            :sorterValue="sorterValue"
             hover
             pagination
+            sorter
           >
             <template #selected-header>
               <CInputCheckbox
@@ -59,13 +36,24 @@
                 />
               </td>
             </template>
-
-            <template #no-items-view :addresses="{ addresses }">
-              <div class="no-data" v-if="addresses && addresses.length == 0">
-                Nessun dato disponibile
-              </div>
-              <div v-else><tile></tile></div>
+            <template #dataMod="{item}">
+              <td>{{ item.dataMod | formatDate }}</td>
             </template>
+            <template #validazione="{item}">
+              <td>{{ item.validazione | dashEmpty }}</td>
+            </template>
+            <!-- <template #action="{item}">
+              <td>
+                <CButton
+                  shape="square"
+                  variant="outline"
+                  size="sm"
+                  :color="getStatoColor(item.stato, item.validazione)"
+                  @click="handleEdit(item.progressivoIndirizzo, item.index)"
+                  >{{ getStatoString(item.stato, item.validazione) }}</CButton
+                >
+              </td>
+            </template> -->
           </CDataTable>
         </CCardBody>
       </div>
@@ -75,81 +63,87 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Context } from "@/common";
 import addressMixin from "@/components/mixins/address.mixin";
+
+import SearchFilter from "@/components/SearchFilter";
+import MassiveUpdate from "@/components/MassiveUpdate";
 
 export default {
   name: "AddressList",
   mixins: [addressMixin],
-  data: () => {
+  components: {
+    "app-search-filter": SearchFilter,
+    "app-massive-update": MassiveUpdate
+  },
+  data() {
     return {
-      comuni: [
-        {
-          procom: "15146",
-          name: "Milano"
-        },
-        {
-          procom: "15154",
-          name: "Nerviano"
-        },
-        {
-          procom: "15166",
-          name: "Paderno Dugnano"
-        },
-        {
-          procom: "16108",
-          name: "Gandino"
-        }
-      ],
-      comune: null,
-      indirizzo: "",
+      sorterValue: { column: null, asc: false },
+      items4page: 50,
       globalCheck: false
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"]),
-    ...mapGetters("address", ["filterPROCOM"]),
-    ...mapGetters("address", ["filterAddress"]),
-    selectableAddresses() {
-      return this.addresses
-        ? this.addresses.map((address, index) => {
-            return {
-              ...address,
-              index,
-              selected: false
-            };
-          })
-        : [];
-    }
+    ...mapGetters("address", ["addresses"])
   },
   methods: {
-    selectComune(value) {
-      this.comune = value.procom;
+    updateSelected(dug, duf, note) {
+      var payload;
+      var addressList = [];
+      addressList = this.getSelected(this.addresses);
+
+      payload = {
+        dug: dug,
+        duf: duf,
+        note: note,
+        addrList: addressList
+      };
+      this.$store.dispatch("massive/update", payload).then(() => {
+        this.$store.dispatch(
+          "address/findByUserAndState",
+          this.$route.params.state
+        );
+      });
+      console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
     },
     toggleSelected(address) {
       address.selected = !address.selected;
     },
     toggleAll() {
       this.globalCheck = !this.globalCheck;
-      this.selectableAddresses.map(address => {
+      /* for (let i = 1; i < this.items4page; i++) {
+        this.addresses[i].selected = this.globalCheck;
+      } */
+      this.addresses.map(address => {
         address.selected = this.globalCheck;
       });
     },
+    sortChange(sortArray) {
+      this.$store.dispatch("address/setSortedList", sortArray);
+    },
+    handleEdit(id, index) {
+      this.$store.dispatch("address/setCurrentId", id);
+      this.$store.dispatch("address/setCurrentIndex", index);
+      this.$router.push({
+        name: "AddressEdit",
+        params: { state: this.$route.params.state }
+      });
+      console.log(index);
+    },
     handleFilter() {
-      var filters;
-      filters = {
-        procom: this.procom,
-        address: this.indirizzo
-      };
-      this.$store.dispatch("address/setFilters", filters);
-      console.log("Clicked filter!");
+      this.$store.dispatch(
+        "address/findByUserAndState",
+        this.$route.params.state
+      );
     },
     load(state) {
-      this.$store.dispatch("coreui/setContext", Context.Block);
-      this.$store.dispatch("progress/findByUser");
+      this.actualState = state;
+      this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
+      this.$store.dispatch("progress/findByUser");
+      this.$store.dispatch("elencoComuni/findComuniByUserAndState", state);
+      this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },
   beforeRouteUpdate(to, from, next) {
@@ -158,6 +152,7 @@ export default {
   },
   created() {
     this.load(this.$route.params.state);
+    this.$store.dispatch("dug/findAll");
   }
 };
 </script>

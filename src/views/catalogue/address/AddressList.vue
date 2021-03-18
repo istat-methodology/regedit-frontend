@@ -23,7 +23,7 @@
             pagination
             sorter
           >
-            <template #selected-header>
+            <!-- <template #selected-header>
               <CInputCheckbox
                 :checked="globalCheck"
                 @update:checked="toggleAll"
@@ -36,7 +36,7 @@
                   @update:checked="toggleSelected(item)"
                 />
               </td>
-            </template>
+            </template> -->
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
             </template>
@@ -67,14 +67,12 @@ import { mapGetters } from "vuex";
 import addressMixin from "@/components/mixins/address.mixin";
 
 import SearchFilter from "@/components/SearchFilter";
-import MassiveUpdate from "@/components/MassiveUpdate";
 
 export default {
   name: "AddressList",
   mixins: [addressMixin],
   components: {
-    "app-search-filter": SearchFilter,
-    "app-massive-update": MassiveUpdate
+    "app-search-filter": SearchFilter
   },
   data() {
     return {
