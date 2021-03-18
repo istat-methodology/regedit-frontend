@@ -18,6 +18,7 @@
             items-per-page-select
             :items-per-page="items4page"
             :sorterValue="sorterValue"
+            @filtered-items-change="sortChange"
             hover
             pagination
             sorter
