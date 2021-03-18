@@ -80,9 +80,15 @@ export default {
           filter: false
         },
         {
+          key: "note",
+          label: "note",
+          _style: "width:20%;",
+          filter: false
+        },
+        {
           key: "dataMod",
           label: "Ultima modifica",
-          _style: "width:20%;",
+          _style: "width:10%;",
           filter: false
         }
         /*  {

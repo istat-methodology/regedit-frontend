@@ -42,18 +42,6 @@
             <template #validazione="{item}">
               <td>{{ item.validazione | dashEmpty }}</td>
             </template>
-            <!-- <template #action="{item}">
-              <td>
-                <CButton
-                  shape="square"
-                  variant="outline"
-                  size="sm"
-                  :color="getStatoColor(item.stato, item.validazione)"
-                  @click="handleEdit(item.progressivoIndirizzo, item.index)"
-                  >{{ getStatoString(item.stato, item.validazione) }}</CButton
-                >
-              </td>
-            </template> -->
           </CDataTable>
         </CCardBody>
       </div>
@@ -103,6 +91,7 @@ export default {
           "address/findByUserAndState",
           this.$route.params.state
         );
+        this.globalCheck = false;
       });
       console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
     },
