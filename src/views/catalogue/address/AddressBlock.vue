@@ -93,7 +93,7 @@ export default {
         );
         this.globalCheck = false;
       });
-      console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
+      this.$store.dispatch("progress/resetSelected");
     },
     toggleSelected(address) {
       address.selected = !address.selected;
