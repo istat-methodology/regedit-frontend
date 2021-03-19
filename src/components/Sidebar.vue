@@ -121,7 +121,9 @@
             <a :href="href" @click="navigate">
               <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Modifica
               Indirizzi
-              <span class="badge badge-success"></span>
+              <span class="badge badge-primary"
+                >{{ sospesi }} / {{ total }}</span
+              >
             </a>
           </router-link>
         </li>

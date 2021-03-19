@@ -81,9 +81,9 @@ export default {
       addressList = this.getSelected(this.addresses);
 
       payload = {
-        dug: dug,
-        duf: duf,
-        note: note,
+        dug: dug != null ? dug : "",
+        duf: duf != null ? duf : "",
+        note: note != null ? note : "",
         addrList: addressList
       };
       this.$store.dispatch("massive/update", payload).then(() => {
