@@ -97,14 +97,20 @@ export default {
     },
     toggleSelected(address) {
       address.selected = !address.selected;
+      if (address.selected) {
+        this.$store.dispatch("progress/incSelected");
+      } else {
+        this.$store.dispatch("progress/decSelected");
+      }
     },
     toggleAll() {
       this.globalCheck = !this.globalCheck;
-      /* for (let i = 1; i < this.items4page; i++) {
-        this.addresses[i].selected = this.globalCheck;
-      } */
+      this.$store.dispatch("progress/resetSelected");
       this.addresses.map(address => {
         address.selected = this.globalCheck;
+        if (address.selected) {
+          this.$store.dispatch("progress/incSelected");
+        }
       });
     },
     sortChange(sortArray) {
@@ -142,6 +148,7 @@ export default {
   created() {
     this.load(this.$route.params.state);
     this.$store.dispatch("dug/findAll");
+    this.$store.dispatch("progress/resetSelected");
   }
 };
 </script>

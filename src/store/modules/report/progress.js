@@ -2,12 +2,22 @@ import { progressReportService } from "@/services";
 import { getUserId } from "@/common";
 
 const state = {
-  reports: null
+  reports: null,
+  selezionati: null
 };
 
 const mutations = {
   SET_REPORTS(state, reports) {
     state.reports = reports;
+  },
+  INC_SELEZIONATI(state) {
+    state.selezionati++;
+  },
+  DEC_SELEZIONATI(state) {
+    state.selezionati--;
+  },
+  RESET_SELEZIONATI(state) {
+    state.selezionati = 0;
   }
 };
 
@@ -25,12 +35,24 @@ const actions = {
           console.log(err);
         });
     }
+  },
+  incSelected({ commit }) {
+    commit("INC_SELEZIONATI");
+  },
+  decSelected({ commit }) {
+    commit("DEC_SELEZIONATI");
+  },
+  resetSelected({ commit }) {
+    commit("RESET_SELEZIONATI");
   }
 };
 
 const getters = {
   reports: state => {
     return state.reports;
+  },
+  selezionati: state => {
+    return state.selezionati;
   }
 };
 

@@ -135,7 +135,6 @@ export default {
       );
     },
     load(state) {
-      this.actualState = state;
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);

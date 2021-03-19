@@ -63,6 +63,13 @@ export default {
       }
       //console.log("Sospesi: " + validati);
       return validati;
+    },
+    getSelezionati(selezionati) {
+      var selected = 0;
+      if (selezionati) {
+        selected = selezionati;
+      }
+      return selected;
     }
   }
 };

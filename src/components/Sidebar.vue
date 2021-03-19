@@ -122,7 +122,7 @@
               <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Modifica in
               in Blocco
               <span class="badge badge-primary"
-                >{{ sospesi }} / {{ total }}</span
+                >{{ _selezionati }} / {{ total }}</span
               >
             </a>
           </router-link>
@@ -172,6 +172,7 @@ export default {
       isBlock: "isBlock"
     }),
     ...mapGetters("progress", ["reports"]),
+    ...mapGetters("progress", ["selezionati"]),
     total() {
       return this.getTotal(this.reports);
     },
@@ -183,6 +184,9 @@ export default {
     },
     sospesi() {
       return this.getSospesi(this.reports);
+    },
+    _selezionati() {
+      return this.getSelezionati(this.selezionati);
     }
   }
 };
