@@ -120,7 +120,7 @@
           >
             <a :href="href" @click="navigate">
               <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Modifica in
-              in Blocco
+              Blocco
               <span class="badge badge-primary"
                 >{{ _selezionati }} / {{ total }}</span
               >

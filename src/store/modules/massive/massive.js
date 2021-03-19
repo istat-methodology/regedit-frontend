@@ -4,7 +4,9 @@ const actions = {
   update({ dispatch }, payload) {
     return massiveService
       .update(payload)
-      .then(dispatch("message/success", "Data updated!"))
+      .then(dispatch("message/success", "Data updated!"), {
+        root: true
+      })
       .catch(err => {
         console.log(err);
       });
