@@ -119,8 +119,8 @@
             v-slot="{ href, navigate }"
           >
             <a :href="href" @click="navigate">
-              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Modifica
-              Indirizzi
+              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Modifica in
+              in Blocco
               <span class="badge badge-primary"
                 >{{ sospesi }} / {{ total }}</span
               >

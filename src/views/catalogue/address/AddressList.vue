@@ -8,7 +8,6 @@
         @filter="handleFilter"
         :stato="this.$route.params.state"
       />
-      <app-massive-update @update-selected="updateSelected" />
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
