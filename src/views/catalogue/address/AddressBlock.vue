@@ -130,6 +130,8 @@ export default {
         "address/findByUserAndState",
         this.$route.params.state
       );
+      this.globalCheck = false;
+      this.$store.dispatch("progress/resetSelected");
     },
     load(state) {
       this.actualState = state;
