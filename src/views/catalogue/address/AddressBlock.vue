@@ -52,7 +52,7 @@
 <script>
 import { mapGetters } from "vuex";
 import addressMixin from "@/components/mixins/address.mixin";
-
+import { Context } from "@/common";
 import SearchFilter from "@/components/SearchFilter";
 import MassiveUpdate from "@/components/MassiveUpdate";
 
@@ -149,6 +149,7 @@ export default {
     this.load(this.$route.params.state);
     this.$store.dispatch("dug/findAll");
     this.$store.dispatch("progress/resetSelected");
+    this.$store.dispatch("coreui/setContext", Context.Block);
   }
 };
 </script>
