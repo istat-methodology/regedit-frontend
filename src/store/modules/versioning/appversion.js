@@ -1,5 +1,5 @@
 const state = {
-  packageVersion: "0.2"
+  packageVersion: "1.0"
 };
 
 const getters = {
