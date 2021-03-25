@@ -3,7 +3,8 @@ import { getUserId } from "@/common";
 
 const state = {
   reports: null,
-  selezionati: null
+  selezionati: null,
+  selezionatiSospesi: null
 };
 
 const mutations = {
@@ -18,6 +19,15 @@ const mutations = {
   },
   RESET_SELEZIONATI(state) {
     state.selezionati = 0;
+  },
+  INC_SELEZIONATISOSPESI(state) {
+    state.selezionatiSospesi++;
+  },
+  DEC_SELEZIONATISOSPESI(state) {
+    state.selezionatiSospesi--;
+  },
+  RESET_SELEZIONATISOSPESI(state) {
+    state.selezionatiSospesi = 0;
   }
 };
 
@@ -36,14 +46,30 @@ const actions = {
         });
     }
   },
-  incSelected({ commit }) {
-    commit("INC_SELEZIONATI");
+  incSelected({ commit }, state) {
+    if (state == 1) {
+      commit("INC_SELEZIONATI");
+    } else {
+      commit("INC_SELEZIONATISOSPESI");
+    }
   },
-  decSelected({ commit }) {
-    commit("DEC_SELEZIONATI");
+  decSelected({ commit }, state) {
+    if (state == 1) {
+      commit("DEC_SELEZIONATI");
+    } else {
+      commit("DEC_SELEZIONATISOSPESI");
+    }
   },
-  resetSelected({ commit }) {
+  resetSelected({ commit }, state) {
+    if (state == 1) {
+      commit("RESET_SELEZIONATI");
+    } else {
+      commit("RESET_SELEZIONATISOSPESI");
+    }
+  },
+  resetAll({ commit }) {
     commit("RESET_SELEZIONATI");
+    commit("RESET_SELEZIONATISOSPESI");
   }
 };
 
@@ -53,6 +79,9 @@ const getters = {
   },
   selezionati: state => {
     return state.selezionati;
+  },
+  selezionatiSospesi: state => {
+    return state.selezionatiSospesi;
   }
 };
 

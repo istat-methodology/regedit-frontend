@@ -110,6 +110,9 @@
             </a>
           </router-link>
         </li>
+        <li class="c-sidebar-nav-title">
+          Modifiche in blocco
+        </li>
         <li class="c-sidebar-nav-item">
           <router-link
             :to="{ name: 'AddressBlock', params: { state: 1 } }"
@@ -119,10 +122,27 @@
             v-slot="{ href, navigate }"
           >
             <a :href="href" @click="navigate">
-              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Modifica in
-              Blocco
+              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
+              da Lavorare
               <span class="badge badge-primary"
                 >{{ _selezionati }} / {{ total }}</span
+              >
+            </a>
+          </router-link>
+        </li>
+        <li class="c-sidebar-nav-item">
+          <router-link
+            :to="{ name: 'AddressBlock', params: { state: 3 } }"
+            class="c-sidebar-nav-link"
+            :class="{ 'c-active c-active-warning': isBlockSuspended }"
+            custom
+            v-slot="{ href, navigate }"
+          >
+            <a :href="href" @click="navigate">
+              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
+              Sospesi
+              <span class="badge badge-warning"
+                >{{ _selezionatiSospesi }} / {{ total }}</span
               >
             </a>
           </router-link>
@@ -169,10 +189,12 @@ export default {
       isAddressToRevise: "isAddressToRevise",
       isAddressRevised: "isAddressRevised",
       isAddressSkip: "isAddressSkip",
-      isBlock: "isBlock"
+      isBlock: "isBlock",
+      isBlockSuspended: "isBlockSuspended"
     }),
     ...mapGetters("progress", ["reports"]),
     ...mapGetters("progress", ["selezionati"]),
+    ...mapGetters("progress", ["selezionatiSospesi"]),
     total() {
       return this.getTotal(this.reports);
     },
@@ -187,6 +209,9 @@ export default {
     },
     _selezionati() {
       return this.getSelezionati(this.selezionati);
+    },
+    _selezionatiSospesi() {
+      return this.getSelezionati(this.selezionatiSospesi);
     }
   }
 };

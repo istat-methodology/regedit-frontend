@@ -93,23 +93,26 @@ export default {
         );
         this.globalCheck = false;
       });
-      this.$store.dispatch("progress/resetSelected");
+      this.$store.dispatch("progress/resetSelected", this.$route.params.state);
     },
     toggleSelected(address) {
       address.selected = !address.selected;
       if (address.selected) {
-        this.$store.dispatch("progress/incSelected");
+        this.$store.dispatch("progress/incSelected", this.$route.params.state);
       } else {
-        this.$store.dispatch("progress/decSelected");
+        this.$store.dispatch("progress/decSelected", this.$route.params.state);
       }
     },
     toggleAll() {
       this.globalCheck = !this.globalCheck;
-      this.$store.dispatch("progress/resetSelected");
+      this.$store.dispatch("progress/resetSelected", this.$route.params.state);
       this.addresses.map(address => {
         address.selected = this.globalCheck;
         if (address.selected) {
-          this.$store.dispatch("progress/incSelected");
+          this.$store.dispatch(
+            "progress/incSelected",
+            this.$route.params.state
+          );
         }
       });
     },
@@ -131,10 +134,11 @@ export default {
         this.$route.params.state
       );
       this.globalCheck = false;
-      this.$store.dispatch("progress/resetSelected");
+      this.$store.dispatch("progress/resetSelected", this.$route.params.state);
     },
     load(state) {
-      this.actualState = state;
+      this.globalCheck = false;
+      this.$store.dispatch("progress/resetAll");
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("address/clear");
       this.$store.dispatch("address/findByUserAndState", state);
@@ -150,8 +154,12 @@ export default {
   created() {
     this.load(this.$route.params.state);
     this.$store.dispatch("dug/findAll");
-    this.$store.dispatch("progress/resetSelected");
-    this.$store.dispatch("coreui/setContext", Context.Block);
+    this.$store.dispatch("progress/resetSelected", this.$route.params.state);
+    if (this.$route.params.state == 1) {
+      this.$store.dispatch("coreui/setContext", Context.Block);
+    } else {
+      this.$store.dispatch("coreui/setContext", Context.BlockSuspended);
+    }
   }
 };
 </script>

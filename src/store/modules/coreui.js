@@ -11,7 +11,8 @@ const state = {
   isAddressSkip: false,
   isDailyReport: false,
   isTotalReport: false,
-  isBlock: false
+  isBlock: false,
+  isBlockSuspended: false
 };
 
 const mutations = {
@@ -50,6 +51,9 @@ const mutations = {
       case Context.Block:
         state.isBlock = true;
         break;
+      case Context.BlockSuspended:
+        state.isBlockSuspended = true;
+        break;
       default:
         break;
     }
@@ -63,6 +67,7 @@ const mutations = {
     state.isDailyReport = false;
     state.isTotalReport = false;
     state.isBlock = false;
+    state.isBlockSuspended = false;
   },
   set(state, [variable, value]) {
     state[variable] = value;
@@ -121,6 +126,9 @@ const getters = {
   },
   isBlock: state => {
     return state.isBlock;
+  },
+  isBlockSuspended: state => {
+    return state.isBlockSuspended;
   }
 };
 
