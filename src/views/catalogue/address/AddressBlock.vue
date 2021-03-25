@@ -119,15 +119,6 @@ export default {
     sortChange(sortArray) {
       this.$store.dispatch("address/setSortedList", sortArray);
     },
-    /*  handleEdit(id, index) {
-      this.$store.dispatch("address/setCurrentId", id);
-      this.$store.dispatch("address/setCurrentIndex", index);
-      this.$router.push({
-        name: "AddressEdit",
-        params: { state: this.$route.params.state }
-      });
-      console.log(index);
-    }, */
     handleFilter() {
       this.$store.dispatch(
         "address/findByUserAndState",
