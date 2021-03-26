@@ -75,7 +75,7 @@ export default {
     ...mapGetters("address", ["addresses"])
   },
   methods: {
-    updateSelected(dug, duf, note) {
+    updateSelected(dug, duf, note, localita, codStrada) {
       var payload;
       var addressList = [];
       addressList = this.getSelected(this.addresses);
@@ -83,6 +83,8 @@ export default {
       payload = {
         dug: dug != null ? dug : "",
         duf: duf != null ? duf : "",
+        localita: localita != null ? localita : "",
+        codStrada: codStrada != null ? codStrada : "",
         note: note != null ? note : "",
         addrList: addressList
       };

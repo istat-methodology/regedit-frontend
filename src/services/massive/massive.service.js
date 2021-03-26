@@ -13,6 +13,8 @@ class MassiveService extends AbstractService {
         addressList: payload.addrList,
         dugVal: payload.dug,
         dufVal: payload.duf,
+        localitaVal: payload.localita,
+        cdpstrEgon: payload.codStrada,
         /*  state: 3, */
         note: payload.note
       })

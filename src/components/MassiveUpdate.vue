@@ -18,6 +18,14 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-5">
+          <CInput placeholder="Località" v-model="loc" />
+        </div>
+        <div class="col-5">
+          <CInput placeholder="Codice Strada" v-model="codStrada" />
+        </div>
+      </div>
+      <div class="row">
         <div class="col-10">
           <CTextarea placeholder="Note" rows="1" v-model="note" />
         </div>
@@ -27,7 +35,16 @@
             size="sm"
             color="primary"
             class="mt-1"
-            @click="$emit('update-selected', dugVal, dufVal, noteVal)"
+            @click="
+              $emit(
+                'update-selected',
+                dugVal,
+                dufVal,
+                noteVal,
+                localita,
+                codiceStrada
+              )
+            "
             >Inserisci</CButton
           >
         </div>
@@ -44,7 +61,9 @@ export default {
     return {
       dugVal: null,
       dufVal: null,
-      noteVal: null
+      noteVal: null,
+      localita: null,
+      codiceStrada: null
     };
   },
   computed: {
@@ -63,6 +82,22 @@ export default {
       },
       set: function(dufVal) {
         this.dufVal = dufVal;
+      }
+    },
+    loc: {
+      get: function() {
+        return this.localita;
+      },
+      set: function(localita) {
+        this.localita = localita;
+      }
+    },
+    codStrada: {
+      get: function() {
+        return this.codiceStrada;
+      },
+      set: function(codStrada) {
+        this.codiceStrada = codStrada;
       }
     },
     note: {

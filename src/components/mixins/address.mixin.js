@@ -80,6 +80,18 @@ export default {
           filter: false
         },
         {
+          key: "localitaVal",
+          label: "località",
+          _style: "width:10%;",
+          filter: false
+        },
+        {
+          key: "cdpstrEgon",
+          label: "codice strada",
+          _style: "width:10%;",
+          filter: false
+        },
+        {
           key: "note",
           label: "note",
           _style: "width:20%;",
