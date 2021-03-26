@@ -125,7 +125,7 @@
               <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
               da Lavorare
               <span class="badge badge-primary"
-                >{{ _selezionati }} / {{ total }}</span
+                >{{ _selezionati }} / {{ daLavorare }}</span
               >
             </a>
           </router-link>
