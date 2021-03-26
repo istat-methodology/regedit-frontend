@@ -23,6 +23,13 @@
         </div>
         <div class="col-5">
           <CInput placeholder="Codice Strada" v-model="codStrada" />
+          <div class="error" v-if="!$v.codiceStrada.maxLength">
+            Il campo deve avere al massimo
+            {{ $v.codiceStrada.$params.maxLength.max }} cifre.
+          </div>
+          <div class="error" v-if="!$v.codiceStrada.validationRuleStrEgon">
+            I valori possibili per questo campo sono soltanto numerici
+          </div>
         </div>
       </div>
       <div class="row">
@@ -31,6 +38,9 @@
         </div>
         <div class="col-2">
           <CButton
+            v-if="
+              $v.codiceStrada.maxLength && $v.codiceStrada.validationRuleStrEgon
+            "
             shape="square"
             size="sm"
             color="primary"
@@ -55,6 +65,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { maxLength } from "vuelidate/lib/validators";
 export default {
   name: "MassiveUpdate",
   data: function() {
@@ -65,6 +76,14 @@ export default {
       localita: null,
       codiceStrada: null
     };
+  },
+  validations: {
+    codiceStrada: {
+      validationRuleStrEgon(codiceStrada) {
+        return this.codiceStrada ? /[0-9?]+$/.test(codiceStrada) : true;
+      },
+      maxLength: maxLength(12)
+    }
   },
   computed: {
     ...mapGetters("dug", ["dugs"]),

@@ -142,7 +142,7 @@
               <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Indirizzi
               Sospesi
               <span class="badge badge-warning"
-                >{{ _selezionatiSospesi }} / {{ total }}</span
+                >{{ _selezionatiSospesi }} / {{ sospesi }}</span
               >
             </a>
           </router-link>

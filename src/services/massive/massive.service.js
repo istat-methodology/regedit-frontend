@@ -16,6 +16,7 @@ class MassiveService extends AbstractService {
         localitaVal: payload.localita,
         cdpstrEgon: payload.codStrada,
         /*  state: 3, */
+        idFonte: payload.codStrada == "" ? null : 1,
         note: payload.note
       })
       .then(res => {
