@@ -22,5 +22,21 @@ class UserService extends AbstractService {
         throw err;
       });
   }
+  findAllUsers() {
+    return axiosRegedit
+      .get(this.endpoint, {
+        params: {
+          role: null
+        }
+      })
+      .then(res => {
+        var data = res.data ? res.data : [];
+        //console.log(data);
+        return data;
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
 }
-export const userService = new UserService("/users");
+export const userService = new UserService("/users/users");

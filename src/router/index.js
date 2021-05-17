@@ -92,13 +92,13 @@ const routes = [
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
-        meta: { authorize: [Role.Admin] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "settings/users/edit/:id",
         name: "UserEdit",
         component: () => import("../views/settings/user/UserEdit"),
-        meta: { authorize: [Role.Admin] }
+        meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
         path: "settings/users/delete/:id",

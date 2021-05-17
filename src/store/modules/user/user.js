@@ -27,6 +27,16 @@ const actions = {
       }
     );
   },
+  findAllUsers({ commit }) {
+    userService.findAllUsers().then(
+      data => {
+        commit("SET_USERS", data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
   findByRole({ commit }, role) {
     userService.findByRole(role).then(
       data => {
