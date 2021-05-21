@@ -44,6 +44,21 @@
             </a>
           </router-link>
         </CDropdownItem>
+        <CDropdownItem>
+          <router-link
+            :to="{
+              name: 'UserList'
+            }"
+            custom
+            v-slot="{ href, navigate }"
+          >
+            <a :href="href" @click="navigate">
+              <span class="pl-1"
+                ><arrow-right-icon class="pr-3" />Lista Utenti</span
+              >
+            </a>
+          </router-link>
+        </CDropdownItem>
       </CDropdown>
     </CHeaderNav>
     <CHeaderNav class="mr-4">

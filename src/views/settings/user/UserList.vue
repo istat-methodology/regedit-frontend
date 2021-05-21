@@ -59,10 +59,9 @@ export default {
     return {
       fields: [
         { key: "id", _style: "width:5%" },
-        { key: "name", _style: "width:15%" },
-        { key: "surname", _style: "width:15%;" },
-        { key: "email", _style: "width:20%;" },
-        { key: "role", _style: "width:10%;" },
+        { key: "email", _style: "width:15%" },
+        { key: "name", _style: "width:15%;" },
+        { key: "idRole", _style: "width:20%;" },
         {
           key: "show_update",
           label: "",
@@ -85,13 +84,25 @@ export default {
   },
   methods: {
     userDelete(id) {
-      this.$router.push("/settings/users/UserDelete/" + id);
+      // this.$router.push("/settings/users/UserDelete/" + id);
+      //this.$router.push("settings/users/delete" + id);
+      this.$router.push({
+        name: "UserDelete",
+        params: { id }
+      });
     },
     userEdit(id) {
-      this.$router.push("/settings/users/UserEdit/" + id);
+      //this.$router.push("/settings/users/UserEdit/" + id);
+      //this.$router.push("settings/users/edit" + id);
+      this.$router.push({
+        name: "UserEdit",
+        params: { id }
+      });
     },
     userAdd() {
-      this.$router.push("/settings/users/UserAdd/");
+      this.$router.push({
+        name: "UserAdd"
+      });
     }
   },
   created() {
