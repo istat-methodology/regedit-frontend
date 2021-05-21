@@ -19,7 +19,7 @@
         class="c-header-nav-items"
         placement="bottom"
         add-menu-classes="dropdown-menu-right pt-0"
-        v-if="isSupervisor"
+        v-if="isSupervisor || isAdmin"
       >
         <template #toggler>
           <CHeaderNavLink>
@@ -82,7 +82,7 @@ import HeaderNav from "./HeaderNav";
 export default {
   name: "Header",
   computed: {
-    ...mapGetters("auth", ["isSupervisor"])
+    ...mapGetters("auth", ["isSupervisor", "isAdmin"])
   },
   components: {
     "app-header-dropdown-account": HeaderDropdownAccnt,
