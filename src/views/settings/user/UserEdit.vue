@@ -16,7 +16,7 @@
           </router-link>
         </header>
 
-        <div class="card-body">
+        <div class="card-body" v-if="user">
           <div
             class="input-group mb-3"
             :class="{ 'form-group--error': $v.user.name.$error }"
@@ -97,7 +97,32 @@
 
           <div
             class="input-group mb-3"
-            :class="{ 'form-group--error': $v.user.role.$error }"
+            :class="{ 'form-group--error': $v.user.password.$error }"
+          >
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Password</span
+              >
+            </div>
+            <input
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+            <div class="row col-12">
+              <div class="error" v-if="!$v.user.password.required">
+                Password is required
+              </div>
+              <div class="error" v-if="!$v.user.password.minLength">
+                Name must have at least
+                {{ $v.user.password.$params.minLength.min }} letters.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="input-group mb-3"
+            :class="{ 'form-group--error': $v.user.idRole.$error }"
           >
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
@@ -108,15 +133,11 @@
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              v-model="user.role"
+              v-model="user.idRole"
             />
             <div class="row col-12">
-              <div class="error" v-if="!$v.user.role.required">
+              <div class="error" v-if="!$v.user.idRole.required">
                 role is required
-              </div>
-              <div class="error" v-if="!$v.user.role.minLength">
-                role must have at least
-                {{ $v.user.role.$params.minLength.min }} letters.
               </div>
             </div>
           </div>
@@ -178,9 +199,12 @@ export default {
         required,
         email
       },
-      role: {
+      password: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(6)
+      },
+      idRole: {
+        required
       }
     }
   },
@@ -200,7 +224,8 @@ export default {
           name: this.user.name,
           surname: this.user.surname,
           email: this.user.email,
-          role: this.user.role
+          password: this.user.password,
+          idRole: this.user.idRole
         };
         this.$store.dispatch("user/update", data);
       }
@@ -209,7 +234,8 @@ export default {
       this.user.name = "";
       this.user.surname = "";
       this.user.email = "";
-      this.user.role = "";
+      this.user.password = "";
+      this.user.idRole = "";
       this.$v.$reset();
     }
   }
