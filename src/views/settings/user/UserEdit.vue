@@ -94,32 +94,6 @@
               </div>
             </div>
           </div>
-
-          <!--  <div
-            class="input-group mb-3"
-            :class="{ 'form-group--error': $v.user.password.$error }"
-          >
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default"
-                >Password</span
-              >
-            </div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-            />
-            <div class="row col-12">
-              <div class="error" v-if="!$v.user.password.required">
-                Password is required
-              </div>
-              <div class="error" v-if="!$v.user.password.minLength">
-                Name must have at least
-                {{ $v.user.password.$params.minLength.min }} letters.
-              </div>
-            </div>
-          </div>
- -->
           <div
             class="input-group mb-3"
             :class="{ 'form-group--error': $v.user.idRole.$error }"
@@ -133,8 +107,9 @@
             <v-select
               label="role"
               :options="roles"
-              placeholder="Ruoli"
-              @input="changeRole"
+              placeholder="role"
+              v-model="user.idRole"
+              :reduce="valori => valori.id"
             ></v-select>
 
             <div class="row col-12">
@@ -205,10 +180,10 @@ export default {
         required,
         email
       },
-      /* password: {
+      password: {
         required,
         minLength: minLength(6)
-      }, */
+      },
       idRole: {
         required,
         minLength: minLength(1)
@@ -224,9 +199,9 @@ export default {
     this.$store.dispatch("role/findAll");
   },
   methods: {
-    changeRole(value) {
+    /* changeRole(value) {
       this.user.idRole = value.id;
-    },
+    }, */
     handleUpdate() {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
