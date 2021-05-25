@@ -107,6 +107,7 @@ export default {
   },
   created() {
     this.$store.dispatch("user/findAll");
+    this.$store.dispatch("role/findAll");
   }
 };
 </script>

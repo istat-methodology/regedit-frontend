@@ -97,26 +97,34 @@
 
           <div
             class="input-group mb-3"
-            :class="{ 'form-group--error': $v.role.$error }"
+            :class="{ 'form-group--error': $v.idRole.$error }"
           >
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
                 >Role</span
               >
             </div>
-            <input
+            <!--  <input
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               v-model="role"
-            />
+            /> -->
+
+            <v-select
+              :options="roles"
+              v-model="idRole"
+              placeholder="Ruoli"
+              @input="changeRole"
+            ></v-select>
+
             <div class="row col-12">
-              <div class="error" v-if="!$v.role.required">
+              <div class="error" v-if="!$v.idRole.required">
                 role is required
               </div>
-              <div class="error" v-if="!$v.role.minLength">
+              <div class="error" v-if="!$v.idRole.minLength">
                 role must have at least
-                {{ $v.role.$params.minLength.min }} letters.
+                {{ $v.idRole.$params.minLength.min }} letters.
               </div>
             </div>
           </div>
@@ -186,7 +194,7 @@ export default {
       name: "",
       surname: "",
       email: "",
-      role: "",
+      idRole: "",
       password: ""
     };
   },
@@ -203,9 +211,9 @@ export default {
       required,
       email
     },
-    role: {
+    idRole: {
       required,
-      minLength: minLength(4)
+      minLength: minLength(1)
     },
     password: {
       required,
@@ -213,9 +221,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("user", ["user"])
+    ...mapGetters("user", ["user"]),
+    ...mapGetters("role", ["roles"])
   },
   methods: {
+    changeRole(value) {
+      this.idRole = value.id;
+    },
     handleAdd() {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
@@ -224,7 +236,7 @@ export default {
           name: this.name,
           surname: this.surname,
           email: this.email,
-          role: this.role
+          idRole: this.idRole
         };
         this.$store.dispatch("user/save", data);
       }
@@ -236,6 +248,9 @@ export default {
       this.role = "";
       this.$v.$reset();
     }
+  },
+  created() {
+    this.$store.dispatch("role/findAll");
   }
 };
 </script>

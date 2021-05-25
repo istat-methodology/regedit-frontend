@@ -95,7 +95,7 @@
             </div>
           </div>
 
-          <div
+          <!--  <div
             class="input-group mb-3"
             :class="{ 'form-group--error': $v.user.password.$error }"
           >
@@ -119,7 +119,7 @@
               </div>
             </div>
           </div>
-
+ -->
           <div
             class="input-group mb-3"
             :class="{ 'form-group--error': $v.user.idRole.$error }"
