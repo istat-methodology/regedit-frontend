@@ -112,8 +112,8 @@
             /> -->
 
             <v-select
+              label="role"
               :options="roles"
-              v-model="idRole"
               placeholder="Ruoli"
               @input="changeRole"
             ></v-select>
@@ -245,7 +245,7 @@ export default {
       this.name = "";
       this.surname = "";
       this.email = "";
-      this.role = "";
+      this.idRole = "";
       this.$v.$reset();
     }
   },

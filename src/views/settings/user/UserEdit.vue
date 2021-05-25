@@ -129,15 +129,21 @@
                 >Role</span
               >
             </div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              v-model="user.idRole"
-            />
+
+            <v-select
+              label="role"
+              :options="roles"
+              placeholder="Ruoli"
+              @input="changeRole"
+            ></v-select>
+
             <div class="row col-12">
               <div class="error" v-if="!$v.user.idRole.required">
                 role is required
+              </div>
+              <div class="error" v-if="!$v.user.idRole.minLength">
+                role must have at least
+                {{ $v.user.idRole.$params.minLength.min }} letters.
               </div>
             </div>
           </div>
@@ -199,22 +205,28 @@ export default {
         required,
         email
       },
-      password: {
+      /* password: {
         required,
         minLength: minLength(6)
-      },
+      }, */
       idRole: {
-        required
+        required,
+        minLength: minLength(1)
       }
     }
   },
   computed: {
-    ...mapGetters("user", ["user"])
+    ...mapGetters("user", ["user"]),
+    ...mapGetters("role", ["roles"])
   },
   created() {
     this.$store.dispatch("user/findById", this.$route.params.id);
+    this.$store.dispatch("role/findAll");
   },
   methods: {
+    changeRole(value) {
+      this.user.idRole = value.id;
+    },
     handleUpdate() {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
@@ -234,7 +246,7 @@ export default {
       this.user.name = "";
       this.user.surname = "";
       this.user.email = "";
-      this.user.password = "";
+      /*  this.user.password = ""; */
       this.user.idRole = "";
       this.$v.$reset();
     }

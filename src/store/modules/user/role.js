@@ -19,7 +19,7 @@ const actions = {
   findAll({ commit }) {
     roleService.findAll().then(
       data => {
-        commit("SET_ROLE", data);
+        commit("SET_ROLES", data);
         commit("SET_ROLE", null); //clear user
       },
       error => {
