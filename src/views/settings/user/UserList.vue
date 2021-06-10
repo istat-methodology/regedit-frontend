@@ -61,7 +61,7 @@ export default {
         { key: "id", _style: "width:5%" },
         { key: "email", _style: "width:15%" },
         { key: "name", _style: "width:15%;" },
-        { key: "idRole", _style: "width:20%;" },
+        { key: "surname", _style: "width:15%;" },
         {
           key: "show_update",
           label: "",

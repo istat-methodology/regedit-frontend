@@ -96,7 +96,7 @@
           </div>
           <div
             class="input-group mb-3"
-            :class="{ 'form-group--error': $v.user.idRole.$error }"
+            :class="{ 'form-group--error': $v.user.role.$error }"
           >
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
@@ -108,17 +108,13 @@
               label="role"
               :options="roles"
               placeholder="role"
-              v-model="user.idRole"
+              v-model="user.role"
               :reduce="valori => valori.id"
             ></v-select>
 
             <div class="row col-12">
-              <div class="error" v-if="!$v.user.idRole.required">
+              <div class="error" v-if="!$v.user.role.required">
                 role is required
-              </div>
-              <div class="error" v-if="!$v.user.idRole.minLength">
-                role must have at least
-                {{ $v.user.idRole.$params.minLength.min }} letters.
               </div>
             </div>
           </div>
@@ -184,9 +180,8 @@ export default {
         required,
         minLength: minLength(6)
       },
-      idRole: {
-        required,
-        minLength: minLength(1)
+      role: {
+        required
       }
     }
   },
@@ -211,8 +206,8 @@ export default {
           name: this.user.name,
           surname: this.user.surname,
           email: this.user.email,
-          password: this.user.password,
-          idRole: this.user.idRole
+          // password: this.user.password,
+          role: this.user.role
         };
         this.$store.dispatch("user/update", data);
       }
@@ -222,7 +217,7 @@ export default {
       this.user.surname = "";
       this.user.email = "";
       /*  this.user.password = ""; */
-      this.user.idRole = "";
+      this.user.role = null;
       this.$v.$reset();
     }
   }
