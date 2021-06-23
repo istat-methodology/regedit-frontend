@@ -97,7 +97,7 @@
 
           <div
             class="input-group mb-3"
-            :class="{ 'form-group--error': $v.idRole.$error }"
+            :class="{ 'form-group--error': $v.role.$error }"
           >
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
@@ -119,12 +119,12 @@
             ></v-select>
 
             <div class="row col-12">
-              <div class="error" v-if="!$v.idRole.required">
+              <div class="error" v-if="!$v.role.required">
                 role is required
               </div>
-              <div class="error" v-if="!$v.idRole.minLength">
+              <div class="error" v-if="!$v.role.minLength">
                 role must have at least
-                {{ $v.idRole.$params.minLength.min }} letters.
+                {{ $v.role.$params.minLength.min }} letters.
               </div>
             </div>
           </div>
@@ -190,11 +190,10 @@ export default {
     return {
       //formTouched: false,
       submitStatus: null,
-      id: "",
       name: "",
       surname: "",
       email: "",
-      idRole: "",
+      role: "",
       password: ""
     };
   },
@@ -211,7 +210,7 @@ export default {
       required,
       email
     },
-    idRole: {
+    role: {
       required,
       minLength: minLength(1)
     },
@@ -226,7 +225,7 @@ export default {
   },
   methods: {
     changeRole(value) {
-      this.idRole = value.id;
+      this.role = value.id;
     },
     handleAdd() {
       if (this.$v.$invalid) {
@@ -236,7 +235,8 @@ export default {
           name: this.name,
           surname: this.surname,
           email: this.email,
-          idRole: this.idRole
+          password: this.password,
+          role: this.role
         };
         this.$store.dispatch("user/save", data);
       }
@@ -245,7 +245,8 @@ export default {
       this.name = "";
       this.surname = "";
       this.email = "";
-      this.idRole = "";
+      this.role = "";
+      this.password = "";
       this.$v.$reset();
     }
   },
