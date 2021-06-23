@@ -109,7 +109,6 @@
               :options="roles"
               placeholder="role"
               v-model="user.role"
-              :reduce="valori => valori.id"
             ></v-select>
 
             <div class="row col-12">
@@ -176,10 +175,6 @@ export default {
         required,
         email
       },
-      password: {
-        required,
-        minLength: minLength(6)
-      },
       role: {
         required
       }
@@ -194,8 +189,8 @@ export default {
     this.$store.dispatch("role/findAll");
   },
   methods: {
-    /* changeRole(value) {
-      this.user.idRole = value.id;
+    /*  changeRole(value) {
+      this.user.role = value;
     }, */
     handleUpdate() {
       if (this.$v.$invalid) {
@@ -206,8 +201,7 @@ export default {
           name: this.user.name,
           surname: this.user.surname,
           email: this.user.email,
-          // password: this.user.password,
-          role: this.user.role
+          roleid: this.user.role.id
         };
         this.$store.dispatch("user/update", data);
       }
