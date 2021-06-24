@@ -28,6 +28,17 @@
                 >
               </td>
             </template>
+            <template #show_passchange="{item}">
+              <td class="py-4">
+                <CButton
+                  color="outline-dark"
+                  square
+                  size="sm"
+                  @click="userChangePassword(item.id)"
+                  >Password</CButton
+                >
+              </td>
+            </template>
             <template #show_delete="{item}">
               <td class="py-2">
                 <CButton
@@ -70,6 +81,13 @@ export default {
           filter: false
         },
         {
+          key: "show_passchange",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
+        },
+        {
           key: "show_delete",
           label: "",
           _style: "width:1%",
@@ -96,6 +114,14 @@ export default {
       //this.$router.push("settings/users/edit" + id);
       this.$router.push({
         name: "UserEdit",
+        params: { id }
+      });
+    },
+    userChangePassword(id) {
+      //this.$router.push("/settings/users/UserEdit/" + id);
+      //this.$router.push("settings/users/edit" + id);
+      this.$router.push({
+        name: "UserPassChange",
         params: { id }
       });
     },
