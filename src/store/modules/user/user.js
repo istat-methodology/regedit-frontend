@@ -98,6 +98,20 @@ const actions = {
         console.log(error);
       }
     );
+  },
+  changePassword({ dispatch }, formData) {
+    userService.changePass(formData).then(
+      data => {
+        console.log(data);
+        dispatch("message/success", data, {
+          root: true
+        });
+        //router.push("/settings/users");
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 };
 

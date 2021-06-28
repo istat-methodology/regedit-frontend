@@ -125,12 +125,6 @@
             >
               Update!
             </button>
-
-            <!--   <Button
-              class="btn btn-outline-dark btn-sm"
-              @click.prevent="handleReset()"
-              >Reset</Button
-            > -->
           </div>
           <div class="row col-12">
             <p class="typo__p" v-if="submitStatus === 'OK'">
@@ -158,8 +152,8 @@ export default {
     return {
       submitStatus: null,
       oldPassword: "",
-      newPassword: "",
-      newRepeatedPassword: ""
+      newPassword: ""
+      //newRepeatedPassword: ""
     };
   },
   validations: {
@@ -193,21 +187,14 @@ export default {
       } else {
         const data = {
           id: this.user.id,
-          name: this.user.name,
-          surname: this.user.surname,
+          /* name: this.user.name,
+          surname: this.user.surname, */
           oldPassword: this.oldPassword,
           newPassword: this.newPassword
         };
-        this.$store.dispatch("user/update", data);
+        this.$store.dispatch("user/changePassword", data);
       }
     }
-    /* handleReset() {
-      this.user.name = "";
-      this.user.surname = "";
-      this.oldPassword = null;
-      this.newPassword = null;
-      this.$v.$reset();
-    } */
   }
 };
 </script>
