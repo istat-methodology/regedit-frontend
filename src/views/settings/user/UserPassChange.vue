@@ -189,8 +189,8 @@ export default {
           id: this.user.id,
           /* name: this.user.name,
           surname: this.user.surname, */
-          oldPassword: this.oldPassword,
-          newPassword: this.newPassword
+          oldpass: this.oldPassword,
+          newpass: this.newPassword
         };
         this.$store.dispatch("user/changePassword", data);
       }

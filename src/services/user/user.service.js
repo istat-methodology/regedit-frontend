@@ -40,12 +40,7 @@ class UserService extends AbstractService {
   }
   changePass(data) {
     return axiosRegedit
-      .put(this.endpoint + "/password-id/" + data.id, {
-        params: {
-          oldpass: data.oldPassword,
-          newpass: data.newPassword
-        }
-      })
+      .put(this.endpoint + "/password-id/" + data.id, data)
       .then(res => {
         var data = res.data ? res.data : [];
         //console.log(data);
