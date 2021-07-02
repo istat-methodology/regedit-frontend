@@ -15,7 +15,7 @@
             >
           </router-link>
         </header>
-        <div class="card-body">
+        <div class="card-body" v-if="user">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
@@ -61,13 +61,15 @@
                 >Role</span
               >
             </div>
-            <input
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
+
+            <v-select
+              label="role"
+              :options="roles"
+              placeholder="role"
               v-model="user.role"
-            />
+            ></v-select>
           </div>
+
           <div class="card-footer">
             <Button
               class="btn btn-outline-dark btn-sm"
@@ -101,7 +103,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("user", ["user"])
+    ...mapGetters("user", ["user"]),
+    ...mapGetters("role", ["roles"])
   },
   created() {
     this.$store.dispatch("user/findById", this.$route.params.id);
