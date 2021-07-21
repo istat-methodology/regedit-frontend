@@ -50,5 +50,17 @@ class UserService extends AbstractService {
         throw err;
       });
   }
+  resetPass(data) {
+    return axiosRegedit
+      .put(this.endpoint + "/password-reset/" + data.id, data)
+      .then(res => {
+        var data = res.data ? res.data : [];
+        //console.log(data);
+        return data;
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
 }
 export const userService = new UserService("/users/users");

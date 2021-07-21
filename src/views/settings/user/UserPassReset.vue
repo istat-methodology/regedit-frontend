@@ -189,7 +189,7 @@ export default {
           id: this.user.id,
           /* name: this.user.name,
           surname: this.user.surname, */
-          oldpass: this.resetPassword
+          pasword: this.resetPassword
           /* newpass: this.newPassword */
         };
         this.$store.dispatch("user/changePassword", data);

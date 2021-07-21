@@ -133,6 +133,41 @@ const actions = {
         console.log(error);
       }
     );
+  },
+  resetPassword({ dispatch }, formData) {
+    userService.resetPass(formData).then(
+      data => {
+        console.log(data);
+        const codice = data.substr(data, 2);
+        switch (codice) {
+          case "01":
+            dispatch("message/success", data.substring(3, data.length), {
+              root: true
+            });
+            break;
+          case "02":
+            dispatch("message/warning", data.substring(3, data.length), {
+              root: true
+            });
+            break;
+          case "03":
+            dispatch("message/error", data.substring(3, data.length), {
+              root: true
+            });
+            break;
+          default:
+            dispatch("message/error", data, {
+              root: true
+            });
+            break;
+        }
+
+        //router.push("/settings/users");
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 };
 
