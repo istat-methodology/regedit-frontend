@@ -47,30 +47,30 @@
 
           <div
             class="input-group mb-3"
-            :class="{ 'form-group--error': $v.oldPassword.$error }"
+            :class="{ 'form-group--error': $v.resetPassword.$error }"
           >
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
-                >Vecchia password</span
+                >Reset password</span
               >
             </div>
             <input
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              v-model="oldPassword"
+              v-model="resetPassword"
             />
             <div class="row col-12">
-              <div class="error" v-if="!$v.oldPassword.required">
+              <div class="error" v-if="!$v.resetPassword.required">
                 password is required
               </div>
-              <div class="error" v-if="!$v.oldPassword.minLength">
+              <div class="error" v-if="!$v.resetPassword.minLength">
                 password must have at least
-                {{ $v.oldPassword.$params.minLength.min }} letters.
+                {{ $v.resetPassword.$params.minLength.min }} letters.
               </div>
             </div>
           </div>
-          <div
+          <!-- <div
             class="input-group mb-3"
             :class="{ 'form-group--error': $v.newPassword.$error }"
           >
@@ -94,7 +94,7 @@
                 {{ $v.newPassword.$params.minLength.min }} letters.
               </div>
             </div>
-          </div>
+          </div> -->
           <!--  <div
             class="input-group mb-3"
             :class="{ 'form-group--error': $v.newRepeatedPassword.$error }"
@@ -151,20 +151,20 @@ export default {
   data() {
     return {
       submitStatus: null,
-      oldPassword: "",
-      newPassword: ""
+      resetPassword: ""
+      /* newPassword: "" */
       //newRepeatedPassword: ""
     };
   },
   validations: {
-    oldPassword: {
-      required,
-      minLength: minLength(8)
-    },
-    newPassword: {
+    resetPassword: {
       required,
       minLength: minLength(8)
     }
+    /* newPassword: {
+      required,
+      minLength: minLength(8)
+    } */
     /* newRepeatedPassword: {
       sameAsPassword: sameAs("newPassword")
     } */
@@ -189,8 +189,8 @@ export default {
           id: this.user.id,
           /* name: this.user.name,
           surname: this.user.surname, */
-          oldpass: this.oldPassword,
-          newpass: this.newPassword
+          oldpass: this.resetPassword
+          /* newpass: this.newPassword */
         };
         this.$store.dispatch("user/changePassword", data);
       }
