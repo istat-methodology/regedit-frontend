@@ -121,7 +121,7 @@ export default {
       //this.$router.push("/settings/users/UserEdit/" + id);
       //this.$router.push("settings/users/edit" + id);
       this.$router.push({
-        name: "UserPassChange",
+        name: "UserPassReset",
         params: { id }
       });
     },

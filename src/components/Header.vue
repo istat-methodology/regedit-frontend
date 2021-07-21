@@ -60,6 +60,33 @@
           </router-link>
         </CDropdownItem>
       </CDropdown>
+      <CDropdown
+        inNav
+        class="c-header-nav-items"
+        placement="bottom"
+        add-menu-classes="dropdown-menu-right pt-0"
+        v-else
+        ><template #toggler>
+          <CHeaderNavLink>
+            <div class="c-header-nav-first">Impostazioni</div>
+          </CHeaderNavLink>
+        </template>
+        <CDropdownItem>
+          <router-link
+            :to="{
+              name: 'UserPassChange'
+            }"
+            custom
+            v-slot="{ href, navigate }"
+          >
+            <a :href="href" @click="navigate">
+              <span class="pl-1"
+                ><arrow-right-icon class="pr-3" />Cambio Password</span
+              >
+            </a>
+          </router-link>
+        </CDropdownItem>
+      </CDropdown>
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <app-header-dropdown-account />
@@ -82,7 +109,7 @@ import HeaderNav from "./HeaderNav";
 export default {
   name: "Header",
   computed: {
-    ...mapGetters("auth", ["isSupervisor", "isAdmin"])
+    ...mapGetters("auth", ["isSupervisor", "isAdmin", "isRevisor"])
   },
   components: {
     "app-header-dropdown-account": HeaderDropdownAccnt,

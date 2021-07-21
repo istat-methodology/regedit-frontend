@@ -174,10 +174,7 @@ export default {
     ...mapGetters("role", ["roles"])
   },
   created() {
-    this.$store.dispatch(
-      "user/findById",
-      this.$store.getters["auth/loggedUser"].userId
-    );
+    this.$store.dispatch("user/findById", this.$route.params.id);
     //this.$store.dispatch("role/findAll");
   },
   methods: {
