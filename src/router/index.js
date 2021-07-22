@@ -107,9 +107,9 @@ const routes = [
         meta: { authorize: [Role.Admin, Role.Supervisor] }
       },
       {
-        path: "settings/users/passchange",
+        path: "settings/passchange",
         name: "UserPassChange",
-        component: () => import("../views/settings/user/UserPassChange"),
+        component: () => import("../views/settings/UserPassChange"),
         meta: { authorize: [] }
       },
       {
