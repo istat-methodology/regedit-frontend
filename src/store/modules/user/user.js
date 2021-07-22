@@ -92,7 +92,7 @@ const actions = {
         dispatch("message/success", "User updated!", {
           root: true
         });
-        //router.push("/settings/users");
+        router.push("/settings/users");
       },
       error => {
         console.log(error);
@@ -127,7 +127,7 @@ const actions = {
             break;
         }
 
-        //router.push("/settings/users");
+        router.push("catalogue");
       },
       error => {
         console.log(error);
@@ -162,7 +162,7 @@ const actions = {
             break;
         }
 
-        //router.push("/settings/users");
+        router.push("/settings/users");
       },
       error => {
         console.log(error);

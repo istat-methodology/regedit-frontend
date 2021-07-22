@@ -203,6 +203,7 @@ export default {
           email: this.user.email,
           roleid: this.user.role.id
         };
+
         this.$store.dispatch("user/update", data);
       }
     },
