@@ -127,11 +127,11 @@
               Update!
             </button>
 
-            <Button
+            <!--  <Button
               class="btn btn-outline-dark btn-sm"
               @click.prevent="handleReset()"
               >Reset</Button
-            >
+            > -->
           </div>
           <div class="row col-12">
             <p class="typo__p" v-if="submitStatus === 'OK'">

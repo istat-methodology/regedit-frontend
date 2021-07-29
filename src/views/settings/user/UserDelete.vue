@@ -23,10 +23,11 @@
               >
             </div>
             <input
-              class="form-control"
+              class="input"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               v-model="user.name"
+              readonly
             />
           </div>
           <div class="input-group mb-3">
@@ -36,10 +37,11 @@
               >
             </div>
             <input
-              class="form-control"
+              class="input"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               v-model="user.surname"
+              readonly
             />
           </div>
           <div class="input-group mb-3">
@@ -49,10 +51,11 @@
               >
             </div>
             <input
-              class="form-control"
+              class="input"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               v-model="user.email"
+              readonly
             />
           </div>
           <div class="input-group mb-3">
@@ -63,10 +66,12 @@
             </div>
 
             <v-select
+              class="input"
               label="role"
               :options="roles"
               placeholder="role"
               v-model="user.role"
+              v-bind:class="{ disabled: true }"
             ></v-select>
           </div>
 
@@ -116,3 +121,19 @@ export default {
   }
 };
 </script>
+<style scoped>
+.input {
+  background-color: #f5f5f5;
+  border: 1px solid;
+  color: #768192;
+  border-color: #d8dbe0;
+}
+.disabled {
+  pointer-events: none;
+  color: #bfcbd9;
+  cursor: not-allowed;
+  background-image: none;
+  background-color: #eef1f6;
+  border-color: #d1dbe5;
+}
+</style>

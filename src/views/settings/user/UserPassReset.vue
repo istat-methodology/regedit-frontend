@@ -24,6 +24,7 @@
               >
             </div>
             <input
+              class="input"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               readonly
@@ -38,6 +39,7 @@
               >
             </div>
             <input
+              class="input"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               readonly
@@ -198,3 +200,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+.input {
+  background-color: #f5f5f5;
+  border: 1px solid;
+  color: #768192;
+  border-color: #d8dbe0;
+}
+</style>
