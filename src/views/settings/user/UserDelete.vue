@@ -133,7 +133,7 @@ export default {
   color: #bfcbd9;
   cursor: not-allowed;
   background-image: none;
-  background-color: #eef1f6;
+  background-color: #f5f5f5;
   border-color: #d1dbe5;
 }
 </style>
