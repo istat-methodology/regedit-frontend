@@ -1,5 +1,27 @@
 <template>
   <div class="c-subheader-nav mfe-2">
+    <template>
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+         <span>Indirizzi</span>
+        </div>
+        <div class="col-sm-3 col-md-3">
+          <CSwitch
+            :shape="shape"
+            :color="color"
+            v-bind:show="true"
+            checked
+            :value="true"
+            labelOn="Top."
+            labelOff="Ind."
+            :size="lg"
+          />
+        </div>
+        <div class="col-sm-3 col-md-3">
+         <span>Toponimi</span>
+        </div>
+      </div>
+    </template>
     <template v-if="isSupervisor">
       <span class="revisore">Revisore:</span>
       <span class="revisore-name pl-1 pr-2">
@@ -22,14 +44,20 @@
 
 <script>
 import { mapGetters } from "vuex";
-
 export default {
   name: "HeaderNav",
+  data: function() {
+    return {
+      switch1: true,
+      color: "primary",
+      shape: "square",
+    };
+  },
   computed: {
     ...mapGetters("coreui", ["isHome"]),
     ...mapGetters("auth", ["isSupervisor", "isReviewer"]),
-    ...mapGetters("address", ["assignedId", "assignedName"])
-  }
+    ...mapGetters("address", ["assignedId", "assignedName"]),
+  },
 };
 </script>
 
