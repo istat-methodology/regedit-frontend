@@ -1,6 +1,7 @@
 <template>
   <div class="c-app">
-    <app-sidebar></app-sidebar>
+    <app-sidebar v-if="!isToponimi"></app-sidebar>
+    <app-sidebar-toponimi v-else></app-sidebar-toponimi>
     <CWrapper>
       <app-toast></app-toast>
       <app-header />
@@ -19,16 +20,25 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
+import SidebarToponimi from "@/components/SidebarToponimi";
 import Toast from "@/components/Toast";
 export default {
   name: "App",
+  computed: {
+    ...mapGetters("customswitch", ["isToponimi"])
+    /* toggleToponimi() {
+      return this.$store.dispatch("customswitch/setToponimi", !this.isToponimi);
+    } */
+  },
   components: {
     "app-header": Header,
     "app-footer": Footer,
     "app-sidebar": Sidebar,
+    "app-sidebar-toponimi": SidebarToponimi,
     "app-toast": Toast
   },
   created() {

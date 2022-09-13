@@ -15,6 +15,7 @@ import { pivot } from "./modules/report/pivot";
 import { version } from "./modules/versioning/appversion";
 import { elencoComuni } from "./modules/comuni/comuni";
 import { massive } from "./modules/massive/massive";
+import { customswitch } from "./modules/switch/customswitch";
 
 Vue.use(Vuex);
 
@@ -33,6 +34,7 @@ export default new Vuex.Store({
     version,
     elencoComuni,
     massive,
+    customswitch,
     role
   }
 });
