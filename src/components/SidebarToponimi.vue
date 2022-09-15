@@ -227,7 +227,6 @@ export default {
   border-left: 3px solid#f9b115;
 }
 .c-sidebar {
-  color: rgb(0, 7, 39);
-  background: rgba(0, 0, 24, 0.2);
+  background: rgba(1, 61, 35, 0.794);
 }
 </style>

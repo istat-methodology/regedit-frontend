@@ -26,8 +26,8 @@ export default {
   data: function () {
     return {
       switch: null,
-      color: "primary",
-      shape: "square",
+      color: "success",
+      shape: "square"
     };
   },
   computed: {
