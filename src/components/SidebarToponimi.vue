@@ -12,7 +12,7 @@
       <span class="brand">RegEdit</span>
     </CSidebarBrand>
 
-    <ul class="c-sidebar-nav h-100 ps" style="position: relative;">
+    <ul class="c-sidebar-nav h-100 ps" style="position: relative">
       <li class="c-sidebar-nav-item">
         <router-link
           :to="{ name: 'Home' }"
@@ -28,9 +28,7 @@
         </router-link>
       </li>
       <template v-if="isSupervisor">
-        <li class="c-sidebar-nav-title">
-          Report
-        </li>
+        <li class="c-sidebar-nav-title">Report</li>
         <li class="c-sidebar-nav-item">
           <router-link
             :to="{ name: 'TotalReport' }"
@@ -110,9 +108,7 @@
             </a>
           </router-link>
         </li>
-        <li class="c-sidebar-nav-title">
-          Modifiche in blocco
-        </li>
+        <li class="c-sidebar-nav-title">Modifiche in blocco</li>
         <li class="c-sidebar-nav-item">
           <router-link
             :to="{ name: 'AddressBlock', params: { state: 1 } }"
@@ -229,5 +225,9 @@ export default {
 }
 .c-active-warning {
   border-left: 3px solid#f9b115;
+}
+.c-sidebar {
+  color: rgb(0, 7, 39);
+  background: rgba(0, 0, 24, 0.2);
 }
 </style>
