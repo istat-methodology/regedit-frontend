@@ -1,5 +1,6 @@
 export * from "./auth.service";
 export * from "./address/address.service";
+export * from "./toponimo/toponimo.service";
 export * from "./address/dug.service";
 export * from "./user/user.service";
 export * from "./user/role.service";
