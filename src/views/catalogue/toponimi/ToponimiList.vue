@@ -11,7 +11,7 @@
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="addresses"
+            :items="toponimi"
             :fields="fields"
             column-filter
             items-per-page-select
@@ -49,7 +49,7 @@
                   variant="outline"
                   size="sm"
                   :color="getStatoColor(item.stato, item.validazione)"
-                  @click="handleEdit(item.progressivoIndirizzo, item.index)"
+                  @click="handleEdit(item.progressivoToponimo, item.index)"
                   >{{ getStatoString(item.stato, item.validazione) }}</CButton
                 >
               </td>
@@ -68,7 +68,7 @@ import addressMixin from "@/components/mixins/address.mixin";
 import SearchFilter from "@/components/SearchFilter";
 
 export default {
-  name: "AddressList",
+  name: "ToponimoList",
   mixins: [addressMixin],
   components: {
     "app-search-filter": SearchFilter
@@ -82,27 +82,27 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"])
+    ...mapGetters("toponimo", ["toponimi"])
   },
   methods: {
     updateSelected(dug, duf, note) {
       var payload;
-      var addressList = [];
-      addressList = this.getSelected(this.addresses);
+      var toponimoList = [];
+      toponimoList = this.getSelected(this.toponimo);
 
       payload = {
         dug: dug != null ? dug : "",
         duf: duf != null ? duf : "",
         note: note != null ? note : "",
-        addrList: addressList
+        topList: toponimoList
       };
       this.$store.dispatch("massive/update", payload).then(() => {
         this.$store.dispatch(
-          "address/findByUserAndState",
+          "toponimo/findByUserAndState",
           this.$route.params.state
         );
       });
-      console.log(addressList.toString + "-" + dug + "-" + duf + "-" + note);
+      console.log(toponimoList.toString + "-" + dug + "-" + duf + "-" + note);
     },
     toggleSelected(address) {
       address.selected = !address.selected;
@@ -117,11 +117,11 @@ export default {
       });
     },
     sortChange(sortArray) {
-      this.$store.dispatch("address/setSortedList", sortArray);
+      this.$store.dispatch("toponimo/setSortedList", sortArray);
     },
     handleEdit(id, index) {
-      this.$store.dispatch("address/setCurrentId", id);
-      this.$store.dispatch("address/setCurrentIndex", index);
+      this.$store.dispatch("toponimo/setCurrentId", id);
+      this.$store.dispatch("toponimo/setCurrentIndex", index);
       this.$router.push({
         name: "AddressEdit",
         params: { state: this.$route.params.state }
@@ -130,14 +130,14 @@ export default {
     },
     handleFilter() {
       this.$store.dispatch(
-        "address/findByUserAndState",
+        "toponimo/findByUserAndState",
         this.$route.params.state
       );
     },
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
-      this.$store.dispatch("address/clear");
-      this.$store.dispatch("address/findByUserAndState", state);
+      this.$store.dispatch("toponimo/clear");
+      this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progress/findByUser");
       this.$store.dispatch("elencoComuni/findComuniByUserAndState", state);
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;

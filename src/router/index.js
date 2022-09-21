@@ -59,6 +59,12 @@ const routes = [
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
+        path: "catalogue/toponimi/view/:state",
+        name: "ToponimiList",
+        component: () => import("../views/catalogue/toponimi/ToponimiList"),
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+      },
+      {
         path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),

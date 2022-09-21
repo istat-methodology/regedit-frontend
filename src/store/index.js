@@ -6,6 +6,7 @@ import { error } from "./modules/error";
 import { coreui } from "./modules/coreui";
 import { message } from "./modules/message";
 import { address } from "./modules/address/address";
+import { toponimo } from "./modules/toponimo/toponimi";
 import { dug } from "./modules/address/dug";
 import { user } from "./modules/user/user";
 import { role } from "./modules/user/role";
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     coreui,
     message,
     address,
+    toponimo,
     dug,
     user,
     progress,

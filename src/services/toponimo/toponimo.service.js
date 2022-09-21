@@ -15,15 +15,15 @@ class ToponimoService extends AbstractService {
           stato: state,
           proCom: procom,
           toponimoOriginaleContains: toponimo,
-          validazione: state == 2 ? validazione : null,
-        },
+          validazione: state == 2 ? validazione : null
+        }
       })
-      .then((res) => {
+      .then(res => {
         var data = res.data ? res.data : [];
         //console.log(data);
         return data;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   }
