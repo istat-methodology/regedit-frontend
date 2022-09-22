@@ -4,7 +4,7 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <app-search-filter
+      <app-search-filter-top
         @filter="handleFilter"
         :stato="this.$route.params.state"
       />
@@ -65,13 +65,13 @@
 import { mapGetters } from "vuex";
 import addressMixin from "@/components/mixins/address.mixin";
 
-import SearchFilter from "@/components/SearchFilter";
+import SearchFilterTop from "@/components/SearchFilterTop";
 
 export default {
   name: "ToponimoList",
   mixins: [addressMixin],
   components: {
-    "app-search-filter": SearchFilter
+    "app-search-filter-top": SearchFilterTop
   },
   data() {
     return {
@@ -104,16 +104,16 @@ export default {
       });
       console.log(toponimoList.toString + "-" + dug + "-" + duf + "-" + note);
     },
-    toggleSelected(address) {
-      address.selected = !address.selected;
+    toggleSelected(toponimo) {
+      toponimo.selected = !toponimo.selected;
     },
     toggleAll() {
       this.globalCheck = !this.globalCheck;
       /* for (let i = 1; i < this.items4page; i++) {
-        this.addresses[i].selected = this.globalCheck;
+        this.toponimi[i].selected = this.globalCheck;
       } */
-      this.addresses.map(address => {
-        address.selected = this.globalCheck;
+      this.toponimi.map(toponimo => {
+        toponimo.selected = this.globalCheck;
       });
     },
     sortChange(sortArray) {
