@@ -68,7 +68,7 @@ import addressMixin from "@/components/mixins/address.mixin";
 import SearchFilterTop from "@/components/SearchFilterTop";
 
 export default {
-  name: "ToponimoList",
+  name: "ToponimiList",
   mixins: [addressMixin],
   components: {
     "app-search-filter-top": SearchFilterTop

@@ -54,7 +54,7 @@ export default {
     ...mapGetters("elencoComuni", ["comuni"]),
     ...mapGetters("toponimo", [
       "filterComune",
-      "filterAddress",
+      "filterToponimo",
       "filterValidazione"
     ]),
     comune: {
@@ -65,9 +65,9 @@ export default {
         this.$store.dispatch("toponimo/setFilterComune", selectedComune);
       }
     },
-    indirizzo: {
+    toponimo: {
       get: function() {
-        return this.filterAddress;
+        return this.filterToponimo;
       },
       set: function(selectedToponimo) {
         this.$store.dispatch("toponimo/setFilterAddress", selectedToponimo);

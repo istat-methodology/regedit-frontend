@@ -47,11 +47,11 @@ const mutations = {
     state.filterComune = comune;
   },
   SET_FILTER_TOPONIMO(state, toponimo) {
-    state.filterAddress = toponimo;
+    state.filterToponimo = toponimo;
   },
   SET_FILTER_VALIDAZIONE(state, validazione) {
     state.filterValidazione = validazione;
-  }
+  },
   /*  SET_FILTER_DATE(state, date) {
     state.filterDate = date;
   },
@@ -97,7 +97,7 @@ const actions = {
     var newlist = toponimiList.map((items, index = 0) => ({
       ...items,
       index: index + 1,
-      selected: false
+      selected: false,
     }));
     commit("SET_TOPONIMI", newlist);
   },
@@ -158,7 +158,7 @@ const actions = {
     let userId = getUserId();
     if (userId > 0) {
       return toponimoService
-        .findNextAddress(
+        .findNextToponimo(
           userId,
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
@@ -238,7 +238,7 @@ const actions = {
     commit("SET_FILTER_COMUNE", null);
     commit("SET_FILTER_TOPONIMO", null);
     commit("SET_FILTER_VALIDAZIONE", null);
-  }
+  },
 };
 
 const getters = {
@@ -265,7 +265,7 @@ const getters = {
   },
   filterValidazione: state => {
     return state.filterValidazione;
-  }
+  },
   /* filterDate: state => {
     return state.filterDate;
   },
