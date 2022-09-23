@@ -34,12 +34,12 @@ class ToponimoService extends AbstractService {
         params: {
           proCom: procom,
           indirizzoOriginaleContains: toponimo,
-          validazione: state == 2 ? validazione : null,
+          validazione: state == 2 ? validazione : null
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
           // eslint-disable-next-line prettier/prettier
           sort: 'desc' */
-        },
+        }
       })
       .then(res => {
         var data = res.data ? res.data : {};

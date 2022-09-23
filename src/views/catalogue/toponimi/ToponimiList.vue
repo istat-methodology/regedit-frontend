@@ -63,13 +63,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import addressMixin from "@/components/mixins/address.mixin";
+import toponimoMixin from "@/components/mixins/toponimo.mixin";
 
 import SearchFilterTop from "@/components/SearchFilterTop";
 
 export default {
   name: "ToponimiList",
-  mixins: [addressMixin],
+  mixins: [toponimoMixin],
   components: {
     "app-search-filter-top": SearchFilterTop
   },
