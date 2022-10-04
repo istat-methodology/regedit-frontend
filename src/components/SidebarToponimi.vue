@@ -188,26 +188,28 @@ export default {
       isBlock: "isBlock",
       isBlockSuspended: "isBlockSuspended"
     }),
-    ...mapGetters("progress", ["reports"]),
-    ...mapGetters("progress", ["selezionati"]),
-    ...mapGetters("progress", ["selezionatiSospesi"]),
+    ...mapGetters("progress", ["reportsTop"]),
+    ...mapGetters("progress", ["selezionatiTop"]),
+    ...mapGetters("progress", ["selezionatiSospesiTop"]),
     total() {
-      return this.getTotal(this.reports);
+      return this.getTotal(this.reportsTop);
     },
     daLavorare() {
-      return this.getDaLavorare(this.reports);
+      return this.getDaLavorare(this.reportsTop);
     },
     lavorati() {
-      return this.getValidati(this.reports) + this.getRevisionati(this.reports);
+      return (
+        this.getValidati(this.reportsTop) + this.getRevisionati(this.reportsTop)
+      );
     },
     sospesi() {
-      return this.getSospesi(this.reports);
+      return this.getSospesi(this.reportsTop);
     },
     _selezionati() {
-      return this.getSelezionati(this.selezionati);
+      return this.getSelezionati(this.selezionatiTop);
     },
     _selezionatiSospesi() {
-      return this.getSelezionati(this.selezionatiSospesi);
+      return this.getSelezionati(this.selezionatiSospesiTop);
     }
   }
 };
