@@ -11,6 +11,7 @@ import { dug } from "./modules/address/dug";
 import { user } from "./modules/user/user";
 import { role } from "./modules/user/role";
 import { progress } from "./modules/report/progress";
+import { progressTop } from "./modules/report/progressTop";
 import { daily } from "./modules/report/daily";
 import { pivot } from "./modules/report/pivot";
 import { version } from "./modules/versioning/appversion";
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     dug,
     user,
     progress,
+    progressTop,
     daily,
     pivot,
     version,

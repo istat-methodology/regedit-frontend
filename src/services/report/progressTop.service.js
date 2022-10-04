@@ -8,7 +8,7 @@ export const progressTopReportService = {
 
 function findAll() {
   return axiosRegedit
-    .get("/regedit/reportTop")
+    .get("/regedit/report-top")
     .then(res => {
       var data = res.data ? res.data : [];
       //console.log(data);
@@ -21,7 +21,7 @@ function findAll() {
 
 function findByUser(user) {
   return axiosRegedit
-    .get("/regedit/reportTop/users/" + user)
+    .get("/regedit/report-top/users/" + user)
     .then(res => {
       var data = res.data ? res.data : [];
       //console.log(data);
@@ -34,7 +34,7 @@ function findByUser(user) {
 
 function findByUserAndState(user, state) {
   return axiosRegedit
-    .get("/regedit/reportTop/users/" + user + "/states/" + state)
+    .get("/regedit/report-top/users/" + user + "/states/" + state)
     .then(res => {
       var data = res.data ? res.data : [];
       //console.log(data);

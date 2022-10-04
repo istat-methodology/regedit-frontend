@@ -74,13 +74,13 @@ const actions = {
 };
 
 const getters = {
-  reports: state => {
+  reportsTop: state => {
     return state.reportsTop;
   },
-  selezionati: state => {
+  selezionatiTop: state => {
     return state.selezionatiTop;
   },
-  selezionatiSospesi: state => {
+  selezionatiSospesiTop: state => {
     return state.selezionatiSospesiTop;
   }
 };

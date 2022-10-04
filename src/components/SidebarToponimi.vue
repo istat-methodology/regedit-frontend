@@ -188,9 +188,9 @@ export default {
       isBlock: "isBlock",
       isBlockSuspended: "isBlockSuspended"
     }),
-    ...mapGetters("progress", ["reportsTop"]),
-    ...mapGetters("progress", ["selezionatiTop"]),
-    ...mapGetters("progress", ["selezionatiSospesiTop"]),
+    ...mapGetters("progressTop", ["reportsTop"]),
+    ...mapGetters("progressTop", ["selezionatiTop"]),
+    ...mapGetters("progressTop", ["selezionatiSospesiTop"]),
     total() {
       return this.getTotal(this.reportsTop);
     },
