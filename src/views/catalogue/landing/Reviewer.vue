@@ -94,6 +94,7 @@ export default {
   },
   created() {
     this.$store.dispatch("progress/findByUser");
+    this.$store.dispatch("progressTop/findByUser");
     //clear cache
     this.$store.dispatch("address/clear");
   }

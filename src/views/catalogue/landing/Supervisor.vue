@@ -131,6 +131,7 @@ export default {
         })
         .then(() => {
           this.$store.dispatch("progress/findByUser");
+          this.$store.dispatch("progressTop/findByUser");
         });
     },
     getColor(user) {
@@ -139,6 +140,7 @@ export default {
   },
   created() {
     this.$store.dispatch("progress/findByUser");
+    this.$store.dispatch("progressTop/findByUser");
     this.$store.dispatch("pivot/findAll");
   }
 };
