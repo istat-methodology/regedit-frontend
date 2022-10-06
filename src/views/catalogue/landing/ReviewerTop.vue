@@ -75,28 +75,30 @@ import { mapGetters } from "vuex";
 import progressMixin from "@/components/mixins/progress.mixin";
 
 export default {
-  name: "Reviewer",
+  name: "ReviewerTop",
   mixins: [progressMixin],
   computed: {
-    ...mapGetters("progress", ["reports"]),
+    ...mapGetters("progressTop", ["reportsTop"]),
     total() {
-      return this.getTotal(this.reports);
+      return this.getTotal(this.reportsTop);
     },
     daLavorare() {
-      return this.getDaLavorare(this.reports);
+      return this.getDaLavorare(this.reportsTop);
     },
     lavorati() {
-      return this.getValidati(this.reports) + this.getRevisionati(this.reports);
+      return (
+        this.getValidati(this.reportsTop) + this.getRevisionati(this.reportsTop)
+      );
     },
     sospesi() {
-      return this.getSospesi(this.reports);
+      return this.getSospesi(this.reportsTop);
     }
   },
   created() {
-    this.$store.dispatch("progress/findByUser");
+    //this.$store.dispatch("progress/findByUser");
     this.$store.dispatch("progressTop/findByUser");
     //clear cache
-    this.$store.dispatch("address/clear");
+    this.$store.dispatch("toponimo/clear");
   }
 };
 </script>
