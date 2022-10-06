@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("pivot", ["reports"]),
+    ...mapGetters("pivotTop", ["reportsTop"]),
     ...mapGetters("toponimo", ["assignedId"]),
     usersReport() {
       return this.reports
