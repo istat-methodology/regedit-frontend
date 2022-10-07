@@ -3,7 +3,10 @@
     <custom-switch @toggleSwitch="onSwitch"></custom-switch>
     <template v-if="isSupervisor">
       <span class="revisore">Revisore:</span>
-      <span class="revisore-name pl-1 pr-2">
+      <span v-if="isToponimi" class="revisore-name pl-1 pr-2">
+        {{ assignedTopName | dashEmpty }}</span
+      >
+      <span v-else class="revisore-name pl-1 pr-2">
         {{ assignedName | dashEmpty }}</span
       >
     </template>
@@ -40,6 +43,7 @@ export default {
     ...mapGetters("coreui", ["isHome"]),
     ...mapGetters("auth", ["isSupervisor", "isReviewer"]),
     ...mapGetters("address", ["assignedId", "assignedName"]),
+    ...mapGetters("toponimo", ["assignedTopId", "assignedTopName"]),
     ...mapGetters("customswitch", ["isToponimi"])
   },
   methods: {

@@ -12,9 +12,9 @@ const state = {
   sortAddress: null,
   sortDate: null, */
   currentIndex: 0,
-  currentId: localStorage.getItem("toponimoId") || -1,
-  assignedId: localStorage.getItem("assignedId") || -1,
-  assignedName: localStorage.getItem("assignedName") || ""
+  currentTopId: localStorage.getItem("toponimoId") || -1,
+  assignedTopId: localStorage.getItem("assignedTopId") || -1,
+  assignedTopName: localStorage.getItem("assignedTopName") || ""
 };
 
 const mutations = {
@@ -33,15 +33,15 @@ const mutations = {
     state.currentIndex = id;
   },
   SET_ASSIGNED(state, user) {
-    state.assignedId = user.id;
-    state.assignedName = user.name;
+    state.assignedTopId = user.id;
+    state.assignedTopName = user.name;
     //store assigned user in browser storage
-    localStorage.setItem("assignedId", user.id);
-    localStorage.setItem("assignedName", user.name);
+    localStorage.setItem("assignedTopId", user.id);
+    localStorage.setItem("assignedTopName", user.name);
   },
   CLEAR_ASSIGNED(state) {
-    state.assignedId = -1;
-    state.assignedName = "";
+    state.assignedTopId = -1;
+    state.assignedTopName = "";
   },
   SET_FILTER_COMUNE(state, comune) {
     state.filterComune = comune;
@@ -251,8 +251,8 @@ const getters = {
   currentId: state => {
     return state.currentId;
   },
-  assignedId: state => {
-    return state.assignedId;
+  assignedTopId: state => {
+    return state.assignedTopId;
   },
   assignedName: state => {
     return state.assignedName;

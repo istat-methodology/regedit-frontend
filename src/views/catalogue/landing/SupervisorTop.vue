@@ -91,7 +91,7 @@ export default {
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("pivotTop", ["reportsTop"]),
-    ...mapGetters("toponimo", ["assignedId"]),
+    ...mapGetters("toponimo", ["assignedTopId"]),
     usersReport() {
       return this.reportsTop
         ? this.reportsTop.map((userReportTop, index) => {
@@ -106,8 +106,8 @@ export default {
   },
   methods: {
     isAssigned(userReportTop) {
-      return this.assignedId > 0
-        ? userReportTop.userId === parseInt(this.assignedId)
+      return this.assignedTopId > 0
+        ? userReportTop.userId === parseInt(this.assignedTopId)
         : false;
     },
     clearAssigned() {

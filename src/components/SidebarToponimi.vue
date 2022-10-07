@@ -56,7 +56,7 @@
           </router-link>
         </li>
       </template>
-      <template v-if="isReviewer || assignedId > 0">
+      <template v-if="isReviewer || assignedTopId > 0">
         <li class="c-sidebar-nav-title">
           Toponimi <small class="pl-1">{{ assignedName }}</small>
         </li>
@@ -175,7 +175,7 @@ export default {
   mixins: [progressMixin],
   computed: {
     ...mapGetters("auth", ["isReviewer", "isSupervisor"]),
-    ...mapGetters("address", ["assignedId", "assignedName"]),
+    ...mapGetters("toponimo", ["assignedTopId", "assignedTopName"]),
     ...mapGetters("coreui", {
       show: "sidebarShow",
       minimize: "sidebarMinimize",

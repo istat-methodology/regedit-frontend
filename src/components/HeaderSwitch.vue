@@ -23,7 +23,7 @@
 import { mapGetters } from "vuex";
 export default {
   name: "CustomSwitch",
-  data: function () {
+  data: function() {
     return {
       switch: null,
       color: "success",
@@ -31,7 +31,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("customswitch", ["isToponimi"]),
+    ...mapGetters("customswitch", ["isToponimi"])
     /* checkToponimi() {
       return this.isToponimi;
     }, */
