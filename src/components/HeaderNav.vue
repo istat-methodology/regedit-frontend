@@ -45,7 +45,10 @@ export default {
   methods: {
     onSwitch(checkval) {
       //console.log(checkval);
-      this.$router.push("/");
+      if (this.$route.path != "/") {
+        this.$router.push("/").catch(() => {});
+      }
+
       return this.$store.dispatch("customswitch/setToponimi", !checkval);
     }
   }

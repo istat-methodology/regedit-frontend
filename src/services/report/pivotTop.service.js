@@ -9,7 +9,7 @@ export const pivotReportTopService = {
 
 function findAll() {
   return axiosRegedit
-    .get("/regedit/report-pivot")
+    .get("/regedit/report-top-pivot")
     .then(res => {
       var data = res.data ? res.data : [];
       //console.log(data);
@@ -22,7 +22,7 @@ function findAll() {
 
 function findByUser(user) {
   return axiosRegedit
-    .get("/regedit/report-pivot", {
+    .get("/regedit/report-top-pivot", {
       params: {
         user: user
       }
@@ -38,7 +38,7 @@ function findByUser(user) {
 }
 function findByDate(user, startday, endday) {
   return axiosRegedit
-    .get("/regedit/report-daily-pivot", {
+    .get("/regedit/report-top-daily-pivot", {
       params: {
         user: user,
         dateModInf: startday,
@@ -56,7 +56,7 @@ function findByDate(user, startday, endday) {
 }
 function findByDateTotal(startday, endday) {
   return axiosRegedit
-    .get("/regedit/report-total-daily-pivot", {
+    .get("/regedit/report-top-total-daily-pivot", {
       params: {
         dateModInf: startday,
         dateModSup: endday
