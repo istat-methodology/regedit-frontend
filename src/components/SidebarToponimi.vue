@@ -58,7 +58,7 @@
       </template>
       <template v-if="isReviewer || assignedTopId > 0">
         <li class="c-sidebar-nav-title">
-          Toponimi <small class="pl-1">{{ assignedName }}</small>
+          Toponimi <small class="pl-1">{{ assignedTopName }}</small>
         </li>
         <li class="c-sidebar-nav-item">
           <router-link

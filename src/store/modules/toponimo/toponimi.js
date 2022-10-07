@@ -6,12 +6,12 @@ const state = {
   toponimo: null,
   filterComune: null,
   filterToponimo: null,
-  filterValidazione: null,
+  filterTopValidazione: null,
   /* filterDate: null,
   sortComune: null,
   sortAddress: null,
   sortDate: null, */
-  currentIndex: 0,
+  currentTopIndex: 0,
   currentTopId: localStorage.getItem("toponimoId") || -1,
   assignedTopId: localStorage.getItem("assignedTopId") || -1,
   assignedTopName: localStorage.getItem("assignedTopName") || ""
@@ -25,12 +25,12 @@ const mutations = {
     state.toponimo = toponimo;
   },
   SET_CURRENT_ID(state, id) {
-    state.currentId = id;
+    state.currentTopId = id;
     //store current address in browser storage
     localStorage.setItem("toponimoId", id);
   },
   SET_CURRENT_INDEX(state, id) {
-    state.currentIndex = id;
+    state.currentTopIndex = id;
   },
   SET_ASSIGNED(state, user) {
     state.assignedTopId = user.id;
@@ -50,7 +50,7 @@ const mutations = {
     state.filterToponimo = toponimo;
   },
   SET_FILTER_VALIDAZIONE(state, validazione) {
-    state.filterValidazione = validazione;
+    state.filterTopValidazione = validazione;
   }
   /*  SET_FILTER_DATE(state, date) {
     state.filterDate = date;
@@ -124,7 +124,7 @@ const actions = {
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
           state.filterToponimo,
-          state.filterValidazione ? state.filterValidazione.value : null
+          state.filterTopValidazione ? state.filterTopValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -141,12 +141,12 @@ const actions = {
     //console.log(data);
     var status = null;
 
-    status = state.toponimi[state.currentIndex - 1];
+    status = state.toponimi[state.currentTopIndex - 1];
     if (status) {
-      commit("SET_TOPONIMO", state.toponimi[state.currentIndex - 1]);
+      commit("SET_TOPONIMO", state.toponimi[state.currentTopIndex - 1]);
       commit(
         "SET_CURRENT_ID",
-        state.toponimi[state.currentIndex - 1].progressivoIndirizzo
+        state.toponimi[state.currentTopIndex - 1].progressivoToponimo
       );
       return true;
     }
@@ -163,7 +163,7 @@ const actions = {
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
           state.filterToponimo,
-          state.filterValidazione ? state.filterValidazione.value : null
+          state.filterTopValidazione ? state.filterTopValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -215,7 +215,7 @@ const actions = {
     commit("SET_CURRENT_ID", id);
   },
   updateCurrentIndex({ commit }) {
-    commit("SET_CURRENT_INDEX", state.currentIndex + 1);
+    commit("SET_CURRENT_INDEX", state.currentTopIndex + 1);
   },
   setCurrentIndex({ commit }, id) {
     commit("SET_CURRENT_INDEX", id);
@@ -248,14 +248,14 @@ const getters = {
   toponimo: state => {
     return state.toponimo;
   },
-  currentId: state => {
-    return state.currentId;
+  currentTopId: state => {
+    return state.currentTopId;
   },
   assignedTopId: state => {
     return state.assignedTopId;
   },
-  assignedName: state => {
-    return state.assignedName;
+  assignedTopName: state => {
+    return state.assignedTopName;
   },
   filterComune: state => {
     return state.filterComune;
@@ -263,8 +263,8 @@ const getters = {
   filterToponimo: state => {
     return state.filterToponimo;
   },
-  filterValidazione: state => {
-    return state.filterValidazione;
+  filterTopValidazione: state => {
+    return state.filterTopValidazione;
   }
   /* filterDate: state => {
     return state.filterDate;
