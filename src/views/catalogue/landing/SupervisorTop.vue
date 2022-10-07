@@ -125,7 +125,7 @@ export default {
         assigned: true
       });
       this.$store
-        .dispatch("address/setAssigned", {
+        .dispatch("toponimo/setAssigned", {
           id: userReport.userId,
           name: userReport.userEmail
         })
@@ -141,7 +141,7 @@ export default {
   created() {
     //this.$store.dispatch("progress/findByUser");
     this.$store.dispatch("progressTop/findByUser");
-    this.$store.dispatch("pivot/findAll");
+    this.$store.dispatch("pivotTop/findAll");
   }
 };
 </script>
