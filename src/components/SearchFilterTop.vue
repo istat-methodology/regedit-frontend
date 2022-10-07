@@ -70,7 +70,7 @@ export default {
         return this.filterToponimo;
       },
       set: function(selectedToponimo) {
-        this.$store.dispatch("toponimo/setFilterAddress", selectedToponimo);
+        this.$store.dispatch("toponimo/setFilterToponimo", selectedToponimo);
       }
     },
     validazione: {
@@ -79,7 +79,7 @@ export default {
       },
       set: function(selectedValidazione) {
         this.$store.dispatch(
-          "toponimo/setFilterValidazione",
+          "toponimo/setFilterTopValidazione",
           selectedValidazione
         );
       }

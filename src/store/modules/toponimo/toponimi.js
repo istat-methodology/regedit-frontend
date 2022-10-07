@@ -71,10 +71,10 @@ const actions = {
     commit("SET_FILTER_COMUNE", comune);
   },
 
-  setFilterAddress: ({ commit }, toponimo) => {
+  setFilterToponimo: ({ commit }, toponimo) => {
     commit("SET_FILTER_TOPONIMO", toponimo);
   },
-  setFilterValidazione: ({ commit }, validazione) => {
+  setFilterTopValidazione: ({ commit }, validazione) => {
     commit("SET_FILTER_VALIDAZIONE", validazione);
   },
 
@@ -211,13 +211,13 @@ const actions = {
       });
   },
 
-  setCurrentId({ commit }, id) {
+  setCurrentTopId({ commit }, id) {
     commit("SET_CURRENT_ID", id);
   },
-  updateCurrentIndex({ commit }) {
+  updateCurrentTopIndex({ commit }) {
     commit("SET_CURRENT_INDEX", state.currentTopIndex + 1);
   },
-  setCurrentIndex({ commit }, id) {
+  setCurrentTopIndex({ commit }, id) {
     commit("SET_CURRENT_INDEX", id);
   },
 
