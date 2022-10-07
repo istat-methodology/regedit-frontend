@@ -14,6 +14,7 @@ import { progress } from "./modules/report/progress";
 import { progressTop } from "./modules/report/progressTop";
 import { daily } from "./modules/report/daily";
 import { pivot } from "./modules/report/pivot";
+import { pivotTop } from "./modules/report/pivotTop";
 import { version } from "./modules/versioning/appversion";
 import { elencoComuni } from "./modules/comuni/comuni";
 import { massive } from "./modules/massive/massive";
@@ -35,6 +36,7 @@ export default new Vuex.Store({
     progressTop,
     daily,
     pivot,
+    pivotTop,
     version,
     elencoComuni,
     massive,

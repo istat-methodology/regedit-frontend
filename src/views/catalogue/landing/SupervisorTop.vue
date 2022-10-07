@@ -93,21 +93,21 @@ export default {
     ...mapGetters("pivotTop", ["reportsTop"]),
     ...mapGetters("toponimo", ["assignedId"]),
     usersReport() {
-      return this.reports
-        ? this.reports.map((userReport, index) => {
+      return this.reportsTop
+        ? this.reportsTop.map((userReportTop, index) => {
             return {
-              ...userReport,
+              ...userReportTop,
               index,
-              assigned: this.isAssigned(userReport)
+              assigned: this.isAssigned(userReportTop)
             };
           })
         : [];
     }
   },
   methods: {
-    isAssigned(userReport) {
+    isAssigned(userReportTop) {
       return this.assignedId > 0
-        ? userReport.userId === parseInt(this.assignedId)
+        ? userReportTop.userId === parseInt(this.assignedId)
         : false;
     },
     clearAssigned() {
