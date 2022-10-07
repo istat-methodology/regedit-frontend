@@ -7,7 +7,7 @@
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="usersReport"
+            :items="usersReportTop"
             :fields="fields"
             column-filter
             :items-per-page="10"
@@ -92,7 +92,7 @@ export default {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("pivotTop", ["reportsTop"]),
     ...mapGetters("toponimo", ["assignedTopId"]),
-    usersReport() {
+    usersReportTop() {
       return this.reportsTop
         ? this.reportsTop.map((userReportTop, index) => {
             return {
@@ -111,23 +111,23 @@ export default {
         : false;
     },
     clearAssigned() {
-      this.usersReport.map(user => {
+      this.usersReportTop.map(user => {
         return {
           ...user,
           assigned: false
         };
       });
     },
-    assign(userReport) {
+    assign(userReportTop) {
       this.clearAssigned();
-      this.usersReport.splice(userReport.index, 1, {
-        ...userReport,
+      this.usersReportTop.splice(userReportTop.index, 1, {
+        ...userReportTop,
         assigned: true
       });
       this.$store
         .dispatch("toponimo/setAssigned", {
-          id: userReport.userId,
-          name: userReport.userEmail
+          id: userReportTop.userId,
+          name: userReportTop.userEmail
         })
         .then(() => {
           //this.$store.dispatch("progress/findByUser");

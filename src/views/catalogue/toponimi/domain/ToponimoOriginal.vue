@@ -60,7 +60,7 @@
   </CCard>
 </template>
 <script>
-import addressMixin from "@/components/mixins/address.mixin";
+import addressMixin from "@/components/mixins/toponimo.mixin";
 
 export default {
   name: "AddressOriginal",
