@@ -68,7 +68,7 @@ import toponimoMixin from "@/components/mixins/toponimo.mixin";
 import SearchFilterTop from "@/components/SearchFilterTop";
 
 export default {
-  name: "ToponimiList",
+  name: "ToponimoList",
   mixins: [toponimoMixin],
   components: {
     "app-search-filter-top": SearchFilterTop
@@ -123,7 +123,7 @@ export default {
       this.$store.dispatch("toponimo/setCurrentId", id);
       this.$store.dispatch("toponimo/setCurrentIndex", index);
       this.$router.push({
-        name: "AddressEdit",
+        name: "ToponimoEdit",
         params: { state: this.$route.params.state }
       });
       console.log(index);
@@ -138,7 +138,7 @@ export default {
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("toponimo/clear");
       this.$store.dispatch("toponimo/findByUserAndState", state);
-      this.$store.dispatch("progress/findByUser");
+      this.$store.dispatch("progressTop/findByUser");
       this.$store.dispatch("elencoComuni/findComuniByUserAndState", state);
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }

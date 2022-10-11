@@ -62,7 +62,7 @@
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            :to="{ name: 'ToponimiList', params: { state: 1 } }"
+            :to="{ name: 'ToponimoList', params: { state: 1 } }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active c-active-primary': isAddressToRevise }"
             custom

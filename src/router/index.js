@@ -60,8 +60,8 @@ const routes = [
       },
       {
         path: "catalogue/toponimi/view/:state",
-        name: "ToponimiList",
-        component: () => import("../views/catalogue/toponimi/ToponimiList"),
+        name: "ToponimoList",
+        component: () => import("../views/catalogue/toponimi/ToponimoList"),
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
