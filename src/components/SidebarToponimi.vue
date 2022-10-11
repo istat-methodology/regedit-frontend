@@ -78,7 +78,7 @@
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            :to="{ name: 'AddressList', params: { state: 2 } }"
+            :to="{ name: 'ToponimoList', params: { state: 2 } }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active c-active-success': isAddressRevised }"
             custom
@@ -94,7 +94,7 @@
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            :to="{ name: 'AddressList', params: { state: 3 } }"
+            :to="{ name: 'ToponimoList', params: { state: 3 } }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active c-active-warning': isAddressSkip }"
             custom

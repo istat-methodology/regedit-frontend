@@ -14,14 +14,14 @@ export default {
       },
       fields: [
         {
-          key: "progressivoIndirizzo",
+          key: "progressivoToponimo",
           label: "Progressivo",
           _style: "width:10%;",
           filter: false
         },
         {
-          key: "indirizzoOriginale",
-          label: "Indirizzo",
+          key: "localitaOrig",
+          label: "Toponimo",
           _style: "min-width:25%;",
           filter: false
         },
@@ -56,13 +56,13 @@ export default {
           filter: false
         },
         {
-          key: "progressivoIndirizzo",
+          key: "progressivoToponimo",
           label: "Progressivo",
           _style: "width:10%;"
         },
         {
-          key: "indirizzoOriginale",
-          label: "Indirizzo",
+          key: "toponimoOrig",
+          label: "Toponimo",
           _style: "min-width:25%;"
         },
         { key: "proCom", label: "Procom" },

@@ -22,20 +22,6 @@
             pagination
             sorter
           >
-            <!-- <template #selected-header>
-              <CInputCheckbox
-                :checked="globalCheck"
-                @update:checked="toggleAll"
-              />
-            </template>
-            <template #selected="{item}">
-              <td>
-                <CInputCheckbox
-                  :checked="item.selected"
-                  @update:checked="toggleSelected(item)"
-                />
-              </td>
-            </template> -->
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
             </template>
