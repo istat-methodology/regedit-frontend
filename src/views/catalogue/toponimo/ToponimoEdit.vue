@@ -65,10 +65,10 @@
 <script>
 import { mapGetters } from "vuex";
 import Progress from "@/components/Progress";
-import AddressOriginal from "./domain/AddressOriginal";
-import AddressSuggested from "./domain/AddressSuggested";
-import AddressRevisedEdit from "./domain/AddressRevisedEdit";
-import AddressRevisedView from "./domain/AddressRevisedView";
+import AddressOriginal from "./domain/ToponimoOriginal";
+import AddressSuggested from "./domain/ToponimoSuggested";
+import AddressRevisedEdit from "./domain/ToponimoRevisedEdit";
+import AddressRevisedView from "./domain/ToponimoRevisedView";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 import fittizioMixin from "@/components/mixins/fittizio.mixin";
 import addressMixin from "@/components/mixins/address.mixin";

@@ -59,15 +59,21 @@ const routes = [
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
-        path: "catalogue/toponimi/view/:state",
+        path: "catalogue/toponimo/view/:state",
         name: "ToponimoList",
-        component: () => import("../views/catalogue/toponimi/ToponimoList"),
+        component: () => import("../views/catalogue/toponimo/ToponimoList"),
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
         path: "catalogue/address/edit/:state",
         name: "AddressEdit",
         component: () => import("../views/catalogue/address/AddressEdit"),
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+      },
+      {
+        path: "catalogue/toponimo/edit/:state",
+        name: "ToponimoEdit",
+        component: () => import("../views/catalogue/toponimo/ToponimoEdit"),
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
