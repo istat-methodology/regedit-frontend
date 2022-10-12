@@ -1,10 +1,10 @@
 <template>
-  <CCard v-if="address">
+  <CCard v-if="toponimo">
     <CCardHeader class="card-header-light-grey"
-      ><span class="card-header-span">Indirizzo suggerito</span>
+      ><span class="card-header-span">Toponimo suggerito</span>
       <div
         class="card-header-actions"
-        v-if="!(address.stato === addressState.Revised)"
+        v-if="!(toponimo.stato === toponimoState.Revised)"
       >
         <CButton
           shape="square"
@@ -18,57 +18,57 @@
     <CCardBody
       class="card-text"
       :class="{
-        colordisabled: !validated && address.stato === addressState.Revised
+        colordisabled: !validated && toponimo.stato === toponimoState.Revised
       }"
     >
       <div>
-        <span class="mb-2">{{ addressPrint }}</span>
+        <span class="mb-2">{{ toponimoPrint }}</span>
       </div>
       <div>
         <label>Località</label>
-        <span>{{ address.localitaNorm | dashEmpty }}</span>
+        <span>{{ toponimo.localitaNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Dug</label>
-        <span>{{ address.dugNorm | dashEmpty }}</span>
+        <span>{{ toponimo.dugNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Duf</label>
-        <span>{{ address.dufNorm | dashEmpty }}</span>
+        <span>{{ toponimo.dufNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Km</label>
-        <span>{{ address.kmNorm | dashEmpty }}</span>
+        <span>{{ toponimo.kmNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Civico</label>
-        <span>{{ address.civicoNorm | dashEmpty }}</span>
+        <span>{{ toponimo.civicoNorm | dashEmpty }}</span>
       </div>
       <div>
         <label>Esponente</label>
-        <span>{{ address.esponenteNorm | dashEmpty }}</span>
+        <span>{{ toponimo.esponenteNorm | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>
 </template>
 <script>
-import addressMixin from "@/components/mixins/address.mixin";
+import toponimoMixin from "@/components/mixins/toponimo.mixin";
 
 export default {
-  name: "AddressSuggested",
-  mixins: [addressMixin],
+  name: "ToponimoSuggested",
+  mixins: [toponimoMixin],
   props: {
-    address: {
+    toponimo: {
       type: Object,
       default: () => null
     }
   },
   computed: {
-    addressPrint() {
-      return this.printAddress(this.address, this.addressType.Suggested);
+    toponimoPrint() {
+      return this.printToponimo(this.toponimo, this.toponimoType.Suggested);
     },
     validated() {
-      return this.isAddressValidated(this.address);
+      return this.isToponimoValidated(this.toponimo);
     }
   }
 };

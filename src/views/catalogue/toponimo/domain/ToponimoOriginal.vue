@@ -1,10 +1,10 @@
 <template>
-  <CCard v-if="address">
+  <CCard v-if="toponimo">
     <CCardHeader class="card-header-light-grey">
-      <span class="card-header-span">Indirizzo originale</span>
+      <span class="card-header-span">Toponimo originale</span>
       <div
         class="card-header-actions"
-        v-if="address.stato == addressState.Revised"
+        v-if="toponimo.stato == toponimoState.Revised"
       >
         <CButton
           shape="square"
@@ -34,46 +34,46 @@
     </CCardHeader>
     <CCardBody class="card-text">
       <div>
-        <span class="mb-2">{{ addressPrint }}</span>
+        <span class="mb-2">{{ toponimoPrint }}</span>
       </div>
       <div>
         <label>Progressivo</label>
-        <span>{{ address.progressivoIndirizzo | dashEmpty }}</span>
+        <span>{{ toponimo.progressivoIndirizzo | dashEmpty }}</span>
       </div>
       <div>
         <label>Procom</label>
-        <span>{{ address.proCom | dashEmpty }}</span>
+        <span>{{ toponimo.proCom | dashEmpty }}</span>
       </div>
       <div>
         <label>Comune</label>
-        <span>{{ address.denominazioneComune | dashEmpty }}</span>
+        <span>{{ toponimo.denominazioneComune | dashEmpty }}</span>
       </div>
       <div>
         <label>Località</label>
-        <span>{{ address.localitaOriginale | dashEmpty }}</span>
+        <span>{{ toponimo.localitaOriginale | dashEmpty }}</span>
       </div>
       <div>
         <label>Indirizzo</label>
-        <span>{{ address.indirizzoOriginale | dashEmpty }}</span>
+        <span>{{ toponimo.indirizzoOriginale | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>
 </template>
 <script>
-import addressMixin from "@/components/mixins/toponimo.mixin";
+import toponimoMixin from "@/components/mixins/toponimo.mixin";
 
 export default {
-  name: "AddressOriginal",
-  mixins: [addressMixin],
+  name: "ToponimoOriginal",
+  mixins: [toponimoMixin],
   props: {
-    address: {
+    toponimo: {
       type: Object,
       default: () => null
     }
   },
   computed: {
-    addressPrint() {
-      return this.printAddress(this.address, this.addressType.Original);
+    toponimoPrint() {
+      return this.printToponimo(this.toponimo, this.toponimoType.Original);
     }
   }
 };

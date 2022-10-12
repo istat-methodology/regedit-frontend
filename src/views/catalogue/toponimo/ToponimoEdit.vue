@@ -86,7 +86,7 @@ export default {
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("auth", ["isSupervisor", "loggedUser"]),
-    ...mapGetters("toponimo", ["toponimo", "filterComune", "filterAddress"]),
+    ...mapGetters("toponimo", ["toponimo", "filterComune", "filterToponimo"]),
     fonte() {
       return this.getFonteById(this.toponimo.idFonte);
     },

@@ -6,7 +6,7 @@ const state = {
   toponimo: null,
   filterComune: null,
   filterToponimo: null,
-  filterTopValidazione: null,
+  filterValidazione: null,
   /* filterDate: null,
   sortComune: null,
   sortAddress: null,
@@ -50,7 +50,7 @@ const mutations = {
     state.filterToponimo = toponimo;
   },
   SET_FILTER_VALIDAZIONE(state, validazione) {
-    state.filterTopValidazione = validazione;
+    state.filterValidazione = validazione;
   }
   /*  SET_FILTER_DATE(state, date) {
     state.filterDate = date;
@@ -74,7 +74,7 @@ const actions = {
   setFilterToponimo: ({ commit }, toponimo) => {
     commit("SET_FILTER_TOPONIMO", toponimo);
   },
-  setFilterTopValidazione: ({ commit }, validazione) => {
+  setFilterValidazione: ({ commit }, validazione) => {
     commit("SET_FILTER_VALIDAZIONE", validazione);
   },
 
@@ -124,7 +124,7 @@ const actions = {
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
           state.filterToponimo,
-          state.filterTopValidazione ? state.filterTopValidazione.value : null
+          state.filterValidazione ? state.filterValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -163,7 +163,7 @@ const actions = {
           stateId,
           state.filterComune ? state.filterComune.proCom : null,
           state.filterToponimo,
-          state.filterTopValidazione ? state.filterTopValidazione.value : null
+          state.filterValidazione ? state.filterValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -263,8 +263,8 @@ const getters = {
   filterToponimo: state => {
     return state.filterToponimo;
   },
-  filterTopValidazione: state => {
-    return state.filterTopValidazione;
+  filterValidazione: state => {
+    return state.filterValidazione;
   }
   /* filterDate: state => {
     return state.filterDate;

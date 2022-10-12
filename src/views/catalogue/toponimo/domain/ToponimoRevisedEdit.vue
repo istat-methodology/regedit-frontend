@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="card-header-light-grey"
-      ><span class="card-header-span">Indirizzo revisionato</span>
+      ><span class="card-header-span">Toponimo revisionato</span>
       <div class="card-header-actions">
         <CButton shape="square" size="sm" color="danger" @click="handleSubmit"
           >Revisiona</CButton
@@ -13,46 +13,46 @@
       <CInput
         label="Località"
         placeholder="Località"
-        v-model="address.localitaVal"
+        v-model="toponimo.localitaVal"
       />
       <label>Dug*</label>
       <v-select
         :options="dugNames"
-        v-model="address.dugVal"
+        v-model="toponimo.dugVal"
         placeholder="Dug"
         :class="{
-          'is-invalid': $v.address.dugVal.$error
+          'is-invalid': $v.toponimo.dugVal.$error
         }"
       ></v-select>
       <CInput
         label="Duf*"
         placeholder="Duf"
-        v-model="address.dufVal"
+        v-model="toponimo.dufVal"
         :class="{
-          'is-invalid': $v.address.dufVal.$error
+          'is-invalid': $v.toponimo.dufVal.$error
         }"
       />
       <CInput
         label="Civico"
         placeholder="Civico"
-        v-model="address.civicoVal"
+        v-model="toponimo.civicoVal"
         :class="{
-          'is-invalid': $v.address.civicoVal.$error
+          'is-invalid': $v.toponimo.civicoVal.$error
         }"
       />
-      <p class="error" v-if="!$v.address.civicoVal.validationRuleCivico">
+      <p class="error" v-if="!$v.toponimo.civicoVal.validationRuleCivico">
         I valori possibili per questo campo sono soltanto numerici
       </p>
-      <CInput label="Km" placeholder="Km" v-model="address.kmVal" />
+      <CInput label="Km" placeholder="Km" v-model="toponimo.kmVal" />
       <CInput
         label="Esponente"
         placeholder="Esponente"
-        v-model="address.esponenteVal"
+        v-model="toponimo.esponenteVal"
         :class="{
-          'is-invalid': $v.address.esponenteVal.$error
+          'is-invalid': $v.toponimo.esponenteVal.$error
         }"
       />
-      <p class="error" v-if="!$v.address.esponenteVal.validationRule">
+      <p class="error" v-if="!$v.toponimo.esponenteVal.validationRule">
         I valori possibili per questo campo sono: · Non valorizzato. . Numerico
         Un solo carattere alfabetico.
         ·'BIS','TER','QUATER','QUINQUIES','SEXIES','SEPTIES’ · Tutte le
@@ -72,24 +72,24 @@
         <CInput
           label="Codice strada*"
           placeholder="Codice strada"
-          v-model="address.cdpstrEgon"
+          v-model="toponimo.cdpstrEgon"
           :class="{
-            'is-invalid': $v.address.cdpstrEgon.$error
+            'is-invalid': $v.toponimo.cdpstrEgon.$error
           }"
         />
-        <p class="error" v-if="$v.address.cdpstrEgon.$error">
+        <p class="error" v-if="$v.toponimo.cdpstrEgon.$error">
           I valori possibili per questo campo sono soltanto numerici e lunghi
           massimo 12 caratteri
         </p>
         <CInput
           label="Codice civico"
           placeholder="Codice civico"
-          v-model="address.cdpcivEgon"
+          v-model="toponimo.cdpcivEgon"
           :class="{
-            'is-invalid': $v.address.cdpcivEgon.$error
+            'is-invalid': $v.toponimo.cdpcivEgon.$error
           }"
         />
-        <p class="error" v-if="$v.address.cdpcivEgon.$error">
+        <p class="error" v-if="$v.toponimo.cdpcivEgon.$error">
           I valori possibili per questo campo sono soltanto numerici e lunghi
           massimo 15 caratteri
         </p>
@@ -119,7 +119,7 @@ import fonteMixin from "@/components/mixins/fonte.mixin";
 import fittizioMixin from "@/components/mixins/fittizio.mixin";
 
 export default {
-  name: "AddressRevisedEdit",
+  name: "ToponimoRevisedEdit",
   mixins: [fonteMixin, fittizioMixin],
   data: function() {
     return {
@@ -128,7 +128,7 @@ export default {
     };
   },
   props: {
-    address: {
+    toponimo: {
       type: Object,
       default: () => null
     },
@@ -159,7 +159,7 @@ export default {
     fittizioLocal: {
       required
     },
-    address: {
+    toponimo: {
       dugVal: {
         required
       },
@@ -204,17 +204,17 @@ export default {
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (
-        !this.$v.address.$invalid &&
+        !this.$v.toponimo.$invalid &&
         !this.$v.fonteLocal.$invalid &&
         !this.$v.fittizioLocal.$invalid
       ) {
-        this.address.idFonte = this.fonteLocal.id;
-        this.address.fittizio = this.fittizioLocal.id;
+        this.toponimo.idFonte = this.fonteLocal.id;
+        this.toponimo.fittizio = this.fittizioLocal.id;
         if (!this.isFonteEgon) {
-          this.address.cdpstrEgon = null;
-          this.address.cdpcivEgon = null;
+          this.toponimo.cdpstrEgon = null;
+          this.toponimo.cdpcivEgon = null;
         }
-        this.$emit("revise", this.address);
+        this.$emit("revise", this.toponimo);
       }
     }
   }

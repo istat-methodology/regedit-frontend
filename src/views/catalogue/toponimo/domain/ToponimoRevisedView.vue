@@ -5,31 +5,31 @@
     >
     <CCardBody class="card-text" :class="{ colordisabled: validated }">
       <div>
-        <span class="mb-2">{{ addressPrint }}</span>
+        <span class="mb-2">{{ toponimoPrint }}</span>
       </div>
       <div>
         <label>Località</label>
-        <span>{{ address.localitaVal | dashEmpty }}</span>
+        <span>{{ toponimo.localitaVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Dug</label>
-        <span>{{ address.dugVal | dashEmpty }}</span>
+        <span>{{ toponimo.dugVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Duf</label>
-        <span>{{ address.dufVal | dashEmpty }}</span>
+        <span>{{ toponimo.dufVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Civico</label>
-        <span>{{ address.civicoVal | dashEmpty }}</span>
+        <span>{{ toponimo.civicoVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Km</label>
-        <span>{{ address.kmVal | dashEmpty }}</span>
+        <span>{{ toponimo.kmVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Esponente</label>
-        <span>{{ address.esponenteVal | dashEmpty }}</span>
+        <span>{{ toponimo.esponenteVal | dashEmpty }}</span>
       </div>
       <div>
         <label>Fonte</label>
@@ -37,11 +37,11 @@
       </div>
       <div>
         <label>Codice strada</label>
-        <span>{{ address.cdpstrEgon | dashEmpty }}</span>
+        <span>{{ toponimo.cdpstrEgon | dashEmpty }}</span>
       </div>
       <div>
         <label>Codice civico</label>
-        <span>{{ address.cdpcivEgon | dashEmpty }}</span>
+        <span>{{ toponimo.cdpcivEgon | dashEmpty }}</span>
       </div>
       <div>
         <label>Fittizio</label>
@@ -49,39 +49,39 @@
       </div>
       <!-- <div>
         <label>Note</label>
-        <span>{{ address.note | dashEmpty }}</span>
+        <span>{{ toponimo.note | dashEmpty }}</span>
       </div> -->
     </CCardBody>
   </CCard>
 </template>
 <script>
-import addressMixin from "@/components/mixins/address.mixin";
+import toponimoMixin from "@/components/mixins/toponimo.mixin";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 import fittizioMixin from "@/components/mixins/fittizio.mixin";
 
 export default {
   name: "AddressRevisedView",
-  mixins: [addressMixin, fonteMixin, fittizioMixin],
+  mixins: [toponimoMixin, fonteMixin, fittizioMixin],
   props: {
-    address: {
+    toponimo: {
       type: Object,
       default: () => null
     }
   },
   computed: {
     validated() {
-      return this.isAddressValidated(this.address);
+      return this.isAddressValidated(this.toponimo);
     },
-    addressPrint() {
-      return this.printAddress(this.address, this.addressType.Revised);
+    toponimoPrint() {
+      return this.printAddress(this.toponimo, this.toponimoType.Revised);
     },
     fonte() {
-      const addrFonte = this.getFonteById(this.address.idFonte);
+      const addrFonte = this.getFonteById(this.toponimo.idFonte);
       return addrFonte ? addrFonte.fonte : "";
     },
     fittizio() {
-      const addrFittizio = this.getFittizioById(this.address.fittizio);
-      return addrFittizio ? addrFittizio.value : "";
+      const topFittizio = this.getFittizioById(this.toponimo.fittizio);
+      return topFittizio ? topFittizio.value : "";
     }
   }
 };
