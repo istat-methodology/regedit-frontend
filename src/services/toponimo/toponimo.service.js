@@ -28,12 +28,12 @@ class ToponimoService extends AbstractService {
       });
   }
 
-  findNextAddress(user, state, procom, toponimo, validazione) {
+  findNextToponimo(user, state, procom, toponimo, validazione) {
     return axiosRegedit
-      .get(this.endpoint + "/first-address/user/" + user + "/state/" + state, {
+      .get(this.endpoint + "/first-toponimo/user/" + user + "/state/" + state, {
         params: {
           proCom: procom,
-          indirizzoOriginaleContains: toponimo,
+          toponimoOriginaleContains: toponimo,
           validazione: state == 2 ? validazione : null
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,

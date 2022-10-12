@@ -153,7 +153,7 @@ const actions = {
     return false;
   },
 
-  findNextAddressToWorkSoon({ commit }, stateId) {
+  findNextToponimoToWorkSoon({ commit }, stateId) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
@@ -211,13 +211,13 @@ const actions = {
       });
   },
 
-  setCurrentTopId({ commit }, id) {
+  setCurrentId({ commit }, id) {
     commit("SET_CURRENT_ID", id);
   },
-  updateCurrentTopIndex({ commit }) {
+  updateCurrentIndex({ commit }) {
     commit("SET_CURRENT_INDEX", state.currentTopIndex + 1);
   },
-  setCurrentTopIndex({ commit }, id) {
+  setCurrentIndex({ commit }, id) {
     commit("SET_CURRENT_INDEX", id);
   },
 

@@ -4,22 +4,22 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <template v-if="address">
-        <app-progress class="fade-in" />
+      <template v-if="toponimo">
+        <app-progressTop class="fade-in" />
         <div class="row fade-in">
           <div class="col-8">
             <div class="row">
               <div class="col-6">
-                <address-original
-                  :address="address"
+                <toponimo-original
+                  :toponimo="toponimo"
                   @skip="handleSkip"
                   @next="handleNext"
                   @open="handleOpen"
                 />
               </div>
               <div class="col-6">
-                <address-suggested
-                  :address="address"
+                <toponimo-suggested
+                  :toponimo="toponimo"
                   @validate="handleValidate"
                 />
               </div>
@@ -34,7 +34,7 @@
                     <CTextarea
                       placeholder="Note"
                       rows="5"
-                      v-model="address.note"
+                      v-model="toponimo.note"
                     />
                   </CCardBody>
                 </CCard>
@@ -42,12 +42,12 @@
             </div>
           </div>
           <div class="col-4">
-            <template v-if="address.stato == addressState.Revised">
-              <address-revised-view :address="address" />
+            <template v-if="toponimo.stato == toponimoState.Revised">
+              <toponimo-revised-view :toponimo="toponimo" />
             </template>
             <template v-else>
-              <address-revised-edit
-                :address="address"
+              <toponimo-revised-edit
+                :toponimo="toponimo"
                 :fonte="fonte"
                 :fittizio="fittizio"
                 @revise="handleRevise"
@@ -64,116 +64,116 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import Progress from "@/components/Progress";
-import AddressOriginal from "./domain/ToponimoOriginal";
-import AddressSuggested from "./domain/ToponimoSuggested";
-import AddressRevisedEdit from "./domain/ToponimoRevisedEdit";
-import AddressRevisedView from "./domain/ToponimoRevisedView";
+import ProgressTop from "@/components/ProgressTop";
+import ToponimoOriginal from "./domain/ToponimoOriginal";
+import ToponimoSuggested from "./domain/ToponimoSuggested";
+import ToponimoRevisedEdit from "./domain/ToponimoRevisedEdit";
+import ToponimoRevisedView from "./domain/ToponimoRevisedView";
 import fonteMixin from "@/components/mixins/fonte.mixin";
 import fittizioMixin from "@/components/mixins/fittizio.mixin";
-import addressMixin from "@/components/mixins/address.mixin";
+import toponimoMixin from "@/components/mixins/toponimo.mixin";
 
 export default {
-  name: "AddressEdit",
-  mixins: [fonteMixin, fittizioMixin, addressMixin],
+  name: "ToponimoEdit",
+  mixins: [fonteMixin, fittizioMixin, toponimoMixin],
   components: {
-    "address-original": AddressOriginal,
-    "address-suggested": AddressSuggested,
-    "address-revised-edit": AddressRevisedEdit,
-    "address-revised-view": AddressRevisedView,
-    "app-progress": Progress
+    "toponimo-original": ToponimoOriginal,
+    "toponimo-suggested": ToponimoSuggested,
+    "toponimo-revised-edit": ToponimoRevisedEdit,
+    "toponimo-revised-view": ToponimoRevisedView,
+    "app-progressTop": ProgressTop
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("auth", ["isSupervisor", "loggedUser"]),
-    ...mapGetters("address", ["address", "filterComune", "filterAddress"]),
+    ...mapGetters("toponimo", ["toponimo", "filterComune", "filterAddress"]),
     fonte() {
-      return this.getFonteById(this.address.idFonte);
+      return this.getFonteById(this.toponimo.idFonte);
     },
     fittizio() {
-      return this.getFittizioById(parseInt(this.address.fittizio));
+      return this.getFittizioById(parseInt(this.toponimo.fittizio));
     }
   },
   methods: {
     handleOpen() {
-      var addr = {
-        ...this.address,
+      var top = {
+        ...this.toponimo,
         stato: 1,
         validazione: "",
         idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
-      this.$store.dispatch("address/open", addr).then(() => {
+      this.$store.dispatch("toponimo/open", top).then(() => {
         this.$store.dispatch(
           "message/success",
-          "L'indirizzo " + addr.indirizzoOriginale + " può essere modificato!"
+          "L'indirizzo " + top.toponimoOriginale + " può essere modificato!"
         );
       });
     },
     handleSkip() {
-      var addr = {
-        ...this.address,
+      var top = {
+        ...this.toponimo,
         stato: 3,
         validazione: "NO",
         idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
-      this.update(addr, this.addressState.Skip);
+      this.update(top, this.toponimoState.Skip);
     },
     handleValidate() {
-      var addr = {
-        ...this.address,
+      var top = {
+        ...this.toponimo,
         stato: 2,
         validazione: "SI",
         idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
-      this.update(addr, this.addressState.Validated);
+      this.update(top, this.toponimoState.Validated);
     },
     handleRevise() {
       var addr = {
-        ...this.address,
+        ...this.toponimo,
         stato: 2,
         validazione: "NO",
         idSupervisor: this.isSupervisor ? this.loggedUser.userId : null
       };
-      this.update(addr, this.addressState.Revised);
+      this.update(addr, this.toponimoState.Revised);
     },
-    update(address, state) {
-      this.$store.dispatch("address/update", address).then(() => {
+    update(toponimo, state) {
+      this.$store.dispatch("toponimo/update", toponimo).then(() => {
         this.$store.dispatch(
-          "message/" + this.getAddressMessageType(state),
-          this.getAddressMessage(address, state)
+          "message/" + this.getToponimoMessageType(state),
+          this.getAddressMessage(toponimo, state)
         );
-        this.$store.dispatch("address/updateCurrentIndex");
+        this.$store.dispatch("toponimo/updateCurrentIndex");
         setTimeout(() => {
           this.$store
-            .dispatch("address/findNextAddress")
+            .dispatch("toponimo/findNextToponimo")
             .then(res => this.checkCompleted(res));
-          this.$store.dispatch("progress/findByUser");
+          this.$store.dispatch("progressTop/findByUser");
         }, 500);
       });
     },
     handleNext() {
-      this.$store.dispatch("address/updateCurrentIndex");
+      this.$store.dispatch("toponimo/updateCurrentIndex");
       setTimeout(() => {
         this.$store
-          .dispatch("address/findNextAddress")
+          .dispatch("toponimo/findNextToponimo")
           .then(res => this.checkCompleted(res));
-        this.$store.dispatch("progress/findByUser");
+        this.$store.dispatch("progressTop/findByUser");
         this.$router.push({
-          name: "AddressEdit",
+          name: "ToponimoEdit",
           params: { state: this.$route.params.state }
         });
       }, 500);
     },
     checkCompleted(isok) {
       if (!isok) {
-        if (this.filterComune || this.filterAddress) {
+        if (this.filterComune || this.filterToponimo) {
           this.$store.dispatch(
             "message/success",
-            this.getCompletedMessage(this.filterComune, this.filterAddress)
+            this.getCompletedMessage(this.filterComune, this.filterToponimo)
           );
-          this.$store.dispatch("address/clearFilters");
+          this.$store.dispatch("toponimo/clearFilters");
           this.$router.push({
-            name: "AddressList",
+            name: "ToponimoList",
             params: { state: this.$route.params.state }
           });
         } else {
@@ -188,15 +188,15 @@ export default {
   },
   created() {
     this.$store.dispatch("coreui/setContext", this.$route.params.state);
-    this.$store.dispatch("progress/findByUser");
+    this.$store.dispatch("progressTop/findByUser");
     this.$store.dispatch("dug/findAll").then(() => {
-      const currentId = this.$store.getters["address/currentId"];
+      const currentId = this.$store.getters["toponimo/currentId"];
       if (currentId > 0) {
-        this.$store.dispatch("address/findById", currentId);
+        this.$store.dispatch("toponimo/findById", currentId);
       } else {
         this.$store
           .dispatch(
-            "address/findNextAddressToWorkSoon",
+            "toponimo/findNextToponimoToWorkSoon",
             this.$route.params.state
           )
           .then(res => this.checkCompleted(res));

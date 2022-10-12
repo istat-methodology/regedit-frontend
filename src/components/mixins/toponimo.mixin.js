@@ -1,12 +1,12 @@
 export default {
   data() {
     return {
-      addressType: {
+      toponimoType: {
         Original: "ORIGINAL",
         Revised: "REVISED",
         Suggested: "SUGGESTED"
       },
-      addressState: {
+      toponimoState: {
         TobeRevised: 1,
         Revised: 2,
         Skip: 3,
@@ -114,56 +114,56 @@ export default {
     };
   },
   methods: {
-    printAddress(address, type) {
-      if (address === null) return "";
+    printToponimo(toponimo, type) {
+      if (toponimo === null) return "";
       switch (type) {
-        case this.addressType.Original:
-          return (address.indirizzoOriginale
-            ? address.indirizzoOriginale
+        case this.toponimoType.Original:
+          return (toponimo.indirizzoOriginale
+            ? toponimo.indirizzoOriginale
             : ""
           ).concat(
-            address.localitaOriginale ? ", " + address.localitaOriginale : ""
+            toponimo.localitaOriginale ? ", " + toponimo.localitaOriginale : ""
           );
-        case this.addressType.Suggested:
-          return (address.dugNorm ? address.dugNorm : "")
-            .concat(address.dufNorm ? " " + address.dufNorm : "")
-            .concat(address.civicoNorm ? " " + address.civicoNorm : "")
-            .concat(address.esponenteNorm ? " " + address.esponenteNorm : "")
-            .concat(address.localitaNorm ? ", " + address.localitaNorm : "");
-        case this.addressType.Revised:
-          return (address.dugVal ? address.dugVal : "")
-            .concat(address.dufVal ? " " + address.dufVal : "")
-            .concat(address.civicoVal ? " " + address.civicoVal : "")
-            .concat(address.kmVal ? " " + address.kmVal : "")
-            .concat(address.esponenteVal ? " " + address.esponenteVal : "")
-            .concat(address.localitaVal ? ", " + address.localitaVal : "");
+        case this.toponimoType.Suggested:
+          return (toponimo.dugNorm ? toponimo.dugNorm : "")
+            .concat(toponimo.dufNorm ? " " + toponimo.dufNorm : "")
+            .concat(toponimo.civicoNorm ? " " + toponimo.civicoNorm : "")
+            .concat(toponimo.esponenteNorm ? " " + toponimo.esponenteNorm : "")
+            .concat(toponimo.localitaNorm ? ", " + toponimo.localitaNorm : "");
+        case this.toponimoType.Revised:
+          return (toponimo.dugVal ? toponimo.dugVal : "")
+            .concat(toponimo.dufVal ? " " + toponimo.dufVal : "")
+            .concat(toponimo.civicoVal ? " " + toponimo.civicoVal : "")
+            .concat(toponimo.kmVal ? " " + toponimo.kmVal : "")
+            .concat(toponimo.esponenteVal ? " " + toponimo.esponenteVal : "")
+            .concat(toponimo.localitaVal ? ", " + toponimo.localitaVal : "");
         default:
           return "";
       }
     },
-    getAddressMessage(address, state) {
+    getToponimoMessage(toponimo, state) {
       switch (state) {
-        case this.addressState.Validated:
-          return "Indirizzo " + address.indirizzoOriginale + " validato!";
-        case this.addressState.Revised:
+        case this.toponimoState.Validated:
+          return "Indirizzo " + toponimo.indirizzoOriginale + " validato!";
+        case this.toponimoState.Revised:
           return (
             "Indirizzo " +
-            address.indirizzoOriginale +
+            toponimo.indirizzoOriginale +
             " revisionato con successo!"
           );
-        case this.addressState.Skip:
-          return "Indirizzo " + address.indirizzoOriginale + " sospeso!";
+        case this.toponimoState.Skip:
+          return "Indirizzo " + toponimo.indirizzoOriginale + " sospeso!";
         default:
           return "";
       }
     },
-    getAddressMessageType(state) {
+    getToponimoMessageType(state) {
       switch (state) {
-        case this.addressState.Validated:
+        case this.toponimoState.Validated:
           return "success";
-        case this.addressState.Revised:
+        case this.toponimoState.Revised:
           return "success";
-        case this.addressState.Skip:
+        case this.toponimoState.Skip:
           return "warning";
         default:
           return "error";
@@ -205,22 +205,22 @@ export default {
           return "";
       }
     },
-    isAddressValidated(address) {
-      return address.validazione === "SI" ? true : false;
+    isToponimoValidated(toponimo) {
+      return toponimo.validazione === "SI" ? true : false;
     },
-    getSelected(addresses) {
+    getSelected(toponimoes) {
       var selezionati = [];
-      addresses.forEach(element => {
+      toponimoes.forEach(element => {
         if (element.selected) {
           selezionati.push(element.progressivoIndirizzo);
         }
       });
       return selezionati;
     },
-    getCompletedMessage(comune, address) {
+    getCompletedMessage(comune, toponimo) {
       return "Complimenti hai completato "
         .concat(comune ? comune.denominazioneComune + ", " : " ")
-        .concat(address ? address : "");
+        .concat(toponimo ? toponimo : "");
     }
   }
 };

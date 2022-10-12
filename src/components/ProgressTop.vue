@@ -65,10 +65,10 @@
 <script>
 import { CProgress } from "@coreui/vue";
 import { mapGetters } from "vuex";
-import progressTopMixin from "@/components/mixins/progressTop.mixin";
+import progressMixin from "@/components/mixins/progress.mixin";
 export default {
   name: "ProgressBar",
-  mixins: [progressTopMixin],
+  mixins: [progressMixin],
   components: {
     CProgress
   },
