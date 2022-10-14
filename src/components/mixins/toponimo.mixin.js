@@ -16,33 +16,69 @@ export default {
         {
           key: "progressivoToponimo",
           label: "Progressivo",
-          _style: "width:10%;",
-          filter: false
-        },
-        {
-          key: "localitaOrig",
-          label: "Toponimo",
-          _style: "min-width:25%;",
+          _style: "width:5%;",
           filter: false
         },
         { key: "proCom", label: "Procom", filter: false },
         { key: "denominazioneComune", label: "Comune", filter: false },
         {
+          key: "localitaOrig",
+          label: "Località Originale",
+          _style: "min-width:20%;",
+          filter: false
+        },
+        {
+          key: "dugOrig",
+          label: "Dug Originale",
+          _style: "min-width:5%;",
+          filter: false
+        },
+        {
+          key: "dufOrig",
+          label: "Duf Originale",
+          _style: "min-width:5%;",
+          filter: false
+        },
+        {
+          key: "localitaProb",
+          label: "Località Suggerita",
+          _style: "min-width:20%;",
+          filter: false
+        },
+        {
+          key: "dugProb",
+          label: "Dug Suggerita",
+          _style: "min-width:5%;",
+          filter: false
+        },
+        {
+          key: "dufProb",
+          label: "Duf Suggerita",
+          _style: "min-width:5%;",
+          filter: false
+        },
+        {
           key: "validazione",
           label: "Validazione",
-          _style: "width:10%;",
+          _style: "width:4%;",
+          filter: false
+        },
+        {
+          key: "sogliaW",
+          label: "Soglia",
+          _style: "min-width:5%;",
           filter: false
         },
         {
           key: "dataMod",
           label: "Ultima modifica",
-          _style: "width:20%;",
+          _style: "width:5%;",
           filter: false
         },
         {
           key: "action",
           label: "",
-          _style: "width:10%",
+          _style: "width:5%",
           sorter: false,
           filter: false
         }
