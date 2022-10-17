@@ -38,7 +38,7 @@
       </div>
       <div>
         <label>Progressivo</label>
-        <span>{{ toponimo.progressivoIndirizzo | dashEmpty }}</span>
+        <span>{{ toponimo.progressivoToponimo | dashEmpty }}</span>
       </div>
       <div>
         <label>Procom</label>
@@ -53,8 +53,16 @@
         <span>{{ toponimo.localitaOriginale | dashEmpty }}</span>
       </div>
       <div>
-        <label>Indirizzo</label>
+        <label>Toponimo</label>
         <span>{{ toponimo.indirizzoOriginale | dashEmpty }}</span>
+      </div>
+      <div>
+        <label>Dug Originale</label>
+        <span>{{ toponimo.dugOrig | dashEmpty }}</span>
+      </div>
+      <div>
+        <label>Duf Originale</label>
+        <span>{{ toponimo.dufOrig | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>

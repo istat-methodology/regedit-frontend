@@ -20,37 +20,9 @@
         <span>{{ toponimo.dufVal | dashEmpty }}</span>
       </div>
       <div>
-        <label>Civico</label>
-        <span>{{ toponimo.civicoVal | dashEmpty }}</span>
+        <label>CDPSTR</label>
+        <span>{{ toponimo.cdpstrVal | dashEmpty }}</span>
       </div>
-      <div>
-        <label>Km</label>
-        <span>{{ toponimo.kmVal | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Esponente</label>
-        <span>{{ toponimo.esponenteVal | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Fonte</label>
-        <span>{{ fonte | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Codice strada</label>
-        <span>{{ toponimo.cdpstrEgon | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Codice civico</label>
-        <span>{{ toponimo.cdpcivEgon | dashEmpty }}</span>
-      </div>
-      <div>
-        <label>Fittizio</label>
-        <span>{{ fittizio | dashEmpty }}</span>
-      </div>
-      <!-- <div>
-        <label>Note</label>
-        <span>{{ toponimo.note | dashEmpty }}</span>
-      </div> -->
     </CCardBody>
   </CCard>
 </template>

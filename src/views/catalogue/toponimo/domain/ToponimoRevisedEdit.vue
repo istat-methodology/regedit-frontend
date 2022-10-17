@@ -10,11 +10,7 @@
     >
 
     <CCardBody class="card-text">
-      <CInput
-        label="Località"
-        placeholder="Località"
-        v-model="toponimo.localitaVal"
-      />
+      <CInput label="Località" />
       <label>Dug*</label>
       <v-select
         :options="dugNames"
@@ -32,7 +28,7 @@
           'is-invalid': $v.toponimo.dufVal.$error
         }"
       />
-      <CInput
+      <!-- <CInput
         label="Civico"
         placeholder="Civico"
         v-model="toponimo.civicoVal"
@@ -67,21 +63,19 @@
         :class="{
           'is-invalid': $v.fonteLocal.$error
         }"
-      ></v-select>
-      <template v-if="isFonteEgon">
+      ></v-select> -->
+      <!-- <template v-if="isFonteEgon"> -->
+      <template>
         <CInput
           label="Codice strada*"
           placeholder="Codice strada"
-          v-model="toponimo.cdpstrEgon"
-          :class="{
-            'is-invalid': $v.toponimo.cdpstrEgon.$error
-          }"
+          v-model="toponimo.cdpstrVal"
         />
-        <p class="error" v-if="$v.toponimo.cdpstrEgon.$error">
+        <!--  <p class="error" v-if="$v.toponimo.cdpstrVal.$error">
           I valori possibili per questo campo sono soltanto numerici e lunghi
           massimo 12 caratteri
-        </p>
-        <CInput
+        </p> -->
+        <!-- <CInput
           label="Codice civico"
           placeholder="Codice civico"
           v-model="toponimo.cdpcivEgon"
@@ -92,9 +86,9 @@
         <p class="error" v-if="$v.toponimo.cdpcivEgon.$error">
           I valori possibili per questo campo sono soltanto numerici e lunghi
           massimo 15 caratteri
-        </p>
+        </p> -->
       </template>
-      <label>Fittizio*</label>
+      <!--  <label>Fittizio*</label>
       <v-select
         label="value"
         :options="fittizioValues"
@@ -103,7 +97,7 @@
         :class="{
           'is-invalid': $v.fittizioLocal.$error
         }"
-      ></v-select>
+      ></v-select> -->
     </CCardBody>
     <CCardFooter>
       <CButton shape="square" size="sm" color="danger" @click="handleSubmit"

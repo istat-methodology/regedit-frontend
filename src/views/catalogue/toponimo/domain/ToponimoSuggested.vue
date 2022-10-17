@@ -26,27 +26,27 @@
       </div>
       <div>
         <label>Località</label>
-        <span>{{ toponimo.localitaNorm | dashEmpty }}</span>
+        <span>{{ toponimo.localitaProb | dashEmpty }}</span>
       </div>
       <div>
         <label>Dug</label>
-        <span>{{ toponimo.dugNorm | dashEmpty }}</span>
+        <span>{{ toponimo.dugProb | dashEmpty }}</span>
       </div>
       <div>
         <label>Duf</label>
-        <span>{{ toponimo.dufNorm | dashEmpty }}</span>
+        <span>{{ toponimo.dufProb | dashEmpty }}</span>
       </div>
       <div>
-        <label>Km</label>
-        <span>{{ toponimo.kmNorm | dashEmpty }}</span>
+        <label>CDPSTR</label>
+        <span>{{ toponimo.cdpstrProb | dashEmpty }}</span>
       </div>
       <div>
-        <label>Civico</label>
-        <span>{{ toponimo.civicoNorm | dashEmpty }}</span>
+        <label>Soglia</label>
+        <span>{{ toponimo.sogliaW | dashEmpty }}</span>
       </div>
       <div>
-        <label>Esponente</label>
-        <span>{{ toponimo.esponenteNorm | dashEmpty }}</span>
+        <label>DNC</label>
+        <span>{{ toponimo.dnc | dashEmpty }}</span>
       </div>
     </CCardBody>
   </CCard>
