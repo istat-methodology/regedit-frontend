@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     addressPrint() {
-      return this.printAddress(this.adddress, this.addressType.Suggested);
+      return this.printAddress(this.address, this.addressType.Suggested);
     },
     validated() {
       return this.isAddressValidated(this.address);
