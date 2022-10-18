@@ -106,7 +106,7 @@ export default {
       this.$store.dispatch("toponimo/setSortedList", sortArray);
     },
     handleEdit(id, index) {
-      this.$store.dispatch("toponimo/setCurrentId", id);
+      this.$store.dispatch("toponimo/setCurrentTopId", id);
       this.$store.dispatch("toponimo/setCurrentIndex", index);
       this.$router.push({
         name: "ToponimoEdit",

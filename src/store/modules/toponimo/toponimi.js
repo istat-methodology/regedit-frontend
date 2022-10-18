@@ -211,10 +211,10 @@ const actions = {
       });
   },
 
-  setCurrentId({ commit }, id) {
+  setCurrentTopId({ commit }, id) {
     commit("SET_CURRENT_ID", id);
   },
-  updateCurrentIndex({ commit }) {
+  updateCurrentTopIndex({ commit }) {
     commit("SET_CURRENT_INDEX", state.currentTopIndex + 1);
   },
   setCurrentIndex({ commit }, id) {

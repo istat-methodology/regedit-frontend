@@ -140,9 +140,9 @@ export default {
       this.$store.dispatch("toponimo/update", toponimo).then(() => {
         this.$store.dispatch(
           "message/" + this.getToponimoMessageType(state),
-          this.getAddressMessage(toponimo, state)
+          this.getToponimoMessage(toponimo, state)
         );
-        this.$store.dispatch("toponimo/updateCurrentIndex");
+        this.$store.dispatch("toponimo/updateCurrentTopIndex");
         setTimeout(() => {
           this.$store
             .dispatch("toponimo/findNextToponimo")
@@ -152,7 +152,7 @@ export default {
       });
     },
     handleNext() {
-      this.$store.dispatch("toponimo/updateCurrentIndex");
+      this.$store.dispatch("toponimo/updateCurrentTopIndex");
       setTimeout(() => {
         this.$store
           .dispatch("toponimo/findNextToponimo")
