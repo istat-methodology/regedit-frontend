@@ -37,7 +37,7 @@
         <span>{{ toponimo.dufProb | dashEmpty }}</span>
       </div>
       <div>
-        <label>CDPSTR</label>
+        <label>Codice strada</label>
         <span>{{ toponimo.cdpstrProb | dashEmpty }}</span>
       </div>
       <div>
