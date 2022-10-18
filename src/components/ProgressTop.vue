@@ -73,22 +73,22 @@ export default {
     CProgress
   },
   computed: {
-    ...mapGetters("progress", ["reports"]),
+    ...mapGetters("progressTop", ["reportsTop"]),
 
     total() {
-      return this.getTotal(this.reports);
+      return this.getTotal(this.reportsTop);
     },
     daLavorare() {
-      return this.getDaLavorare(this.reports);
+      return this.getDaLavorare(this.reportsTop);
     },
     validati() {
-      return this.getValidati(this.reports);
+      return this.getValidati(this.reportsTop);
     },
     revisionati() {
-      return this.getRevisionati(this.reports);
+      return this.getRevisionati(this.reportsTop);
     },
     sospesi() {
-      return this.getSospesi(this.reports);
+      return this.getSospesi(this.reportsTop);
     },
     daLavorareRatio() {
       return Math.round((this.daLavorare / this.total) * 100);
