@@ -119,7 +119,7 @@ export default {
       });
     },
     sortChange(sortArray) {
-      this.$store.dispatch("address/setSortedList", sortArray);
+      this.$store.dispatch("address/setSortedTopList", sortArray);
     },
     handleFilter() {
       this.$store.dispatch(
@@ -133,9 +133,9 @@ export default {
       this.globalCheck = false;
       this.$store.dispatch("progress/resetAll");
       this.$store.dispatch("coreui/setContext", state == 1 ? 6 : 7);
-      this.$store.dispatch("address/clear");
-      this.$store.dispatch("address/findByUserAndState", state);
-      this.$store.dispatch("progress/findByUser");
+      this.$store.dispatch("toponimo/clearTop");
+      this.$store.dispatch("toponimo/findByUserAndState", state);
+      this.$store.dispatch("progressTop/findByUser");
       this.$store.dispatch(
         "elencoComuni/findComuniByUserAndState",
         state == 6 ? 1 : 3

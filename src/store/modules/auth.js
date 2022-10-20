@@ -90,7 +90,13 @@ const actions = {
     dispatch("address/clearAssigned", null, {
       root: true
     });
+    dispatch("toponimo/clearTopAssigned", null, {
+      root: true
+    });
     dispatch("address/clear", null, {
+      root: true
+    });
+    dispatch("toponimo/clearTop", null, {
       root: true
     });
   }

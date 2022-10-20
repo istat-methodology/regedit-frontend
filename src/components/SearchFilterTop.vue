@@ -53,13 +53,13 @@ export default {
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
     ...mapGetters("toponimo", [
-      "filterComune",
+      "filterTopComune",
       "filterToponimo",
       "filterValidazione"
     ]),
     comune: {
       get: function() {
-        return this.filterComune;
+        return this.filterTopComune;
       },
       set: function(selectedComune) {
         this.$store.dispatch("toponimo/setFilterComune", selectedComune);

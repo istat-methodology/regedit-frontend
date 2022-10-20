@@ -98,7 +98,7 @@ export default {
     //this.$store.dispatch("progress/findByUser");
     this.$store.dispatch("progressTop/findByUser");
     //clear cache
-    this.$store.dispatch("toponimo/clear");
+    this.$store.dispatch("toponimo/clearTop");
   }
 };
 </script>

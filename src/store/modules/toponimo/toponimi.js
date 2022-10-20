@@ -4,9 +4,9 @@ import { getUserId } from "@/common";
 const state = {
   toponimi: null,
   toponimo: null,
-  filterComune: null,
+  filterTopComune: null,
   filterToponimo: null,
-  filterValidazione: null,
+  filterTopValidazione: null,
   /* filterDate: null,
   sortComune: null,
   sortAddress: null,
@@ -44,13 +44,13 @@ const mutations = {
     state.assignedTopName = "";
   },
   SET_FILTER_COMUNE(state, comune) {
-    state.filterComune = comune;
+    state.filterTopComune = comune;
   },
   SET_FILTER_TOPONIMO(state, toponimo) {
     state.filterToponimo = toponimo;
   },
   SET_FILTER_VALIDAZIONE(state, validazione) {
-    state.filterValidazione = validazione;
+    state.filterTopValidazione = validazione;
   }
   /*  SET_FILTER_DATE(state, date) {
     state.filterDate = date;
@@ -67,14 +67,14 @@ const mutations = {
 };
 
 const actions = {
-  setFilterComune: ({ commit }, comune) => {
+  setFilterTopComune: ({ commit }, comune) => {
     commit("SET_FILTER_COMUNE", comune);
   },
 
   setFilterToponimo: ({ commit }, toponimo) => {
     commit("SET_FILTER_TOPONIMO", toponimo);
   },
-  setFilterValidazione: ({ commit }, validazione) => {
+  setFilterTopValidazione: ({ commit }, validazione) => {
     commit("SET_FILTER_VALIDAZIONE", validazione);
   },
 
@@ -93,7 +93,7 @@ const actions = {
     commit("SET_SORT_DATE", address);
   }, */
 
-  setSortedList({ commit }, toponimiList) {
+  setSortedTopList({ commit }, toponimiList) {
     var newlist = toponimiList.map((items, index = 0) => ({
       ...items,
       index: index + 1,
@@ -122,9 +122,9 @@ const actions = {
         .findByUserAndState(
           userId,
           stateId,
-          state.filterComune ? state.filterComune.proCom : null,
+          state.filterTopComune ? state.filterTopComune.proCom : null,
           state.filterToponimo,
-          state.filterValidazione ? state.filterValidazione.value : null
+          state.filterTopValidazione ? state.filterTopValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -161,9 +161,9 @@ const actions = {
         .findNextToponimo(
           userId,
           stateId,
-          state.filterComune ? state.filterComune.proCom : null,
+          state.filterTopComune ? state.filterTopComune.proCom : null,
           state.filterToponimo,
-          state.filterValidazione ? state.filterValidazione.value : null
+          state.filterTopValidazione ? state.filterTopValidazione.value : null
         )
         .then(data => {
           //console.log(data);
@@ -217,24 +217,24 @@ const actions = {
   updateCurrentTopIndex({ commit }) {
     commit("SET_CURRENT_INDEX", state.currentTopIndex + 1);
   },
-  setCurrentIndex({ commit }, id) {
+  /* setCurrentIndex({ commit }, id) {
     commit("SET_CURRENT_INDEX", id);
-  },
+  }, */
 
-  setAssigned({ commit }, user) {
+  setTopAssigned({ commit }, user) {
     commit("SET_ASSIGNED", user);
   },
 
-  clearAssigned({ commit }) {
+  clearTopAssigned({ commit }) {
     commit("CLEAR_ASSIGNED");
   },
 
-  clear({ commit }) {
+  clearTop({ commit }) {
     commit("SET_TOPONIMI", null);
     commit("SET_TOPONIMO", null);
   },
 
-  clearFilters({ commit }) {
+  clearTopFilters({ commit }) {
     commit("SET_FILTER_COMUNE", null);
     commit("SET_FILTER_TOPONIMO", null);
     commit("SET_FILTER_VALIDAZIONE", null);
@@ -257,14 +257,14 @@ const getters = {
   assignedTopName: state => {
     return state.assignedTopName;
   },
-  filterComune: state => {
-    return state.filterComune;
+  filterTopComune: state => {
+    return state.filterTopComune;
   },
   filterToponimo: state => {
     return state.filterToponimo;
   },
-  filterValidazione: state => {
-    return state.filterValidazione;
+  filterTopValidazione: state => {
+    return state.filterTopValidazione;
   }
   /* filterDate: state => {
     return state.filterDate;

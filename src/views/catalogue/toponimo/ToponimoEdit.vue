@@ -86,7 +86,11 @@ export default {
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("auth", ["isSupervisor", "loggedUser"]),
-    ...mapGetters("toponimo", ["toponimo", "filterComune", "filterToponimo"]),
+    ...mapGetters("toponimo", [
+      "toponimo",
+      "filterTopComune",
+      "filterToponimo"
+    ]),
     fonte() {
       return this.getFonteById(this.toponimo.idFonte);
     },
@@ -166,12 +170,12 @@ export default {
     },
     checkCompleted(isok) {
       if (!isok) {
-        if (this.filterComune || this.filterToponimo) {
+        if (this.filterTopComune || this.filterToponimo) {
           this.$store.dispatch(
             "message/success",
-            this.getCompletedMessage(this.filterComune, this.filterToponimo)
+            this.getCompletedMessage(this.filterTopComune, this.filterToponimo)
           );
-          this.$store.dispatch("toponimo/clearFilters");
+          this.$store.dispatch("toponimo/clearTopFilters");
           this.$router.push({
             name: "ToponimoList",
             params: { state: this.$route.params.state }
@@ -190,9 +194,9 @@ export default {
     this.$store.dispatch("coreui/setContext", this.$route.params.state);
     this.$store.dispatch("progressTop/findByUser");
     this.$store.dispatch("dug/findAll").then(() => {
-      const currentId = this.$store.getters["toponimo/currentId"];
-      if (currentId > 0) {
-        this.$store.dispatch("toponimo/findById", currentId);
+      const currentTopId = this.$store.getters["toponimo/currentTopId"];
+      if (currentTopId > 0) {
+        this.$store.dispatch("toponimo/findById", currentTopId);
       } else {
         this.$store
           .dispatch(

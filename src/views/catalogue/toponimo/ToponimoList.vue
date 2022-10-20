@@ -103,7 +103,7 @@ export default {
       });
     },
     sortChange(sortArray) {
-      this.$store.dispatch("toponimo/setSortedList", sortArray);
+      this.$store.dispatch("toponimo/setSortedTopList", sortArray);
     },
     handleEdit(id, index) {
       this.$store.dispatch("toponimo/setCurrentTopId", id);
@@ -122,7 +122,7 @@ export default {
     },
     load(state) {
       this.$store.dispatch("coreui/setContext", state);
-      this.$store.dispatch("toponimo/clear");
+      this.$store.dispatch("toponimo/clearTop");
       this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progressTop/findByUser");
       this.$store.dispatch("elencoComuni/findComuniByUserAndState", state);

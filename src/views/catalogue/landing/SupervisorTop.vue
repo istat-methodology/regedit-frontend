@@ -110,7 +110,7 @@ export default {
         ? userReportTop.userId === parseInt(this.assignedTopId)
         : false;
     },
-    clearAssigned() {
+    clearTopAssigned() {
       this.usersReportTop.map(user => {
         return {
           ...user,
@@ -119,13 +119,13 @@ export default {
       });
     },
     assign(userReportTop) {
-      this.clearAssigned();
+      this.clearTopAssigned();
       this.usersReportTop.splice(userReportTop.index, 1, {
         ...userReportTop,
         assigned: true
       });
       this.$store
-        .dispatch("toponimo/setAssigned", {
+        .dispatch("toponimo/setTopAssigned", {
           id: userReportTop.userId,
           name: userReportTop.userEmail
         })
