@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@mdi/font": "^5.9.55",
+    "@types/vuelidate": "^0.7.15",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-router": "~4.2.0",
