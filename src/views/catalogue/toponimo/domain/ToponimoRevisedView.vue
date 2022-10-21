@@ -1,7 +1,7 @@
 <template>
   <CCard>
     <CCardHeader class="card-header-light-grey"
-      ><span class="card-header-span">Indirizzo revisionato</span></CCardHeader
+      ><span class="card-header-span">Toponimo revisionato</span></CCardHeader
     >
     <CCardBody class="card-text" :class="{ colordisabled: validated }">
       <div>
@@ -42,19 +42,19 @@ export default {
   },
   computed: {
     validated() {
-      return this.isAddressValidated(this.toponimo);
+      return this.isToponimoValidated(this.toponimo);
     },
     toponimoPrint() {
-      return this.printAddress(this.toponimo, this.toponimoType.Revised);
-    },
-    fonte() {
+      return this.printToponimo(this.toponimo, this.toponimoType.Revised);
+    }
+    /* fonte() {
       const addrFonte = this.getFonteById(this.toponimo.idFonte);
       return addrFonte ? addrFonte.fonte : "";
     },
     fittizio() {
       const topFittizio = this.getFittizioById(this.toponimo.fittizio);
       return topFittizio ? topFittizio.value : "";
-    }
+    } */
   }
 };
 </script>

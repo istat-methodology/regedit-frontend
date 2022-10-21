@@ -107,7 +107,7 @@ export default {
     },
     handleEdit(id, index) {
       this.$store.dispatch("toponimo/setCurrentTopId", id);
-      this.$store.dispatch("toponimo/setCurrentIndex", index);
+      this.$store.dispatch("toponimo/setCurrentTopIndex", index);
       this.$router.push({
         name: "ToponimoEdit",
         params: { state: this.$route.params.state }

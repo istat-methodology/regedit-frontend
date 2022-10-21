@@ -10,7 +10,11 @@
     >
 
     <CCardBody class="card-text">
-      <CInput label="Località" />
+      <CInput
+        label="Località"
+        placeholder="Località"
+        v-model="toponimo.localitaVal"
+      />
       <label>Dug*</label>
       <v-select
         :options="dugNames"
@@ -70,11 +74,14 @@
           label="Codice strada*"
           placeholder="Codice strada"
           v-model="toponimo.cdpstrVal"
+          :class="{
+            'is-invalid': $v.toponimo.cdpstrVal.$error
+          }"
         />
-        <!--  <p class="error" v-if="$v.toponimo.cdpstrVal.$error">
+        <p class="error" v-if="!$v.toponimo.cdpstrVal.validationRuleStr">
           I valori possibili per questo campo sono soltanto numerici e lunghi
           massimo 12 caratteri
-        </p> -->
+        </p>
         <!-- <CInput
           label="Codice civico"
           placeholder="Codice civico"
@@ -141,18 +148,18 @@ export default {
       return this.dugs.map(dug => {
         return dug.name;
       });
-    },
-    isFonteEgon() {
-      return this.fonteLocal && this.fonteLocal.id == 1 ? true : false;
     }
+    /* isFonteEgon() {
+      return this.fonteLocal && this.fonteLocal.id == 1 ? true : false;
+    } */
   },
   validations: {
-    fonteLocal: {
+    /* fonteLocal: {
       required
     },
     fittizioLocal: {
       required
-    },
+    }, */
     toponimo: {
       dugVal: {
         required
@@ -160,7 +167,14 @@ export default {
       dufVal: {
         required
       },
-      civicoVal: {
+      cdpstrVal: {
+        validationRuleStr(cdpstrVal) {
+          return this.cdpstrVal ? /^[0-9?]+$/.test(cdpstrVal) : true;
+        },
+        maxLength: maxLength(12)
+      }
+
+      /*  civicoVal: {
         validationRuleCivico(civico) {
           return /^[0-9?]*$/.test(civico) || /^[null]/.test(civico);
         }
@@ -179,35 +193,29 @@ export default {
             )
           );
         }
-      },
-      cdpstrEgon: {
-        validationRuleStrEgon(stradaEgon) {
-          return this.isFonteEgon ? /^[0-9?]+$/.test(stradaEgon) : true;
-        },
-        maxLength: maxLength(12)
-      },
-      cdpcivEgon: {
+      }, */
+      /* cdpcivEgon: {
         validationRuleCivEgon(civicoEgon) {
           return /^[0-9?]*$/.test(civicoEgon) || /^[null]/.test(civicoEgon);
         },
         maxLength: maxLength(15)
-      }
+      } */
     }
   },
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
       if (
-        !this.$v.toponimo.$invalid &&
-        !this.$v.fonteLocal.$invalid &&
-        !this.$v.fittizioLocal.$invalid
+        !this.$v.toponimo.$invalid
+        //!this.$v.fonteLocal.$invalid
+        //!this.$v.fittizioLocal.$invalid
       ) {
-        this.toponimo.idFonte = this.fonteLocal.id;
-        this.toponimo.fittizio = this.fittizioLocal.id;
-        if (!this.isFonteEgon) {
-          this.toponimo.cdpstrEgon = null;
-          this.toponimo.cdpcivEgon = null;
-        }
+        /* this.toponimo.idFonte = this.fonteLocal.id;
+        this.toponimo.fittizio = this.fittizioLocal.id; */
+        /* if (!this.isFonteEgon) {
+          this.toponimo.cdpstrVal = null;
+          this.toponimo.cdpcivVal = null;
+        } */
         this.$emit("revise", this.toponimo);
       }
     }

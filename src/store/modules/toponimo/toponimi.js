@@ -217,9 +217,9 @@ const actions = {
   updateCurrentTopIndex({ commit }) {
     commit("SET_CURRENT_INDEX", state.currentTopIndex + 1);
   },
-  /* setCurrentIndex({ commit }, id) {
+  setCurrentTopIndex({ commit }, id) {
     commit("SET_CURRENT_INDEX", id);
-  }, */
+  },
 
   setTopAssigned({ commit }, user) {
     commit("SET_ASSIGNED", user);
