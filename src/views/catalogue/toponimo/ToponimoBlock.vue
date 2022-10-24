@@ -4,7 +4,7 @@
       <tile></tile>
     </div>
     <div class="col-12" v-else>
-      <app-search-filter
+      <app-search-filter-top
         @filter="handleFilter"
         :stato="this.$route.params.state"
       />
@@ -53,14 +53,14 @@
 import { mapGetters } from "vuex";
 import toponimoMixin from "@/components/mixins/toponimo.mixin";
 import { Context } from "@/common";
-import SearchFilter from "@/components/SearchFilter";
+import SearchFilterTop from "@/components/SearchFilterTop";
 import MassiveUpdate from "@/components/MassiveUpdate";
 
 export default {
   name: "ToponimoBlockList",
   mixins: [toponimoMixin],
   components: {
-    "app-search-filter": SearchFilter,
+    "app-search-filter-top": SearchFilterTop,
     "app-massive-update": MassiveUpdate
   },
   data() {
@@ -86,7 +86,7 @@ export default {
         localita: localita != null ? localita : "",
         codStrada: codStrada != null ? codStrada : "",
         note: note != null ? note : "",
-        topList: toponimoList
+        toponimoList: toponimoList
       };
       this.$store.dispatch("massive/update", payload).then(() => {
         this.$store.dispatch(

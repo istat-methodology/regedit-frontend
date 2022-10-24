@@ -80,7 +80,7 @@ export default {
         dug: dug != null ? dug : "",
         duf: duf != null ? duf : "",
         note: note != null ? note : "",
-        topList: toponimoList
+        toponimoList: toponimoList
       };
       this.$store.dispatch("massive/update", payload).then(() => {
         this.$store.dispatch(
