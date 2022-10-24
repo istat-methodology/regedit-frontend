@@ -111,7 +111,7 @@
         <li class="c-sidebar-nav-title">Modifiche in blocco</li>
         <li class="c-sidebar-nav-item">
           <router-link
-            :to="{ name: 'AddressBlock', params: { state: 1 } }"
+            :to="{ name: 'ToponimoBlock', params: { state: 1 } }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active c-active-primary': isBlock }"
             custom
@@ -128,7 +128,7 @@
         </li>
         <li class="c-sidebar-nav-item">
           <router-link
-            :to="{ name: 'AddressBlock', params: { state: 3 } }"
+            :to="{ name: 'ToponimoBlock', params: { state: 3 } }"
             class="c-sidebar-nav-link"
             :class="{ 'c-active c-active-warning': isBlockSuspended }"
             custom

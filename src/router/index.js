@@ -83,6 +83,12 @@ const routes = [
         meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
       },
       {
+        path: "catalogue/toponimo/block/:state",
+        name: "ToponimoBlock",
+        component: () => import("../views/catalogue/toponimo/ToponimoBlock"),
+        meta: { authorize: [Role.Admin, Role.Supervisor, Role.Reviewer] }
+      },
+      {
         path: "catalogue/dug",
         name: "DugList",
         component: () => import("../views/catalogue/dug/DugList"),

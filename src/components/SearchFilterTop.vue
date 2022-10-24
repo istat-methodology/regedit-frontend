@@ -55,7 +55,7 @@ export default {
     ...mapGetters("toponimo", [
       "filterTopComune",
       "filterToponimo",
-      "filterValidazione"
+      "filterTopValidazione"
     ]),
     comune: {
       get: function() {
@@ -75,7 +75,7 @@ export default {
     },
     validazione: {
       get: function() {
-        return this.filterValidazione;
+        return this.filterTopValidazione;
       },
       set: function(selectedValidazione) {
         this.$store.dispatch(

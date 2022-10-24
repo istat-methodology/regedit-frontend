@@ -12,7 +12,7 @@
       <div class="card fade-in">
         <CCardBody>
           <CDataTable
-            :items="addresses"
+            :items="toponimi"
             :fields="blockFields"
             column-filter
             items-per-page-select
@@ -51,14 +51,14 @@
 
 <script>
 import { mapGetters } from "vuex";
-import addressMixin from "@/components/mixins/address.mixin";
+import toponimoMixin from "@/components/mixins/toponimo.mixin";
 import { Context } from "@/common";
 import SearchFilter from "@/components/SearchFilter";
 import MassiveUpdate from "@/components/MassiveUpdate";
 
 export default {
-  name: "AddressList",
-  mixins: [addressMixin],
+  name: "ToponimoBlockList",
+  mixins: [toponimoMixin],
   components: {
     "app-search-filter": SearchFilter,
     "app-massive-update": MassiveUpdate
@@ -72,13 +72,13 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("address", ["addresses"])
+    ...mapGetters("toponimo", ["toponimi"])
   },
   methods: {
     updateSelected(dug, duf, note, localita, codStrada) {
       var payload;
-      var addressList = [];
-      addressList = this.getSelected(this.addresses);
+      var toponimoList = [];
+      toponimoList = this.getSelected(this.toponimi);
 
       payload = {
         dug: dug != null ? dug : "",
@@ -86,52 +86,67 @@ export default {
         localita: localita != null ? localita : "",
         codStrada: codStrada != null ? codStrada : "",
         note: note != null ? note : "",
-        addrList: addressList
+        topList: toponimoList
       };
       this.$store.dispatch("massive/update", payload).then(() => {
         this.$store.dispatch(
-          "address/findByUserAndState",
+          "toponimo/findByUserAndState",
           this.$route.params.state
         );
         this.globalCheck = false;
       });
-      this.$store.dispatch("progress/resetSelected", this.$route.params.state);
+      this.$store.dispatch(
+        "progressTop/resetSelected",
+        this.$route.params.state
+      );
     },
-    toggleSelected(address) {
-      address.selected = !address.selected;
-      if (address.selected) {
-        this.$store.dispatch("progress/incSelected", this.$route.params.state);
+    toggleSelected(toponimo) {
+      toponimo.selected = !toponimo.selected;
+      if (toponimo.selected) {
+        this.$store.dispatch(
+          "progressTop/incSelected",
+          this.$route.params.state
+        );
       } else {
-        this.$store.dispatch("progress/decSelected", this.$route.params.state);
+        this.$store.dispatch(
+          "progressTop/decSelected",
+          this.$route.params.state
+        );
       }
     },
     toggleAll() {
       this.globalCheck = !this.globalCheck;
-      this.$store.dispatch("progress/resetSelected", this.$route.params.state);
-      this.addresses.map(address => {
-        address.selected = this.globalCheck;
-        if (address.selected) {
+      this.$store.dispatch(
+        "progressTop/resetSelected",
+        this.$route.params.state
+      );
+      this.toponimi.map(toponimo => {
+        toponimo.selected = this.globalCheck;
+        if (toponimo.selected) {
           this.$store.dispatch(
-            "progress/incSelected",
+            "progressTop/incSelected",
             this.$route.params.state
           );
         }
       });
     },
     sortChange(sortArray) {
-      this.$store.dispatch("address/setSortedTopList", sortArray);
+      this.$store.dispatch("toponimo/setSortedTopList", sortArray);
     },
     handleFilter() {
       this.$store.dispatch(
-        "address/findByUserAndState",
+        "toponimo/findByUserAndState",
         this.$route.params.state
       );
       this.globalCheck = false;
-      this.$store.dispatch("progress/resetSelected", this.$route.params.state);
+      this.$store.dispatch(
+        "progressTop/resetSelected",
+        this.$route.params.state
+      );
     },
     load(state) {
       this.globalCheck = false;
-      this.$store.dispatch("progress/resetAll");
+      this.$store.dispatch("progressTop/resetAll");
       this.$store.dispatch("coreui/setContext", state == 1 ? 6 : 7);
       this.$store.dispatch("toponimo/clearTop");
       this.$store.dispatch("toponimo/findByUserAndState", state);
@@ -150,7 +165,7 @@ export default {
   created() {
     this.load(this.$route.params.state);
     this.$store.dispatch("dug/findAll");
-    this.$store.dispatch("progress/resetSelected", this.$route.params.state);
+    this.$store.dispatch("progressTop/resetSelected", this.$route.params.state);
     if (this.$route.params.state == 1) {
       this.$store.dispatch("coreui/setContext", Context.Block);
     } else {
