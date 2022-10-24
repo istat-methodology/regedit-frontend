@@ -88,7 +88,7 @@ export default {
         note: note != null ? note : "",
         toponimoList: toponimoList
       };
-      this.$store.dispatch("massive/update", payload).then(() => {
+      this.$store.dispatch("massiveTop/update", payload).then(() => {
         this.$store.dispatch(
           "toponimo/findByUserAndState",
           this.$route.params.state
