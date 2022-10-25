@@ -244,13 +244,14 @@ export default {
     isToponimoValidated(toponimo) {
       return toponimo.validazione === "SI" ? true : false;
     },
-    getSelected(toponimoes) {
+    getSelected(toponimi) {
       var selezionati = [];
-      toponimoes.forEach(element => {
+      toponimi.forEach(element => {
         if (element.selected) {
-          selezionati.push(element.progressivoIndirizzo);
+          selezionati.push(element.progressivoToponimo);
         }
       });
+      console.log(selezionati);
       return selezionati;
     },
     getCompletedMessage(comune, toponimo) {

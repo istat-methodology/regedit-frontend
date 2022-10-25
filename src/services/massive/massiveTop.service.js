@@ -10,13 +10,13 @@ class MassiveService extends AbstractService {
     console.log(payload);
     return axiosRegedit
       .put(this.endpoint, {
-        addressList: payload.addrList,
+        toponimoList: payload.toponimoList,
         dugVal: payload.dug,
         dufVal: payload.duf,
         localitaVal: payload.localita,
-        cdpstrEgon: payload.codStrada,
+        cdpstr: payload.codStrada,
         /*  state: 3, */
-        idFonte: payload.codStrada == "" ? null : 1,
+        //idFonte: payload.codStrada == "" ? null : 1,
         note: payload.note
       })
       .then(res => {
