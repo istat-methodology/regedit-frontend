@@ -11,7 +11,7 @@
   <div v-else-if="isReviewer && isToponimi">
     <app-landing-reviewer-top />
   </div>
-  <div class="row" v-else>
+  <div class="row" v-else-if="!isToponimi">
     <div class="col-4">
       <div class="card">
         <header class="card-header">
@@ -39,6 +39,38 @@
         </header>
         <div class="card-body">
           In questa sezione puoi trovare la lista degli indirizzi sospesi.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" v-else-if="isToponimi">
+    <div class="col-4">
+      <div class="card">
+        <header class="card-header">
+          <span>Toponimi da lavorare</span>
+        </header>
+        <div class="card-body">
+          In questa sezione puoi trovare la lista dei Toponimi da lavorare.
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <header class="card-header">
+          <span>Toponimi lavorati</span>
+        </header>
+        <div class="card-body">
+          In questa sezione puoi trovare la lista dei Toponimi lavorati.
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <header class="card-header">
+          <span>Toponimi sospesi</span>
+        </header>
+        <div class="card-body">
+          In questa sezione puoi trovare la lista dei Toponimi sospesi.
         </div>
       </div>
     </div>

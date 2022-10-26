@@ -9,7 +9,7 @@
           >
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi da lavorare.
+          In questa sezione puoi trovare la lista dei Toponimi da lavorare.
           <p class="section-link">
             <router-link
               tag="a"
@@ -36,7 +36,7 @@
           >
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi lavorati.
+          In questa sezione puoi trovare la lista dei Toponimi lavorati.
           <p class="section-link">
             <router-link
               tag="a"
@@ -56,7 +56,7 @@
           >
         </header>
         <div class="card-body">
-          In questa sezione puoi trovare la lista degli indirizzi sospesi.
+          In questa sezione puoi trovare la lista dei Toponimi sospesi.
           <p class="section-link">
             <router-link
               tag="a"
