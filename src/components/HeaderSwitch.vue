@@ -43,6 +43,9 @@ export default {
     /* toggleToponimi() {
       return this.$store.dispatch("customswitch/setToponimi", !this.isToponimi);
     } */
+  },
+  created() {
+    this.$store.dispatch("customswitch/setToponimi", false);
   }
   /* methods: {
     toggleToponimi: function () {
