@@ -122,7 +122,7 @@ export default {
           filter: false
         },
         {
-          key: "cdpstrEgon",
+          key: "cdpstrVal",
           label: "codice strada",
           _style: "width:10%;",
           filter: false
