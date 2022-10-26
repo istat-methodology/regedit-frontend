@@ -108,8 +108,8 @@ export default {
         } */
         this.$emit("revise", this.toponimo);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
