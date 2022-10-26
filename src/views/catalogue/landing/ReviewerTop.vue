@@ -3,7 +3,7 @@
     <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Indirizzi da lavorare</span>
+          <span>Toponimi da lavorare</span>
           <span class="badge float-right badge-primary"
             >{{ daLavorare }} / {{ total }}</span
           >
@@ -13,14 +13,14 @@
           <p class="section-link">
             <router-link
               tag="a"
-              :to="{ name: 'AddressList', params: { state: 1 } }"
+              :to="{ name: 'ToponimoList', params: { state: 1 } }"
               ><span>Vai alla lista <chevron-right-icon /></span>
             </router-link>
           </p>
           <!-- <p class="section-link" v-if="daLavorare > 0">
             <router-link
               tag="a"
-              :to="{ name: 'AddressEdit', params: { state: 1 } }"
+              :to="{ name: 'ToponimoEdit', params: { state: 1 } }"
               ><span>Inizia subito a lavorare <chevron-right-icon /></span>
             </router-link>
           </p> -->
@@ -40,7 +40,7 @@
           <p class="section-link">
             <router-link
               tag="a"
-              :to="{ name: 'AddressList', params: { state: 2 } }"
+              :to="{ name: 'ToponimoList', params: { state: 2 } }"
               ><span>Vai alla lista <chevron-right-icon /></span>
             </router-link>
           </p>
@@ -60,7 +60,7 @@
           <p class="section-link">
             <router-link
               tag="a"
-              :to="{ name: 'AddressList', params: { state: 3 } }"
+              :to="{ name: 'ToponimoList', params: { state: 3 } }"
               ><span>Vai alla lista <chevron-right-icon /></span>
             </router-link>
           </p>
