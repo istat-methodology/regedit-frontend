@@ -27,12 +27,42 @@ const actions = {
         });
     }
   },
+  findTopComuniByUser({ commit }) {
+    //get user from store
+    let userId = getUserId();
+    if (userId > 0) {
+      return comuniService
+        .findTopComuniByUser(userId)
+        .then(data => {
+          //console.log(data);
+          commit("SET_COMUNI", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
   findComuniByUserAndState({ commit }, state) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
       return comuniService
         .findComuniByUserAndState(userId, state)
+        .then(data => {
+          //console.log(data);
+          commit("SET_COMUNI", data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
+  findTopComuniByUserAndState({ commit }, state) {
+    //get user from store
+    let userId = getUserId();
+    if (userId > 0) {
+      return comuniService
+        .findTopComuniByUserAndState(userId, state)
         .then(data => {
           //console.log(data);
           commit("SET_COMUNI", data);

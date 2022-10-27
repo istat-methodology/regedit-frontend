@@ -23,10 +23,47 @@ class ComuniService extends AbstractService {
         });
     }
   }
+  findTopComuniByUser(user) {
+    {
+      return axiosRegedit
+        .get(this.endpoint + "/toponimi-comuni", {
+          params: {
+            user: user
+          }
+        })
+        .then(res => {
+          var data = res.data ? res.data : {};
+          //console.log(data);
+          return data;
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }
   findComuniByUserAndState(user, state) {
     {
       return axiosRegedit
         .get(this.endpoint + "/addresses-comuni", {
+          params: {
+            user: user,
+            stato: state
+          }
+        })
+        .then(res => {
+          var data = res.data ? res.data : {};
+          //console.log(data);
+          return data;
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }
+  findTopComuniByUserAndState(user, state) {
+    {
+      return axiosRegedit
+        .get(this.endpoint + "/toponimi-comuni", {
           params: {
             user: user,
             stato: state

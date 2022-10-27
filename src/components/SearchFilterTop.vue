@@ -62,7 +62,7 @@ export default {
         return this.filterTopComune;
       },
       set: function(selectedComune) {
-        this.$store.dispatch("toponimo/setFilterComune", selectedComune);
+        this.$store.dispatch("toponimo/setFilterTopComune", selectedComune);
       }
     },
     toponimo: {

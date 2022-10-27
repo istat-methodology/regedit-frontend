@@ -152,7 +152,7 @@ export default {
       this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progressTop/findByUser");
       this.$store.dispatch(
-        "elencoComuni/findComuniByUserAndState",
+        "elencoComuni/findTopComuniByUserAndState",
         state == 6 ? 1 : 3
       );
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;

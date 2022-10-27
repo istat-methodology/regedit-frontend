@@ -125,7 +125,7 @@ export default {
       this.$store.dispatch("toponimo/clearTop");
       this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progressTop/findByUser");
-      this.$store.dispatch("elencoComuni/findComuniByUserAndState", state);
+      this.$store.dispatch("elencoComuni/findTopComuniByUserAndState", state);
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },
