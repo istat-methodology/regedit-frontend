@@ -14,7 +14,7 @@ class ToponimoService extends AbstractService {
           user: user,
           stato: state,
           proCom: procom,
-          localitaOriginaleContains: toponimo,
+          toponimoOriginaleContains: toponimo,
           validazione: state == 2 ? validazione : null
         }
       })
@@ -33,7 +33,7 @@ class ToponimoService extends AbstractService {
       .get(this.endpoint + "/first-toponimo/user/" + user + "/state/" + state, {
         params: {
           proCom: procom,
-          localitaOriginaleContains: toponimo,
+          toponimoOriginaleContains: toponimo,
           validazione: state == 2 ? validazione : null
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
