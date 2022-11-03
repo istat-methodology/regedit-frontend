@@ -43,6 +43,7 @@ export default {
   },
   created() {
     this.$store.dispatch("coreui/clearContext");
+    //this.$store.dispatch("customswitch/setToponimi", false);
   }
 };
 </script>

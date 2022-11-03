@@ -32,26 +32,9 @@ export default {
   },
   computed: {
     ...mapGetters("customswitch", ["isToponimi"])
-    /* checkToponimi() {
-      return this.isToponimi;
-    }, */
-    /* toggleToponimi() {
-      console.log("this.isToponimi");
-      return this.$emit("toggleSwitch", this.isToponimi);
-    } */
-
-    /* toggleToponimi() {
-      return this.$store.dispatch("customswitch/setToponimi", !this.isToponimi);
-    } */
   },
   created() {
-    this.$store.dispatch("customswitch/setToponimi", false);
+    //this.$store.dispatch("customswitch/setToponimi", false);
   }
-  /* methods: {
-    toggleToponimi: function () {
-      console.log(this.isToponimi);
-      return this.$emit("toggleSwitch", this.isToponimi);
-    },
-  }, */
 };
 </script>
