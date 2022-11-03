@@ -50,13 +50,13 @@ export default {
     ...mapGetters("customswitch", ["isToponimi"])
   },
   methods: {
-    onSwitch(checkval) {
+    onSwitch(valore) {
       //console.log(checkval);
       if (this.$route.path != "/") {
         this.$router.push("/").catch(() => {});
       }
 
-      return this.$store.dispatch("customswitch/setToponimi", !checkval);
+      return this.$store.dispatch("customswitch/setToponimi", !valore);
     }
   }
 };

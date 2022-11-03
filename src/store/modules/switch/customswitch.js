@@ -3,8 +3,10 @@ const state = {
 };
 const mutations = {
   SET_TOPONIMI(state, val) {
-    state.toponimi = val;
+    // eslint-disable-next-line prettier/prettier
+   
     localStorage.setItem("toponimi", val);
+    state.toponimi = val;
   }
 };
 const getters = {
@@ -17,6 +19,7 @@ const getters = {
 const actions = {
   setToponimi({ commit }, val) {
     commit("SET_TOPONIMI", val);
+    console.log(state.toponimi);
     return state.toponimi;
   }
 };
