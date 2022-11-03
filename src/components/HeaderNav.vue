@@ -1,6 +1,9 @@
 <template>
   <div class="c-subheader-nav mfe-2">
-    <custom-switch @toggleSwitch="onSwitch"></custom-switch>
+    <custom-switch
+      @toggleSwitch="onSwitch"
+      :statoSwitch="isToponimi"
+    ></custom-switch>
     <template v-if="isSupervisor">
       <span class="revisore">Revisore:</span>
       <span v-if="isToponimi" class="revisore-name pl-1 pr-2">
