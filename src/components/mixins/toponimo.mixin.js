@@ -13,12 +13,12 @@ export default {
         Validated: 4
       },
       fields: [
-        {
+        /*  {
           key: "progressivoToponimo",
           label: "Progressivo",
           _style: "width:5%;",
           filter: false
-        },
+        }, */
         { key: "proCom", label: "Procom", filter: false },
         { key: "denominazioneComune", label: "Comune", filter: false },
         {
@@ -59,7 +59,7 @@ export default {
         },
         {
           key: "validazione",
-          label: "Validazione",
+          label: "Valid.",
           _style: "width:4%;",
           filter: false
         },
