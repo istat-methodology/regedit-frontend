@@ -4,9 +4,8 @@ const state = {
 const mutations = {
   SET_TOPONIMI(state, val) {
     // eslint-disable-next-line prettier/prettier
-   
-    localStorage.setItem("toponimi", val);
     state.toponimi = val;
+    localStorage.setItem("toponimi", val);
   }
 };
 const getters = {

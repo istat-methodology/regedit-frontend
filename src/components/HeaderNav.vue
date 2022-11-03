@@ -1,9 +1,6 @@
 <template>
   <div class="c-subheader-nav mfe-2">
-    <custom-switch
-      @toggleSwitch="onSwitch"
-      :statoSwitch="isToponimi"
-    ></custom-switch>
+    <custom-switch @toggleSwitch="onSwitch"></custom-switch>
     <template v-if="isSupervisor">
       <span class="revisore">Revisore:</span>
       <span v-if="isToponimi" class="revisore-name pl-1 pr-2">
@@ -50,13 +47,12 @@ export default {
     ...mapGetters("customswitch", ["isToponimi"])
   },
   methods: {
-    onSwitch(valore) {
+    onSwitch() {
       //console.log(checkval);
       if (this.$route.path != "/") {
         this.$router.push("/").catch(() => {});
       }
-
-      return this.$store.dispatch("customswitch/setToponimi", !valore);
+      return this.$store.dispatch("customswitch/setToponimi", !this.isToponimi);
     }
   }
 };

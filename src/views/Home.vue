@@ -1,6 +1,6 @@
 <template>
   <div class="c-app">
-    <app-sidebar v-if="!isToponimi"></app-sidebar>
+    <app-sidebar v-if="!Boolean(isToponimi)"></app-sidebar>
     <app-sidebar-toponimi v-else></app-sidebar-toponimi>
     <CWrapper>
       <app-toast></app-toast>

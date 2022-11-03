@@ -8,8 +8,8 @@
         :shape="shape"
         :color="color"
         v-bind:show="true"
-        :value="statoSwitch"
-        @update:checked="$emit('toggleSwitch', value)"
+        @update:checked="$emit('toggleSwitch')"
+        :checked="Boolean(isToponimi)"
         labelOn="Top."
         labelOff="Ind."
       />
@@ -20,18 +20,21 @@
   </div>
 </template>
 <script>
-//import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "CustomSwitch",
-  props: {
-    statoSwitch: null
-  },
+  /*  props: {
+    statoSwitch: Boolean
+  }, */
   data: function() {
     return {
       //switch: null,
       color: "success",
       shape: "square"
     };
+  },
+  computed: {
+    ...mapGetters("customswitch", ["isToponimi"])
   }
 };
 </script>
