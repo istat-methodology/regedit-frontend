@@ -16,7 +16,7 @@ class ToponimoService extends AbstractService {
           proCom: procom,
           toponimoOriginaleContains: toponimo,
           orderBy: "sogliaW, denominazioneProvincia",
-          order: "DESC, ASC",
+          sort: "DESC, ASC",
           validazione: state == 2 ? validazione : null
         }
       })
@@ -36,6 +36,8 @@ class ToponimoService extends AbstractService {
         params: {
           proCom: procom,
           toponimoOriginaleContains: toponimo,
+          orderBy: "sogliaW, denominazioneProvincia",
+          sort: "DESC, ASC",
           validazione: state == 2 ? validazione : null
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
