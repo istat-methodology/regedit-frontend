@@ -15,6 +15,8 @@ class ToponimoService extends AbstractService {
           stato: state,
           proCom: procom,
           toponimoOriginaleContains: toponimo,
+          orderBy: "sogliaW, denominazioneProvincia",
+          order: "DESC, ASC",
           validazione: state == 2 ? validazione : null
         }
       })
