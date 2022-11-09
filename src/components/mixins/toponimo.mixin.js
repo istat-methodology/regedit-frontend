@@ -20,6 +20,7 @@ export default {
           filter: false
         }, */
         { key: "proCom", label: "Procom", filter: false },
+        { key: "denominazioneProvincia", label: "Provincia", filter: false },
         { key: "denominazioneComune", label: "Comune", filter: false },
         {
           key: "localitaOrig",
@@ -92,6 +93,7 @@ export default {
           filter: false
         },
         { key: "proCom", label: "Procom", filter: false },
+        { key: "denominazioneProvincia", label: "Provincia", filter: false },
         { key: "denominazioneComune", label: "Comune", filter: false },
         {
           key: "localitaOrig",
