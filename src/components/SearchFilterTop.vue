@@ -5,7 +5,16 @@
     >
     <CCardBody>
       <div class="row">
-        <div class="col-4">
+        <div class="col-2">
+          <v-select
+            v-if="comuni"
+            label="denominazioneProvincia"
+            :options="province"
+            placeholder="Tutte le Province"
+            v-model="province"
+          ></v-select>
+        </div>
+        <div class="col-2">
           <v-select
             v-if="comuni"
             label="denominazioneComune"
@@ -14,8 +23,11 @@
             v-model="comune"
           ></v-select>
         </div>
-        <div class="col-4">
+        <div class="col-3">
           <CInput placeholder="Toponimo" v-model="toponimo" />
+        </div>
+        <div class="col-1">
+          <CInput placeholder="Soglia" v-model="soglia" />
         </div>
         <div class="col-2">
           <v-select
@@ -52,6 +64,7 @@ export default {
   mixins: [ValidazioneMixin],
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
+    ...mapGetters("elencoProvince", ["province"]),
     ...mapGetters("toponimo", [
       "filterTopComune",
       "filterToponimo",

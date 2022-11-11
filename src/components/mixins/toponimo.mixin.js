@@ -20,6 +20,7 @@ export default {
           filter: false
         }, */
         { key: "proCom", label: "Procom", filter: false },
+        { key: "denominazioneProvincia", label: "Provincia", filter: false },
         { key: "denominazioneComune", label: "Comune", filter: false },
         {
           key: "localitaOrig",
@@ -91,52 +92,61 @@ export default {
           sorter: false,
           filter: false
         },
+        { key: "proCom", label: "Procom", filter: false },
+        { key: "denominazioneProvincia", label: "Provincia", filter: false },
+        { key: "denominazioneComune", label: "Comune", filter: false },
         {
-          key: "progressivoToponimo",
-          label: "Progressivo",
-          _style: "width:10%;"
-        },
-        {
-          key: "toponimoOrig",
-          label: "Toponimo",
-          _style: "min-width:25%;"
-        },
-        { key: "proCom", label: "Procom" },
-        { key: "denominazioneComune", label: "Comune" },
-        {
-          key: "dugVal",
-          label: "dug",
-          _style: "width:10%;",
+          key: "localitaOrig",
+          label: "Località Originale",
+          _style: "min-width:20%;",
           filter: false
         },
         {
-          key: "dufVal",
-          label: "duf",
-          _style: "width:10%;",
+          key: "dugOrig",
+          label: "Dug Originale",
+          _style: "min-width:5%;",
           filter: false
         },
         {
-          key: "localitaVal",
-          label: "località",
-          _style: "width:10%;",
+          key: "dufOrig",
+          label: "Duf Originale",
+          _style: "min-width:5%;",
           filter: false
         },
         {
-          key: "cdpstrVal",
-          label: "codice strada",
-          _style: "width:10%;",
+          key: "localitaProb",
+          label: "Località Suggerita",
+          _style: "min-width:20%;",
           filter: false
         },
         {
-          key: "note",
-          label: "note",
-          _style: "width:20%;",
+          key: "dugProb",
+          label: "Dug Suggerita",
+          _style: "min-width:5%;",
+          filter: false
+        },
+        {
+          key: "dufProb",
+          label: "Duf Suggerita",
+          _style: "min-width:5%;",
+          filter: false
+        },
+        {
+          key: "validazione",
+          label: "Valid.",
+          _style: "width:4%;",
+          filter: false
+        },
+        {
+          key: "sogliaW",
+          label: "Soglia",
+          _style: "min-width:5%;",
           filter: false
         },
         {
           key: "dataMod",
           label: "Ultima modifica",
-          _style: "width:10%;",
+          _style: "width:5%;",
           filter: false
         }
         /*  {
