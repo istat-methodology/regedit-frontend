@@ -1,4 +1,4 @@
-import { comuniService } from "@/services";
+import { provinceService } from "@/services";
 import { getUserId } from "@/common";
 
 const state = {
@@ -6,66 +6,66 @@ const state = {
 };
 
 const mutations = {
-  SET_COMUNI(state, province) {
+  SET_PROVINCE(state, province) {
     state.province = province;
   }
 };
 
 const actions = {
-  findComuniByUser({ commit }) {
+  findProvinceByUser({ commit }) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
-      return comuniService
-        .findComuniByUser(userId)
+      return provinceService
+        .findProvinceByUser(userId)
         .then(data => {
           //console.log(data);
-          commit("SET_COMUNI", data);
+          commit("SET_PROVINCE", data);
         })
         .catch(err => {
           console.log(err);
         });
     }
   },
-  findTopComuniByUser({ commit }) {
+  findTopProvinceByUser({ commit }) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
-      return comuniService
-        .findTopComuniByUser(userId)
+      return provinceService
+        .findTopProvinceByUser(userId)
         .then(data => {
           //console.log(data);
-          commit("SET_COMUNI", data);
+          commit("SET_PROVINCE", data);
         })
         .catch(err => {
           console.log(err);
         });
     }
   },
-  findComuniByUserAndState({ commit }, state) {
+  findProvinceByUserAndState({ commit }, state) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
-      return comuniService
-        .findComuniByUserAndState(userId, state)
+      return provinceService
+        .findProvinceByUserAndState(userId, state)
         .then(data => {
           //console.log(data);
-          commit("SET_COMUNI", data);
+          commit("SET_PROVINCE", data);
         })
         .catch(err => {
           console.log(err);
         });
     }
   },
-  findTopComuniByUserAndState({ commit }, state) {
+  findTopProvinceByUserAndState({ commit }, state) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
-      return comuniService
-        .findTopComuniByUserAndState(userId, state)
+      return provinceService
+        .findTopProvinceByUserAndState(userId, state)
         .then(data => {
           //console.log(data);
-          commit("SET_COMUNI", data);
+          commit("SET_PROVINCE", data);
         })
         .catch(err => {
           console.log(err);

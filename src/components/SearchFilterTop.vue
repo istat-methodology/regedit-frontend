@@ -11,7 +11,7 @@
             label="denominazioneProvincia"
             :options="province"
             placeholder="Tutte le Province"
-            v-model="province"
+            v-model="provincia"
           ></v-select>
         </div>
         <div class="col-2">

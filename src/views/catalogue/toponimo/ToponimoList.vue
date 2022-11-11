@@ -126,6 +126,10 @@ export default {
       this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progressTop/findByUser");
       this.$store.dispatch("elencoComuni/findTopComuniByUserAndState", state);
+      this.$store.dispatch(
+        "elencoProvince/findTopProvinceByUserAndState",
+        state
+      );
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },

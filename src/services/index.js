@@ -10,5 +10,6 @@ export * from "./report/pivotTop.service";
 export * from "./report/progress.service";
 export * from "./report/progressTop.service";
 export * from "./comuni/comuni.service";
+export * from "./province/province.service";
 export * from "./massive/massive.service";
 export * from "./massive/massiveTop.service";
