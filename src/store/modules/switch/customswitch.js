@@ -1,5 +1,5 @@
 const state = {
-  toponimi: localStorage.getItem("toponimi")
+  toponimi: localStorage.getItem("toponimi") || false
 };
 const mutations = {
   SET_TOPONIMI(state, val) {

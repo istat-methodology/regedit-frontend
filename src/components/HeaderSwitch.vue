@@ -9,7 +9,7 @@
         :color="color"
         v-bind:show="true"
         @update:checked="$emit('toggleSwitch')"
-        :checked="Boolean(isToponimi)"
+        :checked="isToponimi === true"
         labelOn="Top."
         labelOff="Ind."
       />

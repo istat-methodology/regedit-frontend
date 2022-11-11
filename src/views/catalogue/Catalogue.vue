@@ -1,17 +1,17 @@
 <template>
-  <div v-if="isSupervisor && !isToponimi">
+  <div v-if="isSupervisor && isToponimi === false">
     <app-landing-supervisor />
   </div>
-  <div v-else-if="isReviewer && !isToponimi">
+  <div v-else-if="isReviewer && isToponimi === false">
     <app-landing-reviewer />
   </div>
-  <div v-else-if="isSupervisor && isToponimi">
+  <div v-else-if="isSupervisor && isToponimi === true">
     <app-landing-supervisor-top />
   </div>
-  <div v-else-if="isReviewer && isToponimi">
+  <div v-else-if="isReviewer && isToponimi === true">
     <app-landing-reviewer-top />
   </div>
-  <div class="row" v-else-if="!isToponimi">
+  <div class="row" v-else-if="isToponimi === false">
     <div class="col-4">
       <div class="card">
         <header class="card-header">
@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div class="row" v-else-if="isToponimi">
+  <div class="row" v-else-if="isToponimi === true">
     <div class="col-4">
       <div class="card">
         <header class="card-header">
