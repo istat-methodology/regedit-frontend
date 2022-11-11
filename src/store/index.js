@@ -17,6 +17,7 @@ import { pivot } from "./modules/report/pivot";
 import { pivotTop } from "./modules/report/pivotTop";
 import { version } from "./modules/versioning/appversion";
 import { elencoComuni } from "./modules/comuni/comuni";
+import { elencoProvince } from "./modules/province/province";
 import { massive } from "./modules/massive/massive";
 import { massiveTop } from "./modules/massive/massiveTop";
 import { customswitch } from "./modules/switch/customswitch";
@@ -40,6 +41,7 @@ export default new Vuex.Store({
     pivotTop,
     version,
     elencoComuni,
+    elencoProvince,
     massive,
     massiveTop,
     customswitch,

@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-2">
           <v-select
-            v-if="comuni"
+            v-if="province"
             label="denominazioneProvincia"
             :options="province"
             placeholder="Tutte le Province"
@@ -58,6 +58,11 @@ import { mapGetters } from "vuex";
 import ValidazioneMixin from "@/components/mixins/validazione.mixin";
 export default {
   name: "SearchFilterTop",
+  data: function() {
+    return {
+      soglia: ""
+    };
+  },
   props: {
     stato: null
   },
@@ -67,6 +72,7 @@ export default {
     ...mapGetters("elencoProvince", ["province"]),
     ...mapGetters("toponimo", [
       "filterTopComune",
+      "filterTopProvincia",
       "filterToponimo",
       "filterTopValidazione"
     ]),
@@ -76,6 +82,17 @@ export default {
       },
       set: function(selectedComune) {
         this.$store.dispatch("toponimo/setFilterTopComune", selectedComune);
+      }
+    },
+    provincia: {
+      get: function() {
+        return this.filterTopProvincia;
+      },
+      set: function(selectedProvincia) {
+        this.$store.dispatch(
+          "toponimo/setFilterTopProvincia",
+          selectedProvincia
+        );
       }
     },
     toponimo: {

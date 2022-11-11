@@ -5,6 +5,7 @@ const state = {
   toponimi: null,
   toponimo: null,
   filterTopComune: null,
+  filterTopProvincia: null,
   filterToponimo: null,
   filterTopValidazione: null,
   /* filterDate: null,
@@ -259,6 +260,9 @@ const getters = {
   },
   filterTopComune: state => {
     return state.filterTopComune;
+  },
+  filterTopProvincia: state => {
+    return state.filterTopProvincia;
   },
   filterToponimo: state => {
     return state.filterToponimo;
