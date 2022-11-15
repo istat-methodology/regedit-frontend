@@ -47,6 +47,15 @@
             @click="$emit('filter')"
             >Filtra</CButton
           >
+          <CButton
+            style="margin-left: 20px"
+            shape="square"
+            size="sm"
+            color="success"
+            class="mt-1"
+            @click="$emit('validate')"
+            >Valida Tutti</CButton
+          >
         </div>
       </div>
     </CCardBody>

@@ -1,6 +1,6 @@
 import { axiosRegedit } from "@/http";
 import AbstractService from "@/services/abstract.service";
-class MassiveTopService extends AbstractService {
+class MassiveTopValService extends AbstractService {
   constructor(endpoint) {
     super(endpoint);
   }
@@ -10,14 +10,14 @@ class MassiveTopService extends AbstractService {
     console.log(payload);
     return axiosRegedit
       .put(this.endpoint, {
-        toponimoList: payload.toponimoList,
-        dugVal: payload.dug,
+        toponimoList: payload.toponimoList
+        /* dugVal: payload.dug,
         dufVal: payload.duf,
         localitaVal: payload.localita,
-        cdpstr: payload.codStrada,
+        cdpstr: payload.codStrada, */
         /*  state: 3, */
         //idFonte: payload.codStrada == "" ? null : 1,
-        note: payload.note
+        /*  note: payload.note */
       })
       .then(res => {
         var data = res.data ? res.data : {};
@@ -30,6 +30,6 @@ class MassiveTopService extends AbstractService {
   }
 }
 
-export const massiveTopService = new MassiveTopService(
-  "/regedit/toponimi-list"
+export const massiveTopValService = new MassiveTopValService(
+  "/regedit/toponimi-validate"
 );
