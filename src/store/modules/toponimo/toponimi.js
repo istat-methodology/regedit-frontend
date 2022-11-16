@@ -8,6 +8,7 @@ const state = {
   filterTopProvincia: null,
   filterToponimo: null,
   filterTopValidazione: null,
+  filterTopSoglia: null,
   /* filterDate: null,
   sortComune: null,
   sortAddress: null,
@@ -47,6 +48,9 @@ const mutations = {
   SET_FILTER_COMUNE(state, comune) {
     state.filterTopComune = comune;
   },
+  SET_FILTER_SOGLIA(state, soglia) {
+    state.filterTopSoglia = soglia;
+  },
   SET_FILTER_TOPONIMO(state, toponimo) {
     state.filterToponimo = toponimo;
   },
@@ -78,7 +82,9 @@ const actions = {
   setFilterTopValidazione: ({ commit }, validazione) => {
     commit("SET_FILTER_VALIDAZIONE", validazione);
   },
-
+  setFilterTopSoglia: ({ commit }, soglia) => {
+    commit("SET_FILTER_SOGLIA", soglia);
+  },
   /* setFilterDate: ({ commit }, address) => {
     commit("SET_FILTER_DATE", address);
   },
@@ -263,6 +269,9 @@ const getters = {
   },
   filterTopProvincia: state => {
     return state.filterTopProvincia;
+  },
+  filterTopSoglia: state => {
+    return state.filterTopSoglia;
   },
   filterToponimo: state => {
     return state.filterToponimo;

@@ -23,10 +23,10 @@
             v-model="comune"
           ></v-select>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <CInput placeholder="Toponimo" v-model="toponimo" />
         </div>
-        <div class="col-1">
+        <div class="col-2">
           <CInput placeholder="Soglia" v-model="soglia" />
         </div>
         <div class="col-2">
@@ -67,11 +67,11 @@ import { mapGetters } from "vuex";
 import ValidazioneMixin from "@/components/mixins/validazione.mixin";
 export default {
   name: "SearchFilterTop",
-  data: function() {
+  /*  data: function() {
     return {
       soglia: ""
     };
-  },
+  }, */
   props: {
     stato: null
   },
@@ -83,7 +83,8 @@ export default {
       "filterTopComune",
       "filterTopProvincia",
       "filterToponimo",
-      "filterTopValidazione"
+      "filterTopValidazione",
+      "filterTopSoglia"
     ]),
     comune: {
       get: function() {
@@ -93,6 +94,15 @@ export default {
         this.$store.dispatch("toponimo/setFilterTopComune", selectedComune);
       }
     },
+    soglia: {
+      get: function() {
+        return this.filterTopSoglia;
+      },
+      set: function(selectedSoglia) {
+        this.$store.dispatch("toponimo/setFilterTopSoglia", selectedSoglia);
+      }
+    },
+
     provincia: {
       get: function() {
         return this.filterTopProvincia;

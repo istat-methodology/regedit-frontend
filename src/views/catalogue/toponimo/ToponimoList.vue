@@ -17,6 +17,7 @@
             items-per-page-select
             :items-per-page="items4page"
             :sorterValue="sorterValue"
+            @row-clicked="handleSoglia"
             @filtered-items-change="sortChange"
             hover
             pagination
@@ -113,6 +114,9 @@ export default {
         params: { state: this.$route.params.state }
       });
       console.log(index);
+    },
+    handleSoglia(toponimo) {
+      this.$store.dispatch("toponimo/setFilterTopSoglia", toponimo.sogliaW);
     },
     handleFilter() {
       this.$store.dispatch(
