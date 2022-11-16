@@ -6,6 +6,7 @@
     <div class="col-12" v-else>
       <app-search-filter-top
         @filter="handleFilter"
+        @validate="handleValidate"
         :stato="this.$route.params.state"
       />
       <div class="card fade-in">
@@ -123,6 +124,20 @@ export default {
         "toponimo/findByUserAndState",
         this.$route.params.state
       );
+    },
+    handleValidate() {
+      var toponimoList = [];
+      var payload;
+      toponimoList = this.getSelected(this.toponimi);
+      payload = {
+        toponimoList: toponimoList
+      };
+      this.$store.dispatch("massiveTopVal/update", payload).then(() => {
+        this.$store.dispatch(
+          "toponimo/findByUserAndState",
+          this.$route.params.state
+        );
+      });
     },
     load(state) {
       this.$store.dispatch("coreui/setContext", state);

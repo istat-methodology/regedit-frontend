@@ -20,6 +20,7 @@ import { elencoComuni } from "./modules/comuni/comuni";
 import { elencoProvince } from "./modules/province/province";
 import { massive } from "./modules/massive/massive";
 import { massiveTop } from "./modules/massive/massiveTop";
+import { massiveTopVal } from "./modules/massive/massiveTopVal";
 import { customswitch } from "./modules/switch/customswitch";
 
 Vue.use(Vuex);
@@ -44,6 +45,7 @@ export default new Vuex.Store({
     elencoProvince,
     massive,
     massiveTop,
+    massiveTopVal,
     customswitch,
     role
   }
