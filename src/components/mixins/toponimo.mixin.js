@@ -264,6 +264,14 @@ export default {
       console.log(selezionati);
       return selezionati;
     },
+    getToValidate(toponimi) {
+      var selezionati = [];
+      toponimi.forEach(element => {
+        selezionati.push(element.progressivoToponimo);
+      });
+      console.log(selezionati);
+      return selezionati;
+    },
     getCompletedMessage(comune, toponimo) {
       return "Complimenti hai completato "
         .concat(comune ? comune.denominazioneComune + ", " : " ")

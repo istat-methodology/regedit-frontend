@@ -76,7 +76,7 @@ export default {
     updateSelected(dug, duf, note) {
       var payload;
       var toponimoList = [];
-      toponimoList = this.getSelected(this.toponimo);
+      toponimoList = this.getSelected(this.toponimi);
 
       payload = {
         dug: dug != null ? dug : "",
@@ -128,7 +128,7 @@ export default {
     handleValidate() {
       var toponimoList = [];
       var payload;
-      toponimoList = this.getSelected(this.toponimi);
+      toponimoList = this.getToValidate(this.toponimi);
       payload = {
         toponimoList: toponimoList
       };
