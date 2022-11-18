@@ -137,6 +137,7 @@ export default {
           "toponimo/findByUserAndState",
           this.$route.params.state
         );
+        this.$store.dispatch("progressTop/findByUser");
       });
     },
     load(state) {
