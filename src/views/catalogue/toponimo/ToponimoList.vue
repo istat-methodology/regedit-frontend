@@ -85,12 +85,10 @@ export default {
         toponimoList: toponimoList
       };
       this.$store.dispatch("massive/update", payload).then(() => {
-        this.$store.dispatch("toponimo/setFilterTopSoglia", null).then(() => {
-          this.$store.dispatch(
-            "toponimo/findByUserAndState",
-            this.$route.params.state
-          );
-        });
+        this.$store.dispatch(
+          "toponimo/findByUserAndState",
+          this.$route.params.state
+        );
       });
       console.log(toponimoList.toString + "-" + dug + "-" + duf + "-" + note);
     },
@@ -135,10 +133,12 @@ export default {
         toponimoList: toponimoList
       };
       this.$store.dispatch("massiveTopVal/update", payload).then(() => {
-        this.$store.dispatch(
-          "toponimo/findByUserAndState",
-          this.$route.params.state
-        );
+        this.$store.dispatch("toponimo/setFilterTopSoglia", null).then(() => {
+          this.$store.dispatch(
+            "toponimo/findByUserAndState",
+            this.$route.params.state
+          );
+        });
         this.$store.dispatch("progressTop/findByUser");
       });
     },
