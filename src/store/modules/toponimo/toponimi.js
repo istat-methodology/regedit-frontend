@@ -131,7 +131,9 @@ const actions = {
           stateId,
           state.filterTopComune ? state.filterTopComune.proCom : null,
           state.filterToponimo,
-          state.filterTopValidazione ? state.filterTopValidazione.value : null
+          state.filterTopValidazione ? state.filterTopValidazione.value : null,
+          state.filterTopProvincia ? state.filterTopProvincia.value : null,
+          state.filterTopSoglia ? state.filterTopSoglia.value : null
         )
         .then(data => {
           //console.log(data);
