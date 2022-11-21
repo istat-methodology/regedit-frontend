@@ -7,7 +7,7 @@ class ToponimoService extends AbstractService {
     super(endpoint);
   }
 
-  findByUserAndState(user, state, procom, toponimo, validazione) {
+  findByUserAndState(user, state, procom, toponimo, validazione, soglia) {
     return axiosRegedit
       .get(this.endpoint, {
         params: {
@@ -17,7 +17,8 @@ class ToponimoService extends AbstractService {
           toponimoOriginaleContains: toponimo,
           orderBy: "denominazioneProvincia, sogliaW",
           sort: "DESC, DESC",
-          validazione: state == 2 ? validazione : null
+          validazione: state == 2 ? validazione : null,
+          soglia: soglia
         }
       })
       .then(res => {
@@ -30,7 +31,7 @@ class ToponimoService extends AbstractService {
       });
   }
 
-  findNextToponimo(user, state, procom, toponimo, validazione) {
+  findNextToponimo(user, state, procom, toponimo, validazione, soglia) {
     return axiosRegedit
       .get(this.endpoint + "/first-toponimo/user/" + user + "/state/" + state, {
         params: {
@@ -38,7 +39,8 @@ class ToponimoService extends AbstractService {
           toponimoOriginaleContains: toponimo,
           orderBy: "denominazioneProvincia, sogliaW",
           sort: "DESC, DESC",
-          validazione: state == 2 ? validazione : null
+          validazione: state == 2 ? validazione : null,
+          soglia: soglia
           /*     // eslint-disable-next-line prettier/prettier
           orderBy: state > 1 ? 'dataMod' : null,
           // eslint-disable-next-line prettier/prettier
