@@ -134,7 +134,7 @@ const actions = {
           state.filterTopValidazione ? state.filterTopValidazione.value : null,
           state.filterTopSoglia ? state.filterTopSoglia : null,
           state.filterTopProvincia ? state.filterTopProvincia.value : null,
-          state.filterTopSoglia
+          state.filterTopSoglia ? state.filterTopSoglia : null
         )
         .then(data => {
           //console.log(data);
@@ -174,6 +174,7 @@ const actions = {
           state.filterTopComune ? state.filterTopComune.proCom : null,
           state.filterToponimo,
           state.filterTopValidazione ? state.filterTopValidazione.value : null,
+          state.filterTopProvincia ? state.filterTopProvincia.value : null,
           state.filterTopSoglia ? state.filterTopSoglia : null
         )
         .then(data => {
