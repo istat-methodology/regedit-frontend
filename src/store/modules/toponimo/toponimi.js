@@ -51,6 +51,9 @@ const mutations = {
   SET_FILTER_SOGLIA(state, soglia) {
     state.filterTopSoglia = soglia;
   },
+  SET_FILTER_PROVINCIA(state, provincia) {
+    state.filterTopProvincia = provincia;
+  },
   SET_FILTER_TOPONIMO(state, toponimo) {
     state.filterToponimo = toponimo;
   },
@@ -84,6 +87,9 @@ const actions = {
   },
   setFilterTopSoglia: ({ commit }, soglia) => {
     commit("SET_FILTER_SOGLIA", soglia);
+  },
+  setFilterTopProvincia: ({ commit }, provincia) => {
+    commit("SET_FILTER_PROVINCIA", provincia);
   },
   /* setFilterDate: ({ commit }, address) => {
     commit("SET_FILTER_DATE", address);
