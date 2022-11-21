@@ -22,7 +22,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: "CustomSwitch",
+  name: "HeaderSwitch",
   /*  props: {
     statoSwitch: Boolean
   }, */

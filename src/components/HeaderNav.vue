@@ -1,6 +1,26 @@
 <template>
   <div class="c-subheader-nav mfe-2">
-    <custom-switch @toggleSwitch="onSwitch"></custom-switch>
+    <!-- <header-switch @toggleSwitch="onSwitch"></header-switch> -->
+    <div class="c-subheader-nav mfe-2">
+      <CButton
+        v-if="isToponimi"
+        shape="square"
+        variant="outline"
+        size="sm"
+        color="success"
+        @click="Switch"
+        >Toponimi</CButton
+      >
+      <CButton
+        v-else
+        shape="square"
+        variant="outline"
+        size="sm"
+        color="primary"
+        @click="Switch"
+        >Indirizzi</CButton
+      >
+    </div>
     <template v-if="isSupervisor">
       <span class="revisore">Revisore:</span>
       <span v-if="isToponimi" class="revisore-name pl-1 pr-2">
@@ -26,7 +46,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import HeaderSwitch from "@/components/HeaderSwitch";
+//import HeaderSwitch from "@/components/HeaderSwitch";
 export default {
   name: "HeaderNav",
   data: function() {
@@ -36,9 +56,9 @@ export default {
       shape: "square"
     };
   },
-  components: {
-    "custom-switch": HeaderSwitch
-  },
+  /* components: {
+    "header-switch": HeaderSwitch
+  }, */
   computed: {
     ...mapGetters("coreui", ["isHome"]),
     ...mapGetters("auth", ["isSupervisor", "isReviewer"]),
@@ -47,7 +67,7 @@ export default {
     ...mapGetters("customswitch", ["isToponimi"])
   },
   methods: {
-    onSwitch() {
+    Switch() {
       //console.log(checkval);
       if (this.$route.path != "/") {
         this.$router.push("/").catch(() => {});
