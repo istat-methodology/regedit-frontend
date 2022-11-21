@@ -41,7 +41,7 @@ export default {
     "app-sidebar-toponimi": SidebarToponimi,
     "app-toast": Toast
   },
-  beforecreated() {
+  created() {
     this.$store.dispatch("coreui/clearContext");
     //this.$store.dispatch("customswitch/setToponimi", this.isToponimi);
   }
