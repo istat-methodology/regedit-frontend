@@ -1,14 +1,18 @@
 <template>
-  <div v-if="isSupervisor && isToponimi === false">
+  <div v-if="isSupervisor && (isToponimi === false || isToponimi === 'false')">
     <app-landing-supervisor />
   </div>
-  <div v-else-if="isReviewer && isToponimi === false">
+  <div
+    v-else-if="isReviewer && (isToponimi === false || isToponimi === 'false')"
+  >
     <app-landing-reviewer />
   </div>
-  <div v-else-if="isSupervisor && isToponimi === true">
+  <div
+    v-else-if="isSupervisor && (isToponimi === true || isToponimi === 'true')"
+  >
     <app-landing-supervisor-top />
   </div>
-  <div v-else-if="isReviewer && isToponimi === true">
+  <div v-else-if="isReviewer && (isToponimi === true || isToponimi === 'true')">
     <app-landing-reviewer-top />
   </div>
   <div class="row" v-else-if="isToponimi === false">

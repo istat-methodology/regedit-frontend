@@ -3,7 +3,7 @@
     <!-- <header-switch @toggleSwitch="onSwitch"></header-switch> -->
     <div class="c-subheader-nav mfe-2">
       <CButton
-        v-if="isToponimi"
+        v-if="isToponimi === true || isToponimi === 'true'"
         shape="square"
         variant="outline"
         size="sm"
