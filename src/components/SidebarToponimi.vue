@@ -108,7 +108,7 @@
             </a>
           </router-link>
         </li>
-        <li class="c-sidebar-nav-title">Modifiche in blocco</li>
+        <!-- <li class="c-sidebar-nav-title">Modifiche in blocco</li>
         <li class="c-sidebar-nav-item">
           <router-link
             :to="{ name: 'ToponimoBlock', params: { state: 1 } }"
@@ -142,26 +142,7 @@
               >
             </a>
           </router-link>
-        </li>
-        <!--li class="c-sidebar-nav-title">
-          Revisioni in blocco <small class="pl-1">{{ assignedName }}</small>
-        </li>
-        <li class="c-sidebar-nav-item">
-          <router-link
-            :to="{ name: 'AddressBlock', params: { state: 1 } }"
-            class="c-sidebar-nav-link"
-            :class="{ 'c-active c-active-primary': isBlock }"
-            custom
-            v-slot="{ href, navigate }"
-          >
-            <a :href="href" @click="navigate">
-              <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Da lavorare
-              <span class="badge badge-primary"
-                >{{ daLavorare }} / {{ total }}</span
-              >
-            </a>
-          </router-link>
-        </li-->
+        </li> -->
       </template>
     </ul>
   </CSidebar>
