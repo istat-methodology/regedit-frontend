@@ -49,6 +49,7 @@
           >
           <CButton
             style="margin-left: 20px"
+            v-if="stato == 1"
             shape="square"
             size="sm"
             color="success"
