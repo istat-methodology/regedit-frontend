@@ -38,7 +38,7 @@
             placeholder="Validazione"
           ></v-select>
         </div>
-        <div class="col-2">
+        <div class="col-1">
           <CButton
             shape="square"
             size="sm"
@@ -47,6 +47,8 @@
             @click="$emit('filter')"
             >Filtra</CButton
           >
+        </div>
+        <div class="col-1">
           <CButton
             style="margin-left: 20px"
             v-if="stato == 1"
@@ -55,7 +57,7 @@
             color="success"
             class="mt-1"
             @click="$emit('validate')"
-            >Valida Tutti</CButton
+            >Valida</CButton
           >
         </div>
       </div>
