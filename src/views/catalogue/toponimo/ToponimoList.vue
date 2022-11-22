@@ -134,10 +134,11 @@ export default {
       };
       this.$store.dispatch("massiveTopVal/update", payload).then(() => {
         this.$store.dispatch("toponimo/setFilterTopSoglia", null).then(() => {
-          this.$store.dispatch(
-            "toponimo/findByUserAndState",
-            this.$route.params.state
-          );
+          this.$store
+            .dispatch("toponimo/findByUserAndState", this.$route.params.state)
+            .then(() => {
+              this.$store.dispatch("progressTop/findByUser");
+            });
         });
       });
     },
