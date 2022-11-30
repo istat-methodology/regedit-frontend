@@ -27,7 +27,7 @@
           </a>
         </router-link>
       </li>
-      <template v-if="isSupervisor">
+      <!-- <template v-if="isSupervisor">
         <li class="c-sidebar-nav-title">Report</li>
         <li class="c-sidebar-nav-item">
           <router-link
@@ -55,7 +55,7 @@
             </a>
           </router-link>
         </li>
-      </template>
+      </template> -->
       <template v-if="isReviewer || assignedTopId > 0">
         <li class="c-sidebar-nav-title">
           Toponimi <small class="pl-1">{{ assignedTopName }}</small>
