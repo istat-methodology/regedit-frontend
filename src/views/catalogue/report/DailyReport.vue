@@ -261,7 +261,7 @@ export default {
     this.$store.dispatch("coreui/setContext", Context.DailyReport);
     // this.$store.dispatch("daily/findAll");
     //this.$store.dispatch("user/findAll");
-    this.$store.dispatch("users/findAllUsers");
+    this.$store.dispatch("user/findAllUsers");
     this.$store.dispatch("pivot/findByDateTotal", payload);
     /* this.$store.dispatch("pivot/findByDateTotal", this.startdate, this.enddate); */
   }
