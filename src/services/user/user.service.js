@@ -24,11 +24,7 @@ class UserService extends AbstractService {
   }
   findAllUsers() {
     return axiosRegedit
-      .get(this.endpoint, {
-        params: {
-          role: null
-        }
-      })
+      .get("/regedit/users")
       .then(res => {
         var data = res.data ? res.data : [];
         //console.log(data);
