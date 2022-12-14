@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("toponimo", ["toponimi"])
+    ...mapGetters("toponimo", ["toponimi", "filterTopProvincia"])
   },
   methods: {
     updateSelected(dug, duf, note) {
@@ -143,11 +143,12 @@ export default {
       });
     },
     load(state) {
+      let payload = { state: state, provincia: this.filterTopProvincia };
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("toponimo/clearTop");
       this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progressTop/findByUser");
-      this.$store.dispatch("elencoComuni/findTopComuniByUserAndState", state);
+      this.$store.dispatch("elencoComuni/findTopComuniByUserAndState", payload);
       this.$store.dispatch(
         "elencoProvince/findTopProvinceByUserAndState",
         state

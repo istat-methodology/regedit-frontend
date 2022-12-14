@@ -57,12 +57,12 @@ const actions = {
         });
     }
   },
-  findTopComuniByUserAndState({ commit }, state) {
+  findTopComuniByUserAndState({ commit }, payload) {
     //get user from store
     let userId = getUserId();
     if (userId > 0) {
       return comuniService
-        .findTopComuniByUserAndState(userId, state)
+        .findTopComuniByUserAndState(userId, payload.state, payload.provincia)
         .then(data => {
           //console.log(data);
           commit("SET_COMUNI", data);
