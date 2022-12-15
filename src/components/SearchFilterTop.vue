@@ -12,6 +12,7 @@
             :options="province"
             placeholder="Tutte le Province"
             v-model="provincia"
+            @input="changedValueProvincia"
           ></v-select>
         </div>
         <div class="col-2">
@@ -90,6 +91,22 @@ export default {
     stato: null
   },
   mixins: [ValidazioneMixin],
+  methods: {
+    changedValueProvincia: function() {
+      //alert("A new value was selected");
+      let provinciaSelected = null;
+
+      if (this.filterTopProvincia) {
+        provinciaSelected = this.filterTopProvincia.denominazioneProvincia;
+      }
+
+      let payload = {
+        state: this.$route.params.state,
+        provincia: provinciaSelected
+      };
+      this.$store.dispatch("elencoComuni/findTopComuniByUserAndState", payload);
+    }
+  },
   computed: {
     ...mapGetters("elencoComuni", ["comuni"]),
     ...mapGetters("elencoProvince", ["province"]),

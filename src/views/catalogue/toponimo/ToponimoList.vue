@@ -23,7 +23,6 @@
             hover
             pagination
             sorter
-            clickableRows="true"
           >
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
@@ -144,7 +143,13 @@ export default {
       });
     },
     load(state) {
-      let payload = { state: state, provincia: this.filterTopProvincia };
+      let payload = {
+        state: state,
+        provincia:
+          this.filterTopProvincia != null
+            ? this.filterTopProvincia.denominazioneProvincia
+            : null
+      };
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("toponimo/clearTop");
       this.$store.dispatch("toponimo/findByUserAndState", state);
