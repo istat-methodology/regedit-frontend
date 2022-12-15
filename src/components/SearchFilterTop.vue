@@ -48,6 +48,17 @@
             >Filtra</CButton
           >
         </div>
+        <!--  <div class="col-1">
+          <CButton
+            v-if="stato == 2"
+            shape="square"
+            size="sm"
+            color="none"
+            class="mt-1"
+            @click="$emit('export')"
+            >CSV</CButton
+          >
+        </div> -->
         <div class="col-1">
           <CButton
             style="margin-left: 20px"
