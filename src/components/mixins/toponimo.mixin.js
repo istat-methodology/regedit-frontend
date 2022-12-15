@@ -41,12 +41,6 @@ export default {
           filter: false
         },
         {
-          key: "localitaProb",
-          label: "Località Suggerita",
-          _style: "min-width:20%;",
-          filter: false
-        },
-        {
           key: "dugProb",
           label: "Dug Suggerita",
           _style: "min-width:5%;",
@@ -56,6 +50,12 @@ export default {
           key: "dufProb",
           label: "Duf Suggerita",
           _style: "min-width:5%;",
+          filter: false
+        },
+        {
+          key: "localitaProb",
+          label: "Località Suggerita",
+          _style: "min-width:20%;",
           filter: false
         },
         {
