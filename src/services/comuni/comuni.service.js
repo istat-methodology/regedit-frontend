@@ -60,13 +60,14 @@ class ComuniService extends AbstractService {
         });
     }
   }
-  findTopComuniByUserAndState(user, state) {
+  findTopComuniByUserAndState(user, state, provincia) {
     {
       return axiosRegedit
         .get(this.endpoint + "/toponimi-comuni", {
           params: {
             user: user,
-            stato: state
+            stato: state,
+            provincia: provincia
           }
         })
         .then(res => {
