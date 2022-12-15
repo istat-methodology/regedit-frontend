@@ -23,8 +23,8 @@ class ToponimoService extends AbstractService {
           stato: state,
           proCom: procom,
           toponimoOriginaleContains: toponimo,
-          orderBy: "denominazioneProvincia, sogliaW",
-          sort: "DESC, DESC",
+          orderBy: "sogliaW",
+          sort: "DESC",
           validazione: state == 2 ? validazione : null,
           provincia: provincia,
           soglia: soglia
@@ -54,8 +54,10 @@ class ToponimoService extends AbstractService {
         params: {
           proCom: procom,
           toponimoOriginaleContains: toponimo,
-          orderBy: "denominazioneProvincia, sogliaW",
-          sort: "DESC, DESC",
+          /* orderBy: "denominazioneProvincia, sogliaW",
+          sort: "DESC, DESC", */
+          orderBy: "sogliaW",
+          sort: "DESC",
           validazione: state == 2 ? validazione : null,
           provincia: provincia,
           soglia: soglia
