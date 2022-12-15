@@ -23,6 +23,7 @@
             hover
             pagination
             sorter
+            clickableRows
           >
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
