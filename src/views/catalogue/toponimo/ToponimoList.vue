@@ -17,7 +17,6 @@
             column-filter
             items-per-page-select
             :items-per-page="items4page"
-            :sorterValue="sorterValue"
             @row-clicked="handleSoglia"
             @filtered-items-change="sortChange"
             hover
