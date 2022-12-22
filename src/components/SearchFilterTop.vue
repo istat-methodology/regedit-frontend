@@ -150,7 +150,12 @@ export default {
         return this.filterToponimo;
       },
       set: function(selectedToponimo) {
-        this.$store.dispatch("toponimo/setFilterToponimo", selectedToponimo);
+        let topValue = null;
+        if (selectedToponimo != "") {
+          topValue = selectedToponimo;
+        }
+
+        this.$store.dispatch("toponimo/setFilterToponimo", topValue);
       }
     },
     validazione: {

@@ -25,15 +25,15 @@
         <span class="mb-2">{{ toponimoPrint }}</span>
       </div>
       <div>
-        <label>Località</label>
+        <label>Località Suggerita</label>
         <span>{{ toponimo.localitaProb | dashEmpty }}</span>
       </div>
       <div>
-        <label>Dug</label>
+        <label>Dug Suggerito</label>
         <span>{{ toponimo.dugProb | dashEmpty }}</span>
       </div>
       <div>
-        <label>Duf</label>
+        <label>Duf Suggerito</label>
         <span>{{ toponimo.dufProb | dashEmpty }}</span>
       </div>
       <div>

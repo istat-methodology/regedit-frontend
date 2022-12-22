@@ -49,13 +49,13 @@
         <span>{{ toponimo.denominazioneComune | dashEmpty }}</span>
       </div>
       <div>
-        <label>Località</label>
+        <label>Località Originale</label>
         <span>{{ toponimo.localitaOriginale | dashEmpty }}</span>
       </div>
-      <div>
+      <!-- <div>
         <label>Toponimo</label>
         <span>{{ toponimo.indirizzoOriginale | dashEmpty }}</span>
-      </div>
+      </div> -->
       <div>
         <label>Dug Originale</label>
         <span>{{ toponimo.dugOrig | dashEmpty }}</span>

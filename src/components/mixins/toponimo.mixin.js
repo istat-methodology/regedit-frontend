@@ -23,12 +23,12 @@ export default {
         { key: "denominazioneProvincia", label: "Provincia", filter: false },
         { key: "denominazioneComune", label: "Comune", filter: false },
         {
-          key: "localitaOrig",
-          label: "Località Originale",
+          key: "toponimoOrig",
+          label: "Toponimo Originale",
           _style: "min-width:20%;",
           filter: false
         },
-        {
+        /* {
           key: "dugOrig",
           label: "Dug Originale",
           _style: "min-width:5%;",
@@ -39,8 +39,8 @@ export default {
           label: "Duf Originale",
           _style: "min-width:5%;",
           filter: false
-        },
-        {
+        }, */
+        /*  {
           key: "dugProb",
           label: "Dug Suggerita",
           _style: "min-width:5%;",
@@ -51,10 +51,10 @@ export default {
           label: "Duf Suggerita",
           _style: "min-width:5%;",
           filter: false
-        },
+        }, */
         {
-          key: "localitaProb",
-          label: "Località Suggerita",
+          key: "toponimoProb",
+          label: "Toponimo Suggerito",
           _style: "min-width:20%;",
           filter: false
         },
@@ -164,24 +164,13 @@ export default {
       if (toponimo === null) return "";
       switch (type) {
         case this.toponimoType.Original:
-          return (toponimo.indirizzoOriginale
-            ? toponimo.indirizzoOriginale
-            : ""
-          ).concat(
-            toponimo.localitaOriginale ? ", " + toponimo.localitaOriginale : ""
-          );
+          return toponimo.toponimoOrig ? ", " + toponimo.toponimoOrig : "";
         case this.toponimoType.Suggested:
-          return (toponimo.dugNorm ? toponimo.dugNorm : "")
-            .concat(toponimo.dufNorm ? " " + toponimo.dufNorm : "")
-            .concat(toponimo.civicoNorm ? " " + toponimo.civicoNorm : "")
-            .concat(toponimo.esponenteNorm ? " " + toponimo.esponenteNorm : "")
-            .concat(toponimo.localitaNorm ? ", " + toponimo.localitaNorm : "");
+          return toponimo.toponimoProb ? toponimo.toponimoProb : "";
+
         case this.toponimoType.Revised:
           return (toponimo.dugVal ? toponimo.dugVal : "")
             .concat(toponimo.dufVal ? " " + toponimo.dufVal : "")
-            .concat(toponimo.civicoVal ? " " + toponimo.civicoVal : "")
-            .concat(toponimo.kmVal ? " " + toponimo.kmVal : "")
-            .concat(toponimo.esponenteVal ? " " + toponimo.esponenteVal : "")
             .concat(toponimo.localitaVal ? ", " + toponimo.localitaVal : "");
         default:
           return "";
@@ -190,15 +179,13 @@ export default {
     getToponimoMessage(toponimo, state) {
       switch (state) {
         case this.toponimoState.Validated:
-          return "Indirizzo " + toponimo.indirizzoOriginale + " validato!";
+          return "Indirizzo " + toponimo.toponimoOrig + " validato!";
         case this.toponimoState.Revised:
           return (
-            "Indirizzo " +
-            toponimo.indirizzoOriginale +
-            " revisionato con successo!"
+            "Indirizzo " + toponimo.toponimoOrig + " revisionato con successo!"
           );
         case this.toponimoState.Skip:
-          return "Indirizzo " + toponimo.indirizzoOriginale + " sospeso!";
+          return "Indirizzo " + toponimo.toponimoOrig + " sospeso!";
         default:
           return "";
       }
