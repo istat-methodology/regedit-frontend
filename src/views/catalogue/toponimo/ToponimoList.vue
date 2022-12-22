@@ -24,6 +24,12 @@
             sorter
             clickableRows
           >
+            <template #toponimoOrig="{item}">
+              <td>{{ item.toponimoOrig | dashEmpty }}</td>
+            </template>
+            <template #toponimoProb="{item}">
+              <td>{{ item.toponimoProb | dashEmpty }}</td>
+            </template>
             <template #dataMod="{item}">
               <td>{{ item.dataMod | formatDate }}</td>
             </template>
