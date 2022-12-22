@@ -6,7 +6,7 @@
     <div class="col-12" v-else>
       <app-search-filter-top
         @filter="handleFilter"
-        @validate="handleValidate"
+        @validate="modalOpen"
         :stato="this.$route.params.state"
       />
       <div class="card fade-in">
@@ -52,6 +52,22 @@
         </CCardBody>
       </div>
     </div>
+    <CModal title="Warning!" :show.sync="warningModal">
+      <template #footer>
+        <CButton shape="square" size="sm" color="light" @click="modalClose">
+          Chiudi
+        </CButton>
+        <CButton
+          shape="square"
+          size="sm"
+          color="primary"
+          @click="handleValidate"
+        >
+          Valida
+        </CButton>
+      </template>
+      Sei sicuro di voler validare tutti gli elementi della lista?
+    </CModal>
   </div>
 </template>
 
@@ -71,7 +87,8 @@ export default {
     return {
       sorterValue: { column: null, asc: false },
       items4page: 50,
-      globalCheck: false
+      globalCheck: false,
+      warningModal: false
     };
   },
   computed: {
@@ -79,6 +96,12 @@ export default {
     ...mapGetters("toponimo", ["toponimi", "filterTopProvincia"])
   },
   methods: {
+    modalOpen() {
+      this.warningModal = true;
+    },
+    modalClose() {
+      this.warningModal = false;
+    },
     updateSelected(dug, duf, note) {
       var payload;
       var toponimoList = [];
@@ -147,6 +170,7 @@ export default {
             });
         });
       });
+      this.warningModal = false;
     },
     load(state) {
       let payload = {
