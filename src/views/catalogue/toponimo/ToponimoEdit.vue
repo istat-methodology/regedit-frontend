@@ -109,7 +109,7 @@ export default {
       this.$store.dispatch("toponimo/open", top).then(() => {
         this.$store.dispatch(
           "message/success",
-          "L'indirizzo " + top.toponimoOriginale + " può essere modificato!"
+          "L'indirizzo " + top.toponimoOrig + " può essere modificato!"
         );
       });
     },
