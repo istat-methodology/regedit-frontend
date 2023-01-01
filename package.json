@@ -30,11 +30,11 @@
   "devDependencies": {
     "@mdi/font": "^5.9.55",
     "@types/vuelidate": "^0.7.15",
-    "@vue/cli-plugin-babel": "~4.2.0",
-    "@vue/cli-plugin-eslint": "~4.2.0",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-plugin-router": "~4.2.0",
     "@vue/cli-plugin-vuex": "~4.2.0",
-    "@vue/cli-service": "^4.2.3",
+    "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
@@ -43,7 +43,7 @@
     "node-sass": "^7.0",
     "prettier": "^1.19.1",
     "sass": "^1.32.7",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^13.2.0",
     "vue-template-compiler": "^2.6.12"
   }
 }
