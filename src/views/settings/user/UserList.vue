@@ -132,7 +132,8 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("user/findAll");
+    //this.$store.dispatch("user/findAll");
+    this.$store.dispatch("user/findAllUsers");
     this.$store.dispatch("role/findAll");
   }
 };
