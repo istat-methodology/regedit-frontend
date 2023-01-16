@@ -13,7 +13,6 @@ import "@/assets/icons/material";
 import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
-
 //CoreUI components
 import "@/coreui";
 
@@ -22,7 +21,7 @@ Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 Vue.use(VueSpinners);
 Vue.component("v-select", vSelect);
-
+// eslint-disable-next-line no-undef
 //Vue filters
 Vue.filter("dashEmpty", value => {
   return value == null || value == "" ? "-" : value;
