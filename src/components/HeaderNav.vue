@@ -7,7 +7,7 @@
         <img src="download_icon.png" />
       </download-csv> -->
       <vue-blob-json-csv
-        v-if="toponimi"
+        v-if="toponimi && isToponimi & (this.$route.params.state == 2)"
         @success="handleSuccess"
         @error="handleError"
         file-type="csv"
