@@ -1,23 +1,23 @@
 <template>
   <div class="c-subheader-nav mfe-2">
     <!-- <header-switch @toggleSwitch="onSwitch"></header-switch> -->
+    <div class="c-subheader-nav mfe-2" v-if="this.$route.params.state == 2">
+      <vue-blob-json-csv
+        file-type="csv"
+        file-name="toponimi"
+        tag-name="i"
+        :data="toponimi"
+        title="Download CSV"
+        confirm="Confermi il download?"
+      >
+      </vue-blob-json-csv>
+    </div>
+
     <div class="c-subheader-nav mfe-2">
       <!-- <download-csv :data="json_data">
         Download Data
         <img src="download_icon.png" />
       </download-csv> -->
-      <vue-blob-json-csv
-        v-if="toponimi && isToponimi & (this.$route.params.state == 2)"
-        @success="handleSuccess"
-        @error="handleError"
-        file-type="csv"
-        file-name="toponimi"
-        tag-name="div"
-        :data="toponimi"
-        title="Download CSV"
-        confirm="Do you want to download it?"
-      >
-      </vue-blob-json-csv>
       <!-- <vue-blob-json-csv
         @success="handleSuccess"
         @error="handleError"
