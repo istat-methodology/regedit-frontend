@@ -22,6 +22,7 @@ import { massive } from "./modules/massive/massive";
 import { massiveTop } from "./modules/massive/massiveTop";
 import { massiveTopVal } from "./modules/massive/massiveTopVal";
 import { customswitch } from "./modules/switch/customswitch";
+import { csv } from "./modules/exportCSV/exportCSV";
 
 Vue.use(Vuex);
 
@@ -47,6 +48,7 @@ export default new Vuex.Store({
     massiveTop,
     massiveTopVal,
     customswitch,
-    role
+    role,
+    csv
   }
 });

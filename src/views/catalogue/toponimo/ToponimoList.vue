@@ -182,6 +182,7 @@ export default {
       };
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("toponimo/clearTop");
+      this.$store.dispatch("csv/exportCSV");
       this.$store.dispatch("toponimo/findByUserAndState", state);
       this.$store.dispatch("progressTop/findByUser");
       this.$store.dispatch("elencoComuni/findTopComuniByUserAndState", payload);

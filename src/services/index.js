@@ -14,3 +14,4 @@ export * from "./province/province.service";
 export * from "./massive/massive.service";
 export * from "./massive/massiveTop.service";
 export * from "./massive/massiveTopVal.service";
+export * from "./exportCSV/exportCSV.service";

@@ -1,12 +1,15 @@
 <template>
   <div class="c-subheader-nav mfe-2">
     <!-- <header-switch @toggleSwitch="onSwitch"></header-switch> -->
-    <div class="c-subheader-nav mfe-2" v-if="this.$route.params.state == 2">
+    <div
+      class="c-subheader-nav mfe-2"
+      v-if="this.$route.params.state == 2 && exportCSV && isSupervisor"
+    >
       <vue-blob-json-csv
         file-type="csv"
-        file-name="toponimi"
+        file-name="ElencoToponimi"
         tag-name="i"
-        :data="toponimi"
+        :data="exportCSV"
         title="Download CSV"
         confirm="Confermi il download?"
       >
@@ -121,7 +124,7 @@ export default {
     ...mapGetters("address", ["assignedId", "assignedName"]),
     ...mapGetters("toponimo", ["assignedTopId", "assignedTopName"]),
     ...mapGetters("customswitch", ["isToponimi"]),
-    ...mapGetters("toponimo", ["toponimi"])
+    ...mapGetters("csv", ["exportCSV"])
   },
   methods: {
     Switch() {
