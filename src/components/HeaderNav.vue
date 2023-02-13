@@ -11,7 +11,7 @@
         tag-name="i"
         :data="exportCSV"
         title="Download CSV"
-        confirm="Confermi il download?"
+        confirm="Desideri confermare il download?"
       >
       </vue-blob-json-csv>
     </div>
