@@ -11,10 +11,10 @@ const mutations = {
 };
 
 const actions = {
-  exportCSV({ commit }) {
+  async exportCSV({ commit }) {
     //get user from store
 
-    return exportCSVService
+    return await exportCSVService
       .getCSV()
       .then(data => {
         commit("SET_EXPORTCSV", data);
