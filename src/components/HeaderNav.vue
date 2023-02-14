@@ -136,12 +136,6 @@ export default {
       if (data) exportFromJSON({ data, fileName, exportType, delimiter });
       this.warningModal = false;
     },
-    modalOpen() {
-      this.warningModal = true;
-    },
-    modalClose() {
-      this.warningModal = false;
-    },
     Switch() {
       //console.log(checkval);
       if (this.$route.path != "/") {
