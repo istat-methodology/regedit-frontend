@@ -128,7 +128,7 @@ export default {
   },
   methods: {
     downloadFile() {
-      const data = this.json_data;
+      const data = this.exportCSV;
       const fileName = "Toponimi";
       const exportType = exportFromJSON.types.csv;
       const delimiter = ";";
