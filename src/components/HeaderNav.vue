@@ -5,15 +5,17 @@
       class="c-subheader-nav mfe-2"
       v-if="this.$route.params.state == 2 && exportCSV && isSupervisor"
     >
-      <vue-blob-json-csv
+      <!-- <vue-blob-json-csv
         file-type="csv"
         file-name="ElencoToponimi"
         tag-name="i"
-        :data="exportCSV"
+        :data="json_data"
         title="Download CSV"
         confirm="Desideri confermare il download?"
       >
-      </vue-blob-json-csv>
+      </vue-blob-json-csv> -->
+
+      <div @click="downloadFile()" class="np-btn">Download CSV</div>
     </div>
 
     <div class="c-subheader-nav mfe-2">
@@ -76,15 +78,13 @@
 <script>
 import { mapGetters } from "vuex";
 import toponimoMixin from "@/components/mixins/toponimo.mixin";
+import exportFromJSON from "export-from-json";
 //import VueCsvDownloader from "vue-csv-downloader";
-import Vue from "vue";
+//import Vue from "vue";
 /* import JsonCSV from "vue-json-csv";
 Vue.component("downloadCsv", JsonCSV); */
-
-import VueBlobJsonCsv from "vue-blob-json-csv";
-
-Vue.use(VueBlobJsonCsv);
-
+//import VueBlobJsonCsv from "vue-blob-json-csv";
+//Vue.use(VueBlobJsonCsv);
 //import HeaderSwitch from "@/components/HeaderSwitch";
 export default {
   name: "HeaderNav",
@@ -127,6 +127,21 @@ export default {
     ...mapGetters("csv", ["exportCSV"])
   },
   methods: {
+    downloadFile() {
+      const data = this.json_data;
+      const fileName = "Toponimi";
+      const exportType = exportFromJSON.types.csv;
+      const delimiter = ";";
+
+      if (data) exportFromJSON({ data, fileName, exportType, delimiter });
+      this.warningModal = false;
+    },
+    modalOpen() {
+      this.warningModal = true;
+    },
+    modalClose() {
+      this.warningModal = false;
+    },
     Switch() {
       //console.log(checkval);
       if (this.$route.path != "/") {
