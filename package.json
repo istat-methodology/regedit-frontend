@@ -16,7 +16,7 @@
     "core-js": "^3.8.3",
     "export-from-json": "^1.7.2",
     "file-saver": "^2.0.5",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash.mapkeys": "^4.6.0",
     "lodash.pickby": "^4.6.0",
     "papaparse": "^5.3.2",
