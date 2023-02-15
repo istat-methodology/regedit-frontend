@@ -15,7 +15,7 @@
       >
       </vue-blob-json-csv> -->
 
-      <div @click="downloadFile()" class="np-btn">Download CSV</div>
+      <button @click="downloadFile()" class="np-btn">Download CSV</button>
     </div>
 
     <div class="c-subheader-nav mfe-2">
