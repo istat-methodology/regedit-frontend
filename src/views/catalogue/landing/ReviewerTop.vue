@@ -30,7 +30,7 @@
     <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Indirizzi lavorati</span>
+          <span>Toponimi lavorati</span>
           <span class="badge float-right badge-success"
             >{{ lavorati }} / {{ total }}</span
           >
@@ -50,7 +50,7 @@
     <div class="col-4">
       <div class="card">
         <header class="card-header">
-          <span>Indirizzi sospesi</span>
+          <span>Toponimi sospesi</span>
           <span class="badge float-right badge-warning"
             >{{ sospesi }} / {{ total }}</span
           >
