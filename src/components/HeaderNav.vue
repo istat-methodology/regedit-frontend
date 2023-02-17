@@ -132,9 +132,8 @@ export default {
       const fileName = "Toponimi";
       const exportType = exportFromJSON.types.csv;
       const delimiter = ";";
-
+      this.$store.dispatch("csv/exportCSV");
       if (data) exportFromJSON({ data, fileName, exportType, delimiter });
-      this.warningModal = false;
     },
     Switch() {
       //console.log(checkval);
