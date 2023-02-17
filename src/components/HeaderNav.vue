@@ -15,7 +15,7 @@
       >
       </vue-blob-json-csv> -->
 
-      <div @click="downloadFile()" class="np-btn">Download CSV</div>
+      <button @click="downloadFile()" class="np-btn">Download CSV</button>
     </div>
 
     <div class="c-subheader-nav mfe-2">
@@ -91,6 +91,7 @@ export default {
   mixins: [toponimoMixin],
   data: function() {
     return {
+      nomeFile: "Toponimi",
       switch1: true,
       color: "primary",
       shape: "square",
@@ -129,7 +130,14 @@ export default {
   methods: {
     downloadFile() {
       const data = this.exportCSV;
-      const fileName = "Toponimi";
+      const anno = new Date().getFullYear();
+      const mese =
+        new Date().getMonth().toString().length > 1
+          ? new Date().getMonth().valueOf() + 1
+          : "0" + (new Date().getMonth().valueOf() + 1);
+      const giorno = new Date().getDate();
+      const nome_File = this.nomeFile + anno + mese + giorno;
+      const fileName = nome_File;
       const exportType = exportFromJSON.types.csv;
       const delimiter = ";";
       this.$store.dispatch("csv/exportCSV");
