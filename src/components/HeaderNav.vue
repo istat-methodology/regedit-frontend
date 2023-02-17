@@ -3,7 +3,7 @@
     <!-- <header-switch @toggleSwitch="onSwitch"></header-switch> -->
     <div
       class="c-subheader-nav mfe-2"
-      v-if="this.$route.params.state == 2 && exportCSV && isSupervisor"
+      v-if="this.$route.params.state == 2 && isSupervisor"
     >
       <!-- <vue-blob-json-csv
         file-type="csv"
