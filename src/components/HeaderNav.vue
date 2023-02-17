@@ -128,8 +128,7 @@ export default {
     ...mapGetters("csv", ["exportCSV"])
   },
   methods: {
-    downloadFile() {
-      const data = this.exportCSV;
+    async downloadFile() {
       const anno = new Date().getFullYear();
       const mese =
         new Date().getMonth().toString().length > 1
@@ -140,7 +139,8 @@ export default {
       const fileName = nome_File;
       const exportType = exportFromJSON.types.csv;
       const delimiter = ";";
-      this.$store.dispatch("csv/exportCSV");
+      await this.$store.dispatch("csv/exportCSV");
+      const data = this.exportCSV;
       if (data) exportFromJSON({ data, fileName, exportType, delimiter });
     },
     Switch() {
