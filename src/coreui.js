@@ -28,6 +28,7 @@ import {
   CTextarea,
   CButton,
   CAlert,
+  CForm,
   CDataTable,
   CSwitch
 } from "@coreui/vue";
@@ -61,3 +62,4 @@ Vue.component("CButton", CButton);
 Vue.component("CAlert", CAlert);
 Vue.component("CDataTable", CDataTable);
 Vue.component("CSwitch", CSwitch);
+Vue.component("CForm", CForm);

@@ -99,7 +99,8 @@ export default {
   },
   computed: {
     ...mapGetters("auth", ["isReviewer", "isSupervisor"]),
-    ...mapGetters("customswitch", ["isToponimi"])
+    ...mapGetters("customswitch", ["isToponimi"]),
+    ...mapGetters("elencoProvinceScript", ["provinceScript"])
   },
   created() {
     this.$store.dispatch("coreui/setContext", Context.Home);

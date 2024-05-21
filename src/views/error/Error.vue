@@ -10,7 +10,7 @@
           </p>
         </div>
         <div class="clearfix mb-3">
-          <h4 class="pt-3">Error message:</h4>
+          <h4 class="pt-3">Error message:{{ msg }}</h4>
           <p class="text-muted">{{ msg }}</p>
         </div>
         <div class="clearfix mb-3">

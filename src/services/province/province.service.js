@@ -5,6 +5,66 @@ class ProvinceService extends AbstractService {
   constructor(endpoint) {
     super(endpoint);
   }
+  findProvinceByScript() {
+    {
+      return axiosRegedit
+        .get(this.endpoint + "/province")
+        .then(res => {
+          var data = res.data ? res.data : {};
+          //console.log(data);
+          return data;
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }
+  executeScript(payload) {
+    {
+      console.log("parametri script");
+      console.log(payload.province);
+      console.log(payload.codArchivio);
+      console.log(payload.soglia);
+      return (
+        axiosRegedit
+          //.get(this.endpoint + "/esegui-rscript")
+          .get(
+            this.endpoint +
+              "/esegui-rscript/" +
+              payload.province +
+              " /" +
+              payload.codArchivio +
+              "/" +
+              payload.soglia
+          )
+          .then(res => {
+            var data = res.data ? res.data : {};
+            //console.log(data);
+            return data;
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      );
+    }
+  }
+  findArchivioCodes() {
+    {
+      return (
+        axiosRegedit
+          //.get(this.endpoint + "/esegui-rscript")
+          .get(this.endpoint + "/archivio")
+          .then(res => {
+            var data = res.data ? res.data : {};
+            //console.log(data);
+            return data;
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      );
+    }
+  }
   findProvinceByUser(user) {
     {
       return axiosRegedit

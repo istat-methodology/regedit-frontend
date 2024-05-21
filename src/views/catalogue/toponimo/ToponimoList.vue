@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="this.$route.params.state < 8">
     <div class="col-12" v-if="isLoading">
       <tile></tile>
     </div>
@@ -69,38 +69,363 @@
       Sei sicuro di voler validare tutti gli elementi della lista?
     </CModal>
   </div>
+  <div class="row" v-else>
+    <div class="col-12">
+      <!-- <app-prob-linkage-parameters
+        @runScript="runScript"
+        :stato="this.$route.params.state"
+        :spinnerVisible="this.spinnerVis"
+      /> -->
+      <div class="card fade-in">
+        <CCardHeader
+          ><span class="filter-head"
+            >Parametri Probabilistic Linkage</span
+          ></CCardHeader
+        >
+        <CCardBody>
+          <div class="row col-12">
+            <div class="col-3">
+              <MultiSelect
+                ref="multiSelect"
+                v-if="province"
+                v-model="values"
+                search
+                historyButton
+                :options="options"
+                :filters="filters"
+                :btnLabel="btnLabel"
+                :selectOptions="province"
+              >
+                <template v-slot:option="{ option }">
+                  <input type="checkbox" :checked="option.selected" />
+                  <span>{{ option.name }}</span>
+                </template>
+                ></MultiSelect
+              >
+            </div>
+            <div class="col-3">
+              <v-select
+                v-if="archivioCodes"
+                label="descrizioneArchivio"
+                :options="archivioCodes"
+                placeholder="Codice Archivio"
+                @input="changedCodArchivio"
+                v-model="codArchivio"
+              ></v-select>
+            </div>
+            <div class="col-2">
+              <CInput
+                placeholder="Soglia (default 0.6)"
+                v-model="soglia"
+                :class="{
+                  'is-invalid': $v.soglia.$error
+                }"
+              />
+              <p class="error" v-if="!$v.soglia.validationRule">
+                I valori possibili per questo campo sono soltanto numerici e
+                lunghi al massimo 5 caratteri incluso il punto. Sono ammessi
+                soltanto valori compresi tra 0 e 1.
+              </p>
+            </div>
+
+            <div class="col-2" v-if="isScriptRunning">
+              <CButton shape="square" size="sm" color="primary" disabled>
+                <CSpinner
+                  as="span"
+                  size="sm"
+                  variant="grow"
+                  aria-hidden="true"
+                />
+                Esecuzione in corso...
+              </CButton>
+            </div>
+            <div class="col-2" v-else>
+              <CButton
+                shape="square"
+                size="sm"
+                color="primary"
+                @click="runScript"
+              >
+                Esegui Script
+              </CButton>
+            </div>
+            <div class="col-2">
+              <CButton
+                shape="square"
+                size="sm"
+                color="primary"
+                @click="runScript"
+              >
+                Attiva Rserver
+              </CButton>
+            </div>
+          </div>
+        </CCardBody>
+      </div>
+      <div class="card fade-in">
+        <CTabs variant="pills" :active-tab="0">
+          <CTab title="Elenco Script">
+            <CDataTable
+              :items="elencoScript"
+              :fields="elencoScriptFields"
+              column-filter
+              items-per-page-select
+              :items-per-page="items4pageScript"
+              :sorterValue="sorterValue"
+              @filtered-items-change="sortChange"
+              hover
+              pagination
+              clickableRows
+            >
+              <template #codiciProvincia="{item}">
+                <td>{{ item.codiciProvincia | dashEmpty }}</td>
+              </template>
+              <template #soglia="{item}">
+                <td>{{ ("0" + item.soglia) | dashEmpty }}</td>
+              </template>
+              <template #dataInizio="{item}">
+                <td>{{ item.dataInizio | formatDate }}</td>
+              </template>
+              <template #dataFine="{item}">
+                <td>{{ item.dataFine | formatDate }}</td>
+              </template>
+              <template #stato="{item}">
+                <td>
+                  <CButton
+                    shape="square"
+                    variant="outline"
+                    size="sm"
+                    @click="showToponimoList(item)"
+                    :color="getStatoColorScript(item.stato)"
+                    >{{ getStatoStringScript(item.stato, item.index) }}
+
+                    <CSpinner
+                      v-if="item.stato == 0 && item.index == 1"
+                      as="span"
+                      size="sm"
+                      variant="grow"
+                      aria-hidden="true"
+                    />
+                  </CButton>
+                </td>
+              </template>
+            </CDataTable>
+          </CTab>
+          <CTab title="Elenco Toponimi">
+            <CDataTable
+              :items="tabellaScript"
+              :fields="scriptFields"
+              column-filter
+              items-per-page-select
+              :items-per-page="items4pageScript"
+              :sorterValue="sorterValue"
+              @filtered-items-change="sortChange"
+              hover
+              pagination
+              sorter
+            >
+            </CDataTable>
+          </CTab>
+          <CTab title="Script Output">
+            <CTextarea
+              id="ScriptTextarea"
+              label=""
+              rows="10"
+              :value="returnValueScript"
+              readonly
+            ></CTextarea>
+          </CTab>
+        </CTabs>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import toponimoMixin from "@/components/mixins/toponimo.mixin";
-
+import { CSpinner } from "@coreui/vue";
 import SearchFilterTop from "@/components/SearchFilterTop";
+import vueMultiSelect from "vue-multi-select";
+import "vue-multi-select/dist/lib/vue-multi-select.css";
+import { required, maxLength } from "vuelidate/lib/validators";
+//import ProbLinkageParameters from "@/components/ProbLinkageParameters";
+//import { CNav } from "@coreui/vue";
+//import { CNavItem } from "@coreui/vue";
+//import { CNavLink } from "@coreui/vue";
+import { CTab } from "@coreui/vue";
+import { CTabs } from "@coreui/vue";
 
 export default {
   name: "ToponimoList",
   mixins: [toponimoMixin],
   components: {
-    "app-search-filter-top": SearchFilterTop
+    "app-search-filter-top": SearchFilterTop,
+    CSpinner,
+    MultiSelect: vueMultiSelect,
+    /* CNav,
+    CNavItem,
+    CNavLink */
+    CTab,
+    CTabs
+
+    //"app-prob-linkage-parameters": ProbLinkageParameters
   },
   data() {
     return {
       sorterValue: { column: null, asc: false },
       items4page: 50,
+      items4pageScript: 5,
       globalCheck: false,
-      warningModal: false
+      warningModal: false,
+      spinnerVisible: false,
+      codArchivio: null,
+      soglia: null,
+      tabPaneActiveKey: 1,
+      values: [],
+      returnValueScript: "",
+      intervalId: null,
+      btnLabel: () => "Elenco Province",
+      filters: [
+        {
+          nameAll: "Select all",
+          nameNotAll: "Deselect all",
+          func() {
+            return true;
+          }
+        } /* ,
+        {
+          nameAll: "select <= 10",
+          nameNotAll: "Deselect <= 10",
+          func(elem) {
+            return elem.name <= 10;
+          }
+        },
+        {
+          nameAll: "Select contains 2",
+          nameNotAll: "Deselect contains 2",
+          func(elem) {
+            return elem.name.indexOf("2") !== -1;
+          }
+        } */
+      ],
+      options: {
+        multi: true
+        //groups: true
+      }
     };
   },
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
-    ...mapGetters("toponimo", ["toponimi", "filterTopProvincia"])
+    ...mapGetters("toponimo", ["toponimi", "filterTopProvincia"]),
+    //...mapGetters("valueScript", ["returnValueScript"]),
+    ...mapGetters("scriptRunning", ["isScriptRunning"]),
+    ...mapGetters("elencoProvinceScript", ["provinceScript"]),
+    ...mapGetters("archivio", ["archivioCodes"]),
+    ...mapGetters("tabella", ["tabellaScript"]),
+    ...mapGetters("elenco", ["elencoScript"]),
+
+    province: {
+      get: function() {
+        return this.provinceScript;
+      }
+      /* ,
+      set: function(selectedProvincia) {
+        this.$store.dispatch(
+          "toponimo/setFilterTopProvincia",
+          selectedProvincia
+        );
+      } */
+    }
+  },
+  validations: {
+    values: {
+      required
+    },
+    codArchivio: {
+      required
+    },
+    soglia: {
+      validationRule() {
+        return (
+          (/^[0-9?,.]*$/.test(this.soglia) || /^[null]/.test(this.soglia)) &&
+          this.soglia <= 1
+        );
+      },
+      maxLength: maxLength(5)
+    }
   },
   methods: {
+    async runScript() {
+      let elencoProv = this.elencoProvince();
+      this.$v.$touch(); //validate form data
+      if (this.elencoScript[0].stato != 0) {
+        if (!this.$v.$invalid && this.soglia != null && this.soglia != "") {
+          let payload = {
+            province: this.values != null ? elencoProv : "",
+            codArchivio:
+              this.codArchivio.codiceArchivio != null
+                ? this.codArchivio.codiceArchivio
+                : "",
+            soglia: this.soglia != null ? this.soglia : ""
+          };
+          //this.spinnerVisible = true;
+          this.intervalId = setInterval(() => {
+            this.updateElenco();
+          }, 3000);
+          this.$store.dispatch("scriptRunning/setScriptRunning", true);
+          await this.$store.dispatch("valueScript/execScript", payload);
+          this.$store.dispatch("elenco/findElencoByUser");
+          //this.spinnerVisible = false;
+          if (this.elencoScript[0].stato == 0) {
+            this.$store.dispatch("scriptRunning/setScriptRunning", false);
+          }
+          this.$store.dispatch("tabella/findTabellaByUser");
+        } else {
+          this.$store.dispatch(
+            "message/warning",
+            "Valorizzare i campi province, Soglia e Codoce Archivio prima di avviare lo script",
+            {
+              root: true
+            }
+          );
+        }
+      } else {
+        this.$store.dispatch(
+          "message/warning",
+          "Attendere il termine dell'ultimo processo",
+          {
+            root: true
+          }
+        );
+        this.$store.dispatch("elenco/findElencoByUser");
+      }
+    },
+    updateElenco() {
+      this.$store.dispatch("elenco/findElencoByUser");
+      clearInterval(this.intervalId);
+    },
+    elencoProvince() {
+      return this.values.map(val => {
+        return val.name;
+      });
+    },
+    changedValueProvincia() {},
+    showToponimoList(item) {
+      this.$store.dispatch("tabella/findTabellaByUserAndProc", item.idProcesso);
+      this.returnValueScript = this.elencoScript[item.index - 1].esito;
+      this.$store.dispatch("message/warning", "Record selezionato.", {
+        root: true
+      });
+    },
     modalOpen() {
       this.warningModal = true;
     },
     modalClose() {
       this.warningModal = false;
+    },
+    changedCodArchivio() {
+      console.log(this.codArchivio);
     },
     updateSelected(dug, duf, note) {
       var payload;
@@ -189,6 +514,10 @@ export default {
         "elencoProvince/findTopProvinceByUserAndState",
         state
       );
+      this.$store.dispatch("elencoProvinceScript/findProvinceByScript");
+      this.$store.dispatch("archivio/findArchivioCodes");
+      //this.$store.dispatch("tabella/findTabellaByUser");
+      this.$store.dispatch("elenco/findElencoByUser");
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
   },
@@ -200,6 +529,15 @@ export default {
     this.load(this.$route.params.state);
     this.$store.dispatch("dug/findAll");
   }
+
+  /* mounted() {
+    this.intervalId = setInterval(() => {
+      this.updateElenco();
+    }, 5000);
+  },
+  onUnmounted() {
+    clearInterval(this.intervalId);
+  }*/
 };
 </script>
 

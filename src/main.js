@@ -8,7 +8,6 @@ import store from "@/store";
 //Icons
 import { iconsSet as icons } from "@/assets/icons/coreui.js";
 import "@/assets/icons/material";
-
 //Vue global plugins
 import Vuelidate from "vuelidate";
 import vSelect from "vue-select";

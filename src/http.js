@@ -87,7 +87,12 @@ axiosRegedit.interceptors.response.use(
       } else {
         //Internal server error
         store.dispatch("error/serverError", error.response);
-        router.push("/error");
+        //router.push("/error");
+        //outer.push("/catalogue/toponimo/view/8");
+        var runningState = this.$store.getters["scriptRunning/isScriptRunning"]; //store.dispatch("scriptRunning/getScriptRunning");
+        if (runningState == false) {
+          router.push("/error");
+        }
       }
     }
     return Promise.reject(error);

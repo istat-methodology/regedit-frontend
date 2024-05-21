@@ -108,6 +108,23 @@
             </a>
           </router-link>
         </li>
+        <li class="c-sidebar-nav-item" v-if="isSupervisor">
+          <router-link
+            :to="{ name: 'ToponimoList', params: { state: 8 } }"
+            class="c-sidebar-nav-link"
+            :class="{ 'c-active c-active-primary': isAddressLinkage }"
+            custom
+            v-slot="{ href, navigate }"
+          >
+            <a :href="href" @click="navigate">
+              <CIcon name="cilTerminal" class="c-sidebar-nav-icon" /> Linkage
+              Probabilistico
+              <!-- <span class="badge badge-warning"
+                >{{ sospesi }} / {{ total }}</span
+              > -->
+            </a>
+          </router-link>
+        </li>
         <!-- <li class="c-sidebar-nav-title">Modifiche in blocco</li>
         <li class="c-sidebar-nav-item">
           <router-link
@@ -166,6 +183,7 @@ export default {
       isAddressToRevise: "isAddressToRevise",
       isAddressRevised: "isAddressRevised",
       isAddressSkip: "isAddressSkip",
+      isAddressLinkage: "isAddressLinkage",
       isBlock: "isBlock",
       isBlockSuspended: "isBlockSuspended"
     }),

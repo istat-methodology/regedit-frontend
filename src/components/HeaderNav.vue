@@ -38,18 +38,18 @@
         shape="square"
         variant="outline"
         size="sm"
-        color="success"
+        color="primary"
         @click="Switch"
-        >Toponimi</CButton
+        >Indirizzi..</CButton
       >
       <CButton
         v-else
         shape="square"
         variant="outline"
         size="sm"
-        color="primary"
+        color="success"
         @click="Switch"
-        >Indirizzi</CButton
+        >Toponimi..</CButton
       >
     </div>
     <template v-if="isSupervisor">

@@ -9,6 +9,7 @@ const state = {
   isAddressToRevise: false,
   isAddressRevised: false,
   isAddressSkip: false,
+  isAddressLinkage: false,
   isDailyReport: false,
   isTotalReport: false,
   isBlock: false,
@@ -42,6 +43,9 @@ const mutations = {
       case Context.AddressSkip:
         state.isAddressSkip = true;
         break;
+      case Context.AddressLinkage:
+        state.isAddressLinkage = true;
+        break;
       case Context.DailyReport:
         state.isDailyReport = true;
         break;
@@ -64,6 +68,7 @@ const mutations = {
     state.isAddressToRevise = false;
     state.isAddressRevised = false;
     state.isAddressSkip = false;
+    state.isAddressLinkage = false;
     state.isDailyReport = false;
     state.isTotalReport = false;
     state.isBlock = false;
@@ -117,6 +122,9 @@ const getters = {
   },
   isAddressSkip: state => {
     return state.isAddressSkip;
+  },
+  isAddressLinkage: state => {
+    return state.isAddressLinkage;
   },
   isDailyReport: state => {
     return state.isDailyReport;
