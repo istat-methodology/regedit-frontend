@@ -398,7 +398,7 @@ export default {
           return "primary";
       }
     },
-    getStatoColorScript(stato) {
+   /*  getStatoColorScript(stato) {
       switch (stato) {
         case -1:
           return "warning";
@@ -425,7 +425,7 @@ export default {
         default:
           return "";
       }
-    },
+    }, */
     getStatoString(stato, validazione) {
       switch (stato) {
         case 1:

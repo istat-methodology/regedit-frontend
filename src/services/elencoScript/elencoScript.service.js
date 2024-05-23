@@ -19,6 +19,20 @@ class ElencoScriptService extends AbstractService {
         });
     }
   }
+  findScriptRunningByUser() {
+    {
+      return axiosRegedit
+        .get(this.endpoint + "/log-linkage-probabilistico-last-proc")
+        .then(res => {
+          var data = res.data ? res.data : {};
+          //console.log(data);
+          return data;
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }
 }
 
 export const elencoScriptService = new ElencoScriptService("/regedit");

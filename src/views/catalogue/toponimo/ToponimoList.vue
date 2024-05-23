@@ -285,6 +285,7 @@ export default {
       values: [],
       returnValueScript: "",
       intervalId: null,
+      intervalIdScriptRunning: null,
       btnLabel: () => "Elenco Province",
       filters: [
         {
@@ -324,6 +325,7 @@ export default {
     ...mapGetters("archivio", ["archivioCodes"]),
     ...mapGetters("tabella", ["tabellaScript"]),
     ...mapGetters("elenco", ["elencoScript"]),
+    ...mapGetters("elenco", ["lastScriptRunning"]),
 
     province: {
       get: function() {
@@ -373,13 +375,16 @@ export default {
           this.intervalId = setInterval(() => {
             this.updateElenco();
           }, 3000);
+          this.intervalIdScriptRunning = setInterval(() => {
+            this.verifyScriptRunning();
+          }, 5000);
           this.$store.dispatch("scriptRunning/setScriptRunning", true);
           await this.$store.dispatch("valueScript/execScript", payload);
           this.$store.dispatch("elenco/findElencoByUser");
           //this.spinnerVisible = false;
-          if (this.elencoScript[0].stato == 0) {
+          /* if (this.elencoScript[0].stato == 0) {
             this.$store.dispatch("scriptRunning/setScriptRunning", false);
-          }
+          } */
           this.$store.dispatch("tabella/findTabellaByUser");
         } else {
           this.$store.dispatch(
@@ -401,9 +406,46 @@ export default {
         this.$store.dispatch("elenco/findElencoByUser");
       }
     },
+    getStatoColorScript(stato) {
+      switch (stato) {
+        case -1:
+          return "warning";
+        case 0:
+          return "danger";
+        case 1:
+          return "success";
+        default:
+          return "primary";
+      }
+    },
+    getStatoStringScript(stato, indice) {
+      switch (stato) {
+        case -1:
+          return "Errore script";
+        case 0:
+          if (indice > 1) {
+            return "Esecuzione abortita";
+          }
+          return "Esecuzione in corso..";
+
+        case 1:
+          return "Completato";
+        default:
+          return "";
+      }
+    },
     updateElenco() {
       this.$store.dispatch("elenco/findElencoByUser");
       clearInterval(this.intervalId);
+    },
+    async verifyScriptRunning() {
+      console.log("Verifica in Corso......");
+      await this.$store.dispatch("elenco/findScriptRunningByUser");
+      if (this.lastScriptRunning.stato && this.lastScriptRunning.stato != 0) {
+        this.$store.dispatch("scriptRunning/setScriptRunning", false);
+        this.$store.dispatch("elenco/findElencoByUser");
+        clearInterval(this.intervalIdScriptRunning);
+      }
     },
     elencoProvince() {
       return this.values.map(val => {
@@ -530,14 +572,14 @@ export default {
     this.$store.dispatch("dug/findAll");
   }
 
-  /* mounted() {
-    this.intervalId = setInterval(() => {
-      this.updateElenco();
+  /*  mounted() {
+    this.intervalIdScriptRunning = setInterval(() => {
+      this.verifyScriptRunning();
     }, 5000);
   },
   onUnmounted() {
-    clearInterval(this.intervalId);
-  }*/
+    clearInterval(this.intervalIdScriptRunning);
+  } */
 };
 </script>
 
