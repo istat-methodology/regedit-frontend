@@ -29,6 +29,7 @@ import { csv } from "./modules/exportCSV/exportCSV";
 import { archivio } from "./modules/archivio/archivio";
 import { tabella } from "./modules/tabellaScript/tabellaScript";
 import { elenco } from "./modules/elencoScript/elencoScript";
+import { rServe } from "./modules/rServe/rServe";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -60,6 +61,7 @@ export default new Vuex.Store({
     csv,
     archivio,
     tabella,
-    elenco
+    elenco,
+    rServe
   }
 });

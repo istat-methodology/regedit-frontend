@@ -17,3 +17,4 @@ export * from "./massive/massiveTopVal.service";
 export * from "./exportCSV/exportCSV.service";
 export * from "./tabellaScript/tabellaScript.service";
 export * from "./elencoScript/elencoScript.service";
+export * from "./rServer/rServer.service";

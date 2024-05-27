@@ -149,15 +149,11 @@
                 Esegui Script
               </CButton>
             </div>
-            <div class="col-2">
-              <CButton
-                shape="square"
-                size="sm"
-                color="primary"
-                @click="runScript"
-              >
-                Attiva Rserver
-              </CButton>
+            <div class="col-2" v-if="isRServeOn">
+              <CBadge color="success">RSERVE Connesso</CBadge>
+            </div>
+            <div class="col-2" v-else>
+              <CBadge color="warning">RSERVE non risponde</CBadge>
             </div>
           </div>
         </CCardBody>
@@ -286,6 +282,7 @@ export default {
       returnValueScript: "",
       intervalId: null,
       intervalIdScriptRunning: null,
+      rServerConnesso: false,
       btnLabel: () => "Elenco Province",
       filters: [
         {
@@ -326,7 +323,7 @@ export default {
     ...mapGetters("tabella", ["tabellaScript"]),
     ...mapGetters("elenco", ["elencoScript"]),
     ...mapGetters("elenco", ["lastScriptRunning"]),
-
+    ...mapGetters("rServe", ["rResponse"]),
     province: {
       get: function() {
         return this.provinceScript;
@@ -438,6 +435,9 @@ export default {
       this.$store.dispatch("elenco/findElencoByUser");
       clearInterval(this.intervalId);
     },
+    isRServeOn() {
+      return this.rResponse == "ok" ? true : false;
+    },
     async verifyScriptRunning() {
       console.log("Verifica in Corso......");
       await this.$store.dispatch("elenco/findScriptRunningByUser");
@@ -547,6 +547,7 @@ export default {
             ? this.filterTopProvincia.denominazioneProvincia
             : null
       };
+      this.$store.dispatch("rServe/getResponse");
       this.$store.dispatch("coreui/setContext", state);
       this.$store.dispatch("toponimo/clearTop");
       this.$store.dispatch("toponimo/findByUserAndState", state);
@@ -558,7 +559,6 @@ export default {
       );
       this.$store.dispatch("elencoProvinceScript/findProvinceByScript");
       this.$store.dispatch("archivio/findArchivioCodes");
-      //this.$store.dispatch("tabella/findTabellaByUser");
       this.$store.dispatch("elenco/findElencoByUser");
       this.sorterValue.column = parseInt(state) > 1 ? "dataMod" : null;
     }
