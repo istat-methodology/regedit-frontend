@@ -37,8 +37,7 @@ class ProvinceService extends AbstractService {
               "/" +
               payload.soglia
           )
-          .then(res => {
-            var data = res.data ? res.data : {};
+          .then(data => {
             //console.log(data);
             return data;
           })

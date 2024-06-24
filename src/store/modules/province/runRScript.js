@@ -6,8 +6,8 @@ const state = {
 };
 
 const mutations = {
-  SET_RETURNSCRIPT(state, returnValueScript) {
-    state.returnValueScript = returnValueScript;
+  SET_RETURNSCRIPT(state, returnValue) {
+    state.returnValueScript = returnValue;
   }
 };
 

@@ -149,7 +149,7 @@
                 Esegui Script
               </CButton>
             </div>
-            <div class="col-2" v-if="isRServeOn">
+            <div class="col-2" v-if="isRServeOn()">
               <CBadge color="success">RSERVE Connesso</CBadge>
             </div>
             <div class="col-2" v-else>
@@ -172,6 +172,7 @@
               hover
               pagination
               clickableRows
+              @row-clicked="showList"
             >
               <template #codiciProvincia="{item}">
                 <td>{{ item.codiciProvincia | dashEmpty }}</td>
@@ -282,7 +283,6 @@ export default {
       returnValueScript: "",
       intervalId: null,
       intervalIdScriptRunning: null,
-      rServerConnesso: false,
       btnLabel: () => "Elenco Province",
       filters: [
         {
@@ -316,7 +316,7 @@ export default {
   computed: {
     ...mapGetters("coreui", ["isLoading"]),
     ...mapGetters("toponimo", ["toponimi", "filterTopProvincia"]),
-    //...mapGetters("valueScript", ["returnValueScript"]),
+    ...mapGetters("valueScript", ["returnValueScript"]),
     ...mapGetters("scriptRunning", ["isScriptRunning"]),
     ...mapGetters("elencoProvinceScript", ["provinceScript"]),
     ...mapGetters("archivio", ["archivioCodes"]),
@@ -459,6 +459,13 @@ export default {
       this.$store.dispatch("message/warning", "Record selezionato.", {
         root: true
       });
+    },
+    showList(logRow) {
+      this.$store.dispatch(
+        "tabella/findTabellaByUserAndProc",
+        logRow.idProcesso
+      );
+      this.returnValueScript = this.elencoScript[logRow.index - 1].esito;
     },
     modalOpen() {
       this.warningModal = true;
